@@ -1,17 +1,6 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-let pages = [
-  new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: './app/pages/index.html',
-    title: 'test',
-    templateParameters: {
-      foo: 'bar'
-    },
-    chunks: ['index']
-  })
-]
+const pages = require('./pagesConfig')
 
 const postCSSPlugins = [
   require('postcss-import'),
@@ -23,25 +12,25 @@ const postCSSPlugins = [
 
 module.exports = {
   entry: {
-    index: './app/assets/scripts/index.js'
+    welcome: './app/assets/scripts/welcome.js'
   },
   mode: 'development',
   module: {
     rules: [
       {
-        test: /\.ejs$/i,
-        loader: 'ejs-loader'
-      },
-      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader', {loader: 'postcss-loader', options: {postcssOptions: {plugins: postCSSPlugins}}}]
+      },
+      {
+        test: /\.svg$/i,
+        use: 'svg-sprite-loader'
       }
     ]
   },
   plugins: [...pages],
   devServer: {
     static: {
-      directory: path.join(__dirname, 'app', 'pages'),
+      directory: path.join(__dirname, 'docs'),
       watch: false
     },
     watchFiles: './app/pages/**/*',
@@ -49,7 +38,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000'
+    open: 'http://localhost:3000/signin.html'
   },
   output: {
     filename: '[name].bundle.js',

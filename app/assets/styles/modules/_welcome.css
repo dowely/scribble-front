@@ -1,0 +1,44 @@
+.welcome {
+
+  &__wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+  }
+
+  &__glass-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    flex: auto;
+    background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+  }
+
+  &__glass {
+    color: #fff;
+    text-align: center;
+    overflow: auto;
+  }
+
+  &__glass__logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  &__glass__app-name {
+    font-weight: 400;
+    font-size: 2rem;
+    margin: 20px 0;
+  }
+
+  &__glass__app-slogan {
+    display: none;
+  }
+  
+  &__form-container {
+    background: $mainSilver;
+    padding: 0 20px 20px;
+  }
+}

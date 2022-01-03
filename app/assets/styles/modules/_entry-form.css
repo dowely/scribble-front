@@ -1,0 +1,65 @@
+.entry-form {
+  background-color: #fff;
+  border: 1px solid $gray50;
+  padding: 20px;
+  margin-top: -20px;
+  border-radius: 20px;
+
+  &__input {
+    display: flex;
+    border: 1px solid $gray20;
+    border-radius: $pill;
+    overflow: hidden;
+  }
+
+  &__input__field {
+    flex: auto;
+    min-width: 0;
+    font-size: 1rem;
+    color: $mainBlack;
+    padding: 12px 18px;
+    height: 40px;
+    outline: none;
+    border: none;
+
+    &::placeholder {
+      color: $gray30;
+    }
+  }
+
+  &__input__circle {
+    display: flex;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    flex: none;
+    margin: 0 5px;
+    background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+  }
+
+  &__input__icon {
+    width: 16px;
+    height: 20px;
+    margin: auto;
+    color: #fff;
+  }
+
+  &__input__icon--pull-up {
+    position: relative;
+    bottom: 1px;
+  }
+
+  &__input__pass-toggle {
+    display: flex;
+    width: 50px;
+    flex: none;
+  }
+
+  &__input__pass-toggle__icon {
+    width: 24px;
+    height: 18px;
+    margin: auto;
+    color: $gray30;
+  }
+}
