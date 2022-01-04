@@ -2,35 +2,59 @@
 
   &__wrapper {
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     flex-direction: column;
-    border: 1px solid blue;
+
+    @mixin atLarge {
+      flex-direction: row;
+    }
   }
 
   &__glass-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
     flex: auto;
     background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+
+    @mixin atMedium {
+      height: 430px;
+      flex: none;
+    }
+
+    @mixin atLarge {
+      order: 2;
+    }
   }
 
   &__glass {
     color: #fff;
     text-align: center;
     overflow: auto;
+    padding: 16px 0;
   }
 
   &__glass__logo {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
+
+    @mixin atMedium {
+      width: 150px;
+      height: 150px;
+    }
   }
 
   &__glass__app-name {
     font-weight: 400;
     font-size: 2rem;
-    margin: 20px 0;
+    margin: 18px 0 25px;
+
+    @mixin atMedium {
+      font-size: 3.325rem;
+      margin: 32px 0 50px;
+      font-weight: 300;
+    }
   }
 
   &__glass__app-slogan {
@@ -40,5 +64,20 @@
   &__form-container {
     background: $mainSilver;
     padding: 0 20px 20px;
+
+    @mixin atMedium {
+      padding: 0 130px 20px;
+      flex: auto;
+    }
+
+    @mixin atLarge {
+      flex: none;
+      width: 50%;
+      max-width: 640px;
+      padding: 20px 70px;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+    }
   }
 }

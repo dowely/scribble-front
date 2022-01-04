@@ -1,5 +1,3 @@
-import '../styles/styles.css'
-
 function importSprites(r) {
   r.keys().forEach(r)
 }

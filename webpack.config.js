@@ -12,6 +12,7 @@ const postCSSPlugins = [
 
 module.exports = {
   entry: {
+    main: './app/assets/scripts/main.js',
     welcome: './app/assets/scripts/welcome.js'
   },
   mode: 'development',
@@ -43,5 +44,8 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'docs')
+  },
+  optimization: {
+    runtimeChunk: 'single'
   }
 }

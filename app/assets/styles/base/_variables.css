@@ -1,5 +1,7 @@
 $topGradientLight: #c6426e;
 $topGradientDark: #642b73;
+$largeGradientPink: #fc466b;
+$largeGradientBlue: #6a82fb;
 $mainEggshell: #f4ecd6;
 $mainLavender: #a4bef3;
 $mainBlack: #2b2118;
@@ -8,5 +10,6 @@ $mainSilver: #f0f0f0;
 $gray20: #ccc;
 $gray30: #b3b3b3;
 $gray50: #888;
+$gray70: #4d4d4d;
 
 $pill: 9999px;

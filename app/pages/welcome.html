@@ -1,5 +1,5 @@
-<% let meta = require('html-loader!./partials/meta.html').default %>
-<%= meta.replace('${title}', htmlWebpackPlugin.options.title) %>
+<% let head = require('html-loader!./partials/head.html').default %>
+<%= head.replace('${title}', htmlWebpackPlugin.options.title) %>
 <body>
 
   <main class="welcome">
@@ -57,7 +57,7 @@
               </div>
             <% } %>
 
-            <div class="entry-form__input">
+            <div class="entry-form__input <%= route == 'signin' ? 'entry-form__input--mb-small' : ''%>">
 
               <input class="entry-form__input__field" name="password" type="password" placeholder="Password" autocomplete="off">
 
@@ -93,7 +93,7 @@
               </div>
             <% } %> 
 
-            <button class="btn">Sign in</button>
+            <button class="btn btn--sign-in"><%= route == 'signin' ? 'Sign In' : 'Sign Up' %></button>
 
           </form>
 

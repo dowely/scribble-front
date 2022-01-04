@@ -8,7 +8,7 @@ module.exports = [
     templateParameters: {
       route: 'signin'
     },
-    chunks: ['welcome']
+    chunks: ['main', 'welcome']
   }),
   new HtmlWebpackPlugin({
     filename: 'signup.html',
@@ -17,6 +17,6 @@ module.exports = [
     templateParameters: {
       route: 'signup'
     },
-    chunks: ['welcome']
+    chunks: ['main', 'welcome']
   })
 ]

@@ -1,0 +1,25 @@
+.btn {
+  border: none;
+  border-radius: $pill;
+
+  &--sign-in {
+    background-color: $topGradientDark;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    text-transform: uppercase;
+
+    @mixin atMedium {
+      height: 62px;
+      font-size: 1.55rem;
+      font-weight: 300;
+    }
+
+    @mixin atLarge {
+      height: 50px;
+      font-size: 1.25rem;
+      font-weight: 300;
+      background-color: $largeGradientBlue;
+    }
+  }
+}
