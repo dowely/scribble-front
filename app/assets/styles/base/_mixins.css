@@ -9,3 +9,9 @@
     @mixin-content;
   }
 }
+
+@define-mixin atXLarge {
+  @media (min-width: 1423px) {
+    @mixin-content;
+  }
+}

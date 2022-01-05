@@ -1,0 +1,11 @@
+$largeGradient:
+  radial-gradient(60% 50% at 0 0, $largeGradientPink, transparent),
+  radial-gradient(75% 75% at 50% 0, $largeGradientPinkBlue, transparent),
+  radial-gradient(75% 200% at 100% 50%, $largeGradientBlue, transparent),
+  radial-gradient(500% 75% at 0 100%, $largeGradientPurple, transparent),
+  radial-gradient(100% 75% at 100% 0, $largeGradientBlue, transparent),
+  radial-gradient(75% 75% at 100% 100%, $largeGradientBlue, transparent),
+  radial-gradient(100% 50% at 50% 100%, $largeGradientPurpleBlue, transparent),
+  radial-gradient(75% 100% at 0 50%, $largeGradientPinkPurple, transparent),
+  radial-gradient(100% 100% at 50% 50%, $largeGradientPinkPurpleBlue, transparent)
+;

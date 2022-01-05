@@ -29,6 +29,10 @@
     @mixin atLarge {
       font-size: 2.25rem;
     }
+
+    @mixin atXLarge {
+      margin: 0 0 3.25rem;
+    }
   }
 
   &__input {
@@ -225,6 +229,10 @@
     @mixin atMedium {
       font-size: 1.2rem;
     }
+
+    @mixin atLarge {
+      font-size: 1.1rem;
+    }
   }
 
   &__or {
@@ -239,6 +247,10 @@
 
     @mixin atLarge {
       margin: 1.75rem 0 1.5rem;
+    }
+
+    @mixin atXLarge {
+      margin: 2.5rem 0 2rem;
     }
   }
 
