@@ -1,0 +1,67 @@
+<%
+  let head = require('html-loader!./partials/head.html').default
+  head = head.replace('${title}', htmlWebpackPlugin.options.title)
+%>
+
+<%= head %>
+<body>
+  <main class="layout layout--mail layout--mail-expanded">
+
+    <div class="layout__wrapper">
+
+      <div class="layout__menu-container layout__menu-col">
+        menu
+      </div>
+
+      <div class="layout__control-a layout__left-col">
+        <div class="layout__control-a__inner">
+          control a
+        </div>
+      </div>
+
+      <div class="layout__control-b layout__right-col">
+        <div class="layout__control-b__inner">
+          control b
+        </div>
+      </div>
+
+      <div class="layout__control-c layout__right-col">
+        <div class="layout__control-c__inner">
+          control c
+        </div>
+      </div>
+
+      <div class="layout__control-d layout__left-col">
+        <div class="layout__control-d__inner">
+          control d
+        </div>
+      </div>
+
+      <div class="layout__control-e layout__right-col">
+        <div class="layout__control-e__inner">
+          
+        </div>
+      </div>
+
+      <div class="layout__display-a layout__left-col">
+        <div class="layout__display-a__inner">
+          display a
+        </div>
+      </div>
+
+      <div class="layout__display-b layout__right-col">
+        <div class="layout__display-b__inner">
+          display b
+        </div>
+      </div>
+
+      <div class="layout__glass"></div>
+
+    </div>
+
+    <div class="layout__circle-small"></div>
+    <div class="layout__circle-large"></div>
+
+  </main>
+</body>
+</html>

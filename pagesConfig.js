@@ -18,5 +18,14 @@ module.exports = [
       route: 'signup'
     },
     chunks: ['main', 'welcome']
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'mail.html',
+    template: './app/pages/layout.html',
+    title: 'Scribble App | Mail',
+    templateParameters: {
+      route: 'mail'
+    },
+    chunks: ['main']
   })
 ]

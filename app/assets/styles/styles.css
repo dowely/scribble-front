@@ -6,6 +6,7 @@
 @import 'base/_large-gradient.css';
 
 @import 'modules/_btn.css';
+@import 'modules/_layout.css';
 
 @import 'modules/_welcome.css';
 @import 'modules/_entry-form.css';

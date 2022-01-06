@@ -1,6 +1,16 @@
 .btn {
   border: none;
   border-radius: $pill;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
 
   &--sign-in {
     background-color: $topGradientDark;

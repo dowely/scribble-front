@@ -1,0 +1,90 @@
+.layout {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  border: 1px solid blue;
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100%;
+    border: 1px solid red;
+  }
+
+  &__menu-container {
+    grid-row: 1 / -1;
+    background-color: rgb(238, 80, 238, .5);
+  }
+
+  &__menu-col,
+  &__left-col,
+  &__right-col {
+    grid-column: 1 / 2;
+  }
+
+  /*** mail start ***/
+
+  &--mail &__wrapper {
+    grid-template-rows: 20px repeat(2, auto 20px) 1fr;
+  }
+
+  &--mail-expanded &__wrapper {
+    grid-template-rows: 20px repeat(4, auto 20px) 1fr;
+  }
+
+  &--mail &__control-a {
+    grid-row: 2 / 3;
+    background-color: #fff;
+  }
+
+  &--mail &__control-b {
+    grid-row: 4 / 5;
+    background-color: #fff;
+  }
+
+  &--mail &__control-c {
+    grid-row: 4 / 5;
+    background-color: #fff;
+  }
+
+  &--mail &__control-d {
+    grid-row: 4 / 5;
+    background-color: #fff;
+  }
+
+  &--mail &__display-a {
+    grid-row: 6 / -1;
+    background-color: antiquewhite;
+  }
+
+  &--mail &__display-b {
+    grid-row: 6 / -1;
+    background-color: aquamarine;
+  }
+
+  &--mail-expanded &__control-b {
+    grid-row: 4 / 5;
+    background-color: #fff;
+  }
+
+  &--mail-expanded &__control-c {
+    grid-row: 6 / 7;
+    background-color: #fff;
+  }
+
+  &--mail-expanded &__control-d {
+    grid-row: 8 / 9;
+    background-color: #fff;
+  }
+
+  &--mail-expanded &__display-a {
+    grid-row: 10 / -1;
+    background-color: #fff;
+  }
+
+  &--mail-expanded &__display-b {
+    grid-row: 10 / -1;
+    background-color: aquamarine;
+  }
+
+  /*** mail end ***/
+}
