@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = [
   new HtmlWebpackPlugin({
     filename: 'signin.html',
-    template: './app/pages/welcome.html',
+    template: './app/pages/welcome.ejs',
     title: 'Scribble App | Sign In',
     templateParameters: {
       route: 'signin'
@@ -12,7 +12,7 @@ module.exports = [
   }),
   new HtmlWebpackPlugin({
     filename: 'signup.html',
-    template: './app/pages/welcome.html',
+    template: './app/pages/welcome.ejs',
     title: 'Scribble App | Sign Up',
     templateParameters: {
       route: 'signup'
@@ -21,9 +21,10 @@ module.exports = [
   }),
   new HtmlWebpackPlugin({
     filename: 'mail.html',
-    template: './app/pages/layout.html',
+    template: './app/pages/layout.ejs',
     title: 'Scribble App | Mail',
     templateParameters: {
+      foo: 'bar',
       route: 'mail'
     },
     chunks: ['main']

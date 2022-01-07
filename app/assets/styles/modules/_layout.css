@@ -1,90 +1,247 @@
 .layout {
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  border: 1px solid blue;
 
   &__wrapper {
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    height: 100%;
-    border: 1px solid red;
+
+    @mixin atMedium {
+      grid-template-columns: 110px 1fr;
+    }
+
+    @mixin atLarge {
+      grid-template-columns: 235px auto 1fr;
+    }
+
+    .layout--mail & {
+      grid-template-rows: repeat(4, auto) 1fr;
+
+      @mixin atLarge {
+        grid-template-rows: repeat(2, auto) 1fr;
+      }
+    }
+  }
+  
+  &__menu-col,
+  &__left-col,
+  &__right-col,
+  &__glass {
+    grid-column: 1 / 2;
+  }
+
+  &__left-col,
+  &__right-col,
+  &__glass {
+    @mixin atMedium {
+      grid-column: 2 / 3;
+    }
+  }
+
+  &__right-col {
+    @mixin atLarge {
+      grid-column: 3 / 4;
+    }
+  }
+
+  &__glass {
+    @mixin atLarge {
+      grid-column: 2 / 4;
+    }
   }
 
   &__menu-container {
     grid-row: 1 / -1;
-    background-color: rgb(238, 80, 238, .5);
+    background-color: bisque;
   }
 
-  &__menu-col,
-  &__left-col,
-  &__right-col {
-    grid-column: 1 / 2;
+  &__glass {
+    .layout--mail & {
+      grid-row: 1 / 5;
+
+      @mixin atLarge {
+        grid-row: 1 / -1;
+      }
+    }
   }
 
-  /*** mail start ***/
+  &__control {
+    display: flex;
+    justify-content: center;
 
-  &--mail &__wrapper {
-    grid-template-rows: 20px repeat(2, auto 20px) 1fr;
+    @mixin atMedium {
+      justify-content: start;
+    }
   }
 
-  &--mail-expanded &__wrapper {
-    grid-template-rows: 20px repeat(4, auto 20px) 1fr;
+  &__control--a {
+    .layout--mail & {
+      grid-row: 1 / 2;
+    }
   }
 
-  &--mail &__control-a {
-    grid-row: 2 / 3;
-    background-color: #fff;
+  &__control--b {
+    .layout--mail & {
+      grid-row: 4 / 5;
+
+      @mixin atLarge {
+        grid-row: 2 / 3;
+      }
+    }
   }
 
-  &--mail &__control-b {
-    grid-row: 4 / 5;
-    background-color: #fff;
+  &__control--c {
+    .layout--mail & {
+      display: none;
+    }
   }
 
-  &--mail &__control-c {
-    grid-row: 4 / 5;
-    background-color: #fff;
+  &__control--d {
+    .layout--mail & {
+      grid-row: 2 / 3;
+
+      @mixin atLarge {
+        grid-row: 1 / 2;
+      }
+    }
   }
 
-  &--mail &__control-d {
-    grid-row: 4 / 5;
-    background-color: #fff;
+  &__control--e {
+    .layout--mail & {
+      grid-row: 3 / 4;
+
+      @mixin atLarge {
+        grid-row: 2 / 3;
+      }
+    }
   }
 
-  &--mail &__display-a {
-    grid-row: 6 / -1;
-    background-color: antiquewhite;
+  &__control--f {
+    .layout--mail & {
+      display: none;
+    }
   }
 
-  &--mail &__display-b {
-    grid-row: 6 / -1;
-    background-color: aquamarine;
+  &__control__inner {
+    height: $controlHeightBaseline;
+    margin-left: $controlMxBaseline;
+    margin-right: $controlMxBaseline;
+    margin-bottom: $controlMbBaseline;
+    width: 100%;
+    max-width: 400px;
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-left: $controlMxMedium;
+      margin-bottom: $controlMbMedium;
+      max-width: 440px;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      margin-left: $controlMxLarge;
+      margin-right: $controlMxLarge;
+      width: 400px;
+    }
   }
 
-  &--mail-expanded &__control-b {
-    grid-row: 4 / 5;
-    background-color: #fff;
+  &__control__inner--reveal {
+    height: 0;
+    margin-bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out .3s, opacity .3s ease-in 1ms;
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-bottom: $controlMbMedium;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      margin-bottom: $controlMbLarge;
+    }
+
+    .layout--mail-expanded &,
+    .layout--chat-expanded & {
+      height: $controlHeightBaseline;
+      margin-bottom: $controlMbBaseline;
+      visibility: visible;
+      opacity: 1;
+      transition: all .4s ease-out, opacity .3s ease-in .4s;
+    }
   }
 
-  &--mail-expanded &__control-c {
-    grid-row: 6 / 7;
-    background-color: #fff;
+  &__control--a &__control__inner {
+    margin-top: $controlMyBaseline;
+    background-color: rgb(185, 78, 78);
+
+    @mixin atMedium {
+      margin-top: $controlMyMedium;
+    }
+
+    @mixin atLarge {
+      margin-top: $controlMyLarge;
+    }
   }
 
-  &--mail-expanded &__control-d {
-    grid-row: 8 / 9;
-    background-color: #fff;
+  &__control--b &__control__inner {
+    background-color: rgb(206, 209, 41);
   }
 
-  &--mail-expanded &__display-a {
-    grid-row: 10 / -1;
-    background-color: #fff;
+  &__control--d &__control__inner {
+    background-color: rgb(19, 233, 204);
+
+    @mixin atLarge {
+      margin-top: $controlMyLarge;
+    }
   }
 
-  &--mail-expanded &__display-b {
-    grid-row: 10 / -1;
-    background-color: aquamarine;
+  &__control--e &__control__inner {
+    background-color: rgb(13, 118, 216);
   }
 
-  /*** mail end ***/
+  &__viewer {
+    display: flex;
+    justify-content: center;
+
+    .layout--mail & {
+      grid-row: 5 / -1;
+
+      @mixin atLarge {
+        grid-row: 3 / -1;
+      }
+    }
+  }
+
+  &__viewer--b {
+    @mixin atLarge {
+      justify-content: start;
+    }
+  }
+
+  &__viewer__inner {
+    margin: 0 10px;
+    width: 100%;
+    max-width: 400px;
+
+    @mixin atMedium {
+      max-width: 500px;
+    }
+
+    @mixin atLarge {
+      margin: 0 $controlMxLarge $controlMyLarge;
+      width: 400px;
+    }
+  }
+
+  &__viewer--a &__viewer__inner {
+    background-color: rgb(135, 226, 233);
+  }
+  &__viewer--b &__viewer__inner {
+    background-color: rgb(221, 199, 72);
+  }
 }

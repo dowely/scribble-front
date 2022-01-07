@@ -21,3 +21,20 @@ $gray50: #888;
 $gray70: #4d4d4d;
 
 $pill: 9999px;
+
+$controlHeightBaseline: 1.875rem;
+$controlHeightMedium: 2.375rem;
+$controlHeightLarge: 2.5rem;
+
+/* margins */
+$controlMxBaseline: 20px;
+$controlMyBaseline: 18px;
+$controlMbBaseline: 18px;
+
+$controlMxMedium: 45px;
+$controlMyMedium: 22px;
+$controlMbMedium: 30px;
+
+$controlMxLarge: 40px;
+$controlMyLarge: 30px;
+$controlMbLarge: 30px;

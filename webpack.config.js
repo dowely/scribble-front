@@ -25,6 +25,10 @@ module.exports = {
       {
         test: /\.svg$/i,
         use: 'svg-sprite-loader'
+      },
+      {
+        test: /\.ejs$/i,
+        use: 'ejs-compiled-loader'
       }
     ]
   },
@@ -39,7 +43,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/signin.html'
+    open: 'http://localhost:3000/mail.html'
   },
   output: {
     filename: '[name].bundle.js',

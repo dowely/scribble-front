@@ -1,5 +1,4 @@
-<% let head = require('html-loader!./partials/head.html').default %>
-<%= head.replace('${title}', htmlWebpackPlugin.options.title) %>
+<%- include partials/head %>
 <body>
 
   <main class="welcome">
