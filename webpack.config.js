@@ -35,7 +35,7 @@ module.exports = {
   plugins: [...pages],
   devServer: {
     static: {
-      directory: path.join(__dirname, 'docs'),
+      directory: path.join(__dirname, 'app'),
       watch: false
     },
     watchFiles: './app/pages/**/*',

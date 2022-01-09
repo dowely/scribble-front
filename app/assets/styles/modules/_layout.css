@@ -2,6 +2,73 @@
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 
+  @mixin atXLarge {
+    display: flex;
+    background: $largeGradient;
+  }
+
+  &__container {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+    @mixin atXLarge {
+      height: auto;
+      margin: auto;
+      padding-bottom: 50px;
+      overflow: visible;
+    }
+  }
+
+  &__circle {
+    display: none;
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+    background-color: $mainLavender;
+
+    @mixin atMedium {
+      display: block;
+    }
+
+    @mixin atLarge {
+      display: none;
+    }
+
+    @mixin atXLarge {
+      display: block;
+      background-color: $largeGradientCircles;
+    }
+  }
+
+  &__circle--large {
+    width: 160px;
+    height: 160px;
+    top: 40px;
+    right: 45px;
+
+    @mixin atXLarge {
+      width: 300px;
+      height: 300px;
+      top: 815px;
+      right: 380px;
+    }
+  }
+
+  &__circle--small {
+    width: 50px;
+    height: 50px;
+    top: 215px;
+    right: 95px;
+
+    @mixin atXLarge {
+      width: 200px;
+      height: 200px;
+      top: 260px;
+      right: 30px;
+    }
+  }
+
   &__wrapper {
     height: 100%;
     display: grid;
@@ -13,6 +80,16 @@
 
     @mixin atLarge {
       grid-template-columns: 235px auto 1fr;
+    }
+
+    @mixin atXLarge {
+      grid-template-columns: 235px 1fr 1fr;
+      width: 1200px;
+      height: 750px;
+      position: relative;
+      z-index: 1;
+      border-radius: 20px;
+      overflow: hidden;
     }
 
     .layout--mail & {
@@ -39,24 +116,37 @@
     }
   }
 
+  &__left-col {
+    z-index: 2;
+  }
+
   &__right-col {
+    z-index: 1;
+
     @mixin atLarge {
       grid-column: 3 / 4;
     }
   }
 
   &__glass {
+    background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+
+    @mixin atMedium {
+      background: linear-gradient(to top left, $topGradientDark, $topGradientLight);
+      border-bottom: 2px solid $gray50;
+    }
+
     @mixin atLarge {
       grid-column: 2 / 4;
+      background: $largeGradientReversed;
+      border: none;
     }
-  }
 
-  &__menu-container {
-    grid-row: 1 / -1;
-    background-color: bisque;
-  }
+    @mixin atXLarge {
+      background: rgba(0, 0, 0, .3);
+      backdrop-filter: blur(12px);
+    }
 
-  &__glass {
     .layout--mail & {
       grid-row: 1 / 5;
 
@@ -66,12 +156,45 @@
     }
   }
 
+  &__menu-container {
+    color: #fff;
+    grid-row: 1 / -1;
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s ease-out, z-index 1ms;
+    background: linear-gradient(to bottom, $menuGradientLight, $menuGradientDark);
+
+    @mixin atMedium {
+      background: linear-gradient(to top, $menuGradientLight, $menuGradientDark);
+    }
+
+    @mixin atLarge {
+      background: linear-gradient(to bottom, $menuGradientLight, $menuGradientDark);
+    }
+  }
+
+  &__menu-container--hidden {
+    z-index: auto;
+    opacity: 0;
+    visibility: hidden;
+
+    @mixin atMedium {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   &__control {
     display: flex;
     justify-content: center;
 
     @mixin atMedium {
       justify-content: start;
+    }
+
+    @mixin atXLarge {
+      justify-content: center;
     }
   }
 
@@ -177,7 +300,8 @@
 
   &__control--a &__control__inner {
     margin-top: $controlMyBaseline;
-    background-color: rgb(185, 78, 78);
+    color: $gray20;
+    border: 1px solid $gray20;
 
     @mixin atMedium {
       margin-top: $controlMyMedium;
@@ -189,11 +313,13 @@
   }
 
   &__control--b &__control__inner {
-    background-color: rgb(206, 209, 41);
+    color: $gray20;
+    border: 1px solid $gray20;
   }
 
   &__control--d &__control__inner {
-    background-color: rgb(19, 233, 204);
+    color: $gray20;
+    border: 1px solid $gray20;
 
     @mixin atLarge {
       margin-top: $controlMyLarge;
@@ -201,7 +327,8 @@
   }
 
   &__control--e &__control__inner {
-    background-color: rgb(13, 118, 216);
+    color: $gray20;
+    border: 1px solid $gray20;
   }
 
   &__viewer {
@@ -221,6 +348,10 @@
     @mixin atLarge {
       justify-content: start;
     }
+
+    @mixin atXLarge {
+      justify-content: center;
+    }
   }
 
   &__viewer__inner {
@@ -239,9 +370,11 @@
   }
 
   &__viewer--a &__viewer__inner {
-    background-color: rgb(135, 226, 233);
+    color: $gray20;
+    border: 1px solid $gray20;
   }
   &__viewer--b &__viewer__inner {
-    background-color: rgb(221, 199, 72);
+    color: $gray20;
+    border: 1px solid $gray20;
   }
 }
