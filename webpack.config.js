@@ -13,7 +13,8 @@ const postCSSPlugins = [
 module.exports = {
   entry: {
     main: './app/assets/scripts/main.js',
-    welcome: './app/assets/scripts/welcome.js'
+    welcome: './app/assets/scripts/welcome.js',
+    mail: './app/assets/scripts/mail.js'
   },
   mode: 'development',
   module: {

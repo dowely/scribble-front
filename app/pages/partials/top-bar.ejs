@@ -1,0 +1,57 @@
+<% let  routes = {
+  mail: 'mail'
+} %>
+
+<div class="top-bar top-bar--<%= routes[route] %>">
+
+  <svg class="top-bar__back-icon">
+    <use href="#arrow-left-regular"></use>
+  </svg>
+
+  <h2 class="top-bar__title"><%= routes[route] %></h2>
+
+  <div class="top-bar__tools">
+
+    <div class="top-bar__tool-1">
+
+      <% if(route == 'mail' || route == 'organizer') { %>
+
+      <svg class="top-bar__tool-icon">
+        <use href="#ellipsis-vertical-solid"></use>
+      </svg>
+
+      <% } %>
+
+    </div>
+
+    <div class="top-bar__tool-2">
+
+      <% if(route == 'mail' && unread == 0) { %>
+
+        <svg class="top-bar__tool-icon">
+          <use href="#envelope-open-regular"></use>
+        </svg>
+
+      <% } else if(route == 'mail' && unread != 0) { %>
+
+        <div class="top-bar__tool-compound-icon">
+
+          <svg class="top-bar__tool-icon">
+            <use href="#envelope-regular"></use>
+          </svg>
+
+          <span class="top-bar__tool-notifier">
+            <%= unread %>
+          </span>
+
+        </div>
+
+      <% } %>
+
+    </div>
+
+    <div class="top-bar__tool-3"></div>
+
+  </div>
+
+</div>

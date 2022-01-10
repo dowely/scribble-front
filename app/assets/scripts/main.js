@@ -5,7 +5,7 @@ function importSprites(r) {
   r.keys().forEach(r)
 }
 
-importSprites(require.context('../icons/menu', true, /\.svg$/))
+importSprites(require.context('../icons/main', true, /\.svg$/))
 
 if(module.hot) {
   module.hot.accept()
