@@ -5,6 +5,7 @@
   @mixin atXLarge {
     display: flex;
     background: $largeGradient;
+    overflow: hidden;
   }
 
   &__container {

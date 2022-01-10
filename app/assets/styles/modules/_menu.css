@@ -1,13 +1,60 @@
 .menu {
+  height: 100%;
+
+  &__content {
+    @mixin atMedium {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @mixin atLarge {
+      display: block;
+    }
+  }
+
+  &__user {
+    @mixin atMedium {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @mixin atLarge {
+      order: unset;
+    }
+  }
 
   &__wrapper {
     padding: 0 40px;
     max-width: 400px;
     margin: 0 auto;
+
+    @mixin atMedium {
+      padding: 0;
+    }
   }
 
   &__user-photo-container {
     padding-top: 28px;
+
+    @mixin atMedium {
+      order: 2;
+      padding-top: 24px;
+      padding-bottom: 46px;
+    }
+
+    @mixin atLarge {
+      order: unset;
+      padding-bottom: 0;
+      padding-top: 30px;
+    }
+
+    @mixin atXLarge {
+      padding-top: 40px;
+    }
   }
 
   &__user-photo-frame {
@@ -22,6 +69,18 @@
     width: 95px;
     display: block;
     border-radius: 50%;
+
+    @mixin atMedium {
+      width: 70px;
+    }
+
+    @mixin atLarge {
+      width: 80px;
+    }
+
+    @mixin atXLarge {
+      width: 110px;
+    }
   }
 
   &__user-name {
@@ -29,6 +88,25 @@
     font-weight: 400;
     text-align: center;
     margin: .75rem 0 .325rem;
+
+    @mixin atMedium {
+      font-size: 1.65rem;
+      letter-spacing: 1px;
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+
+    @mixin atLarge {
+      font-size: 1.35rem;
+      font-weight: 300;
+      writing-mode: horizontal-tb;
+      letter-spacing: unset;
+      transform: none;
+    }
+
+    @mixin atXLarge {
+      margin: .95rem 0 .375rem;
+    }
   }
 
   &__user-email {
@@ -37,6 +115,21 @@
     color: rgba(255, 255, 255, .5);
     text-align: center;
     margin: 0;
+
+    @mixin atMedium {
+      display: none;
+    }
+
+    @mixin atLarge {
+      display: block;
+      margin-bottom: 24px;
+      color: rgba(255, 255, 255, 1);
+      font-weight: 300;
+    }
+
+    @mixin atXLarge {
+      margin-bottom: 32px;
+    }
   }
 
   &__divider {
@@ -45,7 +138,11 @@
     border-radius: $pill;
     background-color: rgba(255, 255, 255, .5);
     margin-top: 25px;
-    margin-bottom: 7px;
+    margin-bottom: 8px;
+
+    @mixin atMedium {
+      display: none;
+    }
   }
 
   &__items {
@@ -55,34 +152,95 @@
   }
 
   &__item {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     display: flex;
     align-items: center;
+
+    @mixin atMedium {
+      position: relative;
+      justify-content: center;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    @mixin atLarge {
+      justify-content: start;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+  }
+
+  &__item--active {
+    @mixin atMedium {
+      background-color: rgba(255, 255, 255, .2);
+    }
+
+    @mixin atLarge {
+      background-color: rgba(0, 0, 0, .3);
+    }
+  }
+
+  &__icon-link {
+    color: #fff;
+    display: inline-block;
   }
 
   &__icon {
-    width: 20px;
-    height: 20px;
+    display: block;
+    width: 22px;
+    height: 22px;
     margin: 0 30px 0 25px;
+
+    @mixin atMedium {
+      margin: 0;
+      width: 38px;
+      height: 38px;
+    }
+
+    @mixin atLarge {
+      width: 25px;
+      height: 25px;
+      margin: 0 17px 0 27px;
+    }
+
+    @mixin atXLarge {
+      width: 28px;
+      height: 28px;
+    }
   }
 
   &__link {
     color: #fff;
     text-decoration: none;
     font-size: 1rem;
+
+    @mixin atMedium {
+      display: none;
+    }
+
+    @mixin atLarge {
+      display: inline;
+      font-size: 1.04rem;
+      font-weight: 300;
+    }
+
+    @mixin atXLarge {
+      font-size: 1.08rem;
+    }
   }
 
   &__notifier {
     display: none;
-    width: 24px;
-    height: 24px;
+    flex: none;
+    min-width: 22px;
+    height: 22px;
     background-color: $mainGreen;
     color: $mainBlack;
     font-size: .825rem;
     text-align: center;
-    border-radius: 50%;
-    padding-top: 2px;
+    border-radius: $pill;
+    padding: 2px 6px 0 6px;
     margin-right: 22px;
     margin-left: auto;
   
@@ -91,6 +249,32 @@
       display: inline-block;
       height: 100%;
       vertical-align: middle;
+    }
+
+    @mixin atMedium {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(calc((100% + 5px) * (-1)), 7px);
+      min-width: 25px;
+      height: 25px;
+      font-size: 1rem;
+    }
+
+    @mixin atLarge {
+      min-width: 20px;
+      height: 20px;
+      font-size: .825rem;
+      position: static;
+      transform: none;
+      margin-right: 27px;
+    }
+
+    .menu__item--active & {
+      
+      @mixin atMedium {
+        display: none;
+      }
     }
   }
 
