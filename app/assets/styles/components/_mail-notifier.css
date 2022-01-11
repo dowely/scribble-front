@@ -1,0 +1,42 @@
+.mail-notifier {
+  position: relative;
+
+  &__icon {
+    display: block;
+    width: 26px;
+    height: 26px;
+  }
+
+  &__icon--open {
+    .mail-notifier--unread & {
+      display: none;
+    }
+  }
+
+  &__icon--close {
+    display: none;
+
+    .mail-notifier--unread & {
+      display: block;
+    }
+  }
+
+  &__badge {
+    display: none;
+    background-color: $mainGreen;
+    color: $mainBlack;
+    font-size: 14px;
+    text-align: center;
+    border-radius: $pill;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    min-width: 16px;
+    padding: .5px 4px 0 4px;
+    height: 16px;
+
+    .mail-notifier--unread & {
+      display: block;
+    }
+  }
+}

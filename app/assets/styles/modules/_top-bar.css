@@ -1,0 +1,51 @@
+.top-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &__back-icon {
+    display: block;
+    height: 24px;
+    width: 21px;
+  }
+
+  &__title {
+    font-size: 1.65rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    margin: 0 auto 0 15px;
+  }
+
+  &__tools {
+    display: flex;
+    align-items: center;
+  }
+
+  &__tools > div {
+    margin-left: 35px;
+  }
+
+  &__tool-1 {
+    order: 3;
+  }
+
+  &__tool-2 {
+    order: 2;
+  }
+
+  &__tool-3 {
+    order: 1;
+  }
+
+  &__tool-icon {
+    display: block;
+    height: 24px;
+  }
+
+  &__tool-1 &__tool-icon {
+    
+    .top-bar--mail & {
+      width: 7px;
+    }
+  }
+}

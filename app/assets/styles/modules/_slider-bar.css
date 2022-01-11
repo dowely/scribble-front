@@ -1,0 +1,14 @@
+.slider-bar {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  &__slider {
+    align-self: stretch;
+    flex: 1;
+  }
+
+  &__notifier {
+    display: none;
+  }
+}

@@ -9,5 +9,10 @@
 @import 'modules/_entry-form.css';
 @import 'modules/_layout.css';
 @import 'modules/_menu.css';
+@import 'modules/_top-bar.css';
+@import 'modules/_slider-bar.css';
 
 @import 'components/_btn.css';
+@import 'components/_mail-plus.css';
+@import 'components/_mail-notifier.css';
+@import 'components/_slider.css';

@@ -301,8 +301,8 @@
 
   &__control--a &__control__inner {
     margin-top: $controlMyBaseline;
-    color: $gray20;
-    border: 1px solid $gray20;
+    color: #fff;
+    border: 0px solid $gray20;
 
     @mixin atMedium {
       margin-top: $controlMyMedium;
@@ -314,13 +314,13 @@
   }
 
   &__control--b &__control__inner {
-    color: $gray20;
-    border: 1px solid $gray20;
+    color: #fff;
+    border: 0px solid $gray20;
   }
 
   &__control--d &__control__inner {
     color: $gray20;
-    border: 1px solid $gray20;
+    border: 0px solid $gray20;
 
     @mixin atLarge {
       margin-top: $controlMyLarge;
@@ -329,7 +329,7 @@
 
   &__control--e &__control__inner {
     color: $gray20;
-    border: 1px solid $gray20;
+    border: 0px solid $gray20;
   }
 
   &__viewer {

@@ -26,31 +26,24 @@
 
     <div class="top-bar__tool-2">
 
-      <% if(route == 'mail' && unread == 0) { %>
+      <% if(route == 'mail') { %>
+        <%- include ../components/_mail-notifier %>
+      <% } %>
 
-        <svg class="top-bar__tool-icon">
-          <use href="#envelope-open-regular"></use>
-        </svg>
+    </div>
 
-      <% } else if(route == 'mail' && unread != 0) { %>
+    <div class="top-bar__tool-3">
 
-        <div class="top-bar__tool-compound-icon">
+      <% if(route == 'mail') { %>
 
-          <svg class="top-bar__tool-icon">
-            <use href="#envelope-regular"></use>
-          </svg>
-
-          <span class="top-bar__tool-notifier">
-            <%= unread %>
-          </span>
-
+        <div class="mail-plus">
+          <div class="mail-plus__line mail-plus__line--vertical"></div>
+          <div class="mail-plus__line mail-plus__line--horizontal"></div>
         </div>
 
       <% } %>
 
     </div>
-
-    <div class="top-bar__tool-3"></div>
 
   </div>
 
