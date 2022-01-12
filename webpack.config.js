@@ -44,7 +44,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/mail.html'
+    open: 'http://localhost:3000/mail-list.html'
   },
   output: {
     filename: '[name].bundle.js',

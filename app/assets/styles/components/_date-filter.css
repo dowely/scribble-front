@@ -1,0 +1,28 @@
+.date-filter {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+
+  &__label {
+    color: rgba(255, 255, 255, .75);
+    font-size: .9rem;
+
+    &::before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  &__input {
+    width: 100px;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, .3);
+    color: #fff;
+    text-align: center;
+    font-size: .9rem;
+    border-radius: $pill;
+  }
+}

@@ -1,0 +1,19 @@
+<div class="mail-card">
+  
+  <div class="mail-card__image-container">
+    <img src="" alt="A photo of <%= mail.from %>" class="mail-card__image">
+  </div>
+
+  <div class="mail-card__author-cointainer">
+    <h4 class="mail-card__author"><%= mail.from %></h4>
+  </div>
+
+  <div class="mail-card__subject-container">
+    <h5 class="mail-card__subject"><%= mail.subject %></h5>
+  </div>
+
+  <span class="mail-card__top-right-time">5min</span>
+
+  <p class="mail-card__body"><%= mail.body %></p>
+
+</div>

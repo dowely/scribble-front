@@ -1,0 +1,7 @@
+<% let mails = require('../db/mails.json') %>
+
+<div class="mail-list">
+  <% for(const mail of mails) { %>
+    <%- include ../../components/mail/_mail-card %>
+  <% } %>
+</div>

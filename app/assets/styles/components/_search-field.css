@@ -1,0 +1,36 @@
+.search-field {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  color: $mainBlack;
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: $pill;
+
+  &__input {
+    flex: auto;
+    width: 0;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: unset;
+    padding-left: 15px;
+    font-size: .9rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, .5);
+    }
+  }
+
+  &__label {
+    width: 60px;
+    display: flex;
+    background-color: $mainEggshell;
+    border-radius: $pill;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+  }
+}
