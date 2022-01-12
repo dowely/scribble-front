@@ -24,9 +24,9 @@ module.exports = [
     template: './app/pages/layout.ejs',
     title: 'Scribble App | Mail',
     templateParameters: {
-      foo: 'bar',
-      route: 'mail'
+      route: 'mail',
+      unread: 3
     },
-    chunks: ['main']
+    chunks: ['main', 'mail']
   })
 ]

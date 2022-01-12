@@ -1,0 +1,60 @@
+.slider {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100%;
+  position: relative;
+  border-radius: $pill;
+  background-color: rgba(0, 0, 0, .3);
+
+  &__item {
+    z-index: 1;
+    display: flex;
+    transition: color .5s ease;
+
+    span {
+      margin: auto;
+    }
+  }
+
+  &__item--1 {
+    .slider--1 & {
+      color: $mainBlack;
+    }
+  }
+
+  &__item--2 {
+    .slider--2 & {
+      color: $mainBlack;
+    }
+  }
+
+  &__item--3 {
+    .slider--3 & {
+      color: $mainBlack;
+    }
+  }
+
+  &__indicator {
+    width: 33.33%;
+    height: 100%;
+    position: absolute;
+    background-color: $mainEggshell;
+    border-radius: $pill;
+    transition: all .5s ease;
+
+    .slider--1 & {
+      left: 0;
+    }
+
+    .slider--2 & {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .slider--3 & {
+      left: 100%;
+      transform: translateX(-100%);
+    }
+  }
+}

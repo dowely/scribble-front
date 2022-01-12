@@ -2,7 +2,7 @@
 <%- include partials/head %>
 
 <body>
-  <!-- class layout--mail and layout--mail-expanded added dynamically ,layout__menu-container--hidden-->
+  <!-- layout--mail layout--mail-expanded -->
   <main class="layout layout--mail">
     <div class="layout__container">
 
@@ -10,7 +10,8 @@
 
         <div class="layout__glass"></div>
 
-        <div class="layout__menu-container layout__menu-col">
+        <!-- layout__menu-container--hidden -->
+        <div class="layout__menu-container layout__menu-container--hidden layout__menu-col">
           
           <%- include partials/menu %>
 
@@ -18,13 +19,17 @@
   
         <div class="layout__control layout__control--a layout__left-col">
           <div class="layout__control__inner">
-            title
+            
+            <%- include partials/top-bar %>
+
           </div>
         </div>
   
         <div class="layout__control layout__control--b layout__left-col">
           <div class="layout__control__inner">
-            slider
+            
+            <%- include partials/slider-bar %>
+
           </div>
         </div>
   
