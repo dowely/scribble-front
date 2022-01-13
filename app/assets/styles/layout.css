@@ -338,6 +338,7 @@
   &__viewer {
     display: flex;
     justify-content: center;
+    background-color: $mainSilver;
 
     .layout--mail & {
       grid-row: 5 / -1;
@@ -375,11 +376,11 @@
   }
 
   &__viewer--a &__viewer__inner {
-    color: $gray20;
+    color: $mainBlack;
     border: 1px solid $gray20;
   }
   &__viewer--b &__viewer__inner {
-    color: $gray20;
+    color: $mainBlack;
     border: 1px solid $gray20;
     background-color: violet;
   }

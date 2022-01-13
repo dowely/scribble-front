@@ -1,0 +1,90 @@
+.mail-card {
+  padding: 20px 15px;
+  background-color: #fff;
+
+  &--read {
+    color: $gray50;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-rows: 25px 25px auto;
+    grid-template-columns: 50px auto 65px;
+    grid-column-gap: 15px;
+    grid-template-areas:
+      "avatar user top-right"
+      "avatar subject subject"
+      "body body body"
+    ;
+  }
+
+  &__avatar-container {
+    grid-area: avatar;
+    background-color: $gray20;
+    color: $gray70;
+    display: flex;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__initials {
+    margin: auto;
+    font-size: 1.25rem;
+    font-weight: 400;
+
+    .mail-card--read & {
+      opacity: .6;
+    }
+  }
+
+  &__user-container {
+    grid-area: user;
+  }
+
+  &__user {
+    margin: 0;
+    font-size: 1.25rem;
+    max-height: 100%;
+    line-height: 25px;
+    overflow: hidden;
+
+    .mail-card--read & {
+      font-weight: 400;
+    }
+  }
+
+  &__subject-container {
+    grid-area: subject;
+  }
+
+  &__subject {
+    margin: 0;
+    font-size: .915rem;
+    max-height: 100%;
+    line-height: 25px;
+    overflow: hidden;
+
+    .mail-card--read & {
+      font-weight: 400;
+    }
+  }
+
+  &__top-right {
+    grid-area: top-right;
+  }
+
+  &__top-right--time {
+    font-size: .915rem;
+    color: $gray50;
+    justify-self: end;
+  }
+
+  &__body {
+    grid-area: body;
+    margin-bottom: 0;
+    font-size: .85rem;
+    line-height: 2.5ex;
+    height: 7.5ex;
+    overflow: hidden;
+  }
+}
