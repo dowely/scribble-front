@@ -8,23 +8,15 @@ module.exports = [
     chunks: ['login']
   }),
   new HtmlWebpackPlugin({
-    filename: 'signin.html',
-    template: './app/pages/welcome.ejs',
-    title: 'Scribble App | Sign In',
-    templateParameters: {
-      route: 'signin'
-    },
-    chunks: ['main', 'welcome']
-  }),
-  new HtmlWebpackPlugin({
-    filename: 'signup.html',
-    template: './app/pages/welcome.ejs',
-    title: 'Scribble App | Sign Up',
-    templateParameters: {
-      route: 'signup'
-    },
-    chunks: ['main', 'welcome']
-  }),
+    filename: 'app.html',
+    template: './app/pages/app.ejs',
+    title: 'Scribble App',
+    chunks: ['app']
+  })
+]
+
+/* 
+,
   new HtmlWebpackPlugin({
     filename: 'mail-list.html',
     template: './app/pages/layout.ejs',
@@ -61,4 +53,4 @@ module.exports = [
     },
     chunks: ['main', 'mail']
   })
-]
+*/

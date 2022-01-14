@@ -1,17 +1,16 @@
 @import 'normalize.css';
 
-@import 'base/_variables.css';
-@import 'base/_mixins.css';
-@import 'base/_global.css';
-@import 'base/_large-gradient.css';
+@import 'base/variables.css';
+@import 'base/mixins.css';
+@import 'base/global.css';
+@import 'base/large-gradient.css';
 
 @import 'modules/login.css';
-@import 'welcome.css';
-@import 'layout.css';
+@import 'modules/layout.css';
 
 @import 'modules/mail/mail-list.css';
 
-@import 'modules/entry-form.css';
+@import 'components/_entry-form.css';
 @import 'modules/menu.css';
 @import 'modules/top-bar.css';
 @import 'modules/slider-bar.css';
