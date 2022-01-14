@@ -1,0 +1,223 @@
+.login {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+
+  @mixin atXLarge {
+    background: $largeGradient;
+    display: flex;
+    overflow: hidden;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    @mixin atLarge {
+      flex-direction: row;
+    }
+
+    @mixin atXLarge {
+      width: 1200px;
+      height: 750px;
+      margin: auto;
+    }
+  }
+
+  &__glass-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: auto;
+    background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+
+    @mixin atMedium {
+      height: 430px;
+      flex: initial;
+    }
+
+    @mixin atLarge {
+      order: 2;
+      min-width: 50%;
+      display: block;
+      flex: auto;
+      height: 100%;
+      padding: 40px 90px;
+      background: $largeGradient;
+    }
+
+    @mixin atXLarge {
+      background: none;
+      padding: 0;
+    }
+  }
+
+  &__glass {
+    color: #fff;
+    text-align: center;
+    overflow: auto;
+    padding: 16px 0;
+
+    @mixin atLarge {
+      position: relative;
+      overflow: visible;
+      padding: 25px 50px 50px;
+    }
+
+    @mixin atXLarge {
+      height: 100%;
+      display: flex;
+      padding: 0 80px;
+    }
+  }
+
+  &__glass__content {
+    @mixin atLarge {
+      position: relative;
+      z-index: 3;
+      margin: auto;
+    }
+  }
+
+  &__glass__circle-large {
+    @mixin atLarge {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: $largeGradientCircles;
+      top: 89%;
+      left: 15%;
+    }
+
+    @mixin atXLarge {
+      width: 300px;
+      height: 300px;
+      left: 12%;
+    }
+  }
+
+  &__glass__circle-small {
+    @mixin atLarge {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background-color: $largeGradientCircles;
+      top: 120%;
+      right: 20%;
+    }
+
+    @mixin atXLarge {
+      width: 180px;
+      height: 180px;
+      top: 7%;
+      left: 80%;
+    }
+  }
+
+  &__glass__see-through {
+    @mixin atLarge {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, .25);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, .1);
+    }
+
+    @mixin atXLarge {
+      border-radius: 0 20px 20px 0;
+    }
+  }
+
+  &__glass__logo {
+    width: 90px;
+    height: 90px;
+
+    @mixin atMedium {
+      width: 150px;
+      height: 150px;
+    }
+
+    @mixin atLarge {
+      width: 120px;
+      height: 120px;
+    }
+
+    @mixin atXLarge {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  &__glass__app-name {
+    font-weight: 400;
+    font-size: 2rem;
+    margin: 18px 0 25px;
+
+    @mixin atMedium {
+      font-size: 3.325rem;
+      margin: 32px 0 50px;
+      font-weight: 300;
+    }
+
+    @mixin atLarge {
+      font-size: 3rem;
+      margin: 24px 0 18px;
+    }
+
+    @mixin atXLarge {
+      font-size: 4rem;
+      margin: 50px 0 30px;
+    }
+  }
+
+  &__glass__app-slogan {
+    display: none;
+
+    @mixin atLarge {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 22rem;
+      margin: 0 auto;
+    }
+
+    @mixin atXLarge {
+      font-size: 1.5rem;
+      max-width: none;
+      line-height: 1.75;
+      margin-bottom: 50px;
+    }
+  }
+  
+  &__form-container {
+    background: $mainSilver;
+    padding: 0 20px 20px;
+
+    @mixin atMedium {
+      padding: 0 130px 20px;
+      flex: auto;
+    }
+
+    @mixin atLarge {
+      flex: none;
+      width: 50%;
+      max-width: 640px;
+      padding: 20px 70px;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+    }
+
+    @mixin atXLarge {
+      border-radius: 20px 0 0 20px;
+    }
+  }
+}

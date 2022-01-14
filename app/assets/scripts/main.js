@@ -10,3 +10,5 @@ importSprites(require.context('../icons/main', true, /\.svg$/))
 if(module.hot) {
   module.hot.accept()
 }
+
+alert('foo')

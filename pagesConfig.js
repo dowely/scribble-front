@@ -2,6 +2,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = [
   new HtmlWebpackPlugin({
+    filename: 'login.html',
+    template: './app/pages/login.ejs',
+    title: 'Scribble App | Log in',
+    chunks: ['login']
+  }),
+  new HtmlWebpackPlugin({
     filename: 'signin.html',
     template: './app/pages/welcome.ejs',
     title: 'Scribble App | Sign In',

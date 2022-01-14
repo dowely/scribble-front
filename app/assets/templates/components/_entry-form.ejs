@@ -1,0 +1,87 @@
+<div class="entry-form">
+
+  <h2 class="entry-form__title">
+    <%= mode == 'signin' ? 'Sign In' : 'Sign Up' %>
+  </h2>
+
+  <form action="#" method="POST">
+
+    <div class="entry-form__input">
+
+      <input class="entry-form__input__field" name="username" type="text" placeholder="Username" autocomplete="off">
+
+      <div class="entry-form__input__circle">
+        <svg class="entry-form__input__icon entry-form__input__icon--pull-up">
+          <use href="#user-solid"></use>
+        </svg>
+      </div>
+
+    </div>
+
+    <% if(mode == 'signup') { %>
+      <div class="entry-form__input">
+
+        <input class="entry-form__input__field" name="email" type="text" placeholder="Email" autocomplete="off">
+
+      <div class="entry-form__input__circle">
+        <svg class="entry-form__input__icon">
+          <use href="#envelope-solid"></use>
+        </svg>
+      </div>
+
+      </div>
+    <% } %>
+
+    <div class="entry-form__input <%= mode == 'signin' ? 'entry-form__input--mb-small' : ''%>">
+
+      <input class="entry-form__input__field" name="password" type="password" placeholder="Password" autocomplete="off">
+
+      <div class="entry-form__input__pass-toggle">
+        <svg class="entry-form__input__pass-toggle__icon">
+          <use href="#eye-regular"></use>
+        </svg>
+      </div>
+
+      <div class="entry-form__input__circle">
+        <svg class="entry-form__input__icon">
+          <use href="#lock-solid"></use>
+        </svg>
+      </div>
+
+    </div>
+
+    <% if(mode == 'signin') { %>
+      <div class="entry-form__options-line">
+
+        <div class="entry-form__remember">
+
+          <svg class="entry-form__remember__icon">
+            <use href="#square-regular"></use>
+          </svg>
+
+          <h3 class="entry-form__remember__text">Remember me</h3>
+
+        </div>
+
+        <h3 class="entry-form__forgot">Forgot password</h3>
+
+      </div>
+    <% } %> 
+
+    <!--
+    <button class="btn btn--sign-in"><%= mode == 'signin' ? 'Sign In' : 'Sign Up' %></button>
+    -->
+
+    <a href="app.html" class="btn btn--sign-in"><%= mode == 'signin' ? 'Sign In' : 'Sign Up' %></a>
+
+  </form>
+
+  <div class="entry-form__or">
+    <hr class="entry-form__or__line">
+    <h4 class="entry-form__or__circle">OR</h4>
+    <hr class="entry-form__or__line">
+  </div>
+
+  <a href="#" class="entry-form__link"><%= mode == 'signin' ? 'Create an account' : 'Log in' %></a>
+
+</div>
