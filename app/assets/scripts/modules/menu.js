@@ -6,9 +6,9 @@ class Menu {
     this.subMenu = subMenu
   }
 
-  mail() {
-    this.hook.innerHTML = menuTemplate({route: 'mail'})
-    this.subMenu.mail()
+  render(route) {
+    this.hook.innerHTML = menuTemplate({route: route})
+    this.subMenu.render(route)
   }
 }
 
