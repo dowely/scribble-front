@@ -1,19 +1,29 @@
 import sliderTemplate from '/app/assets/templates/components/sub-menu/_slider.ejs'
 
 class Slider {
-  constructor(callback) {
-   this.callback = callback
+  constructor(route) {
+   this.route = route
   }
 
-  events() {
-    this.sliderItems = this.component.querySelectorAll('.slider__item')
+  render(hook) {
+    this.hook = hook
+    this.hook.innerHTML = sliderTemplate({route: this.route})
     
+    this.component = this.hook.querySelector('.slider')
+
+    this.readIndex()
+
+    return this.index
   }
 
-  render(hook, route) {
-    hook.innerHTML = sliderTemplate({route: route})
-    this.component = hook.querySelector('.slider')
-    this.events()
+  readIndex() {
+    if(this.component.classList.contains('slider--1')) {
+      this.index = 1
+    } else if (this.component.classList.contains('slider--2')) {
+      this.index = 2
+    } else {
+      this.index = 3
+    }
   }
 }
 

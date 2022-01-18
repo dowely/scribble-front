@@ -1,14 +1,12 @@
 import menuTemplate from '/app/assets/templates/modules/menu.ejs'
 
 class Menu {
-  constructor(subMenu) {
-    this.hook = document.querySelector('.layout__menu-container')
-    this.subMenu = subMenu
-  }
+  constructor(route, callback) {
+    this.route = route
+    this.callback = callback
 
-  render(route) {
-    this.hook.innerHTML = menuTemplate({route: route})
-    this.subMenu.render(route)
+    this.hook = document.querySelector('.layout__menu-container')
+    this.hook.innerHTML = menuTemplate({route: this.route})
   }
 }
 

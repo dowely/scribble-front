@@ -1,12 +1,12 @@
 import searchFieldTemplate from '/app/assets/templates/components/sub-menu/_search-field.ejs'
 
 class SearchField {
-  constructor() {
-
+  constructor(route) {
+    this.route = route
   }
 
-  mail(hook) {
-    hook.innerHTML = searchFieldTemplate({route: 'mail'})
+  render(hook) {
+    hook.innerHTML = searchFieldTemplate({route: this.route})
   }
 }
 

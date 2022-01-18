@@ -5,7 +5,7 @@ class DateFilter {
 
   }
 
-  mail(hook) {
+  render(hook) {
     hook.innerHTML = dateFilterTemplate()
   }
 }

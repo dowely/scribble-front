@@ -1,17 +1,48 @@
-import mails from '/app/db/mails.json';
+import data from '/app/db/mails.json'
+import MailCard from './_mailCard'
 
-let inbox = mails.filter(mail => {if(mail.to.find(name => name == 'John Schaffer')) return true})
+class MailList {
+  constructor(user, box, callback) {
+    this.user = user
+    this.box = box
+    this.callback = callback
 
-  inbox.sort((first, second) => new Date(second.sendTime) - new Date(first.sendTime))
+    if(this.box == 'inbox') {
 
-  let outbox = mails.filter(mail => mail.from == 'John Schaffer')
+      this.mails = data.filter(mail => {
+        if(mail.to.find(name => name == this.user)) return true
+      })
 
-  outbox.sort((first, second) => new Date(second.sendTime) - new Date(first.sendTime))
+    } else if(this.box == 'sent') {
 
-  let drafts = outbox.filter(mail => mail.sendTime == '')
+      this.mails = data.filter(mail => mail.from == this.user).filter(mail => mail.sendTime != '')
 
-  let mailCollection
+    } else {
 
-  if(list == 'inbox') {mailCollection = inbox}
-  if(list == 'sent') {mailCollection = outbox}
-  if(list == 'drafts') {mailCollection = drafts}
+      this.mails = data.filter(mail => mail.from == this.user).filter(mail => mail.sendTime == '')
+
+    }
+
+    this.mails.sort((first, second) => new Date(second.sendTime) - new Date(first.sendTime))
+
+    this.mailCards = this.mails.map(mail => {
+      return new MailCard(mail, this.user, this.box)
+    })
+  }
+
+  render(hook) {
+    this.hook = hook
+
+    this.html = `
+      <ul class="mail-list">
+        ${this.mailCards.map(mailCard => {
+          return `<li>${mailCard.html}</li>`
+        }).join('')}
+      </ul>
+    `
+
+    this.hook.innerHTML = this.html
+  }
+}
+
+export default MailList

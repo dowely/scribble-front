@@ -1,8 +1,7 @@
 import '../styles/styles.css'
 import './base/noScroll'
-import SubMenu from './modules/subMenu'
 import Menu from './modules/menu'
-import Viewer from './modules/viewer'
+import Mail from './modules/mail'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -14,9 +13,16 @@ if(module.hot) {
   module.hot.accept()
 }
 
-let viewerLeft = new Viewer(document.querySelector('.layout__viewer--a .layout__viewer__inner'))
-let viewerRight = new Viewer(document.querySelector('.layout__viewer--b .layout__viewer__inner'))
-let subMenu = new SubMenu(viewerLeft, viewerRight)
-let menu = new Menu(subMenu)
+const user = 'John Schaffer'
 
-menu.render('mail')
+const menu = new Menu('mail', onRoute)
+
+const routes = {
+  mail: new Mail(user)
+}
+
+routes[menu.route].render()
+
+function onRoute(route) {
+  routes[route].render()
+}

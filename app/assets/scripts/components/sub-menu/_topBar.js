@@ -2,16 +2,19 @@ import topBarTemplate from '/app/assets/templates/components/sub-menu/_top-bar.e
 import MailNotifier from '../mail/_mailNotifier'
 
 class TopBar {
-  constructor() {
-    this.hook = document.querySelector('.layout__control--a .layout__control__inner')
-
-    this.mailNotifier = new MailNotifier()
+  constructor(route) {
+    this.route = route
   }
 
-  mail() {
-    this.hook.innerHTML = topBarTemplate({route: 'mail'})
+  render(hook) {
+    this.hook = hook
+    this.hook.innerHTML = topBarTemplate({route: this.route})
 
-    this.mailNotifier.render(this.hook.querySelector('.top-bar__tool-2'), 3)
+    if(this.route == 'mail') {
+      this.mailNotifier = new MailNotifier(3)
+
+      this.mailNotifier.render(this.hook.querySelector('.top-bar__tool-2'))
+    }
   }
 }
 

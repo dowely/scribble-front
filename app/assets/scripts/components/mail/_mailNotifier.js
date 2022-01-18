@@ -2,11 +2,12 @@ import mailNotifierTemplate from '/app/assets/templates/components/mail/_mail-no
 import '/app/assets/icons/mail/envelope-open-regular.svg'
 
 class MailNotifier {
- constructor() {
+ constructor(unread) {
+   this.unread = unread
  }
 
- render(hook, unread) {
-   hook.innerHTML = mailNotifierTemplate({unread: unread})
+ render(hook) {
+   hook.innerHTML = mailNotifierTemplate({unread: this.unread})
  }
 }
 
