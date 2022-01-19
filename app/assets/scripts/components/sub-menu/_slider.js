@@ -3,6 +3,9 @@ import sliderTemplate from '/app/assets/templates/components/sub-menu/_slider.ej
 class Slider {
   constructor(route) {
    this.route = route
+
+   this.hook
+   this.index
   }
 
   render(hook) {

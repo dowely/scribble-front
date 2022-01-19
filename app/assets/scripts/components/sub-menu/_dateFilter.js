@@ -2,11 +2,12 @@ import dateFilterTemplate from '/app/assets/templates/components/sub-menu/_date-
 
 class DateFilter {
   constructor() {
-
+    this.hook
   }
 
   render(hook) {
-    hook.innerHTML = dateFilterTemplate()
+    this.hook = hook
+    this.hook.innerHTML = dateFilterTemplate()
   }
 }
 

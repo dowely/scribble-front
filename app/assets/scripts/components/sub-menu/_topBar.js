@@ -4,6 +4,8 @@ import MailNotifier from '../mail/_mailNotifier'
 class TopBar {
   constructor(route) {
     this.route = route
+    
+    this.hook
   }
 
   render(hook) {

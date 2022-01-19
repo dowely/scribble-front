@@ -3,10 +3,13 @@ import searchFieldTemplate from '/app/assets/templates/components/sub-menu/_sear
 class SearchField {
   constructor(route) {
     this.route = route
+
+    this.hook
   }
 
   render(hook) {
-    hook.innerHTML = searchFieldTemplate({route: this.route})
+    this.hook = hook
+    this.hook.innerHTML = searchFieldTemplate({route: this.route})
   }
 }
 
