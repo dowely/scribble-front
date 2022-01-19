@@ -36,7 +36,7 @@ class MailList {
     this.html = `
       <ul class="mail-list">
         ${this.mailCards.map(mailCard => {
-          return `<li>${mailCard.html}</li>`
+          return `<li>${mailCard.wrapper.innerHTML}</li>`
         }).join('')}
       </ul>
     `

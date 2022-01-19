@@ -9,14 +9,14 @@ class Mail {
   constructor(user) {
     this.user = user
     this.topBar = new TopBar('mail')
-    this.sliderBar = new SliderBar('mail')
+    this.sliderBar = new SliderBar('mail', this.onSliderBar.bind(this))
     this.searchField = new SearchField('mail')
     this.dateFilter = new DateFilter()
 
     this.lists = [
-      new MailList(this.user, 'inbox', this.onSingle),
-      new MailList(this.user, 'sent', this.onSingle),
-      new MailList(this.user, 'drafts', this.onSingle)
+      new MailList(this.user, 'inbox', this.onList),
+      new MailList(this.user, 'sent', this.onList),
+      new MailList(this.user, 'drafts', this.onList)
     ]
   }
 
@@ -32,8 +32,12 @@ class Mail {
     this.lists[this.sliderBar.index - 1].render(document.querySelector('.layout__viewer--a .layout__viewer__inner'))
   }
 
-  onSingle() {
+  onList() {
 
+  }
+
+  onSliderBar(newState) {
+    if(newState.index) this.lists[this.sliderBar.index - 1].render(document.querySelector('.layout__viewer--a .layout__viewer__inner'))
   }
 }
 

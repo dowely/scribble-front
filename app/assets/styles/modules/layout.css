@@ -24,6 +24,7 @@
   &__circle {
     display: none;
     position: absolute;
+    z-index: 3;
     border-radius: 50%;
     transform: translate(50%, -50%);
     background-color: $mainLavender;
@@ -34,6 +35,7 @@
 
     @mixin atLarge {
       display: none;
+      z-index: 1;
     }
 
     @mixin atXLarge {
@@ -71,6 +73,8 @@
   }
 
   &__wrapper {
+    position: relative;
+    z-index: 2;
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -87,8 +91,6 @@
       grid-template-columns: 235px 1fr 1fr;
       width: 1200px;
       height: 750px;
-      position: relative;
-      z-index: 1;
       border-radius: 20px;
       overflow: hidden;
     }
@@ -105,7 +107,7 @@
   &__menu-col,
   &__left-col,
   &__right-col,
-  &__glass {
+  &__glass { 
     grid-column: 1 / 2;
   }
 
@@ -135,16 +137,16 @@
 
   &__glass {
     background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+    z-index: 4;
 
     @mixin atMedium {
       background: linear-gradient(to top left, $topGradientDark, $topGradientLight);
-      border-bottom: 2px solid $gray50;
     }
 
     @mixin atLarge {
       grid-column: 2 / 4;
       background: $largeGradientReversed;
-      border: none;
+      z-index: 0;
     }
 
     @mixin atXLarge {
@@ -164,7 +166,7 @@
   &__menu-container {
     color: #fff;
     grid-row: 1 / -1;
-    z-index: 5;
+    z-index: 6;
     opacity: 1;
     visibility: visible;
     transition: all .3s ease-out, z-index 1ms;
@@ -204,12 +206,16 @@
   }
 
   &__control--a {
+    z-index: 5;
+
     .layout--mail & {
       grid-row: 1 / 2;
     }
   }
 
   &__control--b {
+    z-index: 5;
+
     .layout--mail & {
       grid-row: 4 / 5;
 
@@ -220,12 +226,16 @@
   }
 
   &__control--c {
+    z-index: 5;
+
     .layout--mail & {
       display: none;
     }
   }
 
   &__control--d {
+    z-index: 5;
+
     .layout--mail & {
       grid-row: 2 / 3;
 
@@ -236,6 +246,8 @@
   }
 
   &__control--e {
+    z-index: 5;
+
     .layout--mail & {
       grid-row: 3 / 4;
 
@@ -246,6 +258,8 @@
   }
 
   &__control--f {
+    z-index: 5;
+
     .layout--mail & {
       display: none;
     }
@@ -348,10 +362,12 @@
   &__viewer {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     background-color: $mainSilver;
 
     @mixin atLarge {
       background-color: unset;
+      padding-bottom: $controlMyLarge;
     }
 
     .layout--mail & {
@@ -377,24 +393,27 @@
     margin: 0 10px;
     width: 100%;
     max-width: 400px;
-    overflow: hidden;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 0 5px 2px $gray30;
 
     @mixin atMedium {
       max-width: 500px;
     }
 
     @mixin atLarge {
-      margin: 0 $controlMxLarge $controlMyLarge;
+      margin: 0 $controlMxLarge;
       width: 400px;
+      box-shadow: unset;
     }
   }
 
   &__viewer--a &__viewer__inner {
     color: $mainBlack;
-    border: 1px solid $gray20;
+    border: 0px solid $gray20;
   }
   &__viewer--b &__viewer__inner {
     color: $mainBlack;
-    border: 1px solid $gray20;
+    border: 0px solid $gray20;
   }
 }

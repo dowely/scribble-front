@@ -9,7 +9,7 @@
   &__wrapper {
     display: grid;
     grid-template-rows: 25px 25px auto;
-    grid-template-columns: 50px auto 65px;
+    grid-template-columns: 50px minmax(0, auto) 65px;
     grid-column-gap: 15px;
     grid-template-areas:
       "avatar user top-right"
@@ -37,6 +37,13 @@
     }
   }
 
+  &__user-icon {
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    margin: 8px auto;
+  }
+
   &__user-container {
     grid-area: user;
   }
@@ -47,6 +54,8 @@
     max-height: 100%;
     line-height: 25px;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     .mail-card--read & {
       font-weight: 400;
@@ -61,8 +70,10 @@
     margin: 0;
     font-size: .915rem;
     max-height: 100%;
-    line-height: 25px;
+    line-height: 28px;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
     .mail-card--read & {
       font-weight: 400;
@@ -86,5 +97,9 @@
     line-height: 2.5ex;
     height: 7.5ex;
     overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
 }

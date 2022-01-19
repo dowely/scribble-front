@@ -18,7 +18,9 @@
 
         if(mail.recipients.length == 0) { %>
 
-          <h4 class="mail-card__initials">O</h4>
+          <svg class="mail-card__user-icon">
+            <use href="#user-solid"></use>
+          </svg>
 
         <% } else if(mail.recipients[0].avatar == '') { %>
 
@@ -33,9 +35,28 @@
 
     </div>
 
-    <div class="mail-card__user-cointainer">
-      <h4 class="mail-card__user"><%= mail.from %></h4>
-    </div>
+    <% if(mail.incoming) { %>
+
+      <div class="mail-card__user-cointainer">
+        <h4 class="mail-card__user"><%= mail.from %></h4>
+      </div>
+
+    <% } else {
+
+      if(mail.recipients.length == 0) { %>
+
+        <div class="mail-card__user-cointainer">
+          <h4 class="mail-card__user">(No recipients)</h4>
+        </div>
+
+      <% } else { %>
+
+        <div class="mail-card__user-cointainer">
+          <h4 class="mail-card__user"><%= mail.recipients.map(user => user.name).join(', ') %></h4>
+        </div>
+
+      <%  }
+    } %>
 
     <div class="mail-card__subject-container">
       <h5 class="mail-card__subject"><%= mail.subject == '' ? '(No subject)' : mail.subject %></h5>

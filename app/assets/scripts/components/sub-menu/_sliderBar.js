@@ -2,9 +2,11 @@ import Slider from './_slider'
 import MailNotifier from '../mail/_mailNotifier'
 
 class SliderBar {
-  constructor(route) {
+  constructor(route, callback) {
     this.route = route
-    this.slider = new Slider(route)
+    this.callback = callback
+
+    this.slider = new Slider(route, this.onSlider.bind(this))
 
     this.hook
     this.index
@@ -26,6 +28,11 @@ class SliderBar {
 
       this.mailNotifier.render(this.hook.querySelector('.slider-bar__notifier'))
     }
+  }
+
+  onSlider(index) {
+    this.index = index
+    this.callback({index: this.index})
   }
 }
 
