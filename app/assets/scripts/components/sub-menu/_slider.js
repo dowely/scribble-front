@@ -1,4 +1,4 @@
-import sliderTemplate from '/app/assets/templates/components/sub-menu/_slider.ejs'
+import sliderTemplate from '/app/assets/templates/sub-menu/_slider.ejs'
 
 class Slider {
   constructor(route) {

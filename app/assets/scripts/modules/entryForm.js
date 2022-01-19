@@ -1,4 +1,4 @@
-import formTemplate from '../../templates/components/_entry-form.ejs'
+import formTemplate from '/app/assets/templates/entry-form.ejs'
 
 class EntryForm {
   constructor(mode) {

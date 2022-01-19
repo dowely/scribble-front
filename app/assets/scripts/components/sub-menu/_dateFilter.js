@@ -1,4 +1,4 @@
-import dateFilterTemplate from '/app/assets/templates/components/sub-menu/_date-filter.ejs'
+import dateFilterTemplate from '/app/assets/templates/sub-menu/_date-filter.ejs'
 
 class DateFilter {
   constructor() {

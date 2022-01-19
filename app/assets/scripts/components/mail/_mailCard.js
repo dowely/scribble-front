@@ -1,5 +1,5 @@
 import users from '/app/db/users.json'
-import mailCardTemplate from '/app/assets/templates/components/mail/_mail-card.ejs'
+import mailCardTemplate from '/app/assets/templates/mail/_mail-card.ejs'
 
 const now = new Date('2022-02-22T18:37:12.324Z')
 

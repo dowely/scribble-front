@@ -1,4 +1,4 @@
-import menuTemplate from '/app/assets/templates/modules/menu.ejs'
+import menuTemplate from '/app/assets/templates/menu.ejs'
 
 class Menu {
   constructor(route, callback) {

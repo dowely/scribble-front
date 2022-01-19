@@ -1,6 +1,6 @@
 import '../styles/styles.css'
 import './base/noScroll'
-import EntryForm from './components/_entryForm'
+import EntryForm from './modules/entryForm'
 
 function importSprites(r) {
   r.keys().forEach(r)

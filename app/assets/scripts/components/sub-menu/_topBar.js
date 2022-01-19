@@ -1,4 +1,4 @@
-import topBarTemplate from '/app/assets/templates/components/sub-menu/_top-bar.ejs'
+import topBarTemplate from '/app/assets/templates/sub-menu/_top-bar.ejs'
 import MailNotifier from '../mail/_mailNotifier'
 
 class TopBar {
