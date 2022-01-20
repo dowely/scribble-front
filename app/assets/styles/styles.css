@@ -16,6 +16,7 @@
 @import 'components/mail/_mail-card.css';
 @import 'components/mail/_mail-plus.css';
 @import 'components/mail/_mail-notifier.css';
+@import 'components/mail/_mail-read.css';
 
 @import 'components/sub-menu/_top-bar.css';
 @import 'components/sub-menu/_slider-bar.css';

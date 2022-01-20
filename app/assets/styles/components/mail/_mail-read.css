@@ -1,0 +1,84 @@
+.mail-read {
+  background-color: #fff;
+
+  &__mail-container {
+    display: grid;
+    grid-template-rows:
+    minmax(0, min-content) [below-name] minmax(0, min-content) [below-image] minmax(0, 1fr) [above-subject] repeat(3, auto)
+    ;
+    grid-template-columns:
+      65px [before-name] minmax(0, auto) [after-name] 65px
+    ;
+    grid-column-gap: 15px;
+  }
+
+  &__avatar-container {
+    grid-column: 1 / before-name;
+    grid-row: 1 / below-image;
+    background-color: $gray20;
+    height: 65px;
+    color: $gray70;
+    display: flex;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__initials {
+    margin: auto;
+    font-size: 1.75rem;
+    font-weight: 400;
+  }
+
+  &__from-user-name {
+    grid-column: before-name / after-name;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__recipients-container {
+    grid-column: before-name / -1;
+    grid-row: below-name / above-subject;
+    display: flex;
+  }
+
+  &__to-tag {
+    font-size: .85rem;
+    color: $gray50;
+    line-height: 1.5;
+  }
+
+  &__recipients-list {
+    margin-top: 0;
+    font-size: .85rem;
+    color: $gray50;
+    margin-bottom: 0;
+    line-height: 1.5;
+
+    span {
+      color: $mainBlack;
+      font-weight: 600;
+    }
+  }
+
+  &__time {
+    margin: 0;
+    font-size: .915rem;
+    color: $gray50;
+    font-weight: 400;
+  }
+
+  &__subject {
+    grid-column: 1 / -1;
+    grid-row: above-subject / span 1;
+  }
+
+  &__body {
+    grid-column: 1 / -1;
+  }
+
+  &__buttons-container {
+    grid-column: 1 / -1;
+  }
+}

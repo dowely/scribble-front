@@ -62,11 +62,17 @@
       <h5 class="mail-card__subject"><%= mail.subject == '' ? '(No subject)' : mail.subject %></h5>
     </div>
 
-    <% if(topRightTime) { %>
+    <% if(mail.topRightTime) { %>
 
-      <span class="mail-card__top-right mail-card__top-right--time"><%= topRightTime %></span>
+      <span class="mail-card__top-right mail-card__top-right--time"><%= mail.topRightTime %></span>
 
-    <% }%>
+    <% } else { %>
+
+      <svg class="mail-card__top-right mail-card__top-right--trash">
+        <use href="#trash-can-regular"></use>
+      </svg>
+
+    <% } %>
 
     <p class="mail-card__body"><%= mail.body %></p>
 

@@ -4,6 +4,13 @@ import SearchField from '../components/sub-menu/_searchField'
 import DateFilter from '../components/sub-menu/_dateFilter'
 
 import MailList from '../components/mail/_mailList'
+import MailRead from '../components/mail/_mailRead'
+
+function importSprites(r) {
+  r.keys().forEach(r)
+}
+
+importSprites(require.context('/app/assets/icons/mail', true, /\.svg$/))
 
 class Mail {
   constructor(user) {
@@ -14,10 +21,12 @@ class Mail {
     this.dateFilter = new DateFilter()
 
     this.lists = [
-      new MailList(this.user, 'inbox', this.onList),
-      new MailList(this.user, 'sent', this.onList),
-      new MailList(this.user, 'drafts', this.onList)
+      new MailList(this.user, 'inbox', this.onList.bind(this)),
+      new MailList(this.user, 'sent', this.onList.bind(this)),
+      new MailList(this.user, 'drafts', this.onList.bind(this))
     ]
+
+    this.viewerB = document.querySelector('.layout__viewer--b')
   }
 
   render() {
@@ -32,8 +41,25 @@ class Mail {
     this.lists[this.sliderBar.index - 1].render(document.querySelector('.layout__viewer--a .layout__viewer__inner'))
   }
 
-  onList() {
+  rightColTop() {
+    
+    this.viewerB.classList.add('layout__right-col--top')
+  }
 
+  onList(action) {
+
+    if(action.mailToView) {
+
+      this.reader = new MailRead(action.mailToView, this.user, action.box)
+
+      this.reader.render(document.querySelector('.layout__viewer--b .layout__viewer__inner'))
+
+      this.rightColTop()
+
+    } else if(action.mailToDelete) {
+
+      console.log('delete ', action.mailToDelete)
+    }
   }
 
   onSliderBar(newState) {

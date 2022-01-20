@@ -1,6 +1,5 @@
 import users from '/app/db/users.json'
 import mailCardTemplate from '/app/assets/templates/mail/_mail-card.ejs'
-import '/app/assets/icons/mail/user-solid.svg'
 
 const now = new Date('2022-02-22T18:37:12.324Z')
 
@@ -20,23 +19,12 @@ class MailCard {
 
     this.mail.recipients = users.filter(user => this.mail.to.find(name => name == user.name))
 
-    this.topRightTime = ''
+    this.mail.topRightTime = ''
 
     if(this.mail.sendTime != '') this.calcTopRightTime()
 
-    this.wrapper.innerHTML = mailCardTemplate({mail: this.mail, topRightTime: this.topRightTime})
+    this.wrapper.innerHTML = mailCardTemplate({mail: this.mail})
 
-    //this.trimUserName()
-  }
-
-  trimUserName() {
-
-    let el = this.wrapper.querySelector('.mail-card__user')
-    
-    if(el.textContent.length > 15) {
-
-      el.textContent = el.textContent.substring(0, 13).concat('...')
-    }
   }
 
   calcTopRightTime() {
@@ -45,15 +33,15 @@ class MailCard {
   
     if(this.sameDate(now, this.sendTime) && this.sameHour(now, this.sendTime)) {
 
-      this.topRightTime = `${now.getMinutes() - this.sendTime.getMinutes()} min`
+      this.mail.topRightTime = `${now.getMinutes() - this.sendTime.getMinutes()} min`
 
     } else if(this.sameDate(now, this.sendTime)) {
 
-      this.topRightTime = this.sendTime.getUTCHours() <= 12 ? `${this.sendTime.getUTCHours()}:${this.sendTime.getMinutes()} AM` : `${this.sendTime.getUTCHours() - 12}:${this.sendTime.getMinutes()} PM`
+      this.mail.topRightTime = this.sendTime.getUTCHours() <= 12 ? `${this.sendTime.getUTCHours()}:${this.sendTime.getMinutes()} AM` : `${this.sendTime.getUTCHours() - 12}:${this.sendTime.getMinutes()} PM`
 
     } else {
 
-      this.topRightTime = `${this.sendTime.getMonth() + 1}/${this.sendTime.getDate()}/${this.sendTime.getFullYear().toString().substring(2)}`
+      this.mail.topRightTime = `${this.sendTime.getMonth() + 1}/${this.sendTime.getDate()}/${this.sendTime.getFullYear().toString().substring(2)}`
 
     }
 

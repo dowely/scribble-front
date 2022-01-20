@@ -33,15 +33,38 @@ class MailList {
   render(hook) {
     this.hook = hook
 
-    this.html = `
+    this.hook.innerHTML = `
       <ul class="mail-list">
         ${this.mailCards.map(mailCard => {
-          return `<li>${mailCard.wrapper.innerHTML}</li>`
+          return `<li class="mail-list__item" data-mail-id="${mailCard.mail.id}">${mailCard.wrapper.innerHTML}</li>`
         }).join('')}
       </ul>
     `
 
-    this.hook.innerHTML = this.html
+    this.events()
+  }
+
+  events() {
+
+    let list = this.hook.querySelector('.mail-list')
+    list.addEventListener('click', this.onSingle.bind(this))
+  }
+
+  onSingle(e) {
+
+    let listItem = e.target.closest('li.mail-list__item')
+    let mailId = listItem.dataset.mailId
+    let mail = this.mails.filter(mail => mail.id == mailId)[0]
+
+    if(e.target.classList.contains('mail-card__top-right--trash')) {
+
+      this.callback({mailToDelete: mailId})
+
+    } else {
+
+      this.callback({mailToView: mail, box: this.box})
+
+    }
   }
 }
 
