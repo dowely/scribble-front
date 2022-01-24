@@ -1,0 +1,56 @@
+.sub-menu-mail {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, minmax(0, auto));
+  grid-auto-flow: row dense;
+  color: #fff;
+
+  @mixin atLarge {
+    grid-template-columns: auto 1fr;
+    grid-column-gap: calc(2 * $controlPxLarge);
+    grid-template-rows: repeat(2, minmax(0, auto));
+  }
+
+  &__control {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    height: $controlHeightBaseline;
+    margin-bottom: $controlMbBaseline;
+    border: 1px solid #fff;
+
+    .sub-menu-mail__slider-bar & {
+      margin-bottom: 0;
+    }
+
+    .sub-menu-mail__date-filter & {
+      @mixin atLarge {
+        margin-bottom: 0;
+      }
+    }
+
+    @mixin atMedium {
+      max-width: 440px;
+      margin-left: 0;
+      height: $controlHeightMedium;
+      margin-bottom: $controlMbMedium;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      width: 400px;
+    }
+  }
+
+  &__date-filter {
+    @mixin atLarge {
+      grid-column: 2 / -1;
+    }
+  }
+
+  &__slider-bar {
+    @mixin atLarge {
+      grid-column: 1 / 2;
+    }
+  }
+}

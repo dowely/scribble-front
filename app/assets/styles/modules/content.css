@@ -1,0 +1,45 @@
+.content {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr);
+
+  @mixin atLarge {
+    grid-template-columns: auto 1fr;
+    grid-column-gap: calc(2 * $controlPxLarge);
+  }
+
+  &__left-col {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+
+    @mixin atLarge {
+      grid-column: 1 / 2;
+    }
+  }
+
+  &__right-col {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+
+    @mixin atLarge {
+      grid-column: 2 / -1;
+    }
+    text-align: end;
+  }
+
+  &__viewer {
+    max-width: 400px;
+    margin: auto;
+    border: 1px solid black;
+
+    @mixin atMedium {
+      max-width: 500px;
+    }
+
+    @mixin atLarge {
+      width: 400px;
+      margin-left: 0;
+    }
+  }
+}

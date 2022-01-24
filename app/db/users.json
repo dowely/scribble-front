@@ -3,36 +3,42 @@
     "id": 0,
     "name": "Shirley Ward",
     "initials": "SW",
-    "avatar": ""
+    "avatar": "",
+    "email": ""
   },
   {
     "id": 1,
     "name": "John Schaffer",
     "initials": "JS",
-    "avatar": "assets/images/john-schaffer.png"
+    "avatar": "assets/images/john-schaffer.png",
+    "email": "dowely.code@gmail.com"
   },
   {
     "id": 2,
     "name": "Robert Tucker",
     "initials": "RT",
-    "avatar": ""
+    "avatar": "",
+    "email": ""
   },
   {
     "id": 3,
     "name": "Julie Cruz",
     "initials": "JC",
-    "avatar": ""
+    "avatar": "",
+    "email": ""
   },
   {
     "id": 4,
     "name": "Christopher Evans",
     "initials": "CE",
-    "avatar": ""
+    "avatar": "",
+    "email": ""
   },
   {
     "id": 5,
     "name": "Joyce Stafford",
     "initials": "JS",
-    "avatar": ""
+    "avatar": "",
+    "email": ""
   }
 ]

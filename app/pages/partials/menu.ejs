@@ -19,27 +19,29 @@
   
     <ul class="menu__items">
   
-      <li class="menu__item menu__wrapper">
+      <!-- menu__item--active -->
+      <li class="menu__item menu__wrapper" data-route="organizer">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#clock-regular"></use>
           </svg>
         </a>
         <a href="" class="menu__link">Organizer</a>
-        <div class="menu__notifier menu__notifier--visible">7</div>
+        <!-- menu__notifier--visible -->
+        <div class="menu__notifier menu__notifier--visible">3</div>
       </li>
   
-      <li class="menu__item menu__wrapper <%= route == 'mail' ? 'menu__item--active' : '' %>">
+      <li class="menu__item menu__wrapper" data-route="mail">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#envelope-regular"></use>
           </svg>
         </a>
         <a href="" class="menu__link">Mail</a>
-        <div class="menu__notifier menu__notifier--visible">+99</div>
+        <div class="menu__notifier menu__notifier--visible">24</div>
       </li>
   
-      <li class="menu__item menu__wrapper">
+      <li class="menu__item menu__wrapper" data-route="team">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#user-group-solid"></use>
@@ -49,7 +51,7 @@
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper">
+      <li class="menu__item menu__wrapper" data-route="chat">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#comment-regular"></use>
@@ -59,7 +61,7 @@
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper">
+      <li class="menu__item menu__wrapper" data-route="search">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#magnifying-glass-solid"></use>
@@ -69,7 +71,7 @@
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper">
+      <li class="menu__item menu__wrapper" data-route="profile">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#gear-solid"></use>
@@ -79,7 +81,7 @@
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper">
+      <li class="menu__item menu__wrapper" data-route="logout">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#door-open-solid"></use>

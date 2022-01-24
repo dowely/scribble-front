@@ -1,12 +1,27 @@
-import menuTemplate from '/app/assets/templates/menu.ejs'
-
 class Menu {
   constructor(route, callback) {
     this.route = route
     this.callback = callback
 
-    this.hook = document.querySelector('.layout__menu-container')
-    this.hook.innerHTML = menuTemplate({route: this.route})
+    this.menu = document.querySelector('.menu')
+
+    __CONNECTOR__.speak()
+
+  }
+
+  render() {
+    this.highlightRoute()
+  }
+
+  highlightRoute() {
+    
+    let currentLi = this.menu.querySelector(`li[data-route="${this.route}"]`)
+
+    currentLi.classList.add('menu__item--active')
+  }
+
+  fetchUserData() {
+
   }
 }
 

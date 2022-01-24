@@ -27,18 +27,20 @@ $gray70: #4d4d4d;
 $pill: 9999px;
 
 $controlHeightBaseline: 1.875rem;
-$controlHeightMedium: 2.375rem;
-$controlHeightLarge: 2.5rem;
-
-/* margins */
-$controlMxBaseline: 20px;
-$controlMyBaseline: 18px;
 $controlMbBaseline: 18px;
 
-$controlMxMedium: 45px;
-$controlMyMedium: 22px;
+$controlHeightMedium: 2.375rem;
 $controlMbMedium: 30px;
 
-$controlMxLarge: 40px;
-$controlMyLarge: 30px;
-$controlMbLarge: 30px;
+$controlHeightLarge: 2.5rem;
+
+/* padding */
+$controlPxBaseline: 20px;
+$controlPyBaseline: 18px;
+
+$controlPxMedium: 45px;
+$controlPtMedium: 22px;
+$controlPbMedium: 40px;
+
+$controlPxLarge: 40px;
+$controlPyLarge: 30px;

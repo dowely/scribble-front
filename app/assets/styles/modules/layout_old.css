@@ -1,0 +1,419 @@
+.layout {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+
+  @mixin atXLarge {
+    display: flex;
+    background: $largeGradient;
+    overflow: hidden;
+  }
+
+  &__container {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+    @mixin atXLarge {
+      height: auto;
+      margin: auto;
+      padding-bottom: 50px;
+      overflow: visible;
+    }
+  }
+
+  &__circle {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+    background-color: $mainLavender;
+
+    @mixin atMedium {
+      display: block;
+    }
+
+    @mixin atLarge {
+      display: none;
+      z-index: 1;
+    }
+
+    @mixin atXLarge {
+      display: block;
+      background-color: $largeGradientCircles;
+    }
+  }
+
+  &__circle--large {
+    width: 160px;
+    height: 160px;
+    top: 40px;
+    right: 45px;
+
+    @mixin atXLarge {
+      width: 300px;
+      height: 300px;
+      top: 815px;
+      right: 380px;
+    }
+  }
+
+  &__circle--small {
+    width: 50px;
+    height: 50px;
+    top: 215px;
+    right: 95px;
+
+    @mixin atXLarge {
+      width: 200px;
+      height: 200px;
+      top: 260px;
+      right: 30px;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @mixin atMedium {
+      grid-template-columns: 110px 1fr;
+    }
+
+    @mixin atLarge {
+      grid-template-columns: 235px auto 1fr;
+    }
+
+    @mixin atXLarge {
+      grid-template-columns: 235px 1fr 1fr;
+      width: 1200px;
+      height: 750px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .layout--mail & {
+      grid-template-rows: repeat(4, auto) minmax(0, 1fr);
+
+      @mixin atLarge {
+        grid-template-rows: repeat(2, auto) minmax(0, 1fr);
+      }
+    }
+  }
+  
+  &__menu-col,
+  &__left-col,
+  &__right-col,
+  &__glass { 
+    grid-column: 1 / 2;
+  }
+
+  &__left-col,
+  &__right-col,
+  &__glass {
+    @mixin atMedium {
+      grid-column: 2 / 3;
+    }
+  }
+
+  &__left-col {
+    z-index: 2;
+  }
+
+  &__right-col {
+    z-index: 1;
+
+    @mixin atLarge {
+      grid-column: 3 / 4;
+    }
+  }
+
+  &__right-col--top {
+    z-index: 3;
+  }
+
+  &__glass {
+    background: linear-gradient(to right, $topGradientDark, $topGradientLight);
+    z-index: 4;
+
+    @mixin atMedium {
+      background: linear-gradient(to top left, $topGradientDark, $topGradientLight);
+    }
+
+    @mixin atLarge {
+      grid-column: 2 / 4;
+      background: $largeGradientReversed;
+      z-index: 0;
+    }
+
+    @mixin atXLarge {
+      background: rgba(0, 0, 0, .3);
+      backdrop-filter: blur(12px);
+    }
+
+    .layout--mail & {
+      grid-row: 1 / 5;
+
+      @mixin atLarge {
+        grid-row: 1 / -1;
+      }
+    }
+  }
+
+  &__menu-container {
+    color: #fff;
+    grid-row: 1 / -1;
+    z-index: 6;
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s ease-out, z-index 1ms;
+    background: linear-gradient(to bottom, $menuGradientLight, $menuGradientDark);
+
+    @mixin atMedium {
+      background: linear-gradient(to top, $menuGradientLight, $menuGradientDark);
+    }
+
+    @mixin atLarge {
+      background: linear-gradient(to bottom, $menuGradientLight, $menuGradientDark);
+    }
+  }
+
+  &__menu-container--hidden {
+    z-index: auto;
+    opacity: 0;
+    visibility: hidden;
+
+    @mixin atMedium {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__control {
+    display: flex;
+    justify-content: center;
+
+    @mixin atMedium {
+      justify-content: start;
+    }
+
+    @mixin atXLarge {
+      justify-content: center;
+    }
+  }
+
+  &__control--a {
+    z-index: 5;
+
+    .layout--mail & {
+      grid-row: 1 / 2;
+    }
+  }
+
+  &__control--b {
+    z-index: 5;
+
+    .layout--mail & {
+      grid-row: 4 / 5;
+
+      @mixin atLarge {
+        grid-row: 2 / 3;
+      }
+    }
+  }
+
+  &__control--c {
+    z-index: 5;
+
+    .layout--mail & {
+      display: none;
+    }
+  }
+
+  &__control--d {
+    z-index: 5;
+
+    .layout--mail & {
+      grid-row: 2 / 3;
+
+      @mixin atLarge {
+        grid-row: 1 / 2;
+      }
+    }
+  }
+
+  &__control--e {
+    z-index: 5;
+
+    .layout--mail & {
+      grid-row: 3 / 4;
+
+      @mixin atLarge {
+        grid-row: 2 / 3;
+      }
+    }
+  }
+
+  &__control--f {
+    z-index: 5;
+
+    .layout--mail & {
+      display: none;
+    }
+  }
+
+  &__control__inner {
+    height: $controlHeightBaseline;
+    margin-left: $controlMxBaseline;
+    margin-right: $controlMxBaseline;
+    margin-bottom: $controlMbBaseline;
+    width: 100%;
+    max-width: 400px;
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-left: $controlMxMedium;
+      margin-bottom: $controlMbMedium;
+      max-width: 440px;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      margin-left: $controlMxLarge;
+      margin-right: $controlMxLarge;
+      width: 400px;
+    }
+  }
+
+  &__control__inner--reveal {
+    height: 0;
+    margin-bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out .3s, opacity .3s ease-in 1ms;
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-bottom: $controlMbMedium;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      margin-bottom: $controlMbLarge;
+    }
+
+    .layout--expanded & {
+      height: $controlHeightBaseline;
+      margin-bottom: $controlMbBaseline;
+      visibility: visible;
+      opacity: 1;
+      transition: all .4s ease-out, opacity .3s ease-in .4s;
+
+      @mixin atMedium {
+        height: $controlHeightMedium;
+        margin-bottom: $controlMbMedium;
+      }
+
+      @mixin atLarge {
+        height: $controlHeightLarge;
+        margin-bottom: $controlMbLarge;
+      }
+    }
+  }
+
+  &__control--a &__control__inner {
+    margin-top: $controlMyBaseline;
+    color: #fff;
+    border: 0px solid $gray20;
+
+    @mixin atMedium {
+      margin-top: $controlMyMedium;
+    }
+
+    @mixin atLarge {
+      margin-top: $controlMyLarge;
+    }
+  }
+
+  &__control--b &__control__inner {
+    color: #fff;
+    border: 0px solid $gray20;
+  }
+
+  &__control--d &__control__inner {
+    color: #fff;
+    border: 0px solid $gray20;
+
+    @mixin atLarge {
+      margin-top: $controlMyLarge;
+    }
+  }
+
+  &__control--e &__control__inner {
+    color: #fff;
+    border: 0px solid $gray20;
+  }
+
+  &__viewer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: $mainSilver;
+
+    @mixin atLarge {
+      background-color: unset;
+      padding-bottom: $controlMyLarge;
+    }
+
+    .layout--mail & {
+      grid-row: 5 / -1;
+
+      @mixin atLarge {
+        grid-row: 3 / -1;
+      }
+    }
+  }
+
+  &__viewer--b {
+    @mixin atLarge {
+      justify-content: start;
+    }
+
+    @mixin atXLarge {
+      justify-content: center;
+    }
+  }
+
+  &__viewer__inner {
+    margin: 0 10px;
+    width: 100%;
+    max-width: 400px;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 0 5px 2px $gray30;
+
+    @mixin atMedium {
+      max-width: 500px;
+    }
+
+    @mixin atLarge {
+      margin: 0 $controlMxLarge;
+      width: 400px;
+      box-shadow: unset;
+    }
+  }
+
+  &__viewer--a &__viewer__inner {
+    color: $mainBlack;
+    border: 0px solid $gray20;
+  }
+  &__viewer--b &__viewer__inner {
+    color: $mainBlack;
+    border: 0px solid $gray20;
+  }
+}

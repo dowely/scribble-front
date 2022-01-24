@@ -5,21 +5,8 @@
 @import 'base/global.css';
 @import 'base/large-gradient.css';
 
-@import 'modules/login.css';
-@import 'modules/entry-form.css';
 @import 'modules/layout.css';
 @import 'modules/menu.css';
+@import 'modules/content.css';
 
-@import 'components/_btn.css';
-
-@import 'components/mail/_mail-list.css';
-@import 'components/mail/_mail-card.css';
-@import 'components/mail/_mail-plus.css';
-@import 'components/mail/_mail-notifier.css';
-@import 'components/mail/_mail-read.css';
-
-@import 'components/sub-menu/_top-bar.css';
-@import 'components/sub-menu/_slider-bar.css';
-@import 'components/sub-menu/_slider.css';
-@import 'components/sub-menu/_search-field.css';
-@import 'components/sub-menu/_date-filter.css';
+@import 'modules/sub-menu/sub-menu-mail.css';
