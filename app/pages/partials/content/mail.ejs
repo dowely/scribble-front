@@ -2,7 +2,37 @@
 
   <div class="content__left-col">
     <div class="content__viewer">
-      left column
+      
+      <ul class="mail-list" data-box="inbox">
+
+        <% mails.inbox.forEach(mail => { %>
+          <li class="mail-list__card-container">
+            <%- include ../components/mail/_mail-card.ejs %>
+          </li>
+        <% }) %>
+        
+      </ul>
+
+      <ul class="mail-list" data-box="sent">
+
+        <% mails.sent.forEach(mail => { %>
+          <li class="mail-list__card-container">
+            <%- include ../components/mail/_mail-card.ejs %>
+          </li>
+        <% }) %>
+        
+      </ul>
+
+      <ul class="mail-list" data-box="drafts">
+        
+        <% mails.drafts.forEach(mail => { %>
+          <li class="mail-list__card-container">
+            <%- include ../components/mail/_mail-card.ejs %>
+          </li>
+        <% }) %>
+
+      </ul>
+
     </div>
   </div>
 

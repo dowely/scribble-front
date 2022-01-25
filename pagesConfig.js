@@ -1,3 +1,5 @@
+const mails = require('./app/db/mails.json')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = [
@@ -13,7 +15,9 @@ module.exports = [
     title: 'Scribble App | Mail',
     chunks: ['app', 'mail'],
     templateParameters: {
-      route: 'mail'
+      route: 'mail',
+      unread: 3,
+      mails: mails
     }
   })
 ]

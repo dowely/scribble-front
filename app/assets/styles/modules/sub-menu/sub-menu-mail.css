@@ -17,7 +17,6 @@
     margin-right: auto;
     height: $controlHeightBaseline;
     margin-bottom: $controlMbBaseline;
-    border: 1px solid #fff;
 
     .sub-menu-mail__slider-bar & {
       margin-bottom: 0;
@@ -39,6 +38,50 @@
     @mixin atLarge {
       height: $controlHeightLarge;
       width: 400px;
+    }
+  }
+
+  &__control--reveal {
+    height: 0;
+    margin-bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out .3s, opacity .3s ease-in 1ms;
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-bottom: $controlMbMedium;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+
+      .sub-menu-mail__date-filter & {
+        margin-bottom: 0;
+      }
+    }
+
+    .sub-menu-mail--expanded & {
+      height: $controlHeightBaseline;
+      margin-bottom: $controlMbBaseline;
+      visibility: visible;
+      opacity: 1;
+      transition: all .4s ease-out, opacity .3s ease-in .4s;
+
+      @mixin atMedium {
+        height: $controlHeightMedium;
+        margin-bottom: $controlMbMedium;
+      }
+
+      @mixin atLarge {
+        height: $controlHeightLarge;
+        
+        .sub-menu-mail__date-filter & {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 

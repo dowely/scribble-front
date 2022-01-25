@@ -10,3 +10,12 @@
 @import 'modules/content.css';
 
 @import 'modules/sub-menu/sub-menu-mail.css';
+@import 'modules/top-bar/top-bar-mail.css';
+
+@import 'components/sub-menu/_mail-notifier.css';
+@import 'components/sub-menu/_search-field.css';
+@import 'components/sub-menu/_date-filter.css';
+@import 'components/sub-menu/_slider-bar.css';
+
+@import 'components/mail/_mail-card.css';
+@import 'components/mail/_mail-list.css';

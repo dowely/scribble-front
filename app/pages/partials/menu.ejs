@@ -28,17 +28,17 @@
         </a>
         <a href="" class="menu__link">Organizer</a>
         <!-- menu__notifier--visible -->
-        <div class="menu__notifier menu__notifier--visible">3</div>
+        <div class="menu__notifier menu__notifier--visible">7</div>
       </li>
   
-      <li class="menu__item menu__wrapper" data-route="mail">
+      <li class="menu__item menu__wrapper menu__item--active" data-route="mail">
         <a href="" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#envelope-regular"></use>
           </svg>
         </a>
         <a href="" class="menu__link">Mail</a>
-        <div class="menu__notifier menu__notifier--visible">24</div>
+        <div class="menu__notifier menu__notifier--visible"><%= unread %></div>
       </li>
   
       <li class="menu__item menu__wrapper" data-route="team">

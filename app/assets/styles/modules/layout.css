@@ -25,7 +25,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, auto) 1fr;
+    grid-template-rows: minmax(min-content, auto) minmax(0, 1fr);
 
     @mixin atMedium {
       grid-template-columns: 110px 1fr;
