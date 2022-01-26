@@ -103,6 +103,7 @@
     font-size: .85rem;
     line-height: 2.5ex;
     height: 7.5ex;
+    white-space: pre-line;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

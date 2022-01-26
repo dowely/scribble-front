@@ -1,4 +1,4 @@
-import MailCard from './_mailCard'
+import MailCard from './_mailCard_old'
 import mailReadTemplate from '/app/assets/templates/mail/_mail-read.ejs'
 
 class MailRead extends MailCard {

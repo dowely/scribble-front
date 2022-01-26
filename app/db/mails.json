@@ -1,17 +1,6 @@
 {
   "inbox": [
     {
-      "id": 0,
-      "history": [],
-      "initials": "SW",
-      "from": "Shirley Ward",
-      "to": ["Me"],
-      "time": "02/21/22",
-      "read": true,
-      "subject": "First quarter budget",
-      "body": "In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live.\nRegards,\nJ."
-    },
-    {
       "id": 2,
       "history": [0, 1],
       "avatar": "assets/images/julie-cruz.png",
@@ -32,6 +21,17 @@
       "read": true,
       "subject": "Feedback on the recent updates",
       "body": "Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it's not genuine, correct, or comprehensible Latin anymore."
+    },
+    {
+      "id": 0,
+      "history": [],
+      "initials": "SW",
+      "from": "Shirley Ward",
+      "to": ["Me"],
+      "time": "02/21/22",
+      "read": true,
+      "subject": "First quarter budget",
+      "body": "In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live.\nRegards,\nJ."
     },
     {
       "id": 6,

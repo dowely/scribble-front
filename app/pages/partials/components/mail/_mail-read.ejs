@@ -1,0 +1,68 @@
+<div class="mail-read">
+  <div class="mail-read__wrapper">
+
+    <div class="mail-read__mail-container">
+
+      <div class="mail-read__avatar-container">
+
+        <% if(mail.avatar) { %>
+
+          <img src="<%= mail.avatar %>" alt="A photo of <%= mail.from ? mail.from : mail.to[0] %>" class="mail-read__avatar">
+
+        <% } else if(mail.initials) { %>
+
+          <h4 class="mail-read__initials"><%= mail.initials %></h4>
+
+        <% } else { %>
+
+          <svg class="mail-read__user-icon">
+            <use href="#user-solid"></use>
+          </svg>
+
+        <% } %>
+
+      </div>
+
+      <div class="mail-read__buttons-container">
+
+        <div class="mail-read__button btn--reply">
+          <span>Reply</span>
+          <svg>
+            <use href="#reply-solid"></use>
+          </svg>
+        </div>
+        <div class="mail-read__button btn--reply-all">
+          <span>Reply all</span>
+          <svg>
+            <use href="#reply-all-solid"></use>
+          </svg>
+        </div>
+        <div class="mail-read__button btn--close">
+          <span>Close</span>
+          <svg>
+            <use href="#circle-xmark-regular"></use>
+          </svg>
+        </div>
+        <div class="mail-read__button btn--forward">
+          <span>Forward</span>
+          <svg>
+            <use href="#share-from-square-solid"></use>
+          </svg>
+        </div>
+        <div class="mail-read__button btn--delete">
+          <span>Delete</span>
+          <svg>
+            <use href="#trash-can-regular"></use>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="mail-read__history-container">
+
+    </div>
+
+  </div>
+</div>

@@ -19,13 +19,14 @@
   }
 
   &__right-col {
+    display: none; /* remove */
     grid-column: 1 / -1;
     grid-row: 1 / -1;
 
     @mixin atLarge {
       grid-column: 2 / -1;
     }
-    text-align: end;
+    
   }
 
   &__viewer {
@@ -34,7 +35,9 @@
     overflow-y: auto;
     box-shadow: 0 0 5px 2px $gray30;
     margin: auto;
-    border: 1px solid black;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .2s ease-out;
 
     @mixin atMedium {
       max-width: 500px;
@@ -43,6 +46,13 @@
     @mixin atLarge {
       width: 400px;
       margin-left: 0;
+      box-shadow: unset;
     }
+  }
+
+  &__viewer--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease-out, visibility 1ms .2s;
   }
 }

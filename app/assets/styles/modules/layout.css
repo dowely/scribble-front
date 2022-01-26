@@ -57,6 +57,7 @@
   &__glass {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
+    z-index: 1;
     background: linear-gradient(to right, $topGradientDark, $topGradientLight);
 
     @mixin atMedium {
@@ -78,6 +79,7 @@
   &__sub-menu-container {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
+    z-index: 2;
     padding: $controlPyBaseline $controlPxBaseline;
 
     @mixin atMedium {
@@ -105,6 +107,7 @@
     }
 
     @mixin atLarge {
+      z-index: 3;
       padding: 0 $controlPxLarge $controlPyLarge;
       background-color: transparent;
     }

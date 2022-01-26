@@ -3,7 +3,7 @@
   <div class="content__left-col">
     <div class="content__viewer">
       
-      <ul class="mail-list" data-box="inbox">
+      <ul class="mail-list" data-box="1">
 
         <% mails.inbox.forEach(mail => { %>
           <li class="mail-list__card-container">
@@ -13,7 +13,7 @@
         
       </ul>
 
-      <ul class="mail-list" data-box="sent">
+      <ul class="mail-list" data-box="2">
 
         <% mails.sent.forEach(mail => { %>
           <li class="mail-list__card-container">
@@ -23,7 +23,7 @@
         
       </ul>
 
-      <ul class="mail-list" data-box="drafts">
+      <ul class="mail-list" data-box="3">
         
         <% mails.drafts.forEach(mail => { %>
           <li class="mail-list__card-container">
@@ -38,7 +38,9 @@
 
   <div class="content__right-col">
     <div class="content__viewer">
-      right-column
+      
+      <h6>Right column</h6>
+
     </div>
   </div>
 </div>

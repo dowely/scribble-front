@@ -35,5 +35,23 @@
 
     <% } %>
 
+    <div class="mail-card__subject-container">
+      <h5 class="mail-card__subject"><%= mail.subject %></h5>
+    </div>
+
+    <% if(mail.time) { %>
+
+      <span class="mail-card__top-right mail-card__top-right--time"><%= mail.time %></span>
+
+    <% } else { %>
+
+      <svg class="mail-card__top-right mail-card__top-right--trash">
+        <use href="#trash-can-regular"></use>
+      </svg>
+
+    <% } %>
+
+    <p class="mail-card__body"><%= mail.body %></p>
+
   </div>
 </div>

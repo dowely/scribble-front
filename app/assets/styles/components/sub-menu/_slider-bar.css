@@ -29,19 +29,19 @@
   }
 
   &__item[data-index="1"] {
-    .slider-bar--1 & {
+    .slider-bar[data-index="1"] & {
       color: $mainBlack;
     }
   }
 
   &__item[data-index="2"] {
-    .slider-bar--2 & {
+    .slider-bar[data-index="2"] & {
       color: $mainBlack;
     }
   }
 
   &__item[data-index="3"] {
-    .slider-bar--3 & {
+    .slider-bar[data-index="3"] & {
       color: $mainBlack;
     }
   }
@@ -52,18 +52,18 @@
     position: absolute;
     background-color: $mainEggshell;
     border-radius: $pill;
-    transition: all .2s ease;
+    transition: all .4s ease;
 
-    .slider-bar--1 & {
+    .slider-bar[data-index="1"] & {
       left: 0;
     }
 
-    .slider-bar--2 & {
+    .slider-bar[data-index="2"] & {
       left: 50%;
       transform: translateX(-50%);
     }
 
-    .slider-bar--3 & {
+    .slider-bar[data-index="3"] & {
       left: 100%;
       transform: translateX(-100%);
     }
