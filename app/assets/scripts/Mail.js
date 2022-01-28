@@ -1,6 +1,8 @@
 import SliderBar from './modules/sub-menu/sliderBar'
 import ViewerReloader from './base/viewerReloader'
+import ViewerSwitcher from './base/viewerSwitcher'
 import MailList from './modules/mail/mailList'
+import MailRead from './modules/mail/mailRead'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -14,14 +16,30 @@ if(module.hot) {
 
 const viewerReloader = new ViewerReloader()
 
+const viewerSwitcher = new ViewerSwitcher()
+
 const sliderBar = new SliderBar(onSliderBar)
 
-const mailList = new MailList(sliderBar.index)
+const mailList = new MailList(sliderBar.index, onMailList)
 
-function onSliderBar(state) {
+const mailRead = new MailRead(onMailRead)
 
-  if(state.index) {
+function onSliderBar(event) {
+
+  if(event.index) {
     
-    viewerReloader.reload('left', state.index)
+    viewerReloader.reload('left', event.index)
   }
+}
+
+function onMailList(event) {
+  console.log(event)
+
+  if(event.read) mailRead.load(event.read)
+
+  viewerSwitcher.switch('right')
+}
+
+function onMailRead() {
+
 }

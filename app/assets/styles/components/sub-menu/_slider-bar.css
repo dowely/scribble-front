@@ -2,6 +2,7 @@
   display: flex;
   height: 100%;
   align-items: center;
+  cursor: pointer;
 
   &__slider-container {
     align-self: stretch;

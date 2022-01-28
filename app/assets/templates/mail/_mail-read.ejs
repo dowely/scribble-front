@@ -9,19 +9,43 @@
 
           <img src="<%= mail.avatar %>" alt="A photo of <%= mail.from ? mail.from : mail.to[0] %>" class="mail-read__avatar">
 
-        <% } else if(mail.initials) { %>
-
-          <h4 class="mail-read__initials"><%= mail.initials %></h4>
-
         <% } else { %>
 
-          <svg class="mail-read__user-icon">
-            <use href="#user-solid"></use>
-          </svg>
+          <h4 class="mail-read__initials"><%= mail.initials %></h4>
 
         <% } %>
 
       </div>
+
+      <h3 class="mail-read__from-user-name">
+        
+        <%= mail.from ? mail.from : 'Me' %>
+
+      </h3>
+
+      <div class="mail-read__recipients-container">
+
+        <span class="mail-read__to-tag">To:</span>
+
+        <p class="mail-read__recipients-list">
+
+          <% if(mail.from) { %>
+
+            <span>Me, </span>
+
+          <% } %>
+
+          <%= mail.to.join(', ') %>
+
+        </p>
+
+      </div>
+
+      <h5 class="mail-read__time"><%= mail.time %></h5>
+
+      <h4 class="mail-read__subject"><%= mail.subject %></h4>
+
+      <p class="mail-read__body"><%= mail.body %></p>
 
       <div class="mail-read__buttons-container">
 

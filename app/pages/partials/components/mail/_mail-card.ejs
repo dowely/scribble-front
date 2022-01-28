@@ -1,4 +1,4 @@
-<div class="mail-card <%= mail.read ? 'mail-card--read' : ''%>">
+<div class="mail-card <%= mail.read ? 'mail-card--read' : ''%>" data-id="<%= mail.id %>">
   <div class="mail-card__wrapper">
 
     <div class="mail-card__avatar-container">
@@ -45,9 +45,15 @@
 
     <% } else { %>
 
-      <svg class="mail-card__top-right mail-card__top-right--trash">
-        <use href="#trash-can-regular"></use>
-      </svg>
+      <div class="mail-card__delete-area">
+
+        <span class="mail-card__delete-extension"></span>
+
+        <svg class="mail-card__top-right mail-card__top-right--trash">
+          <use href="#trash-can-regular"></use>
+        </svg>
+        
+      </div>
 
     <% } %>
 
