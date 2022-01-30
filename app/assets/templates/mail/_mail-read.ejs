@@ -25,7 +25,7 @@
 
       <div class="mail-read__recipients-container">
 
-        <span class="mail-read__to-tag">To:</span>
+        <span class="mail-read__to-tag">To: </span>
 
         <p class="mail-read__recipients-list">
 
@@ -49,35 +49,35 @@
 
       <div class="mail-read__buttons-container">
 
-        <div class="mail-read__button btn--reply">
-          <span>Reply</span>
+        <div class="mail-read__button mail-read__button--reply">
           <svg>
             <use href="#reply-solid"></use>
           </svg>
+          <span>Reply</span>
         </div>
-        <div class="mail-read__button btn--reply-all">
-          <span>Reply all</span>
+        <div class="mail-read__button mail-read__button--reply-all">
           <svg>
             <use href="#reply-all-solid"></use>
           </svg>
+          <span>Reply all</span>
         </div>
-        <div class="mail-read__button btn--close">
-          <span>Close</span>
+        <div class="mail-read__button mail-read__button--close">
           <svg>
             <use href="#circle-xmark-regular"></use>
           </svg>
+          <span>Close</span>
         </div>
-        <div class="mail-read__button btn--forward">
-          <span>Forward</span>
+        <div class="mail-read__button mail-read__button--forward">
           <svg>
             <use href="#share-from-square-solid"></use>
           </svg>
+          <span>Forward</span>
         </div>
-        <div class="mail-read__button btn--delete">
-          <span>Delete</span>
+        <div class="mail-read__button mail-read__button--delete">
           <svg>
             <use href="#trash-can-regular"></use>
           </svg>
+          <span>Delete</span>
         </div>
 
       </div>
@@ -85,6 +85,32 @@
     </div>
 
     <div class="mail-read__history-container">
+
+      <% history.forEach(item => { %>
+
+        <div class="mail-read__history-item">
+
+          <h5 class="mail-read__history-from"><span>From: </span><%= item.from  ? item.from : 'Me' %></h5>
+
+            <% if(!item.from) { %>
+
+              <h5 class="mail-read__history-to"><span>To: </span><%= item.to.join(', ') %></h5>
+
+            <% } else { %>
+
+              <h5 class="mail-read__history-to"><span>To: </span>Me<%= item.to.length > 0 ? `, ${item.to.join(', ')}` : `` %></h5>
+
+            <% } %>
+
+          <h5 class="mail-read__history-subject"><span>Subject: </span><%= item.subject %></h5>
+
+          <h5 class="mail-read__history-sent"><span>Sent: </span><%= item.sent %></h5>
+
+          <p class="mail-read__history-body"><%= item.body %></p>
+
+        </div>
+
+      <% }) %>
 
     </div>
 

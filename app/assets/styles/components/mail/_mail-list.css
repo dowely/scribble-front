@@ -7,5 +7,7 @@
 
   li {
     border-bottom: 1px solid $gray30;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 }

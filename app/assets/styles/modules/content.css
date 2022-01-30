@@ -23,6 +23,10 @@
   &__left-col--hidden {
     transition: opacity .2s ease-out;
     opacity: 0;
+
+    @mixin atLarge {
+      opacity: .99;
+    }
   }
 
   &__right-col {
@@ -30,16 +34,16 @@
     grid-row: 1 / -1;
     opacity: 0;
     z-index: 1;
+    transition: opacity .2s ease-out;
 
     @mixin atLarge {
       grid-column: 2 / -1;
-      opacity: 1;
     }
     
   }
 
   &__right-col--visible {
-    transition: opacity .2s ease-out, ;
+    transition: opacity .2s ease-out;
     opacity: 1;
     z-index: 3;
   }

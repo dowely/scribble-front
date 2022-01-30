@@ -33,13 +33,14 @@ function onSliderBar(event) {
 }
 
 function onMailList(event) {
-  console.log(event)
 
   if(event.read) mailRead.load(event.read)
 
   viewerSwitcher.switch('right')
 }
 
-function onMailRead() {
+function onMailRead(event) {
+
+  viewerSwitcher.switch('left')
 
 }

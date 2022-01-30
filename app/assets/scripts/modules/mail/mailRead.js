@@ -22,7 +22,38 @@ class MailRead {
 
     }, this.mails[pointer.list][0])
 
-    this.hook.innerHTML = readTemplate({mail, inbox})
+    let history = []
+
+    if(mail.history.length > 0) history = this.addHistory(mail)
+
+    this.hook.innerHTML = readTemplate({mail, inbox, history})
+
+    this.events()
+  }
+
+  addHistory(mail) {
+
+    let allMails = this.mails['1'].concat(this.mails['2'], this.mails['3'])
+
+    let historyMails = allMails.filter(item => {
+
+      let result
+
+      for (const id of mail.history) {
+       if(item.id == id) result = true
+      }
+
+      return result
+    })
+
+    return historyMails.reverse()
+  }
+
+  events() {
+
+    let closeBtn = this.hook.querySelector('.mail-read__button--close')
+
+    closeBtn.addEventListener('click', () => this.callback({close}))
   }
 }
 
