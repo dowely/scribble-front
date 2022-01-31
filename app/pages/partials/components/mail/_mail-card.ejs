@@ -1,0 +1,63 @@
+<div class="mail-card <%= mail.read ? 'mail-card--read' : ''%>" data-id="<%= mail.id %>">
+  <div class="mail-card__wrapper">
+
+    <div class="mail-card__avatar-container">
+
+      <% if(mail.avatar) { %>
+
+        <img src="<%= mail.avatar %>" alt="A photo of <%= mail.from ? mail.from : mail.to[0] %>" class="mail-card__avatar">
+
+      <% } else if(mail.initials) { %>
+
+        <h4 class="mail-card__initials"><%= mail.initials %></h4>
+
+      <% } else { %>
+
+        <svg class="mail-card__user-icon">
+          <use href="#user-solid"></use>
+        </svg>
+
+      <% } %>
+
+    </div>
+
+    <% if(mail.from) { %>
+
+      <div class="mail-card__user-cointainer">
+        <h4 class="mail-card__user"><%= mail.from %></h4>
+      </div>
+
+    <% } else { %>
+
+      <div class="mail-card__user-cointainer">
+        <h4 class="mail-card__user"><%= mail.to.join(', ') %></h4>
+      </div>
+
+    <% } %>
+
+    <div class="mail-card__subject-container">
+      <h5 class="mail-card__subject"><%= mail.subject %></h5>
+    </div>
+
+    <% if(mail.time) { %>
+
+      <span class="mail-card__top-right mail-card__top-right--time"><%= mail.time %></span>
+
+    <% } else { %>
+
+      <div class="mail-card__delete-area">
+
+        <span class="mail-card__delete-extension"></span>
+
+        <svg class="mail-card__top-right mail-card__top-right--trash">
+          <use href="#trash-can-regular"></use>
+        </svg>
+        
+      </div>
+
+    <% } %>
+
+    <p class="mail-card__body"><%= mail.body %></p>
+
+  </div>
+</div>

@@ -1,87 +1,85 @@
-[
-  {
-    "id": 0,
-    "history": [],
-    "from": "Shirley Ward",
-    "to": ["John Schaffer"],
-    "createTime": "2022-02-21T12:56:43.511Z",
-    "sendTime": "2022-02-21T12:56:43.511Z",
-    "readBy": ["John Schaffer"],
-    "subject": "First quarter budget",
-    "body": "In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live.\nRegards,\nJ."
-  },
-  {
-    "id": 1,
-    "history": [1],
-    "from": "John Schaffer",
-    "to": ["Joyce Stafford"],
-    "createTime": "2022-02-22T12:56:43.511Z",
-    "sendTime": "2022-02-22T12:56:43.511Z",
-    "readBy": ["Joyce Stafford"],
-    "subject": "First quarter budget",
-    "body": "One may speculate that over the course of time certain letters were added or deleted at various positions within the text.\nSincerly,\nJohn Schaffer"
-  },
-  {
-    "id": 2,
-    "history": [1, 2],
-    "from": "Julie Cruz",
-    "to": [
-      "John Schaffer",
-      "Shirley Ward",
-      "Christopher Evans",
-      "Joyce Stafford"
-    ],
-    "createTime": "2022-02-22T18:25:43.511Z",
-    "sendTime": "2022-02-22T18:32:12.324Z",
-    "readBy": ["Shirley Ward", "Christopher Evans"],
-    "subject": "Carnival party invitations!",
-    "body": "Certain internet providers exploit the fact that fill text cannot be recognized.\nRegards,\nJ."
-  },
-  {
-    "id": 3,
-    "history": [7],
-    "from": "John Schaffer",
-    "to": [
-      "Joyce Stafford",
-      "Robert Tucker"
-    ],
-    "createTime": "2022-02-16T18:25:43.511Z",
-    "sendTime": "",
-    "readBy": [],
-    "subject": "",
-    "body": "One may speculate that over the course of time certain letters were added or deleted at various positions within the text. This might be unintendedly humorous or offensive, an unacceptable risk in"
-  },
-  {
-    "id": 4,
-    "history": [],
-    "from": "John Schaffer",
-    "to": [],
-    "createTime": "2022-02-12T18:25:43.511Z",
-    "sendTime": "",
-    "readBy": [],
-    "subject": "",
-    "body": "The spread of computers and layout programmes thus made dummy text better known. While in earlier times several lines are likely to focus on the text, disregarding the layout and its elements."
-  },
-  {
-    "id": 5,
-    "history": [],
-    "from": "Christopher Evans",
-    "to": ["John Schaffer"],
-    "createTime": "2022-02-19T18:25:43.511Z",
-    "sendTime": "2022-02-22T14:34:43.511Z",
-    "readBy": ["John Schaffer"],
-    "subject": "Feedback on the recent updates updates",
-    "body": "Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it's not genuine, correct, or comprehensible Latin anymore."
-  },
-  {
-    "id": 6,
-    "history": [],
-    "from": "Robert Tucker",
-    "to": ["John Schaffer"],
-    "createTime": "2021-12-16T14:34:43.511Z",
-    "sendTime": "2021-12-16T14:34:43.511Z",
-    "readBy": ["John Schaffer"],
-    "subject": "Flight details",
-    "body": "This might also explain why one can now find slightly different versions."
-  }
-]
+{
+  "inbox": [
+    {
+      "id": 2,
+      "history": [0, 1],
+      "avatar": "assets/images/julie-cruz.png",
+      "from": "Julie Cruz",
+      "to": ["Shirley Ward", "Christopher Evans", "Joyce Stafford"],
+      "time": "5 min",
+      "sent": "Tuesday, February 22, 2022, 18:32 PM",
+      "read": false,
+      "subject": "Carnival party invitations!",
+      "body": "Certain internet providers exploit the fact that fill text cannot be recognized.\nRegards,\nJ."
+    },
+    {
+      "id": 5,
+      "history": [],
+      "initials": "CE",
+      "from": "Christopher Evans",
+      "to": [],
+      "time": "2:34 PM",
+      "sent": "Tuesday, February 22, 2022, 2:34 PM",
+      "read": true,
+      "subject": "Feedback on the recent updates",
+      "body": "Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it's not genuine, correct, or comprehensible Latin anymore."
+    },
+    {
+      "id": 0,
+      "history": [],
+      "initials": "SW",
+      "from": "Shirley Ward",
+      "to": [],
+      "time": "02/21/22",
+      "sent": "Monday, February 21, 2022, 4:12 PM",
+      "read": true,
+      "subject": "First quarter budget",
+      "body": "In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live.\nRegards,\nJ."
+    },
+    {
+      "id": 6,
+      "history": [],
+      "initials": "RT",
+      "from": "Robert Tucker",
+      "to": [],
+      "time": "12/16/21",
+      "sent": "Wednsday, December 16, 2021, 9:45 AM",
+      "read": true,
+      "subject": "Flight details",
+      "body": "This might also explain why one can now find slightly different versions."
+    }
+  ],
+  "sent": [
+    {
+      "id": 1,
+      "history": [0],
+      "initials": "JS",
+      "to": ["Joyce Stafford"],
+      "time": "12:56 AM",
+      "sent": "Tuesday, February 22, 2022, 12:56 AM",
+      "read": true,
+      "subject": "First quarter budget",
+      "body": "One may speculate that over the course of time certain letters were added or deleted at various positions within the text.\nSincerly,\nJohn Schaffer"
+    }
+    
+  ],
+  "drafts": [
+    {
+      "id": 3,
+      "history": [6],
+      "initials": "RT",
+      "to": ["Robert Tucker", "Joyce Stafford"],
+      "read": true,
+      "subject": "(No Subject)",
+      "body": "One may speculate that over the course of time certain letters were added or deleted at various positions within the text.\nSincerly,\nJohn Schaffer"
+    },
+    {
+      "id": 4,
+      "history": [],
+      "to": ["(No Recipients)"],
+      "read": false,
+      "subject": "(No Subject)",
+      "body": "The spread of computers and layout programmes thus made dummy text better known. While in earlier times several lines are likely to focus on the text, disregarding the layout and its elements."
+    }
+  ]
+}

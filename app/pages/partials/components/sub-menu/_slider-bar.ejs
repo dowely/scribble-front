@@ -1,0 +1,45 @@
+<div class="slider-bar" data-index="1">
+
+  <div class="slider-bar__slider-container">
+
+    <div class="slider-bar__slider">
+
+      <div class="slider-bar__item" data-index="1">
+    
+        <% if(route == 'mail') { %>
+          <span>Inbox</span>
+        <% } %>
+    
+      </div>
+    
+      <div class="slider-bar__item" data-index="2">
+    
+        <% if(route == 'mail') { %>
+          <span>Sent</span>
+        <% } %>
+    
+      </div>
+    
+      <div class="slider-bar__item" data-index="3">
+    
+        <% if(route == 'mail') { %>
+          <span>Drafts</span>
+        <% } %>
+    
+      </div>
+    
+      <div class="slider-bar__indicator"></div>
+    
+    </div>
+
+  </div>
+
+  <div class="slider-bar__notifier-container">
+
+    <% if(route == 'mail') { %>
+      <%- include _mail-notifier.ejs %>
+    <% } %>
+
+  </div>
+
+</div>

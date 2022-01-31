@@ -1,4 +1,4 @@
-<div class="entry-form">
+<div class="entry-form" data-mode="<%= mode %>">
 
   <h2 class="entry-form__title">
     <%= mode == 'signin' ? 'Sign In' : 'Sign Up' %>
@@ -68,11 +68,7 @@
       </div>
     <% } %> 
 
-    <!--
-    <button class="btn btn--sign-in"><%= mode == 'signin' ? 'Sign In' : 'Sign Up' %></button>
-    -->
-
-    <a href="app.html" class="btn btn--sign-in"><%= mode == 'signin' ? 'Sign In' : 'Sign Up' %></a>
+    <a href="mail.html" class="btn btn--sign-in"><%= mode == 'signin' ? 'Sign In' : 'Sign Up' %></a>
 
   </form>
 

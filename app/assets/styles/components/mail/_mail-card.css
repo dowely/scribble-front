@@ -90,11 +90,24 @@
     justify-self: end;
   }
 
+  &__delete-area {
+    justify-self: end;
+    position: relative;
+  }
+
+  &__delete-extension {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
+  }
+
   &__top-right--trash {
     width: 24px;
     height: 24px;
     color: $gray30;
-    justify-self: end;
   }
 
   &__body {
@@ -103,6 +116,7 @@
     font-size: .85rem;
     line-height: 2.5ex;
     height: 7.5ex;
+    white-space: pre-line;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

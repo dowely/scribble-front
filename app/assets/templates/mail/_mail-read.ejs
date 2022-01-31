@@ -5,52 +5,31 @@
 
       <div class="mail-read__avatar-container">
 
-        <% if(box == 'inbox') {
+        <% if(mail.avatar) { %>
 
-          if(mail.sender.avatar == '') { %>
+          <img src="<%= mail.avatar %>" alt="A photo of <%= mail.from ? mail.from : mail.to[0] %>" class="mail-read__avatar">
 
-            <h4 class="mail-read__initials"><%= mail.sender.initials %></h4>
+        <% } else { %>
 
-          <% } else { %>
+          <h4 class="mail-read__initials"><%= mail.initials %></h4>
 
-            <img src="<%= mail.sender.avatar %>" alt="A photo of <%= mail.sender.name %>" class="mail-read__avatar">
-
-          <% }
-
-        } else {
-
-          if(mail.recipients.length == 0) { %>
-
-            <svg class="mail-read__user-icon">
-              <use href="#user-solid"></use>
-            </svg>
-
-          <% } else if(mail.recipients[0].avatar == '') { %>
-
-            <h4 class="mail-read__initials"><%= mail.recipients[0].initials %></h4>
-
-          <% } else { %>
-
-            <img src="<%= mail.recipients[0].avatar %>" alt="A photo of <%= mail.recipients[0].name %>" class="mail-read__avatar">
-
-          <% }
-        } %>
+        <% } %>
 
       </div>
 
       <h3 class="mail-read__from-user-name">
         
-        <%= box == 'inbox' ? mail.from : 'Me' %>
+        <%= mail.from ? mail.from : 'Me' %>
 
       </h3>
 
       <div class="mail-read__recipients-container">
 
-        <span class="mail-read__to-tag">To:</span>
+        <span class="mail-read__to-tag">To: </span>
 
         <p class="mail-read__recipients-list">
 
-          <% if(box == 'inbox') { %>
+          <% if(mail.from) { %>
 
             <span>Me, </span>
 
@@ -62,43 +41,43 @@
 
       </div>
 
-      <h5 class="mail-read__time"><%= mail.topRightTime %></h5>
+      <h5 class="mail-read__time"><%= mail.time %></h5>
 
-      <h4 class="mail-read__subject"><%= mail.subject == '' ? '(No subject)' : mail.subject %></h4>
+      <h4 class="mail-read__subject"><%= mail.subject %></h4>
 
       <p class="mail-read__body"><%= mail.body %></p>
 
       <div class="mail-read__buttons-container">
 
-        <div class="mail-read__button btn--reply">
-          <span>Reply</span>
+        <div class="mail-read__button mail-read__button--reply">
           <svg>
             <use href="#reply-solid"></use>
           </svg>
+          <span>Reply</span>
         </div>
-        <div class="mail-read__button btn--reply-all">
-          <span>Reply all</span>
+        <div class="mail-read__button mail-read__button--reply-all">
           <svg>
             <use href="#reply-all-solid"></use>
           </svg>
+          <span>Reply all</span>
         </div>
-        <div class="mail-read__button btn--close">
-          <span>Close</span>
+        <div class="mail-read__button mail-read__button--close">
           <svg>
             <use href="#circle-xmark-regular"></use>
           </svg>
+          <span>Close</span>
         </div>
-        <div class="mail-read__button btn--forward">
-          <span>Forward</span>
+        <div class="mail-read__button mail-read__button--forward">
           <svg>
             <use href="#share-from-square-solid"></use>
           </svg>
+          <span>Forward</span>
         </div>
-        <div class="mail-read__button btn--delete">
-          <span>Delete</span>
+        <div class="mail-read__button mail-read__button--delete">
           <svg>
             <use href="#trash-can-regular"></use>
           </svg>
+          <span>Delete</span>
         </div>
 
       </div>
@@ -106,6 +85,32 @@
     </div>
 
     <div class="mail-read__history-container">
+
+      <% history.forEach(item => { %>
+
+        <div class="mail-read__history-item">
+
+          <h5 class="mail-read__history-from"><span>From: </span><%= item.from  ? item.from : 'Me' %></h5>
+
+            <% if(!item.from) { %>
+
+              <h5 class="mail-read__history-to"><span>To: </span><%= item.to.join(', ') %></h5>
+
+            <% } else { %>
+
+              <h5 class="mail-read__history-to"><span>To: </span>Me<%= item.to.length > 0 ? `, ${item.to.join(', ')}` : `` %></h5>
+
+            <% } %>
+
+          <h5 class="mail-read__history-subject"><span>Subject: </span><%= item.subject %></h5>
+
+          <h5 class="mail-read__history-sent"><span>Sent: </span><%= item.sent %></h5>
+
+          <p class="mail-read__history-body"><%= item.body %></p>
+
+        </div>
+
+      <% }) %>
 
     </div>
 

@@ -1,3 +1,5 @@
+const mails = require('./app/db/mails.json')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = [
@@ -8,9 +10,14 @@ module.exports = [
     chunks: ['login']
   }),
   new HtmlWebpackPlugin({
-    filename: 'app.html',
+    filename: 'mail.html',
     template: './app/pages/app.ejs',
-    title: 'Scribble App',
-    chunks: ['app']
+    title: 'Scribble App | Mail',
+    chunks: ['app', 'mail'],
+    templateParameters: {
+      route: 'mail',
+      unread: 3,
+      mails: mails
+    }
   })
 ]

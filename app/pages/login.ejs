@@ -28,7 +28,15 @@
       </div>
 
       <div class="login__form-container">
-        
+        <div class="login__form-wrapper">
+
+          <% let mode = 'signin' %>
+          <%- include partials/entry-form.ejs %>
+
+          <% mode = 'signup' %>
+          <%- include partials/entry-form.ejs %>
+
+        </div>
       </div>
 
     </div>

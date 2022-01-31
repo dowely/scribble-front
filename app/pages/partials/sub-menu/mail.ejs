@@ -1,0 +1,67 @@
+<!-- sub-menu-mail--expanded -->
+<div class="sub-menu-mail">
+
+  <div class="sub-menu-mail__top-bar">
+    <div class="sub-menu-mail__control">
+      <div class="top-bar-mail">
+      
+        <svg class="top-bar-mail__back-icon">
+          <use href="#arrow-left-regular"></use>
+        </svg>
+      
+        <h2 class="top-bar-mail__title">Mail</h2>
+      
+        <div class="top-bar-mail__tools">
+
+          <div class="top-bar-mail__plus">
+      
+            <div class="top-bar-mail__plus__line top-bar-mail__plus__line--vertical"></div>
+            <div class="top-bar-mail__plus__line top-bar-mail__plus__line--horizontal"></div>
+
+          </div>
+
+          <div class="top-bar-mail__notifier">
+      
+            <%- include ../components/sub-menu/_mail-notifier.ejs %>
+      
+          </div>
+      
+          <div class="top-bar-mail__ellipsis">
+      
+            <svg class="top-bar-mail__ellipsis-icon">
+              <use href="#ellipsis-vertical-solid"></use>
+            </svg>
+      
+          </div>
+      
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-menu-mail__search-field">
+    <div class="sub-menu-mail__control sub-menu-mail__control--reveal">
+      
+      <%- include ../components/sub-menu/_search-field.ejs %>
+
+    </div>
+  </div>
+
+  <div class="sub-menu-mail__date-filter">
+    <div class="sub-menu-mail__control sub-menu-mail__control--reveal">
+      
+      <%- include ../components/sub-menu/_date-filter.ejs %>
+
+    </div>
+  </div>
+
+  <div class="sub-menu-mail__slider-bar">
+    <div class="sub-menu-mail__control">
+      
+      <%- include ../components/sub-menu/_slider-bar.ejs %>
+
+    </div>
+  </div>
+
+</div>

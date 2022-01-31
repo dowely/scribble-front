@@ -1,4 +1,5 @@
 .mail-list {
+  display: none;
   max-height: 100%;
   list-style-type: none;
   margin: 0;
@@ -6,5 +7,7 @@
 
   li {
     border-bottom: 1px solid $gray30;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 }

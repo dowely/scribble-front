@@ -1,5 +1,7 @@
 .mail-read {
   background-color: #fff;
+  padding: 20px;
+  color: $mainBlack;
 
   &__mail-container {
     display: grid;
@@ -34,13 +36,17 @@
     font-size: 1.25rem;
     font-weight: 500;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 8px;
   }
 
   &__recipients-container {
     grid-column: before-name / -1;
     grid-row: below-name / above-subject;
     display: flex;
+
+    > span {
+      white-space: pre;
+    }
   }
 
   &__to-tag {
@@ -67,18 +73,121 @@
     font-size: .915rem;
     color: $gray50;
     font-weight: 400;
+    justify-self: end;
   }
 
   &__subject {
     grid-column: 1 / -1;
     grid-row: above-subject / span 1;
+    margin: 15px 0 0;
+    font-weight: 500;
   }
 
   &__body {
     grid-column: 1 / -1;
+    white-space: pre-line;
+    font-size: .82rem;
+    line-height: 1.5;
   }
 
   &__buttons-container {
     grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  &__button {
+    border: 1px solid $gray30;
+    border-radius: 3px;
+    color: $gray50;
+    font-size: .82rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      margin: 0 5px 0 5px;
+    }
+  }
+
+  &__button--reply {
+    width: 80px;
+    height: 30px;
+
+    svg {
+      width: 21px;
+      height: 18px;
+    }
+  }
+
+  &__button--reply-all {
+    width: 104px;
+    height: 30px;
+    margin-bottom: 16px;
+
+    svg {
+      width: 24px;
+      height: 18px;
+    }
+  }
+
+  &__button--close {
+    width: 80px;
+    height: 30px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__button--forward {
+    width: 104px;
+    height: 30px;
+    margin-left: 37px;
+
+    svg {
+      width: 21px;
+      height: 18px;
+    }
+  }
+
+  &__button--delete {
+    width: 104px;
+    height: 30px;
+    margin-right: 37px;
+
+    svg {
+      width: 16px;
+      height: 18px;
+    }
+  }
+
+  &__history-item {
+    border-top: 2px solid $gray50;
+    font-size: .85rem;
+    padding: 20px 0;
+
+    h5 {
+      font-size: .85rem;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    h5 span {
+      color: $gray50;
+      margin-right: 5px;
+    }
+  }
+
+  &__history-body {
+    line-height: 1.5;
+    margin-top: 25px;
+    margin-bottom: 0;
+    white-space: pre-line;
   }
 }

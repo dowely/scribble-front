@@ -1,29 +1,16 @@
 .entry-form {
-  background-color: #fff;
-  border: 1px solid $gray50;
-  padding: 20px;
-  margin-top: -20px;
-  border-radius: 20px;
-
-  @mixin atMedium {
-    margin-top: -50px;
-  }
-
-  @mixin atLarge {
-    margin-top: 0;
-    flex: auto;
-    border: none;
-  }
+  overflow: auto;
+  transition: opacity .3s ease-out;
 
   &__title {
     font-size: 1.65rem;
     font-weight: 400;
-    margin-top: 0;
+    margin-top: 20px;
     text-align: center;
 
     @mixin atMedium {
       font-size: 2.5rem;
-      margin: .5rem 0 2.5rem;
+      margin: 2rem 0 2.5rem;
     }
 
     @mixin atLarge {
@@ -298,11 +285,11 @@
     height: 20px;
     line-height: 20px;
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 20px;
 
     @mixin atMedium {
       font-size: 1.2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2.5rem;
     }
 
     @mixin atLarge {

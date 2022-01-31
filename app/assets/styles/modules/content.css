@@ -1,0 +1,77 @@
+.content {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr);
+
+  @mixin atLarge {
+    grid-template-columns: auto 1fr;
+    grid-column-gap: calc(2 * $controlPxLarge);
+  }
+
+  &__left-col {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    z-index: 2;
+    opacity: 1;
+
+    @mixin atLarge {
+      grid-column: 1 / 2;
+    }
+  }
+
+  &__left-col--hidden {
+    transition: opacity .2s ease-out;
+    opacity: 0;
+
+    @mixin atLarge {
+      opacity: .99;
+    }
+  }
+
+  &__right-col {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .2s ease-out;
+
+    @mixin atLarge {
+      grid-column: 2 / -1;
+    }
+    
+  }
+
+  &__right-col--visible {
+    transition: opacity .2s ease-out;
+    opacity: 1;
+    z-index: 3;
+  }
+
+  &__viewer {
+    max-width: 400px;
+    max-height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 0 5px 2px $gray30;
+    margin: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .2s ease-out;
+
+    @mixin atMedium {
+      max-width: 500px;
+    }
+
+    @mixin atLarge {
+      width: 400px;
+      margin-left: 0;
+      box-shadow: unset;
+    }
+  }
+
+  &__viewer--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease-out, visibility 1ms .2s;
+  }
+}

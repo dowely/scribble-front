@@ -1,77 +1,33 @@
 <%- include partials/head %>
 
-<body>
-  <!-- layout--mail layout--expanded -->
-  <main class="layout layout--mail layout--expanded">
-    <div class="layout__container">
+<body class="layout">
+  <div class="layout__inner">
 
-      <div class="layout__wrapper">
+    <main class="layout__wrapper">
 
-        <div class="layout__glass"></div>
-
-        <!-- layout__menu-container--hidden -->
-        <div class="layout__menu-container layout__menu-container--hidden layout__menu-col">
-          <!-- modules/menu.js -->
-        </div>
-  
-        <div class="layout__control layout__control--a layout__left-col">
-          <div class="layout__control__inner">
-            <!-- components/sub-menu/_topBar.js -->
-          </div>
-        </div>
-  
-        <div class="layout__control layout__control--b layout__left-col">
-          <div class="layout__control__inner">
-            <!-- components/sub-menu/_sliderBar.js -->
-          </div>
-        </div>
-  
-        <div class="layout__control layout__control--c layout__left-col">
-          <div class="layout__control__inner">
-            control c
-          </div>
-        </div>
-  
-        <!-- class layout__control__inner--reveal added dynamically complemented by layout__control__inner--conceal for button in search and layout__control__inner--reveal-md for checkboxes in medium screen-->
-        <div class="layout__control layout__control--d layout__right-col">
-          <div class="layout__control__inner layout__control__inner--reveal">
-            <!-- components/sub-menu/_searchField.js -->
-          </div>
-        </div>
-  
-        <div class="layout__control layout__control--e layout__right-col">
-          <div class="layout__control__inner layout__control__inner--reveal">
-            <!-- components/sub-menu/_dateFilter.js -->
-          </div>
-        </div>
-  
-        <div class="layout__control layout__control--f layout__right-col">
-          <div class="layout__control__inner">
-            control f
-          </div>
-        </div>
-  
-        <div class="layout__viewer layout__viewer--a layout__left-col">
-          <div class="layout__viewer__inner">
-            viewer left
-          </div>
-        </div>
-  
-        <!-- layout__right-col--top -->
-        <div class="layout__viewer layout__viewer--b layout__right-col">
-          <div class="layout__viewer__inner">
-             
-          </div>
-
-        </div>
-  
+      <div class="layout__menu-container">
+        <%- include partials/menu.ejs %>
       </div>
 
-      <div class="layout__circle layout__circle--large"></div>
-      <div class="layout__circle layout__circle--small"></div>
+      <div class="layout__glass"></div>
 
-    </div>
-  </main>
+      <div class="layout__sub-menu-container">
+        <% if(route == 'mail') { %>
+          <%- include partials/sub-menu/mail.ejs %>
+        <% } %>
+      </div>
+
+      <div class="layout__content-container">
+        <% if(route == 'mail') { %>
+          <%- include partials/content/mail.ejs %>
+        <% } %>
+      </div>
+
+    </main>
+
+    <div class="layout__circle layout__circle--large"></div>
+    <div class="layout__circle layout__circle--small"></div>
+    
+  </div>
 </body>
 </html>
-

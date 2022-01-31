@@ -1,5 +1,15 @@
 .menu {
   height: 100%;
+  color: #fff;
+  background: linear-gradient(to bottom, $menuGradientLight, $menuGradientDark);
+
+  @mixin atMedium {
+    background: linear-gradient(to top, $menuGradientLight, $menuGradientDark);
+  }
+
+  @mixin atLarge {
+    background: linear-gradient(to bottom, $menuGradientLight, $menuGradientDark);
+  }
 
   &__content {
     @mixin atMedium {

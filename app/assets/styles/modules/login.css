@@ -220,4 +220,30 @@
       border-radius: 20px 0 0 20px;
     }
   }
+
+  &__form-wrapper {
+    background-color: #fff;
+    border: 1px solid $gray50;
+    padding: 0 20px;
+    margin-top: -20px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: height .3s ease-out;
+
+    @mixin atMedium {
+      padding: 0 30px;
+      margin-top: -50px;
+    }
+
+    @mixin atLarge {
+      margin-top: 0;
+      flex: auto;
+      border: none;
+    }
+
+    .entry-form[data-mode="signup"] {
+      display: none;
+      opacity: 0;
+    }
+  }
 }

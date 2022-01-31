@@ -1,0 +1,46 @@
+<div class="content">
+
+  <div class="content__left-col">
+    <div class="content__viewer">
+      
+      <ul class="mail-list" data-box="1">
+
+        <% mails.inbox.forEach(mail => { %>
+          <li class="mail-list__card-container">
+            <%- include ../components/mail/_mail-card.ejs %>
+          </li>
+        <% }) %>
+        
+      </ul>
+
+      <ul class="mail-list" data-box="2">
+
+        <% mails.sent.forEach(mail => { %>
+          <li class="mail-list__card-container">
+            <%- include ../components/mail/_mail-card.ejs %>
+          </li>
+        <% }) %>
+        
+      </ul>
+
+      <ul class="mail-list" data-box="3">
+        
+        <% mails.drafts.forEach(mail => { %>
+          <li class="mail-list__card-container">
+            <%- include ../components/mail/_mail-card.ejs %>
+          </li>
+        <% }) %>
+
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="content__right-col">
+    <div class="content__viewer">
+      
+      <h6>Right column</h6>
+
+    </div>
+  </div>
+</div>

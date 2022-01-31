@@ -12,8 +12,9 @@ const postCSSPlugins = [
 
 module.exports = {
   entry: {
+    app: './app/assets/scripts/App.js',
     login: './app/assets/scripts/Login.js',
-    app: './app/assets/scripts/App.js'
+    mail: './app/assets/scripts/Mail.js'
   },
   mode: 'development',
   module: {
@@ -43,7 +44,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/login.html'
+    open: 'http://localhost:3000/mail.html'
   },
   output: {
     filename: '[name].bundle.js',
