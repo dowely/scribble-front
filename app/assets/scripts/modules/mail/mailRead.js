@@ -13,6 +13,10 @@ class MailRead {
     }
   }
 
+  clear() {
+    this.hook.innerHTML = ''
+  }
+
   load(pointer) {
 
     let inbox = pointer.list == '1' ? true : false;
@@ -53,7 +57,7 @@ class MailRead {
 
     let closeBtn = this.hook.querySelector('.mail-read__button--close')
 
-    closeBtn.addEventListener('click', () => this.callback({close}))
+    closeBtn.addEventListener('click', () => this.callback({close: true}))
   }
 }
 

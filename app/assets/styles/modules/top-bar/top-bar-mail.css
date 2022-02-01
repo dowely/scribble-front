@@ -49,10 +49,22 @@
     transform: translateY(-50%) rotate(90deg);
   }
 
+  &__ellipsis {
+    position: relative;
+  }
+  
+  &__ellipsis-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(6, 1.5);
+  }
+
   &__ellipsis-icon {
     display: block;
     height: 24px;
     width: 7px;
   }
-
 }
