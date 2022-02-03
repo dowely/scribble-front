@@ -35,8 +35,6 @@ function viewState() {
 
     let rightColvisible = getComputedStyle(rightCol).getPropertyValue('z-index') == '3' ? true : false
 
-    console.log(rightColvisible)
-
     if(rightColvisible) {
 
       return 'oneCol.right'
@@ -60,12 +58,19 @@ function viewState() {
   }
 }
 
-function onTopBarMail(event) {
+async function onTopBarMail(event) {
 
   switch(viewState()) {
 
     case 'oneCol.right':
 
+      if(event.newMail) {
+
+        await viewerSwitcher.fadeOut('right')
+        mailWrite.clear()
+        mailWrite.load()
+        viewerSwitcher.fadeIn('right')
+      }
       break
 
     case 'oneCol.left':
@@ -159,16 +164,27 @@ async function onMailRead(event) {
   switch(viewState()) {
 
     case 'oneCol.right':
-
-      await viewerSwitcher.switch('left')
-      mailRead.clear()
-
-      break
-
     case 'twoCol.notEmpty':
 
-      await viewerSwitcher.switch('left')
-      mailRead.clear()
+      if(event.close) {
+
+        await viewerSwitcher.switch('left')
+        mailRead.clear()
+      }
+
+      if(event.reply) {
+        
+        await viewerSwitcher.fadeOut('right')
+        mailWrite.load(event.reply)
+        viewerSwitcher.fadeIn('right')
+      }
+
+      if(event.replyAll) {
+
+        await viewerSwitcher.fadeOut('right')
+        mailWrite.load(event.replyAll, true)
+        viewerSwitcher.fadeIn('right')
+      }
 
       break
 
@@ -177,6 +193,26 @@ async function onMailRead(event) {
   }
 }
 
-function onMailWrite() {
+async function onMailWrite(event) {
+
+  switch(viewState()) {
+
+    case 'oneCol.right':
+
+      await viewerSwitcher.switch('left')
+      mailWrite.clear()
+
+      break
+
+    case 'twoCol.notEmpty':
+
+      await viewerSwitcher.switch('left')
+      mailWrite.clear()
+
+      break
+
+    default:
+      console.log('onMailWrite func exception')
+  }
 
 }

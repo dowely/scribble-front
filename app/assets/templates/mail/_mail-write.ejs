@@ -1,1 +1,54 @@
-<h1>hello</h1>
+<form class="mail-write">
+
+  <div class="mail-write__input-container">
+
+    <svg class="mail-write__close">
+      <use href="#circle-xmark-regular"></use>
+    </svg>
+
+    <label for="mail-write__to" class="mail-write__label">To:<input type="text" class="mail-write__input" id="mail-write__to" autocomplete="off" value="<%= recipients.join('; ') %>"></label>
+
+    <label for="mail-write__subject" class="mail-write__label">Subject:<input type="text" class="mail-write__input" id="mail-write__subject" autocomplete="off"></label>
+
+    <textarea class="mail-write__textarea"></textarea>
+
+  </div>
+
+  <div class="mail-write__history-container">
+    
+    <% history.forEach(item => { %>
+
+      <div class="mail-write__history-item">
+
+        <h5 class="mail-write__history-from"><span>From: </span><%= item.from  ? item.from : 'Me' %></h5>
+
+          <% if(!item.from) { %>
+
+            <h5 class="mail-write__history-to"><span>To: </span><%= item.to.join(', ') %></h5>
+
+          <% } else { %>
+
+            <h5 class="mail-write__history-to"><span>To: </span>Me<%= item.to.length > 0 ? `, ${item.to.join(', ')}` : `` %></h5>
+
+          <% } %>
+
+        <h5 class="mail-write__history-subject"><span>Subject: </span><%= item.subject %></h5>
+
+        <h5 class="mail-write__history-sent"><span>Sent: </span><%= item.sent %></h5>
+
+        <p class="mail-write__history-body"><%= item.body %></p>
+
+      </div>
+
+    <% }) %>
+
+  </div>
+
+  <div class="mail-write__buttons">
+
+    <button class="btn btn--mail-save">Save</button>
+    <button class="btn btn--mail-send">Send</button>
+
+  </div>
+
+</form>

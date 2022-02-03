@@ -32,4 +32,20 @@
       background-color: $largeGradientBlue;
     }
   }
+
+  &--mail-save {
+    background-color: $primaryBlue;
+    color: $mainBlack;
+    height: 34px;
+    width: 96px;
+    border: 1px solid $primaryBlueDarker;
+  }
+
+  &--mail-send {
+    background-color: $primaryGreen;
+    color: $mainBlack;
+    height: 34px;
+    width: 96px;
+    border: 1px solid $primaryGreenDarker;
+  }
 }
