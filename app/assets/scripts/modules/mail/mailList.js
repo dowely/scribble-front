@@ -48,20 +48,23 @@ class MailList {
 
   delete(target) {
 
-    let list = 3
-    let id = target.closest('.mail-card').dataset.id
+    if(typeof target != 'string') {
 
-    this.callback({
-      delete: {
-        list,
-        id
-      }
-    })
+      let li = target.closest('.mail-list__card-container')
+      li.remove()
+
+    } else {
+
+      let li = document.querySelector(`.mail-card[data-id="${target}"]`).closest('.mail-list__card-container')
+      li.remove()
+    } 
   }
 
   write(target) {
 
-    this.callback({write: {id: ''}})
+    let id = target.closest('.mail-card').dataset.id 
+
+    this.callback({write: id})
   }
 }
 

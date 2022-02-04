@@ -8,9 +8,9 @@
 
     <label for="mail-write__to" class="mail-write__label">To:<input type="text" class="mail-write__input" id="mail-write__to" autocomplete="off" value="<%= recipients.join('; ') %>"></label>
 
-    <label for="mail-write__subject" class="mail-write__label">Subject:<input type="text" class="mail-write__input" id="mail-write__subject" autocomplete="off"></label>
+    <label for="mail-write__subject" class="mail-write__label">Subject:<input type="text" class="mail-write__input" id="mail-write__subject" autocomplete="off" value="<%= draft.subject %>"></label>
 
-    <textarea class="mail-write__textarea"></textarea>
+    <textarea class="mail-write__textarea"><%= draft.body %></textarea>
 
   </div>
 

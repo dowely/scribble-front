@@ -30,13 +30,13 @@
     <% } else { %>
 
       <div class="mail-card__user-cointainer">
-        <h4 class="mail-card__user"><%= mail.to.join(', ') %></h4>
+        <h4 class="mail-card__user"><%= mail.to.length == 0 ? '(No Recipients)' : mail.to.join(', ') %></h4>
       </div>
 
     <% } %>
 
     <div class="mail-card__subject-container">
-      <h5 class="mail-card__subject"><%= mail.subject %></h5>
+      <h5 class="mail-card__subject"><%= mail.subject == '' ? '(No Subject)' : mail.subject %></h5>
     </div>
 
     <% if(mail.time) { %>

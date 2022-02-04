@@ -66,6 +66,7 @@ async function onTopBarMail(event) {
 
       if(event.newMail) {
 
+        await topBarMail.collapse()
         await viewerSwitcher.fadeOut('right')
         mailWrite.clear()
         mailWrite.load()
@@ -77,6 +78,7 @@ async function onTopBarMail(event) {
 
       if(event.newMail) {
 
+        await topBarMail.collapse()
         mailWrite.load()
         viewerSwitcher.switch('right')
       }
@@ -117,17 +119,29 @@ async function onMailList(event) {
 
     case 'oneCol.left':
 
-      if(event.read) mailRead.load(event.read)
-      viewerSwitcher.switch('right')
+      if(event.read) {
+
+        mailRead.load(event.read)
+        viewerSwitcher.switch('right')
+      }
+
+      if(event.write) {
+
+        await topBarMail.collapse()
+        mailWrite.load(event.write, true)
+        viewerSwitcher.switch('right')
+      }
 
       break
 
     case 'twoCol.empty':
 
-      if(event.read) mailRead.load(event.read)
-      viewerSwitcher.fadeIn('right')
-      viewerSwitcher.fadeOut('left')
+      if(event.read) {
 
+        mailRead.load(event.read)
+        viewerSwitcher.fadeIn('right')
+        viewerSwitcher.fadeOut('left')
+      }
       break
 
     case 'twoCol.notEmpty':
@@ -174,6 +188,7 @@ async function onMailRead(event) {
 
       if(event.reply) {
         
+        await topBarMail.collapse()
         await viewerSwitcher.fadeOut('right')
         mailWrite.load(event.reply)
         viewerSwitcher.fadeIn('right')
@@ -181,9 +196,26 @@ async function onMailRead(event) {
 
       if(event.replyAll) {
 
+        await topBarMail.collapse()
         await viewerSwitcher.fadeOut('right')
         mailWrite.load(event.replyAll, true)
         viewerSwitcher.fadeIn('right')
+      }
+
+      if(event.forward) {
+
+        await topBarMail.collapse()
+        await viewerSwitcher.fadeOut('right')
+        mailWrite.load(event.forward, false, true)
+        viewerSwitcher.fadeIn('right')
+      }
+
+      if(event.delete) {
+
+        mailList.delete(event.delete)
+        await viewerSwitcher.switch('left')
+        mailRead.clear()
+
       }
 
       break
@@ -193,17 +225,11 @@ async function onMailRead(event) {
   }
 }
 
-async function onMailWrite(event) {
+async function onMailWrite() {
 
   switch(viewState()) {
 
     case 'oneCol.right':
-
-      await viewerSwitcher.switch('left')
-      mailWrite.clear()
-
-      break
-
     case 'twoCol.notEmpty':
 
       await viewerSwitcher.switch('left')

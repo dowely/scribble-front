@@ -58,6 +58,8 @@ class MailRead {
     let closeBtn = this.hook.querySelector('.mail-read__button--close')
     let replyBtn = this.hook.querySelector('.mail-read__button--reply')
     let replyAllBtn = this.hook.querySelector('.mail-read__button--reply-all')
+    let forwardBtn = this.hook.querySelector('.mail-read__button--forward')
+    let deleteBtn = this.hook.querySelector('.mail-read__button--delete')
 
     closeBtn.addEventListener('click', () => this.callback({close: true}))
 
@@ -73,6 +75,20 @@ class MailRead {
       let mailId = e.target.closest('.mail-read').dataset.id
 
       this.callback({replyAll: mailId})
+    })
+
+    forwardBtn.addEventListener('click', e => {
+
+      let mailId = e.target.closest('.mail-read').dataset.id
+
+      this.callback({forward: mailId})
+    })
+
+    deleteBtn.addEventListener('click', e => {
+
+      let mailId = e.target.closest('.mail-read').dataset.id
+
+      this.callback({delete: mailId})
     })
   }
 }

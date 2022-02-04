@@ -70,15 +70,15 @@
       "initials": "RT",
       "to": ["Robert Tucker", "Joyce Stafford"],
       "read": true,
-      "subject": "(No Subject)",
+      "subject": "",
       "body": "One may speculate that over the course of time certain letters were added or deleted at various positions within the text.\nSincerly,\nJohn Schaffer"
     },
     {
       "id": 4,
       "history": [],
-      "to": ["(No Recipients)"],
+      "to": [],
       "read": false,
-      "subject": "(No Subject)",
+      "subject": "Anual conference",
       "body": "The spread of computers and layout programmes thus made dummy text better known. While in earlier times several lines are likely to focus on the text, disregarding the layout and its elements."
     }
   ]

@@ -7,34 +7,57 @@ class MailWrite {
 
     this.hook = document.querySelector('.content__right-col .content__viewer')
 
+    this.drafts = mails.drafts
     this.mails = mails.inbox.concat(mails.sent, mails.drafts)
   }
 
   events() {
 
-    this.close.addEventListener('click', () => {
-      this.callback({close: true})
+    this.close.forEach(closingEl => {
+
+      closingEl.addEventListener('click', e => {
+
+        e.preventDefault()
+        this.callback()
+      })
     })
   }
 
-  load(repliedMail, all) {
+  load(repliedMail, all, fwd) {
 
     let history = []
     let recipients = []
+    let draft = {}
 
     if(repliedMail) {
 
       history = this.addHistory(repliedMail)
       this.hook.style.height = '100%'
 
-      recipients = this.addRecipients(repliedMail, all)
-    } 
+      if(!fwd) recipients = this.addRecipients(repliedMail, all)
+    }
+    
+    if(this.drafts.some(mail => mail.id == repliedMail)) {
+      
+      history.shift()
 
-    this.hook.parentElement.style.paddingBottom = '72px'
+      this.populateInput(repliedMail, draft)
+    }
+
+    this.hook.parentElement.style.paddingBottom = '60px'
     this.hook.style.overflow = 'visible'
-    this.hook.innerHTML = writeTemplate({history, recipients})
+    this.hook.innerHTML = writeTemplate({history, recipients, draft})
 
-    this.close = document.querySelector('.mail-write__close')
+    if(history.length > 0) {
+
+      this.hook.querySelector('.mail-write__history-container').style.borderTop = '2px solid rgba(0, 0, 0, 0.5)'
+
+    } else {
+
+      this.hook.style.height = null
+    }
+
+    this.close = [document.querySelector('.mail-write__close'), ...document.querySelectorAll('.mail-write .btn')]
 
     this.events()
 
@@ -76,12 +99,20 @@ class MailWrite {
 
     if(all) {
 
-      return [mailDoc.from, ...mailDoc.to]
+      return [mailDoc.from, ...mailDoc.to].filter(val => val != undefined)
 
     } else {
 
       return [mailDoc.from]
     }
+  }
+
+  populateInput(repliedMail, draft) {
+
+    let mailDoc = this.drafts.find(mail => mail.id == repliedMail)
+
+    draft.subject = mailDoc.subject
+    draft.body = mailDoc.body
   }
 }
 
