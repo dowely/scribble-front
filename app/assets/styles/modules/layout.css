@@ -55,6 +55,11 @@
     }
   }
 
+  &__menu-container--on-top {
+    z-index: 10;
+    perspective: 1000px;
+  }
+
   &__glass {
     grid-column: 1 / -1;
     grid-row: 1 / 2;
