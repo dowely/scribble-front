@@ -2,6 +2,14 @@
   padding: 20px 15px;
   background-color: #fff;
 
+  @mixin atMedium {
+    padding: 30px 25px;
+  }
+
+  @mixin atLarge {
+    padding: 25px 20px;
+  }
+
   &--read {
     color: $gray50;
   }
@@ -16,6 +24,18 @@
       "avatar subject subject"
       "body body body"
     ;
+
+    @mixin atMedium {
+      grid-template-rows: 37px 37px auto;
+      grid-template-columns: 74px minmax(0, auto) 100px;
+      grid-column-gap: 20px;
+    }
+
+    @mixin atLarge {
+      grid-template-rows: 33px 33px auto;
+      grid-template-columns: 66px minmax(0, auto) 90px;
+      grid-column-gap: 16px;
+    }
   }
 
   &__avatar-container {
@@ -35,6 +55,14 @@
     .mail-card--read & {
       opacity: .6;
     }
+
+    @mixin atMedium {
+      font-size: 1.75rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.6rem;
+    }
   }
 
   &__user-icon {
@@ -42,6 +70,18 @@
     width: 30px;
     height: 30px;
     margin: 8px auto;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+      margin-top: 14px;
+    }
+
+    @mixin atLarge {
+      width: 35px;
+      height: 35px;
+      margin-top: 13px;
+    }
   }
 
   &__user-container {
@@ -59,6 +99,14 @@
 
     .mail-card--read & {
       font-weight: 400;
+    }
+
+    @mixin atMedium {
+      font-size: 1.65rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.55rem;
     }
   }
 
@@ -78,6 +126,14 @@
     .mail-card--read & {
       font-weight: 400;
     }
+
+    @mixin atMedium {
+      font-size: 1.25rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.12rem;
+    }
   }
 
   &__top-right {
@@ -88,6 +144,14 @@
     font-size: .915rem;
     color: $gray50;
     justify-self: end;
+
+    @mixin atMedium {
+      font-size: 1.25rem;
+    }
+    
+    @mixin atLarge {
+      font-size: 1.12rem;
+    }
   }
 
   &__delete-area {
@@ -108,6 +172,16 @@
     width: 24px;
     height: 24px;
     color: $gray30;
+
+    @mixin atMedium {
+      width: 36px;
+      height: 36px;
+    }
+
+    @mixin atLarge {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   &__body {
@@ -122,5 +196,15 @@
     display: -webkit-box;
     -webkit-line-clamp: 3; /* number of lines to show */
     -webkit-box-orient: vertical;
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+      -webkit-line-clamp: 4;
+      height: 10ex;
+    }
+
+    @mixin atLarge {
+      font-size: .95rem;
+    }
   }
 }

@@ -44,7 +44,6 @@ class MailWrite {
       this.populateInput(repliedMail, draft)
     }
 
-    this.hook.parentElement.style.paddingBottom = '60px'
     this.hook.style.overflow = 'visible'
     this.hook.innerHTML = writeTemplate({history, recipients, draft})
 
@@ -55,6 +54,15 @@ class MailWrite {
     } else {
 
       this.hook.style.height = null
+    }
+
+    if(Number(getComputedStyle(this.hook).getPropertyValue('height').slice(0,-2)) > 700) {
+
+      this.hook.parentElement.style.paddingBottom = '90px'
+
+    } else {
+
+      this.hook.parentElement.style.paddingBottom = '60px'
     }
 
     this.close = [document.querySelector('.mail-write__close'), ...document.querySelectorAll('.mail-write .btn')]

@@ -4,6 +4,7 @@
   display: block;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -39,6 +40,12 @@
     height: 34px;
     width: 96px;
     border: 1px solid $primaryBlueDarker;
+
+    @mixin atMedium {
+      width: 132px;
+      height: 44px;
+      font-size: 1.38rem;
+    }
   }
 
   &--mail-send {
@@ -47,5 +54,11 @@
     height: 34px;
     width: 96px;
     border: 1px solid $primaryGreenDarker;
+
+    @mixin atMedium {
+      width: 132px;
+      height: 44px;
+      font-size: 1.38rem;
+    }
   }
 }

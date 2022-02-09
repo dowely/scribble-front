@@ -5,6 +5,10 @@
 
   &__back {
     position: relative;
+
+    @mixin atMedium {
+      display: none;
+    }
   }
 
   &__back-tap-area {
@@ -27,6 +31,12 @@
     font-weight: 400;
     text-transform: capitalize;
     margin: 0 auto 0 15px;
+
+    @mixin atMedium {
+      margin-left: 0;
+      margin-right: 25px;
+      font-size: 2rem;
+    }
   }
 
   &__tools {
@@ -36,12 +46,22 @@
 
   &__tools > div {
     margin-left: 35px;
+
+    @mixin atMedium {
+      margin-left: 0;
+    }
   }
 
   &__plus {
     position: relative;
     width: 24px;
     height: 24px;
+    cursor: pointer;
+
+    @mixin atMedium {
+      width: 38px;
+      height: 38px;
+    }
   }
 
   &__plus__line {
@@ -52,6 +72,10 @@
     left: 0;
     transform-origin: 50% 50%;
     background-color: #fff;
+
+    @mixin atMedium {
+      height: 5px;
+    }
   }
 
   &__plus__line--vertical {
@@ -62,8 +86,18 @@
     transform: translateY(-50%) rotate(90deg);
   }
 
+  &__notifier {
+    @mixin atMedium {
+      display: none;
+    }
+  }
+
   &__ellipsis {
     position: relative;
+
+    @mixin atMedium {
+      display: none;
+    }
   }
   
   &__ellipsis-tap-area {

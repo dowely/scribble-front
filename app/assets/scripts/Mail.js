@@ -97,6 +97,14 @@ async function onTopBarMail(event) {
 
     case 'twoCol.notEmpty':
 
+      if(event.newMail) {
+
+        await viewerSwitcher.fadeOut('right')
+        mailWrite.clear()
+        mailWrite.load()
+        viewerSwitcher.fadeIn('right')
+      }
+
       break
 
     default:
@@ -142,6 +150,12 @@ async function onMailList(event) {
         viewerSwitcher.fadeIn('right')
         viewerSwitcher.fadeOut('left')
       }
+
+      if(event.write) {
+
+        mailWrite.load(event.write, true)
+        viewerSwitcher.switch('right')
+      }
       break
 
     case 'twoCol.notEmpty':
@@ -149,10 +163,17 @@ async function onMailList(event) {
       if(event.read) {
 
         await viewerSwitcher.fadeOut('right')
+        mailWrite.clear()
         mailRead.load(event.read)
         viewerSwitcher.fadeIn('right')
       }
 
+      if(event.write) {
+
+        await viewerSwitcher.fadeOut('right')
+        mailWrite.load(event.write, true)
+        viewerSwitcher.fadeIn('right')
+      }
       break
 
     default:

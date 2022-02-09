@@ -6,6 +6,11 @@
   background-color: rgba(0, 0, 0, .3);
   border-radius: $pill;
 
+  @mixin atXLarge {
+    background-color: transparent;
+    border: 2px solid white;
+  }
+
   &__input {
     flex: auto;
     width: 0;
@@ -18,6 +23,14 @@
 
     &::placeholder {
       color: rgba(255, 255, 255, .5);
+
+      @mixin atXLarge {
+        font-weight: 300;
+      }
+    }
+
+    @mixin atMedium {
+      font-size: 1.15rem;
     }
   }
 
@@ -26,11 +39,20 @@
     display: flex;
     background-color: $mainEggshell;
     border-radius: $pill;
+
+    @mixin atXLarge {
+      margin-right: -1px;
+    }
   }
 
   &__icon {
     width: 20px;
     height: 20px;
     margin: auto;
+
+    @mixin atMedium {
+      width: 26px;
+      height: 26px;
+    }
   }
 }

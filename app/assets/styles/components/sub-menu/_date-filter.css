@@ -13,6 +13,14 @@
       display: inline-block;
       vertical-align: middle;
     }
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+    }
+
+    @mixin atXLarge {
+      font-weight: 300;
+    }
   }
 
   &__input {
@@ -24,5 +32,16 @@
     text-align: center;
     font-size: .9rem;
     border-radius: $pill;
+
+    @mixin atMedium {
+      width: 130px;
+      font-size: 1.15rem;
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border: 2px solid white;
+      font-weight: 300;
+    }
   }
 }

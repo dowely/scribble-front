@@ -31,7 +31,7 @@
 
           <% if(mail.from) { %>
 
-            <span>Me, </span>
+            <span>Me<%= mail.to.length > 0 ? `, ` : `` %> </span>
 
           <% } %>
 
