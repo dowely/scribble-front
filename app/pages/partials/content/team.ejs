@@ -1,0 +1,20 @@
+<div class="content">
+
+  <div class="content__left-col">
+    <div class="content__viewer">
+      <ul class="team-list">
+
+        <% users.forEach(user => { %>
+          <li class="team-list__card-container">
+            <%- include ../components/team/_user-card.ejs %>
+          </li>
+        <% }) %>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="content__right-col">
+    <div class="content__viewer"></div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="user-card">
+  <div class="user-card__wrapper">
+
+    <div class="user-card__avatar-container">
+
+      <span class="user-card__availability-dot"></span>
+
+      <% if(user.avatar) { %>
+
+        <img src="<%= user.avatar %>" alt="A photo of <%= user.name %>" class="user-card__avatar">
+
+      <% } else { %>
+
+        <h4 class="user-card__initials"><%= user.initials %></h4>
+
+      <% } %>
+
+    </div>
+
+    <div class="user-card__info">
+
+      <h3 class="user-card__name"><%= user.name %></h3>
+
+      <h4 class="user-card__title"><%= user.title %></h4>
+
+      <h5 class="user-card__phone"><%= user.phone %></h5>
+
+    </div>
+
+    <div class="user-card__links">
+
+      <div class="user-card__links__mail">
+
+        <div class="user-card__links__tap-area"></div>
+
+        <svg class="user-card__links__mail-icon">
+          <use href="#envelope-regular"></use>
+        </svg>
+
+      </div>
+
+      <div class="user-card__links__meeting">
+
+        <div class="user-card__links__tap-area"></div>
+
+        <svg class="user-card__links__meeting-icon">
+          <use href="#user-group-solid"></use>
+        </svg>
+
+      </div>
+
+      <div class="user-card__links__chat">
+
+        <div class="user-card__links__tap-area"></div>
+
+        <svg class="user-card__links__chat-icon">
+          <use href="#comment-regular"></use>
+        </svg>
+
+      </div>
+
+    </div>
+
+    <p class="user-card__bio"><%= user.bio %></p>
+
+  </div>
+</div>

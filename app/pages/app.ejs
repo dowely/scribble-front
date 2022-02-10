@@ -1,6 +1,6 @@
 <%- include partials/head %>
 
-<body class="layout">
+<body class="layout layout--<%= route %>">
   <div class="layout__inner">
 
     <main class="layout__wrapper">
@@ -12,15 +12,31 @@
       <div class="layout__glass"></div>
 
       <div class="layout__sub-menu-container">
+
         <% if(route == 'mail') { %>
+
           <%- include partials/sub-menu/mail.ejs %>
+
+        <% } else if(route == 'team') { %>
+
+          <%- include partials/sub-menu/team.ejs %>
+
         <% } %>
+
       </div>
 
       <div class="layout__content-container">
+
         <% if(route == 'mail') { %>
+
           <%- include partials/content/mail.ejs %>
+
+        <% } else if(route == 'team') { %>
+
+          <%- include partials/content/team.ejs %>
+
         <% } %>
+        
       </div>
 
     </main>

@@ -1,0 +1,58 @@
+[
+  {
+    "id": 0,
+    "name": "Joyce Stafford",
+    "initials": "JS",
+    "title": "Software Engineer",
+    "phone": "+1 201-604-9513",
+    "email": "joyce@scribble-app.com",
+    "since": "April 13, 2017",
+    "available": true,
+    "bio": "My favourite language is when the dummy text is relatively realistic so that the layout. There's lot of hate out there for a text that amounts to little more than garbled words in an old language. The villagers are out there with a vengeance to get that Frankenstein, wielding torches and pitchforks, wanting to tar and feather it at the least, running it out of town in shame."
+  },
+  {
+    "id": 1,
+    "name": "Robert Tucker",
+    "initials": "RT",
+    "title": "Content Writer",
+    "phone": "+1 201-404-7531",
+    "email": "robert@scribble-app.com",
+    "since": "October 27, 2019",
+    "available": true,
+    "bio": "You begin with a text, you sculpt information, you chisel away what's not needed keeping. The villagers are out there with a vengeance to get that Frankenstein, wielding torches and pitchforks, wanting to tar and feather it at the least, running it out of town in shame."
+  },
+  {
+    "id": 2,
+    "name": "Julie Cruz",
+    "initials": "JC",
+    "avatar": "assets/images/julie-cruz.png",
+    "title": "Customer Service Representative",
+    "phone": "+1 202-763-4513",
+    "email": "julie@scribble-app.com",
+    "since": "July 5, 2019",
+    "available": false,
+    "bio": "We are gradually adding new functionality and we welcome your suggestions. In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that's filled with content hourly on the day of going live."
+  },
+  {
+    "id": 3,
+    "name": "Christopher Evans",
+    "initials": "CE",
+    "title": "Marketing Manager",
+    "phone": "+1 201-604-9513",
+    "email": "chris@scribble-app.com",
+    "since": "November 14, 2020",
+    "available": true,
+    "bio": "There's lot of hate out there for a text that amounts to little more than garbled words in an old language. The villagers are out there with a vengeance to get that Frankenstein, wielding torches and pitchforks, wanting to tar and feather it at the least, running it out of town in shame."
+  },
+  {
+    "id": 4,
+    "name": "Shirley Ward",
+    "initials": "SW",
+    "title": "Office Assistant",
+    "phone": "+1 202-345-0067",
+    "email": "shirley@scribble-app.com",
+    "since": "February 24, 2021",
+    "available": false,
+    "bio": "In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+  }
+]

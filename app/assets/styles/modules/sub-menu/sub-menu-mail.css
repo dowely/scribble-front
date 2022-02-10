@@ -3,7 +3,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, minmax(0, auto));
   grid-auto-flow: row dense;
-  color: #fff;
+  color: white;
 
   @mixin atLarge {
     grid-template-columns: auto 1fr;

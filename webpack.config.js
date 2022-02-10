@@ -14,7 +14,8 @@ module.exports = {
   entry: {
     app: './app/assets/scripts/App.js',
     login: './app/assets/scripts/Login.js',
-    mail: './app/assets/scripts/Mail.js'
+    mail: './app/assets/scripts/Mail.js',
+    team: './app/assets/scripts/Team.js'
   },
   mode: 'development',
   module: {
@@ -44,7 +45,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/mail.html'
+    open: 'http://localhost:3000/team.html'
   },
   output: {
     filename: '[name].bundle.js',

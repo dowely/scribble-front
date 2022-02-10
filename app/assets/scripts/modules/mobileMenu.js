@@ -1,6 +1,6 @@
 class MobileMenu {
   constructor() {
-    this.arrowToggle = document.querySelector('.top-bar-mail__back-tap-area')
+    this.arrowToggle = document.querySelector('#back-tap-area')
     this.menuContainer = document.querySelector('.layout__menu-container')
     this.menu = document.querySelector('.menu')
     this.user = document.querySelector('.menu__user')

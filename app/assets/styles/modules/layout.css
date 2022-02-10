@@ -173,5 +173,13 @@
       top: 260px;
       right: 30px;
     }
+
+    .layout--team & {
+      display: none;
+
+      @mixin atXLarge {
+        display: block;
+      }
+    }
   }
 }

@@ -179,19 +179,6 @@ async function onMailList(event) {
     default:
       console.log('Failed to establish the view state')
   }
-
-
-  //if one col
-  //  if left visible
-  //    mailRead.load, viewerSwitcher.switch
-  //  if right visible
-  //    viewerSwitcher.fadeout(rightcol), mailRead.load, ...fadeIn
-  // or two cols
-  //  if right is empty
-  //    mailRead.load, viewerSwitcher.fadeIn
-  //  if right is not empty
-  //    fadeOut(rigthcol), mailRead.load, fadeIn(rightcol)
-
 }
 
 async function onMailRead(event) {

@@ -1,0 +1,39 @@
+.top-bar-team {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &__back {
+    position: relative;
+
+    @mixin atMedium {
+      display: none;
+    }
+  }
+
+  &__back-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(2, 1.5);
+  }
+
+  &__back-icon {
+    display: block;
+    width: 21px;
+    height: 24px;
+  }
+
+  &__title {
+    font-size: 1.65rem;
+    font-weight: 400;
+    margin: 0 auto 0 15px;
+
+    @mixin atMedium {
+      margin-left: 0;
+      font-size: 2rem;
+    }
+  }
+}
