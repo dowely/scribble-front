@@ -1,4 +1,124 @@
 .user-card {
   background-color: white;
   overflow: auto;
+  padding: 20px;
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 65px minmax(0, auto) 35px;
+    grid-template-rows: 65px minmax(0, auto);
+    grid-column-gap: 12px;
+    grid-template-areas:
+      "avatar info links"
+      "bio bio links"
+    ;
+  }
+
+  &__avatar-container {
+    background-color: $gray20;
+    color: $gray70;
+    border-radius: 50%;
+    display: flex;
+    position: relative;
+    grid-area: avatar;
+  }
+
+  &__availability-dot {
+    width: 19px;
+    height: 19px;
+    background-color: $availableDot;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+    border: 2px solid white;
+
+    &--offline {
+      background-color: $gray30;
+    }
+  }
+
+  &__avatar {
+    border-radius: 50%;
+  }
+
+  &__initials {
+    margin: auto;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  &__info {
+    grid-area: info;
+  }
+
+  &__name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__title {
+    font-size: .85rem;
+    font-weight: 400;
+    color: $gray50;
+    margin: 8px 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__phone {
+    font-size: .85rem;
+    font-weight: 400;
+    color: $gray50;
+    margin: 0;
+  }
+
+  &__links {
+    grid-area: links;
+    color: $gray70;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    & > div {
+      position: relative;
+      display: flex;
+    }
+  }
+
+  &__links__tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
+  }
+
+  &__links__mail-icon,
+  &__links__meeting-icon,
+  &__links__chat-icon {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+  }
+
+  &__bio {
+    grid-area: bio;
+    font-size: .85rem;
+    line-height: 2.5ex;
+    height: 7.5ex;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
 }

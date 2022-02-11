@@ -1,0 +1,83 @@
+<div class="user-read">
+  <div class="user-read__wrapper">
+
+    <div class="user-read__close">
+
+      <span class="user-read__close__tap-area"></span>
+
+      <svg class="user-read__close__icon">
+        <use href="#circle-xmark-regular"></use>
+      </svg>
+
+    </div>
+
+    <div class="user-read__avatar-container">
+      <div class="user-read__avatar">
+
+        <% if(user.avatar) { %>
+
+          <img src="<%= user.avatar %>" alt="A photo of <%= user.name %>" class="user-read__avatar__img">
+
+        <% } else { %>
+
+          <h4 class="user-read__avatar__initials"><%= user.initials %></h4>
+
+        <% } %>
+
+        <span class="user-read__avatar__status-dot <%= user.available ? '' : 'user-read__avatar__status-dot--offline' %>"></span>
+
+      </div>
+    </div>
+
+    <h5 class="user-read__status"><%= user.available ? 'Available' : 'Offline' %></h5>
+
+    <h2 class="user-read__name"><%= user.name %></h2>
+
+    <h3 class="user-read__title"><%= user.title %></h3>
+
+    <div class="user-read__links">
+
+      <a href="mail.html" class="user-read__links__mail">
+
+        <svg class="user-read__links__icon">
+          <use href="#envelope-regular"></use>
+        </svg>
+
+        <span class="user-read__links__tag">Mail</span>
+
+      </a>
+
+      <a href="organizer.html" class="user-read__links__organizer">
+
+        <svg class="user-read__links__icon">
+          <use href="#user-group-solid"></use>
+        </svg>
+
+        <span class="user-read__links__tag">Meeting</span>
+
+      </a>
+
+      <a href="chat.html" class="user-read__links__chat">
+
+        <svg class="user-read__links__icon">
+          <use href="#comment-regular"></use>
+        </svg>
+
+        <span class="user-read__links__tag">Chat</span>
+
+      </a>
+
+    </div>
+
+    <h4 class="user-read__phone"><%= user.phone %></h4>
+
+    <h4 class="user-read__email"><%= user.email %></h4>
+
+    <hr class="user-read__rule">
+
+    <h3 class="user-read__since">Joined on <%= user.since %></h3>
+
+    <p class="user-read__bio"><%= user.bio %></p>
+
+  </div>
+</div>

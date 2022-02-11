@@ -1,0 +1,157 @@
+.user-read {
+  background-color: white;
+  padding: 18px;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__close__tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
+  }
+
+  &__close__icon {
+    width: 24px;
+    height: 24px;
+    color: $gray50;
+    display: block;
+  }
+
+  &__avatar-container {
+    padding-top: 15px;
+  }
+
+  &__avatar {
+    width: 108px;
+    height: 108px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid $gray30;
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    background-color: $gray10;
+    background-clip: content-box;
+    position: relative;
+  }
+
+  &__avatar__img {
+    border-radius: 50%;
+  }
+
+  &__avatar__initials {
+    margin: auto;
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: $gray50;
+  }
+
+  &__avatar__status-dot {
+    width: 20px;
+    height: 20px;
+    background-color: $availableDot;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+
+    &--offline {
+      background-color: $gray30;
+    }
+  }
+
+  &__status {
+    font-size: .85rem;
+    font-weight: 400;
+    color: $gray50;
+    margin-top: 8px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  &__name {
+    font-size: 1.85rem;
+    font-weight: 500;
+    margin: .7rem 0 .8rem;
+    text-align: center;
+  }
+
+  &__title {
+    margin: 0;
+    color: $gray30;
+    text-align: center;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  &__links {
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+      color: $gray60;
+      border: 1px solid $gray60;
+      border-radius: 3px;
+      padding: 5px 10px;
+      font-size: .83rem;
+      
+      * {
+        vertical-align: middle;
+      }
+
+      span {
+        margin-left: 2px;
+      }
+    }
+  }
+
+  &__links__icon {
+    width: 24px;
+    height: 18px;
+  }
+
+  &__phone,
+  &__email {
+    margin: 0;
+    text-align: center;
+    font-size: .85rem;
+    color: $gray60;
+    font-weight: 400;
+  }
+
+  &__email {
+    margin: 5px 0 24px;
+  }
+
+  &__rule {
+    height: 2px;
+    border: none;
+    background-color: $gray50;
+  }
+
+  &__since {
+    font-size: 1rem;
+    font-weight: 500;
+    color: black;
+  }
+
+  &__bio {
+    font-size: .85rem;
+    line-height: 1.5;
+    color: $gray60;
+  }
+}

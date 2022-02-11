@@ -1,9 +1,9 @@
-<div class="user-card">
+<div class="user-card" data-user-name="<%= user.name %>" data-user-title="<%= user.title %>">
   <div class="user-card__wrapper">
 
     <div class="user-card__avatar-container">
 
-      <span class="user-card__availability-dot"></span>
+      <span class="user-card__availability-dot <%= user.available ? '' : 'user-card__availability-dot--offline' %>"></span>
 
       <% if(user.avatar) { %>
 
@@ -31,7 +31,7 @@
 
       <div class="user-card__links__mail">
 
-        <div class="user-card__links__tap-area"></div>
+        <a href="mail.html" class="user-card__links__tap-area"></a>
 
         <svg class="user-card__links__mail-icon">
           <use href="#envelope-regular"></use>
@@ -41,7 +41,7 @@
 
       <div class="user-card__links__meeting">
 
-        <div class="user-card__links__tap-area"></div>
+        <a href="organizer.html" class="user-card__links__tap-area"></a>
 
         <svg class="user-card__links__meeting-icon">
           <use href="#user-group-solid"></use>
@@ -51,7 +51,7 @@
 
       <div class="user-card__links__chat">
 
-        <div class="user-card__links__tap-area"></div>
+        <a href="chat.html" class="user-card__links__tap-area"></a>
 
         <svg class="user-card__links__chat-icon">
           <use href="#comment-regular"></use>

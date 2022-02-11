@@ -18,15 +18,18 @@ $mainLavender: #a4bef3;
 $mainBlack: #2b2118;
 $mainSilver: #f0f0f0;
 $mainGreen: #1effbc;
+$availableDot: #9be169;
 
 $primaryBlue: #53d8fb;
 $primaryBlueDarker: #036e8a;
 $primaryGreen: #abe188;
 $primaryGreenDarker: #3d6f1c;
 
+$gray10: #e6e6e6;
 $gray20: #ccc;
 $gray30: #b3b3b3;
 $gray50: #888;
+$gray60: #666;
 $gray70: #4d4d4d;
 
 $pill: 9999px;
