@@ -42,13 +42,32 @@ class ViewController {
 
       case 'twoCol.empty':
 
-      
+        if(hook == 'right') {
+
+          this.viewers.right.innerHTML = html
+
+          this.fadeIn('right')
+        }      
 
       break
 
       case 'twoCol.notEmpty':
 
-      
+        if(hook == 'left') {
+
+          await this.fadeOut('right')
+
+          this.viewers.right.innerHTML = ''
+        }
+
+        if(hook == 'right') {
+
+          await this.fadeOut('right')
+
+          this.viewers.right.innerHTML = html
+
+          this.fadeIn('right')
+        }
 
       break
 

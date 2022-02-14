@@ -3,6 +3,14 @@
   overflow: auto;
   padding: 20px;
 
+  @mixin atMedium {
+    padding: 35px;
+  }
+
+  @mixin atLarge {
+    padding: 25px 30px;
+  }
+
   &__wrapper {
     display: grid;
     grid-template-columns: 65px minmax(0, auto) 35px;
@@ -12,6 +20,17 @@
       "avatar info links"
       "bio bio links"
     ;
+
+    @mixin atMedium {
+      grid-template-columns: 90px minmax(0, auto) 50px;
+      grid-template-rows: 90px minmax(0, auto);
+      grid-column-gap: 20px;
+    }
+
+    @mixin atLarge {
+      grid-template-columns: 80px minmax(0, auto) 45px;
+      grid-template-rows: 80px minmax(0, auto);
+    }
   }
 
   &__avatar-container {
@@ -36,6 +55,16 @@
     &--offline {
       background-color: $gray30;
     }
+
+    @mixin atMedium {
+      width: 24px;
+      height: 24px;
+    }
+
+    @mixin atLarge {
+      width: 22px;
+      height: 22px;
+    }
   }
 
   &__avatar {
@@ -46,6 +75,14 @@
     margin: auto;
     font-size: 1.5rem;
     font-weight: 400;
+
+    @mixin atMedium {
+      font-size: 2rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.75rem;
+    }
   }
 
   &__info {
@@ -59,6 +96,14 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    @mixin atMedium {
+      font-size: 1.65rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.5rem;
+    }
   }
 
   &__title {
@@ -69,6 +114,16 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+      margin: 12px 0 8px;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+      margin: 10px 0 7px;
+    }
   }
 
   &__phone {
@@ -76,6 +131,14 @@
     font-weight: 400;
     color: $gray50;
     margin: 0;
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+    }
   }
 
   &__links {
@@ -89,6 +152,10 @@
     & > div {
       position: relative;
       display: flex;
+    }
+
+    @mixin atMedium {
+      justify-content: space-between;
     }
   }
 
@@ -107,6 +174,16 @@
     width: 24px;
     height: 24px;
     margin: auto;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+    }
+
+    @mixin atLarge {
+      width: 34px;
+      height: 34px;
+    }
   }
 
   &__bio {
@@ -120,5 +197,15 @@
     display: -webkit-box;
     -webkit-line-clamp: 3; /* number of lines to show */
     -webkit-box-orient: vertical;
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+      margin-top: 20px;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+      margin-top: 18px;
+    }
   }
 }

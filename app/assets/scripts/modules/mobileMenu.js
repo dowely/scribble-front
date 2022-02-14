@@ -21,12 +21,33 @@ class MobileMenu {
 
       link.addEventListener('click', e => {
 
-        e.preventDefault()
+        let menuWidth = Number(getComputedStyle(this.menu).getPropertyValue('width').slice(0, -2))
 
-        if(!this.isAnimating) {
+        if(menuWidth > 250) {
 
-          let route = e.target.closest('.menu__item')
-          this.closeMenu(route)
+          e.preventDefault()
+          e.stopPropagation()
+
+          if(!this.isAnimating) {
+
+            let route = e.target.closest('.menu__item')
+            this.closeMenu(route)
+          }
+        }        
+      })
+    })
+
+    this.menuItems.forEach(item => {
+
+      item.addEventListener('click', e => {
+
+        let menuWidth = Number(getComputedStyle(this.menu).getPropertyValue('width').slice(0, -2))
+  
+        if(menuWidth < 250) {
+  
+          let page = e.target.closest('.menu__item').dataset.route
+  
+          location.href = `${page}.html`
         }
       })
     })

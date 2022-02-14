@@ -2,6 +2,14 @@
   background-color: white;
   padding: 18px;
 
+  @mixin atMedium {
+    padding: 30px 45px 35px;
+  }
+
+  @mixin atLarge {
+    padding: 20px 50px;
+  }
+
   &__wrapper {
     position: relative;
   }
@@ -10,10 +18,15 @@
     position: absolute;
     top: 0;
     right: 0;
+
+    @mixin atLarge {
+      right: -30px;
+    }
   }
 
   &__close__tap-area {
     position: absolute;
+    cursor: pointer;
     top: 0;
     bottom: 0;
     left: 0;
@@ -26,10 +39,28 @@
     height: 24px;
     color: $gray50;
     display: block;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+    }
+
+    @mixin atLarge {
+      width: 35px;
+      height: 35px;
+    }
   }
 
   &__avatar-container {
     padding-top: 15px;
+
+    @mixin atMedium {
+      padding-top: 40px;
+    }
+
+    @mixin atLarge {
+      padding-top: 30px;
+    }
   }
 
   &__avatar {
@@ -44,6 +75,18 @@
     background-color: $gray10;
     background-clip: content-box;
     position: relative;
+
+    @mixin atMedium {
+      width: 200px;
+      height: 200px;
+      padding: 4px;
+    }
+
+    @mixin atLarge {
+      width: 150px;
+      height: 150px;
+      padding: 3px;
+    }
   }
 
   &__avatar__img {
@@ -55,6 +98,14 @@
     font-size: 2.75rem;
     font-weight: 400;
     color: $gray50;
+
+    @mixin atMedium {
+      font-size: 3.5rem;
+    }
+
+    @mixin atLarge {
+      font-size: 3rem;
+    }
   }
 
   &__avatar__status-dot {
@@ -70,6 +121,22 @@
     &--offline {
       background-color: $gray30;
     }
+
+    @mixin atMedium {
+      width: 32px;
+      height: 32px;
+      border-width: 3px;
+      bottom: 12px;
+      left: 12px;
+    }
+
+    @mixin atLarge {
+      width: 27px;
+      height: 27px;
+      border-width: 2px;
+      bottom: 9px;
+      left: 9px;
+    }
   }
 
   &__status {
@@ -79,6 +146,16 @@
     margin-top: 8px;
     margin-bottom: 0;
     text-align: center;
+
+    @mixin atMedium {
+      font-size: 1.33rem;
+      margin-top: 12px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
   }
 
   &__name {
@@ -86,6 +163,16 @@
     font-weight: 500;
     margin: .7rem 0 .8rem;
     text-align: center;
+
+    @mixin atMedium {
+      font-size: 2.5rem;
+      margin: .9rem 0 1rem;
+    }
+
+    @mixin atLarge {
+      font-size: 2rem;
+      margin: .8rem 0 .9rem;
+    }
   }
 
   &__title {
@@ -94,6 +181,14 @@
     text-align: center;
     font-weight: 400;
     font-size: 1rem;
+
+    @mixin atMedium {
+      font-size: 1.35rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.15rem;
+    }
   }
 
   &__links {
@@ -116,12 +211,40 @@
       span {
         margin-left: 2px;
       }
+
+      @mixin atMedium {
+        font-size: 1.15rem;
+        padding: 6px 12px;
+      }
+
+      @mixin atLarge {
+        font-size: .915rem;
+        padding: 6px 11px;
+      }
+    }
+
+    @mixin atMedium {
+      padding: 40px 0 30px;
+    }
+
+    @mixin atLarge {
+      padding: 30px 0 25px;
     }
   }
 
   &__links__icon {
     width: 24px;
     height: 18px;
+
+    @mixin atMedium {
+      width: 35px;
+      height: 25px;
+    }
+
+    @mixin atLarge {
+      width: 27px;
+      height: 20px;
+    }
   }
 
   &__phone,
@@ -131,10 +254,26 @@
     font-size: .85rem;
     color: $gray60;
     font-weight: 400;
+
+    @mixin atMedium {
+      font-size: 1.15rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+    }
   }
 
   &__email {
     margin: 5px 0 24px;
+
+    @mixin atMedium {
+      margin: 6px 0 35px;
+    }
+
+    @mixin atLarge {
+      margin: 8px 0 30px;
+    }
   }
 
   &__rule {
@@ -147,11 +286,28 @@
     font-size: 1rem;
     font-weight: 500;
     color: black;
+
+    @mixin atMedium {
+      font-size: 1.35rem;
+      margin-top: 1.2em;
+    }
+
+    @mixin atLarge {
+      font-size: 1.1rem;
+    }
   }
 
   &__bio {
     font-size: .85rem;
     line-height: 1.5;
     color: $gray60;
+
+    @mixin atMedium {
+      font-size: 1.15rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+    }
   }
 }

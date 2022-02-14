@@ -191,18 +191,28 @@
     padding-bottom: 15px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     @mixin atMedium {
       position: relative;
       justify-content: center;
       padding-top: 24px;
       padding-bottom: 24px;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, .1);
+      }
     }
 
     @mixin atLarge {
       justify-content: start;
       padding-top: 16px;
       padding-bottom: 16px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, .15);
+      }
     }
   }
 

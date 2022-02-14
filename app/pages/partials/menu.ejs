@@ -18,76 +18,74 @@
     </div>
   
     <ul class="menu__items">
-  
-      <!-- menu__item--active -->
-      <li class="menu__item menu__wrapper" data-route="organizer">
-        <a href="" class="menu__icon-link">
+
+      <li class="menu__item menu__wrapper <%= route == 'organizer' ? 'menu__item--active' : '' %>" data-route="organizer">
+        <a href="organizer.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#clock-regular"></use>
           </svg>
         </a>
-        <a href="" class="menu__link">Organizer</a>
-        <!-- menu__notifier--visible -->
+        <a href="organizer.html" class="menu__link">Organizer</a>
         <div class="menu__notifier menu__notifier--active">7</div>
       </li>
   
-      <li class="menu__item menu__wrapper menu__item--active" data-route="mail">
+      <li class="menu__item menu__wrapper <%= route == 'mail' ? 'menu__item--active' : '' %>" data-route="mail">
         <a href="mail.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#envelope-regular"></use>
           </svg>
         </a>
-        <a href="#" class="menu__link">Mail</a>
+        <a href="mail.html" class="menu__link">Mail</a>
         <div class="menu__notifier menu__notifier--active"><%= unread %></div>
       </li>
   
-      <li class="menu__item menu__wrapper" data-route="team">
+      <li class="menu__item menu__wrapper <%= route == 'team' ? 'menu__item--active' : '' %>" data-route="team">
         <a href="team.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#user-group-solid"></use>
           </svg>
         </a>
-        <a href="" class="menu__link">Team</a>
+        <a href="team.html" class="menu__link">Team</a>
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper" data-route="chat">
-        <a href="" class="menu__icon-link">
+      <li class="menu__item menu__wrapper <%= route == 'chat' ? 'menu__item--active' : '' %>" data-route="chat">
+        <a href="chat.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#comment-regular"></use>
           </svg>
         </a>
-        <a href="" class="menu__link">Chat</a>
+        <a href="chat.html" class="menu__link">Chat</a>
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper" data-route="search">
-        <a href="" class="menu__icon-link">
+      <li class="menu__item menu__wrapper <%= route == 'search' ? 'menu__item--active' : '' %>" data-route="search">
+        <a href="search.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#magnifying-glass-solid"></use>
           </svg>
         </a>
-        <a href="" class="menu__link">Search</a>
+        <a href="search.html" class="menu__link">Search</a>
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper" data-route="profile">
-        <a href="" class="menu__icon-link">
+      <li class="menu__item menu__wrapper <%= route == 'profile' ? 'menu__item--active' : '' %>" data-route="profile">
+        <a href="profile.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#gear-solid"></use>
           </svg>
         </a>
-        <a href="" class="menu__link">Profile</a>
+        <a href="profile.html" class="menu__link">Profile</a>
         <div class="menu__notifier"></div>
       </li>
   
-      <li class="menu__item menu__wrapper" data-route="logout">
-        <a href="" class="menu__icon-link">
+      <li class="menu__item menu__wrapper <%= route == 'logout' ? 'menu__item--active' : '' %>" data-route="logout">
+        <a href="login.html" class="menu__icon-link">
           <svg class="menu__icon">
             <use href="#door-open-solid"></use>
           </svg>
         </a>
-        <a href="" class="menu__link">Log out</a>
+        <a href="login.html" class="menu__link">Log out</a>
         <div class="menu__notifier"></div>
       </li>
   
