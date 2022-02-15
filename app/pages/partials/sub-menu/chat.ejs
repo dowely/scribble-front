@@ -1,0 +1,54 @@
+<div class="sub-menu-chat">
+
+  <div class="sub-menu-chat__top-bar">
+    <div class="sub-menu-chat__control">
+      <div class="top-bar-chat">
+
+        <div class="top-bar-chat__back">
+
+          <div class="top-bar-chat__back-tap-area" id="back-tap-area"></div>
+    
+          <svg class="top-bar-chat__back-icon">
+            <use href="#arrow-left-regular"></use>
+          </svg>
+    
+        </div>
+    
+        <h2 class="top-bar-chat__title">Chat</h2>
+
+        <div class="top-bar-chat__notifiers">
+
+          <div class="top-bar-chat__people">
+
+            <svg class="top-bar-chat__people-icon">
+              <use href="#user-group-solid"></use>
+            </svg>
+
+            <span class="top-bar-chat__people-count">5</span>
+
+          </div>
+
+          <%- include ../components/sub-menu/_chat-notifier.ejs %>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-menu-chat__search-field">
+    <div class="sub-menu-chat__control sub-menu-chat__control--reveal">
+
+      <%- include ../components/sub-menu/_search-field.ejs %>
+
+    </div>
+  </div>
+
+  <div class="sub-menu-chat__slider-bar">
+    <div class="sub-menu-chat__control">
+
+      <%- include ../components/sub-menu/_slider-bar.ejs %>
+
+    </div>
+  </div>
+</div>

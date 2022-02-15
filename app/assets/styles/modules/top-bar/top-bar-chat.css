@@ -1,0 +1,91 @@
+.top-bar-chat {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &__back {
+    position: relative;
+
+    @mixin atMedium {
+      display: none;
+    }
+  }
+
+  &__back-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(2, 1.5);
+  }
+
+  &__back-icon {
+    display: block;
+    width: 21px;
+    height: 24px;
+  }
+
+  &__title {
+    font-size: 1.65rem;
+    font-weight: 400;
+    margin: 0 auto 0 15px;
+
+    @mixin atMedium {
+      margin-left: 0;
+      margin-right: 40px;
+      font-size: 2rem;
+    }
+  }
+
+  &__notifiers {
+    display: flex;
+    align-items: center;
+
+    div:last-child {
+      @mixin atMedium {
+        display: none;
+      }
+    }
+  }
+
+  &__people {
+    position: relative;
+    margin-right: 20px;
+  }
+
+  &__people-icon {
+    display: block;
+    width: 30px;
+    height: 24px;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 32px;
+    }
+  }
+
+  &__people-count {
+    display: inline-block;
+    height: 16px;
+    line-height: 17px;
+    padding: 0 4px;
+    min-width: 16px;
+    border-radius: $pill;
+    background-color: $mainGreen;
+    color: black;
+    font-size: .85rem;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+
+    @mixin atMedium {
+      height: 21px;
+      line-height: 22px;
+      min-width: 21px;
+      font-size: 1.1rem;
+    }
+  }
+}

@@ -21,6 +21,10 @@
 
           <%- include partials/sub-menu/team.ejs %>
 
+        <% } else if(route == 'chat') { %>
+
+          <%- include partials/sub-menu/chat.ejs %>
+
         <% } %>
 
       </div>
@@ -34,6 +38,10 @@
         <% } else if(route == 'team') { %>
 
           <%- include partials/content/team.ejs %>
+
+        <% } else if (route == 'chat') { %>
+
+          <%- include partials/content/chat.ejs %>
 
         <% } %>
         

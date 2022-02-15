@@ -28,7 +28,16 @@ module.exports = [
     chunks: ['app', 'team'],
     templateParameters: {
       route: 'team',
-      unread: 3,
+      users
+    }
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'chat.html',
+    template: './app/pages/app.ejs',
+    title: 'Scribble App | Chat',
+    chunks: ['app', 'chat'],
+    templateParameters: {
+      route: 'chat',
       users
     }
   })
