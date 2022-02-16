@@ -79,4 +79,14 @@
     visibility: hidden;
     transition: opacity .2s ease-out, visibility 1ms .2s;
   }
+
+  &__viewer--chat {
+    height: 100%;
+    box-shadow: none;
+    border-top: 1px solid black;
+
+    > div {
+      display: none;
+    }
+  }
 }

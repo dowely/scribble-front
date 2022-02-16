@@ -12,6 +12,25 @@ class ViewController {
   }
 
   async render(hook, html) {
+
+    if(typeof hook == "number") {
+
+      await this.fadeOut(hook)
+
+      Array.from(this.viewers.left.children).forEach(contentDiv => {
+
+        if(contentDiv.dataset.index == String(hook)) {
+
+          contentDiv.style.display = 'block'
+
+        } else {
+
+          contentDiv.style.display = 'none'
+        }
+      })
+
+      this.fadeIn(hook)
+    }
     
     switch(this.viewState()) {
 
@@ -79,21 +98,38 @@ class ViewController {
   fadeOut(hook) {
     return new Promise((res, rej) => {
 
-      this.columns[hook].ontransitionend = res
-      this.columns[hook].ontransitioncancel = rej
+      if(typeof hook == 'number') {
 
-      if(hook == 'left') {
-        this.columns[hook].classList.add('content__left-col--hidden')
-      }
+        this.viewers.left.ontransitionend = res
 
-      if(hook == 'right') {
-        this.columns[hook].classList.remove('content__right-col--visible')
+        setTimeout(() => {
+          this.viewers.left.ontransitioncancel = () => rej()
+        }, 20)
+
+        this.viewers.left.classList.add('content__viewer--hidden')
+
+      } else {
+
+        this.columns[hook].ontransitionend = res
+        this.columns[hook].ontransitioncancel = rej
+  
+        if(hook == 'left') {
+          this.columns[hook].classList.add('content__left-col--hidden')
+        }
+  
+        if(hook == 'right') {
+          this.columns[hook].classList.remove('content__right-col--visible')
+        }
+
       }
-      
     })
   }
 
   fadeIn(hook) {
+
+    if(typeof hook == 'number') {
+      this.viewers.left.classList.remove('content__viewer--hidden')
+    }
 
     if(hook == 'left') {
       this.columns[hook].classList.remove('content__left-col--hidden')

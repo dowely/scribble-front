@@ -1,0 +1,13 @@
+.chat-room {
+  height: 40px;
+  overflow: hidden;
+
+  &--deflated {
+    height: 0;
+  }
+
+  &__head-bar {
+    height: 40px;
+    background-color: $gray60;
+  }
+}

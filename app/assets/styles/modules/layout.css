@@ -125,6 +125,10 @@
     }
   }
 
+  &__content-container--chat {
+    padding: 0;
+  }
+
   &__circle {
     display: none;
     position: absolute;

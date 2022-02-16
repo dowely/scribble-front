@@ -1,0 +1,5 @@
+.chat-rooms {
+  &__room-container {
+    border-bottom: 1px solid $gray30;
+  }
+}

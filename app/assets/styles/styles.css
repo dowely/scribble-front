@@ -34,3 +34,6 @@
 @import 'components/team/_team-list.css';
 @import 'components/team/_user-card.css';
 @import 'components/team/_user-read.css';
+
+@import 'components/chat/_chat-rooms.css';
+@import 'components/chat/_chat-room.css';
