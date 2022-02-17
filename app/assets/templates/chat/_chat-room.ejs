@@ -2,9 +2,82 @@
 
   <div class="chat-room__head-bar">
 
-    <% interlocutors.forEach(interlocutor => { %>
-      <span><%= interlocutor.id %></span>
-    <% }) %>
+    <div class="chat-room__angle">
+
+      <div class="chat-room__angle-tap-area"></div>
+
+      <svg class="chat-room__angle-icon">
+        <use href="#angle-down-solid"></use>
+      </svg>
+
+    </div>
+
+    <% if(group) { %>
+
+    <div class="chat-room__head-bar__interlocutors">
+
+      <% interlocutors.forEach(interlocutor => { %>
+
+        <div class="chat-room__head-bar__avatar-container">
+
+          <% if(interlocutor.avatar) { %>
+
+            <img src="<%= interlocutor.avatar %>" alt="A photo of <%= interlocutor.name %>" class="chat-room__head-bar__avatar">
+
+          <% } else { %>
+
+            <h4 class="chat-room__head-bar__initials"><%= interlocutor.initials %></h4>
+
+          <% } %>
+
+          <%- interlocutor.id == 4 ? '<span class="chat-room__head-bar__msg-dot"></span>' : '' %>
+
+        </div>
+
+      <% }) %>
+
+      <div class="chat-room__head-bar__new-container">
+        <div class="chat-room__head-bar__new-bar"></div>
+        <div class="chat-room__head-bar__new-bar"></div>
+      </div>
+
+    </div>
+
+    <% } else { %>
+
+    <div class="chat-room__head-bar__interlocutor">
+
+      <div class="chat-room__head-bar__avatar-container">
+
+        <% if(interlocutors[0].avatar) { %>
+
+          <img src="<%= interlocutors[0].avatar %>" alt="A photo of <%= interlocutors[0].name %>" class="chat-room__head-bar__avatar">
+
+        <% } else { %>
+
+          <h4 class="chat-room__head-bar__initials"><%= interlocutors[0].initials %></h4>
+
+        <% } %>
+
+        <%- interlocutors[0].id == 3 ? '<span class="chat-room__head-bar__msg-dot"></span>' : '' %>
+
+      </div>
+
+      <h4 class="chat-room__head-bar__name"><%= interlocutors[0].name %></h4>
+
+    </div>
+
+    <% } %>
+
+    <div class="chat-room__close">
+
+      <div class="chat-room__close-tap-area"></div>
+
+      <svg class="chat-room__close-icon">
+        <use href="#circle-xmark-regular"></use>
+      </svg>
+
+    </div>
 
   </div>
 

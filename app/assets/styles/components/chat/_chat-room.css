@@ -1,6 +1,7 @@
 .chat-room {
   height: 40px;
   overflow: hidden;
+  transition: height .3s ease-out;
 
   &--deflated {
     height: 0;
@@ -9,5 +10,110 @@
   &__head-bar {
     height: 40px;
     background-color: $gray60;
+    display: flex;
+    align-items: center;
+    color: $gray30;
+  }
+
+  &__angle {
+    margin: 0 20px;
+  }
+
+  &__angle-icon {
+    display: block;
+    width: 24px;
+    height: 14px;
+  }
+
+  &__head-bar__interlocutors {
+    display: flex;
+    flex: auto;
+  }
+
+  &__head-bar__avatar-container {
+    width: 32px;
+    height: 32px;
+    border: 1px solid white;
+    background-color: $gray20;
+    margin-right: 15px;
+    border-radius: 50%;
+    position: relative;
+    flex: none;
+  }
+
+  &__head-bar__avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  &__head-bar__initials {
+    color: $gray70;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  &__head-bar__msg-dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: $mainGreen;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+  }
+
+  &__head-bar__new-container {
+    width: 32px;
+    height: 32px;
+    border: 2px dashed;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  &__head-bar__new-bar {
+    height: 3px;
+    width: 20px;
+    background-color: $gray30;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__head-bar__new-bar:last-child {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  &__head-bar__interlocutor {
+    display: flex;
+    align-items: center;
+    flex: auto;
+    width: 0; /* not min-width!!! */
+  }
+
+  &__head-bar__name {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: $gray20;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__close {
+    margin-right: 20px;
+    margin-left: 10px;
+  }
+
+  &__close-icon {
+    width: 24px;
+    height: 24px;
   }
 }

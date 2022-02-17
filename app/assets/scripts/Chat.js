@@ -29,7 +29,7 @@ if(index == '1') {
   chatContainers[1].style.display = 'block'
 }
 
-function onSliderBar(event) {
+async function onSliderBar(event) {
 
   if(event.index === '1') {
 
@@ -39,7 +39,9 @@ function onSliderBar(event) {
 
       subMenu.classList.remove('sub-menu-chat--expanded')
 
-      viewController.render(1)
+      await viewController.render(1)
+
+      chatRooms.clear()
     }
   } else if(event.index === '2') {
 
@@ -50,7 +52,7 @@ function onSliderBar(event) {
       subMenu.classList.add('sub-menu-chat--expanded')
 
       chatRooms.inject('group')
-      chatRooms.pop()
+      chatRooms.inflate()
 
       viewController.render(2)
 
@@ -58,8 +60,10 @@ function onSliderBar(event) {
 
       index = event.index
 
+      await chatRooms.deflate()
       chatRooms.clear()
-
+      chatRooms.inject('group')
+      setTimeout(() => chatRooms.inflate(), 20)
     }
 
   } else {
@@ -71,11 +75,18 @@ function onSliderBar(event) {
       subMenu.classList.add('sub-menu-chat--expanded')
 
       chatRooms.inject('priv')
+      chatRooms.inflate()
 
       viewController.render(2)
 
     } else if(index === '2') {
 
+      index = event.index
+
+      await chatRooms.deflate()
+      chatRooms.clear()
+      chatRooms.inject('priv')
+      setTimeout(() => chatRooms.inflate(), 20)
     }
   }
 }

@@ -6,11 +6,20 @@ class ChatRooms {
     this.rooms = {
       group: [
         chatRoomTemplate({
-          interlocutors: [users[4], users[2]]}),
+          interlocutors: [users[4], users[2]],
+          group: true
+        }),
         chatRoomTemplate({
-          interlocutors: [users[3], users[0], users[1]]})
+          interlocutors: [users[3], users[0], users[1]],
+          group: true
+        })
       ],
-      priv: [chatRoomTemplate({interlocutors: [users[3]]})]
+      priv: [
+        chatRoomTemplate({
+          interlocutors: [users[3]],
+          group: false
+        })
+      ]
     }
 
     this.hook = document.querySelector('.chat-rooms__new-room')
@@ -30,12 +39,33 @@ class ChatRooms {
     this.chatRooms = document.querySelectorAll('.chat-room')
   }
 
-  pop() {
+  deflate() {
+    return new Promise(res => {
+
+      this.chatRooms[0].ontransitionend = res  
+
+      Array.from(this.chatRooms).forEach(chatRoom => {
+
+        chatRoom.classList.add('chat-room--deflated')
+      })
+    })
+  }
+
+  inflate() {
 
     Array.from(this.chatRooms).forEach(chatRoom => {
 
       chatRoom.classList.remove('chat-room--deflated')
     })    
+  }
+
+  clear() {
+
+    let roomNodes = document.querySelectorAll('.chat-rooms__room-container')
+
+    Array.from(roomNodes).forEach(roomNode => {
+      roomNode.remove()
+    })
   }
 }
 
