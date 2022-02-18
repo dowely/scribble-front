@@ -1,0 +1,79 @@
+.chat-users {
+  background-color: white;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 20px;
+  flex: auto;
+  overflow-y: auto;
+
+  &__user-item {
+    padding: 20px 0 5px;
+    display: flex;
+    box-sizing: content-box;
+    height: 50px;
+  }
+
+  &__avatar-container {
+    background-color: $gray20;
+    color: $gray70;
+    width: 50px;
+    display: flex;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+  }
+
+  &__initials {
+    margin: auto;
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  &__name-container {
+    display: flex;
+    flex: auto;
+    width: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__name {
+    margin: 0 0 7px;
+    line-height: .9;
+    font-size: 1.3rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__title {
+    margin: 0;
+    font-weight: 400;
+    font-size: .85rem;
+    color: $gray50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__select-dot {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid $gray50;
+    border-radius: 50%;
+    align-self: center;
+    flex: none;
+    margin-left: 20px;
+
+    .chat-users--selectable & {
+      display: block;
+    }
+  }
+
+  &__select-dot--selected {
+    background-color: $largeGradientBlue;
+    border: none;
+  }
+}

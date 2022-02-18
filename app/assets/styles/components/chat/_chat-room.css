@@ -17,6 +17,17 @@
 
   &__angle {
     margin: 0 20px;
+    position: relative;
+  }
+
+  &__angle-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5, 2);
+    border: 1px solid red;
   }
 
   &__angle-icon {
@@ -113,6 +124,7 @@
   }
 
   &__close-icon {
+    display: block;
     width: 24px;
     height: 24px;
   }

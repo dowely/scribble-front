@@ -1,5 +1,8 @@
 import chatRoomTemplate from '/app/assets/templates/chat/_chat-room.ejs'
 import users from '/app/db/users.json'
+import PrivChat from './privChat'
+
+const privChat = new PrivChat()
 
 class ChatRooms {
   constructor() {
@@ -17,6 +20,14 @@ class ChatRooms {
       priv: [
         chatRoomTemplate({
           interlocutors: [users[3]],
+          group: false
+        }),
+        chatRoomTemplate({
+          interlocutors: [users[1]],
+          group: false
+        }),
+        chatRoomTemplate({
+          interlocutors: [users[0]],
           group: false
         })
       ]
@@ -37,6 +48,14 @@ class ChatRooms {
     })
 
     this.chatRooms = document.querySelectorAll('.chat-room')
+
+    if(index == 'priv') {
+
+      for(let room of this.chatRooms) {
+
+        privChat.events(room)
+      }
+    }
   }
 
   deflate() {

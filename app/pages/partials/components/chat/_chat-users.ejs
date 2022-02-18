@@ -3,7 +3,31 @@
   <% users.forEach(user => { %>
 
     <li class="chat-users__user-item">
-      <%= user.name %>
+      
+      <div class="chat-users__avatar-container">
+
+      <% if(user.avatar) { %>
+
+        <img src="<%= user.avatar %>" alt="A photo of <%= user.name %>" class="chat-users__avatar">
+
+      <% } else { %>
+
+        <h4 class="chat-users__initials"><%= user.initials %></h4>
+
+      <% } %>
+
+      </div>
+
+      <div class="chat-users__name-container">
+
+        <h3 class="chat-users__name"><%= user.name %></h3>
+
+        <h5 class="chat-users__title"><%= user.title %></h5>
+
+      </div>
+
+      <div class="chat-users__select-dot"></div>
+
     </li>
 
   <% }) %>
