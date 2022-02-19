@@ -1,6 +1,7 @@
 class PrivChat {
   constructor() {
     this.wrapper = document.querySelector('.chat-rooms__wrapper')
+    this.isExpanded = null
   }
 
   events(chatRoom) {
@@ -8,19 +9,72 @@ class PrivChat {
     let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')
 
     angleDown.addEventListener('click', (e) => {
-  
-      this.expand(chatRoom)
-      this.rotate(e.target)
+
+      if(angleDown.nextElementSibling.classList.contains('chat-room__angle-icon--rotated')) {
+
+        this.collapse(chatRoom)
+
+        angleDown.nextElementSibling.classList.remove('chat-room__angle-icon--rotated')
+
+      } else if(this.isExpanded === null || this.isExpanded === chatRoom) {
+
+        this.expand(chatRoom)
+
+        angleDown.nextElementSibling.classList.add('chat-room__angle-icon--rotated')
+      }
     })
   }
 
   expand(chatRoom) {
 
-    this.wrapper.classList.add('chat-rooms__wrapper--extendable')
+    this.isExpanded = chatRoom
 
-    chatRoom.parentElement.classList.add('chat-rooms__room-container--extendable')
+    this.wrapper.style.height = '41px'
+    
+    chatRoom.parentElement.classList.add('chat-rooms__room-container--expandable')
 
     this.packNodes(chatRoom)
+
+    setTimeout(() => {
+
+      this.wrapper.style.cssText = `
+      transition: margin-top .3s linear, height .6s ease-in;
+      height: 100%;
+      margin-top: 0;
+    `
+    }, 20)
+  }
+
+  collapse(chatRoom) {
+
+    let containerAbove = document.querySelector('.chat-rooms__hide-above')
+
+    let collapsed = new Promise((res, rej) => {
+
+      this.wrapper.addEventListener('transitionend', event => {
+        if(event.propertyName == 'height') res()
+      })
+
+      setTimeout(() => {
+        this.wrapper.ontransitioncancel = rej
+      }, 20)
+
+      this.wrapper.style.height = '41px'
+      this.wrapper.style.marginTop = `${containerAbove.offsetHeight}px`  
+    })
+
+    collapsed.then(() => {
+
+      this.wrapper.style.cssText = `
+        height: 100%;
+        margin-top: 0;
+      `
+      chatRoom.parentElement.classList.remove('chat-rooms__room-container--expandable')
+
+      this.unpackNodes(chatRoom)
+
+      this.isExpanded = null
+    })
   }
 
   packNodes(splitNode) {
@@ -50,11 +104,27 @@ class PrivChat {
 
     nodesAbove.forEach(node => containerAbove.appendChild(node))
     nodesBelow.forEach(node => containerBelow.appendChild(node))
+
+    this.wrapper.style.marginTop = `${containerAbove.offsetHeight}px`
   }
 
-  rotate(angleIcon) {
+  unpackNodes(splitNode) {
 
-    console.log('rotated', angleIcon)
+    let containerAbove = document.querySelector('.chat-rooms__hide-above')
+    let containerBelow = document.querySelector('.chat-rooms__hide-below')
+
+    let nodesAbove = [...containerAbove.children]
+    let nodesBelow = [...containerBelow.children]
+
+    for(let node of nodesAbove) {
+      console.log
+      splitNode.parentElement.insertAdjacentElement('beforebegin', node)
+    }
+
+    for(let node of nodesBelow) {
+      
+      containerBelow.insertAdjacentElement('beforebegin', node)
+    }
   }
 }
 

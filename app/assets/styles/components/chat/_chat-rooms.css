@@ -9,22 +9,26 @@
     position: relative;
   }
 
-  &__wrapper--extendable {
-    height: auto;
-  }
-
   &__hide-above {
     position: absolute;
     bottom: 100%;
+    left: 0;
+    right: 0;
   }
 
   &__hide-below {
     position: absolute;
     top: 100%;
+    left: 0;
+    right: 0;
   }
 
   &__room-container {
     border-bottom: 1px solid $gray30;
+  }
+
+  &__room-container--expandable {
+    height: 100%;
   }
 
   &__new-room {

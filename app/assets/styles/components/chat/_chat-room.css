@@ -7,6 +7,10 @@
     height: 0;
   }
 
+  .chat-rooms__room-container--expandable & {
+    height: 100%;
+  }
+
   &__head-bar {
     height: 40px;
     background-color: $gray60;
@@ -27,6 +31,7 @@
     left: 0;
     right: 0;
     transform: scale(1.5, 2);
+    z-index: 2;
     border: 1px solid red;
   }
 
@@ -34,6 +39,12 @@
     display: block;
     width: 24px;
     height: 14px;
+    transition: transform .7s ease-out;
+    z-index: 1;
+  }
+
+  &__angle-icon--rotated {
+    transform: translateX(-10%) rotate(810deg);
   }
 
   &__head-bar__interlocutors {
