@@ -1,14 +1,18 @@
 class PrivChat {
-  constructor() {
+  #name = 'priv'
+  constructor(collapsed, callback) {
     this.wrapper = document.querySelector('.chat-rooms__wrapper')
     this.isExpanded = null
+    this.collapsed = collapsed
+    this.callback = callback
   }
 
   events(chatRoom) {
 
     let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')
+    let close = chatRoom.querySelector('.chat-room__close-tap-area')
 
-    angleDown.addEventListener('click', (e) => {
+    angleDown.addEventListener('click', e => {
 
       if(angleDown.nextElementSibling.classList.contains('chat-room__angle-icon--rotated')) {
 
@@ -23,11 +27,22 @@ class PrivChat {
         angleDown.nextElementSibling.classList.add('chat-room__angle-icon--rotated')
       }
     })
+
+    close.addEventListener('click', e => {
+
+      let chatRoom = e.target.closest('.chat-room')
+
+      this.callback({
+        index: chatRoom.dataset.index,
+        id: chatRoom.dataset.id
+      })
+    })
   }
 
   expand(chatRoom) {
 
     this.isExpanded = chatRoom
+    this.collapsed[this.#name] = false
 
     this.wrapper.style.height = '41px'
     
@@ -74,6 +89,7 @@ class PrivChat {
       this.unpackNodes(chatRoom)
 
       this.isExpanded = null
+      this.collapsed[this.#name] = true
     })
   }
 
@@ -125,6 +141,14 @@ class PrivChat {
       
       containerBelow.insertAdjacentElement('beforebegin', node)
     }
+  }
+
+  reset() {
+
+    this.unpackNodes()
+
+    this.wrapper.style = null
+    this.isExpanded = null
   }
 }
 

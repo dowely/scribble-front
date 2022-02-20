@@ -32,7 +32,6 @@
     right: 0;
     transform: scale(1.5, 2);
     z-index: 2;
-    border: 1px solid red;
   }
 
   &__angle-icon {
@@ -132,6 +131,17 @@
   &__close {
     margin-right: 20px;
     margin-left: 10px;
+    position: relative;
+  }
+
+  &__close-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
+    border: 1px solid red;
   }
 
   &__close-icon {

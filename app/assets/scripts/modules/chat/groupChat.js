@@ -1,0 +1,3 @@
+class GroupChat extends PrivChat {
+
+}

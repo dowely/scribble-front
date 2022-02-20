@@ -57,13 +57,26 @@ async function onSliderBar(event) {
       viewController.render(2)
 
     } else if(index === '3') {
-
+      
       index = event.index
 
-      await chatRooms.deflate()
-      chatRooms.clear()
-      chatRooms.inject('group')
-      setTimeout(() => chatRooms.inflate(), 20)
+      if(chatRooms.collapsed.priv) {
+
+        await chatRooms.deflate()
+        chatRooms.clear()
+        chatRooms.inject('group')
+        setTimeout(() => chatRooms.inflate(), 20)
+
+      } else {
+
+        await viewController.fadeOut(2)
+        chatRooms.clear()
+        chatRooms.inject('group')
+        setTimeout(() => chatRooms.inflate(), 20)
+        viewController.fadeIn(2)
+
+        chatRooms.collapsed.priv = true
+      }
     }
 
   } else {
