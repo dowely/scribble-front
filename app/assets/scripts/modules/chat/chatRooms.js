@@ -119,7 +119,7 @@ class ChatRooms {
 
         deletedRoom.ontransitionend = () => res(deletedRoom)
 
-        deletedRoom.classList.add('chat-room--deflated')
+        deletedRoom.classList.add('chat-room--deflated')       
       }
     })
   }

@@ -21,7 +21,7 @@
 
     @mixin atXLarge {
       background-color: transparent;
-      border: 2px solid white;
+      border: 1px solid white;
     }
   }
 
@@ -80,9 +80,10 @@
     background-color: $mainEggshell;
     border-radius: $pill;
     transition: all .4s ease;
+    top: 0;
 
     .slider-bar[data-index="1"] & {
-      left: -.2%;
+      left: 0;
     }
 
     .slider-bar[data-index="2"] & {
