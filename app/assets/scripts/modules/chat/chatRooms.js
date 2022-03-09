@@ -110,7 +110,12 @@ class ChatRooms {
 
         Array.from(this.chatRooms).forEach(chatRoom => {
   
-          chatRoom.classList.add('chat-room--deflated')
+          //chatRoom.classList.add('chat-room--deflated')
+
+          chatRoom.style.cssText = `
+            height: 0;
+            transition: height .3s ease-out;
+          `
         })
 
       } else {
@@ -119,7 +124,12 @@ class ChatRooms {
 
         deletedRoom.ontransitionend = () => res(deletedRoom)
 
-        deletedRoom.classList.add('chat-room--deflated')       
+        //deletedRoom.classList.add('chat-room--deflated') 
+
+        deletedRoom.style.cssText = `
+            height: 0;
+            transition: height .3s ease-out;
+          `
       }
     })
   }
@@ -128,7 +138,12 @@ class ChatRooms {
 
     Array.from(this.chatRooms).forEach(chatRoom => {
 
-      chatRoom.classList.remove('chat-room--deflated')
+      //chatRoom.classList.remove('chat-room--deflated')
+
+      chatRoom.style.cssText = `
+        height: 40px;
+        transition: height .3s ease-out;
+      `
     })    
   }
 

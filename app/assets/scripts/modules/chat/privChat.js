@@ -52,7 +52,13 @@ class PrivChat {
 
     this.wrapper.style.height = '41px'
     
-    chatRoom.parentElement.classList.add('chat-rooms__room-container--expandable')
+    //chatRoom.parentElement.classList.add('chat-rooms__room-container--expandable')
+    
+    chatRoom.parentElement.style.height = '100%'
+
+    chatRoom.style.cssText = `
+      height: 100%;
+    `
 
     this.packNodes(chatRoom)
 
@@ -86,7 +92,13 @@ class PrivChat {
 
     collapsed.then(() => {
 
-      chatRoom.parentElement.classList.remove('chat-rooms__room-container--expandable')
+      //chatRoom.parentElement.classList.remove('chat-rooms__room-container--expandable')
+
+      chatRoom.style.cssText = `
+      height: 40px;
+      `
+      
+      chatRoom.parentElement.style.height = 'auto'
 
       this.unpackNodes(chatRoom)
 
@@ -98,16 +110,21 @@ class PrivChat {
       this.isExpanded = null
       this.collapsed[this.#name] = true
 
-      chatRoom.ontransitionstart = () => console.log(getComputedStyle(chatRoom).getPropertyValue('height'), 'start')
-      chatRoom.ontransitionend = () => console.log(getComputedStyle(chatRoom).getPropertyValue('height'), 'end')
+      chatRoom.ontransitionstart = (e) => console.log(getComputedStyle(chatRoom).getPropertyValue('height'), 'start', e)
+      chatRoom.ontransitionend = e => console.log(getComputedStyle(chatRoom).getPropertyValue('height'), 'end', e)
 
       if(andClose) {
         
-        this.callback({
-          index: chatRoom.dataset.index,
-          id: chatRoom.dataset.id
-        })
+        setTimeout(() => {
+          
+          this.callback({
+            index: chatRoom.dataset.index,
+            id: chatRoom.dataset.id
+          })
+
+        }, 1)
       }
+      
     })
   }
 
