@@ -1,6 +1,7 @@
 import SliderBar from './modules/sub-menu/sliderBar'
 import ViewController from './base/viewController'
 import ChatRooms from './modules/chat/chatRooms'
+import NewChat from './modules/chat/newChat'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -23,10 +24,16 @@ const viewController = new ViewController()
 
 const chatRooms = new ChatRooms()
 
+const newChat = new NewChat(onNewChat)
+
 if(index == '1') {
   chatContainers[0].style.display = 'block'
 } else {
   chatContainers[1].style.display = 'block'
+}
+
+function onNewChat() {
+  
 }
 
 async function onSliderBar(event) {

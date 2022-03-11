@@ -39,7 +39,6 @@
 
   &__name {
     margin: 0 0 7px;
-    line-height: .9;
     font-size: 1.3rem;
     font-weight: 500;
     white-space: nowrap;
@@ -58,17 +57,22 @@
   }
 
   &__select-dot {
-    display: none;
-    width: 24px;
+    opacity: 0;
+    width: 0;
     height: 24px;
-    border: 2px solid $gray50;
+    border: 0 solid $gray50;
     border-radius: 50%;
     align-self: center;
     flex: none;
-    margin-left: 20px;
+    margin-left: 0;
+    transition: all 0s .3s, opacity .3s ease-out;
 
     .chat-users--selectable & {
-      display: block;
+      transition: all 0s, opacity .3s ease-out;
+      opacity: 1;
+      width: 24px;
+      margin-left: 20px;
+      border-width: 2px;
     }
   }
 

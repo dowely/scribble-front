@@ -106,7 +106,9 @@ class ChatRooms {
 
       if(id === undefined) {
 
-        this.chatRooms[0].ontransitionend = res  
+        if(this.chatRooms.length === 0) res()
+
+        this.chatRooms[0].ontransitionend = res
 
         Array.from(this.chatRooms).forEach(chatRoom => {
   

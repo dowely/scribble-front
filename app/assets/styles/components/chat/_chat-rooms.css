@@ -49,6 +49,15 @@
     border-radius: 50%;
     position: relative;
     margin-left: 64px;
+    transition: border-color .3s ease-out;
+  }
+
+  &__new-room__add-container--active {
+    border-color: white;
+
+    div {
+      background-color: white;
+    }
   }
 
   &__new-room__add-bar {
@@ -59,6 +68,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: background-color .3s ease-out;
   }
 
   &__new-room__add-bar:last-child {
@@ -69,11 +79,28 @@
     margin-right: 20px;
     opacity: 0;
     visibility: hidden;
+    transition: all .3s ease-out;
+    position: relative;
+  }
+
+  &__new-room__close--active {
+    opacity: 1;
+    visibility: visible;
   }
 
   &__new-room__close-icon {
     display: block;
     width: 24px;
     height: 24px;
+  }
+
+  &__new-room__close-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
+    border: 1px solid red;
   }
 }
