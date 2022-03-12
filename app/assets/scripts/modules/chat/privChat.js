@@ -18,13 +18,10 @@ class PrivChat {
 
         this.collapse(chatRoom)
 
-        angleDown.nextElementSibling.classList.remove('chat-room__angle-icon--rotated')
-
       } else if(this.isExpanded === null || this.isExpanded === chatRoom) {
 
         this.expand(chatRoom)
 
-        angleDown.nextElementSibling.classList.add('chat-room__angle-icon--rotated')
       }
     })
 
@@ -46,6 +43,10 @@ class PrivChat {
   }
 
   expand(chatRoom) {
+
+    let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')
+
+    angleDown.nextElementSibling.classList.add('chat-room__angle-icon--rotated')
 
     this.isExpanded = chatRoom
     this.collapsed[this.#name] = false
@@ -73,6 +74,10 @@ class PrivChat {
   }
 
   collapse(chatRoom, andClose) {
+
+    let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')
+
+    angleDown.nextElementSibling.classList.remove('chat-room__angle-icon--rotated')
 
     let containerAbove = document.querySelector('.chat-rooms__hide-above')
 
@@ -109,9 +114,6 @@ class PrivChat {
 
       this.isExpanded = null
       this.collapsed[this.#name] = true
-
-      chatRoom.ontransitionstart = (e) => console.log(getComputedStyle(chatRoom).getPropertyValue('height'), 'start', e)
-      chatRoom.ontransitionend = e => console.log(getComputedStyle(chatRoom).getPropertyValue('height'), 'end', e)
 
       if(andClose) {
         

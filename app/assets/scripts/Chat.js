@@ -32,8 +32,21 @@ if(index == '1') {
   chatContainers[1].style.display = 'block'
 }
 
-function onNewChat() {
+async function onNewChat(userName) {
   
+  let target = index === '2' ? 'group' : 'priv'
+
+  let expand = await chatRooms.add(target, userName)
+
+  if(expand) {
+
+    setTimeout(() => newChat.toggleState(), 500)
+
+  } else {
+
+    newChat.toggleState()
+
+  }
 }
 
 async function onSliderBar(event) {

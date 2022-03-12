@@ -7,46 +7,56 @@ class ChatRooms {
     this.rooms = {
       group: [
         {
-          html: chatRoomTemplate({
-            interlocutors: [users[4], users[2]],
-            group: true,
-            id: 0
-          }),
-          id: '0'
+          id: '0',
+          get html() {
+            return chatRoomTemplate({
+              interlocutors: [users[4], users[2]],
+              group: true,
+              id: this.id
+            })
+          }
         },
         {
-          html: chatRoomTemplate({
-            interlocutors: [users[3], users[0], users[1]],
-            group: true,
-            id: 1
-          }),
-          id: '1'
+          id: '1',
+          get html() {
+            return chatRoomTemplate({
+              interlocutors: [users[3], users[0], users[1]],
+              group: true,
+              id: this.id
+            })
+          }
         }
       ],
       priv: [
         {
-          html: chatRoomTemplate({
-            interlocutors: [users[3]],
-            group: false,
-            id: 0
-          }),
-          id: '0'
+          id: '0',
+          get html() {
+            return chatRoomTemplate({
+              interlocutors: [users[3]],
+              group: false,
+              id: this.id
+            })
+          }
         },
         {
-          html: chatRoomTemplate({
-            interlocutors: [users[1]],
-            group: false,
-            id: 1
-          }),
-          id: '1'
+          id: '1',
+          get html() {
+            return chatRoomTemplate({
+              interlocutors: [users[1]],
+              group: false,
+              id: this.id
+            })
+          }
         },
         {
-          html: chatRoomTemplate({
-            interlocutors: [users[0]],
-            group: false,
-            id: 2
-          }),
-          id: '2'
+          id: '2',
+          get html() {
+            return chatRoomTemplate({
+              interlocutors: [users[0]],
+              group: false,
+              id: this.id
+            })
+          }
         }
       ]
     }
@@ -56,6 +66,62 @@ class ChatRooms {
     this.collapsed = {group: true, priv: true}
 
     this.privChat = new PrivChat(this.collapsed, this.onClose.bind(this))
+  }
+
+  async add(target, userName) {
+
+    let doubledChat = target === 'group' ? undefined : this.isDoubled(userName)
+
+    if(doubledChat) {
+
+      setTimeout(() => {this.privChat.expand(doubledChat)}, 200)
+
+      return true
+
+    } else {
+      
+      let newId = this.rooms[target].length === 0 ? '0' : (Number(this.rooms[target][this.rooms[target].length - 1].id) + 1).toString()
+
+      let userObj = users.find(user => user.name === userName)
+
+      let newRoom = {
+        id: newId,
+        get html() {
+          return chatRoomTemplate({
+            interlocutors: [userObj],
+            group: target === 'group' ? true : false,
+            id: this.id
+          })
+        }
+      }
+
+      this.rooms[target].push(newRoom)
+
+      let roomNode = document.createElement('DIV')
+      roomNode.className = 'chat-rooms__room-container'
+      roomNode.innerHTML = newRoom.html
+
+      this.hook.parentElement.insertBefore(roomNode, this.hook)
+
+      this.chatRooms = document.querySelectorAll('.chat-room')
+
+      let newChatRoom =  roomNode.querySelector('.chat-room')
+
+      if(target == 'priv') {
+
+        this.privChat.events(newChatRoom)
+      }
+
+      await this.inflate(newChatRoom)
+    }
+  }
+
+  isDoubled(userName) {
+
+    return [...this.chatRooms].find(chatRoomEl => 
+
+      chatRoomEl.querySelector('.chat-room__head-bar__name').textContent === userName
+    )
   }
 
   async onClose(info) {
@@ -124,7 +190,10 @@ class ChatRooms {
 
         let deletedRoom = document.querySelector(`.chat-room[data-id="${id}"]`)
 
-        deletedRoom.ontransitionend = () => res(deletedRoom)
+        deletedRoom.ontransitionend = (e) => {
+
+          if(e.target === deletedRoom) res(deletedRoom)
+        }
 
         //deletedRoom.classList.add('chat-room--deflated') 
 
@@ -136,17 +205,35 @@ class ChatRooms {
     })
   }
 
-  inflate() {
+  inflate(chatRoom) {
 
-    Array.from(this.chatRooms).forEach(chatRoom => {
+    if(chatRoom === undefined) {
 
-      //chatRoom.classList.remove('chat-room--deflated')
+      Array.from(this.chatRooms).forEach(chatRoom => {
 
-      chatRoom.style.cssText = `
-        height: 40px;
-        transition: height .3s ease-out;
-      `
-    })    
+        //chatRoom.classList.remove('chat-room--deflated')
+  
+        chatRoom.style.cssText = `
+          height: 40px;
+          transition: height .3s ease-out;
+        `
+      })
+
+    } else {
+
+      return new Promise(res => {
+
+        chatRoom.ontransitionend = res
+
+        setTimeout(() => {
+
+          chatRoom.style.cssText = `
+          height: 40px;
+          transition: height .6s ease-out;
+          `
+        }, 20)
+      })
+    }   
   }
 
   clear() {
