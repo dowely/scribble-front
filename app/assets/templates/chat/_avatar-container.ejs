@@ -1,0 +1,13 @@
+<div class="chat-room__head-bar__avatar-container chat-room__head-bar__avatar-container--flattened" data-name="<%= interlocutor.name %>">
+
+  <% if(interlocutor.avatar) { %>
+
+    <img src="<%= interlocutor.avatar %>" alt="A photo of <%= interlocutor.name %>" class="chat-room__head-bar__avatar">
+
+  <% } else { %>
+
+    <h4 class="chat-room__head-bar__initials"><%= interlocutor.initials %></h4>
+
+  <% } %>
+
+</div>

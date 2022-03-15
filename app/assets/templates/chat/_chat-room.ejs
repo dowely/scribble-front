@@ -14,33 +14,35 @@
 
     <% if(group) { %>
 
-    <div class="chat-room__head-bar__interlocutors">
+    <div class="chat-room__head-bar__interlocutors-outer">
+      <div class="chat-room__head-bar__interlocutors">
 
-      <% interlocutors.forEach(interlocutor => { %>
+        <% interlocutors.forEach(interlocutor => { %>
 
-        <div class="chat-room__head-bar__avatar-container">
+          <div class="chat-room__head-bar__avatar-container" data-name="<%= interlocutor.name %>">
 
-          <% if(interlocutor.avatar) { %>
+            <% if(interlocutor.avatar) { %>
 
-            <img src="<%= interlocutor.avatar %>" alt="A photo of <%= interlocutor.name %>" class="chat-room__head-bar__avatar">
+              <img src="<%= interlocutor.avatar %>" alt="A photo of <%= interlocutor.name %>" class="chat-room__head-bar__avatar">
 
-          <% } else { %>
+            <% } else { %>
 
-            <h4 class="chat-room__head-bar__initials"><%= interlocutor.initials %></h4>
+              <h4 class="chat-room__head-bar__initials"><%= interlocutor.initials %></h4>
 
-          <% } %>
+            <% } %>
 
-          <%- interlocutor.id == 4 ? '<span class="chat-room__head-bar__msg-dot"></span>' : '' %>
+            <%- interlocutor.id == 4 ? '<span class="chat-room__head-bar__msg-dot"></span>' : '' %>
 
+          </div>
+
+        <% }) %>
+
+        <div class="chat-room__head-bar__new-container">
+          <div class="chat-room__head-bar__new-bar"></div>
+          <div class="chat-room__head-bar__new-bar"></div>
         </div>
 
-      <% }) %>
-
-      <div class="chat-room__head-bar__new-container">
-        <div class="chat-room__head-bar__new-bar"></div>
-        <div class="chat-room__head-bar__new-bar"></div>
       </div>
-
     </div>
 
     <% } else { %>

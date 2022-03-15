@@ -22,9 +22,9 @@ let index = sliderBar.index
 
 const viewController = new ViewController()
 
-const chatRooms = new ChatRooms()
-
 const newChat = new NewChat(onNewChat)
+
+const chatRooms = new ChatRooms(newChat.reset.bind(newChat))
 
 if(index == '1') {
   chatContainers[0].style.display = 'block'
@@ -62,6 +62,7 @@ async function onSliderBar(event) {
       await viewController.render(1)
 
       chatRooms.clear()
+      newChat.reset()
     }
   } else if(event.index === '2') {
 
@@ -84,6 +85,7 @@ async function onSliderBar(event) {
 
         await chatRooms.deflate()
         chatRooms.clear()
+        newChat.reset()
         chatRooms.inject('group')
         setTimeout(() => chatRooms.inflate(), 20)
 
@@ -91,6 +93,7 @@ async function onSliderBar(event) {
 
         await viewController.fadeOut(2)
         chatRooms.clear()
+        newChat.reset()
         chatRooms.inject('group')
         setTimeout(() => chatRooms.inflate(), 20)
         viewController.fadeIn(2)
@@ -118,6 +121,7 @@ async function onSliderBar(event) {
 
       await chatRooms.deflate()
       chatRooms.clear()
+      newChat.reset()
       chatRooms.inject('priv')
       setTimeout(() => chatRooms.inflate(), 20)
     }

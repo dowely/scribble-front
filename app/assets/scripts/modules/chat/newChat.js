@@ -15,14 +15,14 @@ class NewChat {
 
     this.addUserBtn.addEventListener('click', () => {
 
-      this.toggleState()
+      if(!this.invitingToGroup()) this.toggleState()
     })
 
     for(let user of this.userItems) {
       
       user.addEventListener('click', e => {
-        
-        if(this.users.classList.contains('chat-users--selectable') && !this.selectedUser) {
+
+        if(this.addUserBtn.classList.contains('chat-rooms__new-room__add-container--active') && !this.selectedUser) {
          
           let userItem = e.target.closest('.chat-users__user-item')
 
@@ -51,6 +51,29 @@ class NewChat {
     }
 
     this.selectedUser = ''
+  }
+
+  reset() {
+
+    this.addUserBtn.classList.remove('chat-rooms__new-room__add-container--active')
+    
+    this.users.classList.remove('chat-users--selectable')
+
+    this.selectedUser = ''
+  }
+
+  invitingToGroup() {
+
+    let result = false
+
+    let groupInviteBtns = document.querySelectorAll('.chat-room__head-bar__new-container')
+
+    groupInviteBtns.forEach(btn => {
+
+      if(btn.classList.contains('chat-room__head-bar__new-container--active')) result = true
+    })
+
+    return result
   }
 }
 

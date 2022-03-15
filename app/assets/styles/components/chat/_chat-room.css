@@ -47,9 +47,23 @@
     transform: translateX(-10%) rotate(810deg);
   }
 
-  &__head-bar__interlocutors {
-    display: flex;
+  &__head-bar__interlocutors-outer {
+    width: 0;
+    height: 32px;
     flex: auto;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  &__head-bar__interlocutors {
+    /*display: flex;*/
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    min-width: 100%;
+    /*flex: auto; */
+    white-space: nowrap;
   }
 
   &__head-bar__avatar-container {
@@ -57,10 +71,21 @@
     height: 32px;
     border: 1px solid white;
     background-color: $gray20;
-    margin-right: 15px;
+    margin-right: 12px;
     border-radius: 50%;
     position: relative;
-    flex: none;
+    /*flex: none;*/
+    display: inline-block;
+    vertical-align: top;
+    transition: all .3s ease-out, opacity .3s ease-out .3s;
+  }
+
+  &__head-bar__avatar-container--flattened {
+    width: 0;
+    margin-right: 0;
+    opacity: 0;
+    border-width: 0;
+    transition: all .3s ease-out .3s, opacity .3s ease-out;
   }
 
   &__head-bar__avatar {
@@ -96,6 +121,18 @@
     border: 2px dashed;
     border-radius: 50%;
     position: relative;
+    transition: border-color .3s ease-out;
+    /* flex: none; */
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &__head-bar__new-container--active {
+    border-color: white;
+
+    div {
+      background-color: white;
+    }
   }
 
   &__head-bar__new-bar {
@@ -106,6 +143,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: background-color .3s ease-out;
   }
 
   &__head-bar__new-bar:last-child {
@@ -142,7 +180,6 @@
     left: 0;
     right: 0;
     transform: scale(1.5);
-    border: 1px solid red;
   }
 
   &__close-icon {

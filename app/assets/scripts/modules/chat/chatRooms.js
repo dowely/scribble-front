@@ -1,16 +1,22 @@
 import chatRoomTemplate from '/app/assets/templates/chat/_chat-room.ejs'
+import avatarContainerTemplate from '/app/assets/templates/chat/_avatar-container.ejs'
 import users from '/app/db/users.json'
 import PrivChat from './privChat'
+import GroupChat from './groupChat'
 
 class ChatRooms {
-  constructor() {
+  constructor(newChatReset) {
+
+    this.newChatReset = newChatReset
+
     this.rooms = {
       group: [
         {
           id: '0',
+          interlocutors: [users[4], users[2]],
           get html() {
             return chatRoomTemplate({
-              interlocutors: [users[4], users[2]],
+              interlocutors: this.interlocutors,
               group: true,
               id: this.id
             })
@@ -18,9 +24,10 @@ class ChatRooms {
         },
         {
           id: '1',
+          interlocutors: [users[3], users[0], users[1]],
           get html() {
             return chatRoomTemplate({
-              interlocutors: [users[3], users[0], users[1]],
+              interlocutors: this.interlocutors,
               group: true,
               id: this.id
             })
@@ -30,9 +37,10 @@ class ChatRooms {
       priv: [
         {
           id: '0',
+          interlocutors: [users[3]],
           get html() {
             return chatRoomTemplate({
-              interlocutors: [users[3]],
+              interlocutors: this.interlocutors,
               group: false,
               id: this.id
             })
@@ -40,9 +48,10 @@ class ChatRooms {
         },
         {
           id: '1',
+          interlocutors: [users[1]],
           get html() {
             return chatRoomTemplate({
-              interlocutors: [users[1]],
+              interlocutors: this.interlocutors,
               group: false,
               id: this.id
             })
@@ -50,9 +59,10 @@ class ChatRooms {
         },
         {
           id: '2',
+          interlocutors: [users[0]],
           get html() {
             return chatRoomTemplate({
-              interlocutors: [users[0]],
+              interlocutors: this.interlocutors,
               group: false,
               id: this.id
             })
@@ -65,7 +75,16 @@ class ChatRooms {
 
     this.collapsed = {group: true, priv: true}
 
-    this.privChat = new PrivChat(this.collapsed, this.onClose.bind(this))
+    this.privChat = new PrivChat(this.collapsed, this.onClose.bind(this), this.onExpand.bind(this))
+
+    this.groupChat = new GroupChat(this.collapsed, this.onClose.bind(this), this.onExpand.bind(this), this.onModify.bind(this))
+  }
+
+  onExpand() {
+
+    setTimeout(() => this.newChatReset(), 10)
+
+    setTimeout(() => this.groupChat.reset(), 20)
   }
 
   async add(target, userName) {
@@ -86,9 +105,10 @@ class ChatRooms {
 
       let newRoom = {
         id: newId,
+        interlocutors: [userObj],
         get html() {
           return chatRoomTemplate({
-            interlocutors: [userObj],
+            interlocutors: this.interlocutors,
             group: target === 'group' ? true : false,
             id: this.id
           })
@@ -107,10 +127,9 @@ class ChatRooms {
 
       let newChatRoom =  roomNode.querySelector('.chat-room')
 
-      if(target == 'priv') {
+      if(target === 'priv') this.privChat.events(newChatRoom)
 
-        this.privChat.events(newChatRoom)
-      }
+      if(target === 'group') this.groupChat.events(newChatRoom)
 
       await this.inflate(newChatRoom)
     }
@@ -122,6 +141,61 @@ class ChatRooms {
 
       chatRoomEl.querySelector('.chat-room__head-bar__name').textContent === userName
     )
+  }
+
+  onModify(info) {
+
+    let user = users.find(user => user.name === info.user)
+
+    let hook = info.chatRoom.querySelector('.chat-room__head-bar__interlocutors').lastElementChild
+
+    let modifiedChatRoom = this.rooms[info.chatRoom.dataset.index].find(room => room.id === info.chatRoom.dataset.id)
+
+    if(info.action === 'add') {
+
+      hook.insertAdjacentHTML('beforebegin', avatarContainerTemplate({interlocutor: user}))
+
+      modifiedChatRoom.interlocutors.push(user)
+
+      setTimeout(() => {
+        hook.previousElementSibling.classList.remove('chat-room__head-bar__avatar-container--flattened')
+      }, 10)
+    }
+
+    if(info.action === 'remove') {
+
+      let groupToUpdate = info.chatRoom.querySelectorAll('.chat-room__head-bar__avatar-container')
+
+      let unwanted = [...groupToUpdate].find(person => person.dataset.name === info.user)
+
+      let flattened = new Promise(res => {
+
+        unwanted.ontransitionend = (e) => {
+          if(e.propertyName !== 'opacity') res()
+        }
+
+        unwanted.classList.add('chat-room__head-bar__avatar-container--flattened')
+      })
+
+      flattened.then(() => {
+
+        if(groupToUpdate.length === 1) {
+
+          let info = {
+            id: groupToUpdate[0].closest('.chat-room').dataset.id
+          }
+
+          this.onClose(info)
+          this.groupChat.reset()
+
+        } else {
+
+          unwanted.remove()
+
+          modifiedChatRoom.interlocutors.splice(modifiedChatRoom.interlocutors.indexOf(user), 1)
+        }
+      })
+    }
   }
 
   async onClose(info) {
@@ -158,11 +232,19 @@ class ChatRooms {
 
     this.chatRooms = document.querySelectorAll('.chat-room')
 
-    if(index == 'priv') {
+    if(index === 'priv') {
 
       for(let room of this.chatRooms) {
 
         this.privChat.events(room)
+      }
+    }
+    
+    if(index === 'group') {
+
+      for(let room of this.chatRooms) {
+
+        this.groupChat.events(room)
       }
     }
   }
@@ -245,6 +327,7 @@ class ChatRooms {
     })
 
     this.privChat.reset()
+    this.groupChat.reset()
   }
 }
 

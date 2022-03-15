@@ -1,6 +1,11 @@
 class PrivChat {
-  #name = 'priv'
-  constructor(collapsed, callback) {
+
+  name = 'priv'
+
+  constructor(collapsed, callback, onExpand) {
+
+    this.onExpand = onExpand
+
     this.wrapper = document.querySelector('.chat-rooms__wrapper')
     this.isExpanded = null
     this.collapsed = collapsed
@@ -29,7 +34,7 @@ class PrivChat {
 
       let chatRoom = e.target.closest('.chat-room')
 
-      if(this.collapsed[this.#name]) {
+      if(this.collapsed[this.name]) {
 
         this.callback({
           index: chatRoom.dataset.index,
@@ -49,7 +54,8 @@ class PrivChat {
     angleDown.nextElementSibling.classList.add('chat-room__angle-icon--rotated')
 
     this.isExpanded = chatRoom
-    this.collapsed[this.#name] = false
+    this.collapsed[this.name] = false
+    this.onExpand()
 
     this.wrapper.style.height = '41px'
     
@@ -113,7 +119,7 @@ class PrivChat {
       `
 
       this.isExpanded = null
-      this.collapsed[this.#name] = true
+      this.collapsed[this.name] = true
 
       if(andClose) {
         
