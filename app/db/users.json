@@ -2,7 +2,9 @@
   {
     "id": 0,
     "name": "Joyce Stafford",
+    "nameShort": "Joyce",
     "initials": "JS",
+    "avatar": "assets/images/joyce-stafford.png",
     "title": "Software Engineer",
     "phone": "+1 201-604-9513",
     "email": "joyce@scribble-app.com",
@@ -13,6 +15,7 @@
   {
     "id": 1,
     "name": "Robert Tucker",
+    "nameShort": "Robert",
     "initials": "RT",
     "title": "Content Writer",
     "phone": "+1 201-404-7531",
@@ -24,6 +27,7 @@
   {
     "id": 2,
     "name": "Julie Cruz",
+    "nameShort": "Julie",
     "initials": "JC",
     "avatar": "assets/images/julie-cruz.png",
     "title": "Customer Service Representative",
@@ -36,7 +40,9 @@
   {
     "id": 3,
     "name": "Christopher Evans",
+    "nameShort": "Chris",
     "initials": "CE",
+    "avatar": "assets/images/christopher-evans.png",
     "title": "Marketing Manager",
     "phone": "+1 201-604-9513",
     "email": "chris@scribble-app.com",
@@ -47,6 +53,7 @@
   {
     "id": 4,
     "name": "Shirley Ward",
+    "nameShort": "Shirley",
     "initials": "SW",
     "avatar": "assets/images/shirley-ward.png",
     "title": "Office Assistant",

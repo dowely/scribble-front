@@ -4,7 +4,71 @@
     <div class="content__viewer content__viewer--chat">
 
       <div class="chat-forum" data-index="1">
-        forum
+        
+        <div class="chat-forum__messages">
+
+          <% let user, side, texts %>
+
+          <%
+            user = users[3]
+            side = 'left'
+            texts = ['Moreover, in Latin only words at the end']
+          %>
+
+          <%- include ../../../assets/templates/chat/_chat-message.ejs %>
+<!--
+          <%
+            user = {
+              avatar: 'assets/images/john-schaffer.png',
+              name: 'John Schaffer'
+            }
+            side = 'right'
+            texts = ['good']
+          %>
+
+          <%- include ../../../assets/templates/chat/_chat-message.ejs %>
+
+          <%
+            user = users[0]
+            side = 'left'
+            texts = ['It is said that song composers of the past used dummy texts as lyrics when writing melodies']
+          %>
+
+          <%- include ../../../assets/templates/chat/_chat-message.ejs %>
+
+          <%
+            user = {
+              avatar: 'assets/images/john-schaffer.png',
+              name: 'John Schaffer'
+            }
+            side = 'right'
+            texts = ['human perception is tuned to recognize certain patterns and repetitions']
+          %>
+
+          <%- include ../../../assets/templates/chat/_chat-message.ejs %>
+
+          <%
+            user = users[3]
+            side = 'left'
+            texts = ['That sounds great!']
+          %>
+
+          <%- include ../../../assets/templates/chat/_chat-message.ejs %>
+
+          <%
+            user = users[1]
+            side = 'left'
+            texts = ['When?']
+          %>
+
+          <%- include ../../../assets/templates/chat/_chat-message.ejs %>
+-->
+        </div>
+
+        <div class="chat-forum__input-bar">
+          <textarea rows="1" name="textMsg" id="chat-input" placeholder="Type a message..." class="chat-forum__text-area" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+        </div>
+
       </div>
 
       <div class="chat-rooms" data-index="2">

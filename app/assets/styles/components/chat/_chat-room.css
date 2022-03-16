@@ -1,12 +1,12 @@
 .chat-room {
-  height: 40px;
+  height: 0; /* 40px */
   overflow: hidden;
   background-color: red;
-
+/*
   &--deflated {
     height: 0;
   }
-/*
+
   .chat-rooms__room-container--expandable & {
     transition: none;
     height: 100%;

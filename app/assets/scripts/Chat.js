@@ -2,6 +2,7 @@ import SliderBar from './modules/sub-menu/sliderBar'
 import ViewController from './base/viewController'
 import ChatRooms from './modules/chat/chatRooms'
 import NewChat from './modules/chat/newChat'
+import Messages from './modules/chat/messages'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -15,6 +16,8 @@ if(module.hot) {
 
 const subMenu = document.querySelector('.sub-menu-chat')
 const chatContainers = document.querySelectorAll('.content__viewer--chat > div')
+const search = document.querySelector('#search-field__input')
+const userItems = document.querySelectorAll('.chat-users__user-item')
 
 const sliderBar = new SliderBar(onSliderBar)
 
@@ -26,10 +29,42 @@ const newChat = new NewChat(onNewChat)
 
 const chatRooms = new ChatRooms(newChat.reset.bind(newChat))
 
+//Messages.events()
+
 if(index == '1') {
   chatContainers[0].style.display = 'block'
 } else {
   chatContainers[1].style.display = 'block'
+}
+
+search.addEventListener('keyup', filter)
+
+function filter() {
+
+  userItems.forEach(item => {
+
+    let name = item.querySelector('.chat-users__name').textContent
+    let title = item.querySelector('.chat-users__title').textContent
+
+    if(
+      match(name) ||
+      match(title)
+    ) {
+      item.style.display = 'flex'
+
+    } else {
+
+      item.style.display = 'none'
+    }      
+  })
+}
+
+function match(userStr) {
+
+  let input = search.value.toLowerCase()
+  let str = userStr.toLowerCase()
+
+  return str.indexOf(input) !== -1 ? true : false
 }
 
 async function onNewChat(userName) {

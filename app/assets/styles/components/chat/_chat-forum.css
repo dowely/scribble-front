@@ -1,0 +1,30 @@
+.chat-forum {
+  background-color: white;
+
+  &__input-bar {
+    display: grid;
+  }
+
+  &__input-bar::after {
+    content: attr(data-replicated-value) " ";
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    visibility: hidden;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &__text-area {
+    resize: none;
+  }
+
+  &__text-area,
+  &__input-bar::after {
+    padding: 1rem;
+    line-height: 3ex;
+    border: none;
+    grid-area: 1 / 1 / 2 / 2;
+    max-height: calc(9ex + 2rem);
+  }
+}

@@ -1,0 +1,27 @@
+<div class="chat-message chat-message--<%= side %>">
+
+  <div class="chat-message__avatar-container">
+
+    <% if(user.avatar) { %>
+
+      <img src="<%= user.avatar %>" alt="A photo of <%= user.name %>" class="chat-message__avatar">
+
+    <% } else { %>
+      
+      <h4 class="chat-message__initials"><%= user.initials %></h4>
+
+    <% } %>
+
+  </div>
+
+  <div class="chat-message__text-container">
+
+    <% texts.forEach(text => { %>
+
+      <p class="chat-message__text"><span class="chat-message__text-author"><%= user.nameShort ? user.nameShort : `` %>: </span><%= text %></p>
+
+    <% }) %>
+    
+  </div>
+
+</div>
