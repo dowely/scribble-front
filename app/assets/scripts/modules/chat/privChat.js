@@ -17,7 +17,7 @@ class PrivChat {
     let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')
     let close = chatRoom.querySelector('.chat-room__close-tap-area')
 
-    angleDown.addEventListener('click', e => {
+    angleDown.addEventListener('click', () => {
 
       if(angleDown.nextElementSibling.classList.contains('chat-room__angle-icon--rotated')) {
 

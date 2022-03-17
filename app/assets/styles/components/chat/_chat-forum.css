@@ -1,8 +1,18 @@
 .chat-forum {
   background-color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__messages {
+    flex: auto;
+    height: 0;
+    overflow-y: auto;
+  }
 
   &__input-bar {
     display: grid;
+    border-top: 1px solid $gray20;
   }
 
   &__input-bar::after {
@@ -17,6 +27,7 @@
 
   &__text-area {
     resize: none;
+    outline: none;
   }
 
   &__text-area,
@@ -24,6 +35,8 @@
     padding: 1rem;
     line-height: 3ex;
     border: none;
+    font-size: .915rem;
+    font-weight: 300;
     grid-area: 1 / 1 / 2 / 2;
     max-height: calc(9ex + 2rem);
   }

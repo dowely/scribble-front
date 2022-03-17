@@ -16,7 +16,7 @@
           %>
 
           <%- include ../../../assets/templates/chat/_chat-message.ejs %>
-<!--
+
           <%
             user = {
               avatar: 'assets/images/john-schaffer.png',
@@ -62,11 +62,11 @@
           %>
 
           <%- include ../../../assets/templates/chat/_chat-message.ejs %>
--->
+
         </div>
 
         <div class="chat-forum__input-bar">
-          <textarea rows="1" name="textMsg" id="chat-input" placeholder="Type a message..." class="chat-forum__text-area" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+          <textarea rows="1" name="textMsg" placeholder="Type a message..." class="chat-forum__text-area" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
         </div>
 
       </div>

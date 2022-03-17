@@ -92,8 +92,10 @@ class ChatRooms {
     let doubledChat = target === 'group' ? undefined : this.isDoubled(userName)
 
     if(doubledChat) {
-
-      setTimeout(() => {this.privChat.expand(doubledChat)}, 200)
+      
+      setTimeout(() => {
+        this.privChat.expand(doubledChat)
+      }, 200)
 
       return true
 

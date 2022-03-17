@@ -21,7 +21,7 @@ class ViewController {
 
         if(contentDiv.dataset.index == String(hook)) {
 
-          contentDiv.style.display = 'block'
+          contentDiv.style.display = hook === 1 ? 'flex' : 'block'
 
         } else {
 

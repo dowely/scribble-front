@@ -32,7 +32,7 @@ const chatRooms = new ChatRooms(newChat.reset.bind(newChat))
 //Messages.events()
 
 if(index == '1') {
-  chatContainers[0].style.display = 'block'
+  chatContainers[0].style.display = 'flex'
 } else {
   chatContainers[1].style.display = 'block'
 }
@@ -73,15 +73,7 @@ async function onNewChat(userName) {
 
   let expand = await chatRooms.add(target, userName)
 
-  if(expand) {
-
-    setTimeout(() => newChat.toggleState(), 500)
-
-  } else {
-
-    newChat.toggleState()
-
-  }
+  if(!expand) newChat.toggleState()
 }
 
 async function onSliderBar(event) {
@@ -98,6 +90,9 @@ async function onSliderBar(event) {
 
       chatRooms.clear()
       newChat.reset()
+
+      chatRooms.collapsed.group = true
+      chatRooms.collapsed.priv = true
     }
   } else if(event.index === '2') {
 
@@ -154,11 +149,26 @@ async function onSliderBar(event) {
 
       index = event.index
 
-      await chatRooms.deflate()
-      chatRooms.clear()
-      newChat.reset()
-      chatRooms.inject('priv')
-      setTimeout(() => chatRooms.inflate(), 20)
+      if(chatRooms.collapsed.group) {
+
+        await chatRooms.deflate()
+        chatRooms.clear()
+        newChat.reset()
+        chatRooms.inject('priv')
+        setTimeout(() => chatRooms.inflate(), 20)
+
+      } else {
+
+        await viewController.fadeOut(2)
+        chatRooms.clear()
+        newChat.reset()
+        chatRooms.inject('priv')
+        setTimeout(() => chatRooms.inflate(), 20)
+        viewController.fadeIn(2)
+
+        chatRooms.collapsed.group = true
+
+      } 
     }
   }
 }

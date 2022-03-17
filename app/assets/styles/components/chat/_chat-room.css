@@ -1,23 +1,23 @@
 .chat-room {
   height: 0; /* 40px */
   overflow: hidden;
-  background-color: red;
-/*
-  &--deflated {
-    height: 0;
-  }
+  position: relative;
 
-  .chat-rooms__room-container--expandable & {
-    transition: none;
-    height: 100%;
-  }
-*/
   &__head-bar {
     height: 40px;
     background-color: $gray60;
     display: flex;
     align-items: center;
     color: $gray30;
+  }
+
+  &__main {
+    height: auto !important; /*_chat-forum.css rule override*/
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   &__angle {
@@ -56,13 +56,11 @@
   }
 
   &__head-bar__interlocutors {
-    /*display: flex;*/
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
     min-width: 100%;
-    /*flex: auto; */
     white-space: nowrap;
   }
 
@@ -74,7 +72,6 @@
     margin-right: 12px;
     border-radius: 50%;
     position: relative;
-    /*flex: none;*/
     display: inline-block;
     vertical-align: top;
     transition: all .3s ease-out, opacity .3s ease-out .3s;
@@ -121,8 +118,7 @@
     border: 2px dashed;
     border-radius: 50%;
     position: relative;
-    transition: border-color .3s ease-out;
-    /* flex: none; */
+    transition: border-color .3s ease-out, opacity .3s ease-out, visibility 0s;
     display: inline-block;
     vertical-align: top;
   }
@@ -133,6 +129,12 @@
     div {
       background-color: white;
     }
+  }
+
+  &__head-bar__new-container--disabled {
+    opacity: 0;
+    visibility: hidden;
+    transition: border-color .3s ease-out, opacity .3s ease-out, visibility 1s .35s;
   }
 
   &__head-bar__new-bar {

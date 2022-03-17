@@ -60,6 +60,8 @@ class GroupChat extends PrivChat {
 
     let close = chatRoom.querySelector('.chat-room__close-tap-area')
 
+    let angle = chatRoom.querySelector('.chat-room__angle-tap-area')
+
     addInterlocutorBtn.addEventListener('click', () => {
 
       if(!this.newChatBtn.classList.contains('chat-rooms__new-room__add-container--active') && (this.inviting === false || this.inviting === chatRoom)) {
@@ -71,6 +73,11 @@ class GroupChat extends PrivChat {
     close.addEventListener('click', () => {
 
       if(close.closest('.chat-room') === this.inviting) this.reset(addInterlocutorBtn)
+    })
+
+    angle.addEventListener('click', () => {
+      
+      addInterlocutorBtn.classList.toggle('chat-room__head-bar__new-container--disabled')
     })
   }
 
@@ -116,6 +123,7 @@ class GroupChat extends PrivChat {
   reset(btn) {
 
     this.inviting = false
+    this.isExpanded = null
 
     this.users.classList.remove('chat-users--selectable') 
 

@@ -83,11 +83,287 @@
 
   </div>
 
-  <div class="chat-room__messages">
+  <div class="chat-room__main chat-forum">
 
-  </div>
+    <div class="chat-forum__messages">
 
-  <div class="chat-room__input-bar">
+      <% let entries = [] %>
+
+      <% if(group) {
+
+        switch(id) {
+
+          case '0':
+
+          entries =
+          [
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['In a professional context it often happens']
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['The are likely to focus on the text']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['use texts']
+            },
+            {
+              user: interlocutors[1],
+              side: 'left',
+              texts: ['human perception is tuned to recognize certain patterns and repetitions']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['Most of its text is made up', "Think of a news blog that's filled with content hourly on the day of going live."]
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ["Let's hope so ;)"]
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['Of course!']
+            }
+          ]
+
+            break
+
+          case '1':
+
+            entries =
+            [
+              {
+                user: interlocutors[0],
+                side: 'left',
+                texts: ['In a professional context it often happens']
+              },
+              {
+                user: {
+                  avatar: 'assets/images/john-schaffer.png',
+                  name: 'John Schaffer'
+                },
+                side: 'right',
+                texts: ['how come?']
+              },
+              {
+                user: interlocutors[1],
+                side: 'left',
+                texts: ['use texts', 'It is said that song composers of the past']
+              },
+              {
+                user: {
+                  avatar: 'assets/images/john-schaffer.png',
+                  name: 'John Schaffer'
+                },
+                side: 'right',
+                texts: ['human perception is tuned to recognize certain patterns and repetitions']
+              },
+              {
+                user: interlocutors[0],
+                side: 'left',
+                texts: ['Most of its text is made up']
+              },
+              {
+                user: interlocutors[2],
+                side: 'left',
+                texts: ["Think of a news blog that's filled with content hourly on the day of going live."]
+              }
+            ]
+
+            break
+        }
+
+      } else {
+
+        switch(id) {
+
+          case '0':
+
+          entries =
+          [
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['In a professional context it often happens']
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['human perception is tuned to recognize certain patterns and repetitions', 'The are likely to focus on the text']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['Most of its text is made up']
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['Of course!']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ["Think of a news blog that's filled with content hourly on the day of going live.", "It's a convenient tool for mock-ups.", "Let's hope so "]
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['The are likely to focus on the text']
+            }
+          ]
+
+            break
+
+          case '1':
+
+          entries =
+          [
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['human perception is tuned to recognize certain patterns and repetitions']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['Most of its text is made up', 'The are likely to focus on the text']
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ["Think of a news blog that's filled with content hourly on the day of going live.", "It's a convenient tool for mock-ups.", 'Of course!']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ["Let's hope so "]
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['it actually has no meaning whatsoever']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['In a professional context it often happens']
+            }
+          ]
+
+            break
+
+          case '2':
+
+          entries =
+          [
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['In a professional context it often happens']
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['The are likely to focus on the text', 'human perception is tuned to recognize certain patterns and repetitions']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['Most of its text is made up']
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ["It's a convenient tool for mock-ups."]
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ["Let's hope so", "Think of a news blog that's filled with content hourly on the day of going live."]
+            },
+            {
+              user: interlocutors[0],
+              side: 'left',
+              texts: ['it actually has no meaning whatsoever']
+            },
+            {
+              user: {
+                avatar: 'assets/images/john-schaffer.png',
+                name: 'John Schaffer'
+              },
+              side: 'right',
+              texts: ['Of course!']
+            }
+          ]
+
+            break
+        }
+      } %>
+
+      <%
+      
+        entries.forEach(entry => {
+
+          let {user, side, texts} = entry
+
+          %><%- include ./_chat-message.ejs %><%
+        })
+
+      %>
+
+    </div>
+  
+    <div class="chat-forum__input-bar">
+      <textarea rows="1" name="textMsg" placeholder="Type a message..." class="chat-forum__text-area" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>  
+    </div>
 
   </div>
 
