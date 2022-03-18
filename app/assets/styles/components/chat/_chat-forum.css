@@ -7,6 +7,11 @@
   &__messages {
     flex: auto;
     height: 0;
+    display: grid;
+    align-content: end;
+  }
+
+  &__messages-inner {
     overflow-y: auto;
   }
 

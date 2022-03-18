@@ -55,7 +55,7 @@ class PrivChat {
 
     this.isExpanded = chatRoom
     this.collapsed[this.name] = false
-    this.onExpand()
+    this.onExpand(chatRoom)
 
     this.wrapper.style.height = '41px'
     

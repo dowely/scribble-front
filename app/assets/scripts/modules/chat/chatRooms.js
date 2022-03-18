@@ -5,9 +5,11 @@ import PrivChat from './privChat'
 import GroupChat from './groupChat'
 
 class ChatRooms {
-  constructor(newChatReset) {
+  constructor(newChatReset, scrollToBottom, messages) {
 
     this.newChatReset = newChatReset
+    this.scrollToBottom = scrollToBottom
+    this.messages = messages
 
     this.rooms = {
       group: [
@@ -80,7 +82,11 @@ class ChatRooms {
     this.groupChat = new GroupChat(this.collapsed, this.onClose.bind(this), this.onExpand.bind(this), this.onModify.bind(this))
   }
 
-  onExpand() {
+  onExpand(chatRoom) {
+
+    let feedToScroll = chatRoom.querySelector('.chat-forum__messages-inner')
+
+    this.scrollToBottom(feedToScroll)
 
     setTimeout(() => this.newChatReset(), 10)
 
@@ -101,7 +107,9 @@ class ChatRooms {
 
     } else {
       
-      let newId = this.rooms[target].length === 0 ? '0' : (Number(this.rooms[target][this.rooms[target].length - 1].id) + 1).toString()
+      let newId = this.rooms[target].length === 0 ? '0' : (Number(this.rooms[target][this.rooms[target].length - 1].id) + 1)
+
+      newId = newId < 3 ? '3' : newId.toString()
 
       let userObj = users.find(user => user.name === userName)
 
@@ -132,6 +140,8 @@ class ChatRooms {
       if(target === 'priv') this.privChat.events(newChatRoom)
 
       if(target === 'group') this.groupChat.events(newChatRoom)
+
+      this.messages(newChatRoom)
 
       await this.inflate(newChatRoom)
     }

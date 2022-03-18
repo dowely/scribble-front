@@ -27,9 +27,7 @@ const viewController = new ViewController()
 
 const newChat = new NewChat(onNewChat)
 
-const chatRooms = new ChatRooms(newChat.reset.bind(newChat))
-
-//Messages.events()
+const chatRooms = new ChatRooms(newChat.reset.bind(newChat), Messages.scrollToBottom, Messages.events.bind(Messages))
 
 if(index == '1') {
   chatContainers[0].style.display = 'flex'
@@ -132,6 +130,8 @@ async function onSliderBar(event) {
       }
     }
 
+    Messages.events()
+
   } else {
 
     if(index === '1') {
@@ -170,5 +170,10 @@ async function onSliderBar(event) {
 
       } 
     }
+
+    Messages.events()
   }
 }
+
+Messages.events()
+Messages.scrollToBottom()

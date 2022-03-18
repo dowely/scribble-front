@@ -18,7 +18,7 @@
 
     <% texts.forEach(text => { %>
 
-      <p class="chat-message__text"><span class="chat-message__text-author"><%= user.nameShort ? `${user.nameShort}: ` : `` %></span><%= text %></p>
+      <p class="chat-message__text"><%- user.nameShort ? `<span class="chat-message__text-author">${user.nameShort}: </span>` : `` %><%= text %></p>
 
     <% }) %>
     
