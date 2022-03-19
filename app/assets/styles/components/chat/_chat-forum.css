@@ -18,6 +18,10 @@
   &__input-bar {
     display: grid;
     border-top: 1px solid $gray20;
+
+    @mixin atMedium {
+      border-top-width: 2px;
+    }
   }
 
   &__input-bar::after {
@@ -44,5 +48,11 @@
     font-weight: 300;
     grid-area: 1 / 1 / 2 / 2;
     max-height: calc(9ex + 2rem);
+
+    @mixin atMedium {
+      font-size: 1.45rem;
+      padding: 1.25rem;
+      max-height: calc(9ex + 2.5rem);
+    }
   }
 }

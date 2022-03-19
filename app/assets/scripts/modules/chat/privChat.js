@@ -57,25 +57,34 @@ class PrivChat {
     this.collapsed[this.name] = false
     this.onExpand(chatRoom)
 
-    this.wrapper.style.height = '41px'
-    
-    //chatRoom.parentElement.classList.add('chat-rooms__room-container--expandable')
-    
-    chatRoom.parentElement.style.height = '100%'
-
-    chatRoom.style.cssText = `
-      height: 100%;
-    `
-
     this.packNodes(chatRoom)
+
+    this.wrapper.classList.add('chat-rooms__wrapper--focused')
+
+    //this.wrapper.style.height = '41px'
+    
+    chatRoom.parentElement.classList.add('chat-rooms__room-container--expandable')
+    
+    //chatRoom.parentElement.style.height = '100%'
+
+
+    chatRoom.classList.add('chat-room--default')
+
+    // chatRoom.style.cssText = `
+    //   height: 100%;
+    // `
 
     setTimeout(() => {
 
-      this.wrapper.style.cssText = `
-      transition: margin-top .3s linear, height .6s ease-in;
-      height: 100%;
-      margin-top: 0;
-    `
+      this.wrapper.classList.add('chat-rooms__wrapper--transition')
+
+      this.wrapper.classList.add('chat-rooms__wrapper--expanded')
+
+      // this.wrapper.style.cssText = `
+      // transition: margin-top .3s linear, height .6s ease-in;
+      // height: 100%;
+      // margin-top: 0;
+      // `
     }, 20)
   }
 
@@ -97,26 +106,32 @@ class PrivChat {
         this.wrapper.ontransitioncancel = rej
       }, 20)
 
-      this.wrapper.style.height = '41px'
-      this.wrapper.style.marginTop = `${containerAbove.offsetHeight}px`
+      this.wrapper.classList.remove('chat-rooms__wrapper--expanded')
+
+      // this.wrapper.style.height = '41px'
+      // this.wrapper.style.marginTop = `${containerAbove.offsetHeight}px`
     })
 
     collapsed.then(() => {
 
-      //chatRoom.parentElement.classList.remove('chat-rooms__room-container--expandable')
+      chatRoom.parentElement.classList.remove('chat-rooms__room-container--expandable')
 
-      chatRoom.style.cssText = `
-      height: 40px;
-      `
+      //chatRoom.style.cssText = `
+      //height: 40px;
+      //`
       
-      chatRoom.parentElement.style.height = 'auto'
+      //chatRoom.parentElement.style.height = 'auto'
 
       this.unpackNodes(chatRoom)
 
-      this.wrapper.style.cssText = `
-        height: 100%;
-        margin-top: 0;
-      `
+      this.wrapper.classList.remove('chat-rooms__wrapper--transition')
+
+      this.wrapper.classList.remove('chat-rooms__wrapper--focused')
+
+      // this.wrapper.style.cssText = `
+      //   height: 100%;
+      //   margin-top: 0;
+      // `
 
       this.isExpanded = null
       this.collapsed[this.name] = true
@@ -164,7 +179,7 @@ class PrivChat {
     nodesAbove.forEach(node => containerAbove.appendChild(node))
     nodesBelow.forEach(node => containerBelow.appendChild(node))
 
-    this.wrapper.style.marginTop = `${containerAbove.offsetHeight}px`
+    document.documentElement.style.setProperty('--mt', `${containerAbove.offsetHeight}px`)
   }
 
   unpackNodes(splitNode) {
@@ -190,7 +205,12 @@ class PrivChat {
 
     this.unpackNodes()
 
-    this.wrapper.style = null
+    //this.wrapper.style = null
+
+    this.wrapper.classList.remove('chat-rooms__wrapper--focused', 'chat-rooms__wrapper--transition',
+    'chat-rooms__wrapper--expanded'
+    )
+    
     this.isExpanded = null
   }
 }

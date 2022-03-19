@@ -20,9 +20,11 @@ class ChatRooms {
             return chatRoomTemplate({
               interlocutors: this.interlocutors,
               group: true,
-              id: this.id
+              id: this.id,
+              feed: this.feedHtml
             })
-          }
+          },
+          feedHtml: '' 
         },
         {
           id: '1',
@@ -31,9 +33,11 @@ class ChatRooms {
             return chatRoomTemplate({
               interlocutors: this.interlocutors,
               group: true,
-              id: this.id
+              id: this.id,
+              feed: this.feedHtml
             })
-          }
+          },
+          feedHtml: ''
         }
       ],
       priv: [
@@ -44,9 +48,11 @@ class ChatRooms {
             return chatRoomTemplate({
               interlocutors: this.interlocutors,
               group: false,
-              id: this.id
+              id: this.id,
+              feed: this.feedHtml
             })
-          }
+          },
+          feedHtml: ''
         },
         {
           id: '1',
@@ -55,9 +61,11 @@ class ChatRooms {
             return chatRoomTemplate({
               interlocutors: this.interlocutors,
               group: false,
-              id: this.id
+              id: this.id,
+              feed: this.feedHtml
             })
-          }
+          },
+          feedHtml: ''
         },
         {
           id: '2',
@@ -66,9 +74,11 @@ class ChatRooms {
             return chatRoomTemplate({
               interlocutors: this.interlocutors,
               group: false,
-              id: this.id
+              id: this.id,
+              feed: this.feedHtml
             })
-          }
+          },
+          feedHtml: ''
         }
       ]
     }
@@ -120,9 +130,11 @@ class ChatRooms {
           return chatRoomTemplate({
             interlocutors: this.interlocutors,
             group: target === 'group' ? true : false,
-            id: this.id
+            id: this.id,
+            feed: this.feedHtml
           })
-        }
+        },
+        feedHtml: ''
       }
 
       this.rooms[target].push(newRoom)
@@ -272,12 +284,12 @@ class ChatRooms {
 
         Array.from(this.chatRooms).forEach(chatRoom => {
   
-          //chatRoom.classList.add('chat-room--deflated')
+          chatRoom.classList.add('chat-room--deflated')
 
-          chatRoom.style.cssText = `
-            height: 0;
-            transition: height .3s ease-out;
-          `
+          // chatRoom.style.cssText = `
+          //   height: 0;
+          //   transition: height .3s ease-out;
+          // `
         })
 
       } else {
@@ -289,12 +301,12 @@ class ChatRooms {
           if(e.target === deletedRoom) res(deletedRoom)
         }
 
-        //deletedRoom.classList.add('chat-room--deflated') 
+        deletedRoom.classList.add('chat-room--deflated') 
 
-        deletedRoom.style.cssText = `
-            height: 0;
-            transition: height .3s ease-out;
-          `
+        // deletedRoom.style.cssText = `
+        //   height: 0;
+        //   transition: height .3s ease-out;
+        // `
       }
     })
   }
@@ -305,12 +317,12 @@ class ChatRooms {
 
       Array.from(this.chatRooms).forEach(chatRoom => {
 
-        //chatRoom.classList.remove('chat-room--deflated')
+        chatRoom.classList.add('chat-room--inflate-quickly')
   
-        chatRoom.style.cssText = `
-          height: 40px;
-          transition: height .3s ease-out;
-        `
+        // chatRoom.style.cssText = `
+        //   height: 40px;
+        //   transition: height .3s ease-out;
+        // `
       })
 
     } else {
@@ -321,10 +333,12 @@ class ChatRooms {
 
         setTimeout(() => {
 
-          chatRoom.style.cssText = `
-          height: 40px;
-          transition: height .6s ease-out;
-          `
+          chatRoom.classList.add('chat-room--inflate-slowly')
+
+          // chatRoom.style.cssText = `
+          // height: 40px;
+          // transition: height .6s ease-out;
+          // `
         }, 20)
       })
     }   
@@ -335,11 +349,21 @@ class ChatRooms {
     let roomNodes = document.querySelectorAll('.chat-rooms__room-container')
 
     Array.from(roomNodes).forEach(roomNode => {
+      this.saveFeed(roomNode)
       roomNode.remove()
     })
 
     this.privChat.reset()
     this.groupChat.reset()
+  }
+
+  saveFeed(roomContainer) {
+
+    let feed = roomContainer.querySelector('.chat-forum__messages').innerHTML
+
+    let chatRoom = this.rooms[roomContainer.firstElementChild.dataset.index].find(room => room.id === roomContainer.firstElementChild.dataset.id)
+
+    chatRoom.feedHtml = feed
   }
 }
 

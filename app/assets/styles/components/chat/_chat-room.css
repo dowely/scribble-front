@@ -3,12 +3,56 @@
   overflow: hidden;
   position: relative;
 
+  &--inflate-slowly {
+    height: 40px;
+    transition: height .6s ease-out;
+
+    @mixin atMedium {
+      height: 65px;
+    }
+  }
+
+  &--inflate-quickly {
+    height: 40px;
+    transition: height .3s ease-out;
+
+    @mixin atMedium {
+      height: 65px;
+    }
+  }
+
+  &--default {
+    transition: none;
+    height: 40px;
+
+    .chat-rooms__room-container--expandable & {
+      height: 100%;
+    }
+
+    @mixin atMedium {
+      height: 65px;
+    }
+  }
+
+  &--deflated {
+    &,
+    .chat-rooms__room-container--expandable & {
+      transition: height .3s ease-out;
+      height: 0;
+    }
+  }
+
   &__head-bar {
     height: 40px;
     background-color: $gray60;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     color: $gray30;
+
+    @mixin atMedium {
+      height: 65px;
+    }
   }
 
   &__main {
@@ -18,11 +62,19 @@
     bottom: 0;
     left: 0;
     right: 0;
+
+    @mixin atMedium {
+      top: 65px;
+    }
   }
 
   &__angle {
     margin: 0 20px;
     position: relative;
+
+    @mixin atMedium {
+      margin: 0 35px;
+    }
   }
 
   &__angle-tap-area {
@@ -41,6 +93,11 @@
     height: 14px;
     transition: transform .7s ease-out;
     z-index: 1;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 20px;
+    }
   }
 
   &__angle-icon--rotated {
@@ -49,10 +106,16 @@
 
   &__head-bar__interlocutors-outer {
     width: 0;
+    max-width: 400px;
     height: 32px;
     flex: auto;
     position: relative;
     overflow-x: hidden;
+
+    @mixin atMedium {
+      height: 50px;
+      max-width: 500px;
+    }
   }
 
   &__head-bar__interlocutors {
@@ -62,6 +125,7 @@
     bottom: 0;
     min-width: 100%;
     white-space: nowrap;
+    font-size: 0;
   }
 
   &__head-bar__avatar-container {
@@ -75,6 +139,13 @@
     display: inline-block;
     vertical-align: top;
     transition: all .3s ease-out, opacity .3s ease-out .3s;
+
+    @mixin atMedium {
+      width: 50px;
+      height: 50px;
+      border-width: 2px;
+      margin-right: 30px;
+    }
   }
 
   &__head-bar__avatar-container--flattened {
@@ -99,6 +170,11 @@
     transform: translate(-50%, -50%);
     margin: 0;
     font-weight: 400;
+    font-size: 1rem;
+
+    @mixin atMedium {
+      font-size: 1.3rem;
+    }
   }
 
   &__head-bar__msg-dot {
@@ -110,6 +186,11 @@
     bottom: 0;
     right: 0;
     border-radius: 50%;
+
+    @mixin atMedium {
+      width: 14px;
+      height: 14px;
+    }
   }
 
   &__head-bar__new-container {
@@ -121,6 +202,12 @@
     transition: border-color .3s ease-out, opacity .3s ease-out, visibility 0s;
     display: inline-block;
     vertical-align: top;
+
+    @mixin atMedium {
+      transform-origin: 0 0;
+      transform: scale(1.5625);
+      margin-right: 18px;
+    }
   }
 
   &__head-bar__new-container--active {
@@ -157,6 +244,11 @@
     align-items: center;
     flex: auto;
     width: 0; /* not min-width!!! */
+    max-width: 400px;
+
+    @mixin atMedium {
+      max-width: 500px;
+    }
   }
 
   &__head-bar__name {
@@ -167,12 +259,19 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    @mixin atMedium {
+      font-size: 1.75rem;
+    }
   }
 
   &__close {
-    margin-right: 20px;
-    margin-left: 10px;
+    margin: 0 20px;
     position: relative;
+
+    @mixin atMedium {
+      margin: 0 35px;
+    }
   }
 
   &__close-tap-area {
@@ -188,5 +287,10 @@
     display: block;
     width: 24px;
     height: 24px;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+    }
   }
 }

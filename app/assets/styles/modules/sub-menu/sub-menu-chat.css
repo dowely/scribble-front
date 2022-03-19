@@ -72,7 +72,7 @@
 
       @mixin atMedium {
         height: $controlHeightMedium;
-        margin-bottom: calc($controlMbMedium + 8px);
+        margin-bottom: calc($controlMbMedium + 7px);
       }
 
       @mixin atLarge {
