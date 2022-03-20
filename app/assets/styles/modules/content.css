@@ -42,6 +42,10 @@
 
     @mixin atLarge {
       grid-column: 2 / -1;
+
+      .layout__content-container--chat & {
+        opacity: 1;
+      }
     }
     
   }
@@ -88,6 +92,10 @@
 
     > div {
       display: none;
+    }
+
+    @mixin atLarge {
+      border-top: none;
     }
   }
 }

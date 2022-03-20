@@ -4,10 +4,17 @@
   margin: 0;
   padding: 0 20px 20px;
   flex: auto;
+  min-height: 190px;
   overflow-y: auto;
 
   @mixin atMedium {
     padding: 0 110px 45px;
+  }
+
+  @mixin atLarge {
+    .content__viewer--chat & {
+      display: none;
+    }
   }
 
   &__user-item {

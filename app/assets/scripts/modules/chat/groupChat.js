@@ -11,7 +11,7 @@ class GroupChat extends PrivChat {
     this.onModify = callbackModify
 
     this.newChatBtn = document.querySelector('.chat-rooms__new-room__add-container')
-    this.users = document.querySelector('.chat-users')
+    this.users = document.querySelectorAll('.chat-users')
     this.userItems = document.querySelectorAll('.chat-users__user-item')
     this.userDots = document.querySelectorAll('.chat-users__select-dot')
 
@@ -77,7 +77,7 @@ class GroupChat extends PrivChat {
 
     angle.addEventListener('click', () => {
       
-      addInterlocutorBtn.classList.toggle('chat-room__head-bar__new-container--disabled')
+      if(this.isExpanded === chatRoom || this.isExpanded === null) addInterlocutorBtn.classList.toggle('chat-room__head-bar__new-container--disabled')
     })
   }
 
@@ -95,7 +95,11 @@ class GroupChat extends PrivChat {
     }
 
     btn.classList.toggle('chat-room__head-bar__new-container--active')
-    this.users.classList.toggle('chat-users--selectable')
+
+    for(let usersContainer of this.users) {
+
+      usersContainer.classList.toggle('chat-users--selectable')
+    }
   }
 
   updateDots() {
@@ -120,12 +124,16 @@ class GroupChat extends PrivChat {
     })
   }
 
-  reset(btn) {
+  reset(btn, hard) {
 
     this.inviting = false
-    this.isExpanded = null
 
-    this.users.classList.remove('chat-users--selectable') 
+    if(hard) this.isExpanded = null 
+
+    for(let usersContainer of this.users) {
+
+      usersContainer.classList.remove('chat-users--selectable')
+    } 
 
     if(btn === undefined) {
 

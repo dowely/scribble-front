@@ -7,6 +7,9 @@ class PrivChat {
     this.onExpand = onExpand
 
     this.wrapper = document.querySelector('.chat-rooms__wrapper')
+
+    this.wrapperScrollPos
+
     this.isExpanded = null
     this.collapsed = collapsed
     this.callback = callback
@@ -18,7 +21,7 @@ class PrivChat {
     let close = chatRoom.querySelector('.chat-room__close-tap-area')
 
     angleDown.addEventListener('click', () => {
-
+      
       if(angleDown.nextElementSibling.classList.contains('chat-room__angle-icon--rotated')) {
 
         this.collapse(chatRoom)
@@ -48,31 +51,23 @@ class PrivChat {
   }
 
   expand(chatRoom) {
-
-    let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')
+    
+    let angleDown = chatRoom.querySelector('.chat-room__angle-tap-area')    
 
     angleDown.nextElementSibling.classList.add('chat-room__angle-icon--rotated')
 
     this.isExpanded = chatRoom
     this.collapsed[this.name] = false
+    
     this.onExpand(chatRoom)
 
     this.packNodes(chatRoom)
 
-    this.wrapper.classList.add('chat-rooms__wrapper--focused')
-
-    //this.wrapper.style.height = '41px'
-    
     chatRoom.parentElement.classList.add('chat-rooms__room-container--expandable')
-    
-    //chatRoom.parentElement.style.height = '100%'
-
 
     chatRoom.classList.add('chat-room--default')
 
-    // chatRoom.style.cssText = `
-    //   height: 100%;
-    // `
+    this.wrapper.classList.add('chat-rooms__wrapper--focused')
 
     setTimeout(() => {
 
@@ -80,11 +75,6 @@ class PrivChat {
 
       this.wrapper.classList.add('chat-rooms__wrapper--expanded')
 
-      // this.wrapper.style.cssText = `
-      // transition: margin-top .3s linear, height .6s ease-in;
-      // height: 100%;
-      // margin-top: 0;
-      // `
     }, 20)
   }
 
@@ -127,6 +117,7 @@ class PrivChat {
       this.wrapper.classList.remove('chat-rooms__wrapper--transition')
 
       this.wrapper.classList.remove('chat-rooms__wrapper--focused')
+      this.wrapper.scrollTop = this.wrapperScrollPos
 
       // this.wrapper.style.cssText = `
       //   height: 100%;
@@ -152,6 +143,8 @@ class PrivChat {
   }
 
   packNodes(splitNode) {
+
+    this.wrapperScrollPos = this.wrapper.scrollTop
 
     let nodesAbove = []
     let nodesBelow = []
@@ -179,7 +172,7 @@ class PrivChat {
     nodesAbove.forEach(node => containerAbove.appendChild(node))
     nodesBelow.forEach(node => containerBelow.appendChild(node))
 
-    document.documentElement.style.setProperty('--mt', `${containerAbove.offsetHeight}px`)
+    document.documentElement.style.setProperty('--mt', `${containerAbove.offsetHeight - this.wrapperScrollPos}px`)
   }
 
   unpackNodes(splitNode) {

@@ -354,7 +354,7 @@ class ChatRooms {
     })
 
     this.privChat.reset()
-    this.groupChat.reset()
+    this.groupChat.reset(undefined, 'hard')
   }
 
   saveFeed(roomContainer) {

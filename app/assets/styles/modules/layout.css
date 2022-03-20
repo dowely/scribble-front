@@ -127,6 +127,10 @@
 
   &__content-container--chat {
     padding: 0;
+
+    @mixin atLarge {
+      padding: 0 $controlPxLarge $controlPyLarge;
+    }
   }
 
   &__circle {

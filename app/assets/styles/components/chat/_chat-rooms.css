@@ -7,14 +7,24 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow-y: auto;
+
+    @mixin atLarge {
+      
+    }
   }
 
   &__wrapper--focused {
     height: 41px;
     margin-top: var(--mt);
+    overflow-y: visible;
 
     @mixin atMedium {
       height: 66px;
+    }
+
+    @mixin atLarge {
+      
     }
   }
 

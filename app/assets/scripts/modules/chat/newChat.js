@@ -4,7 +4,7 @@ class NewChat {
     this.selectedUser = ''
 
     this.addUserBtn = document.querySelector('.chat-rooms__new-room__add-container')
-    this.users = document.querySelector('.chat-users')
+    this.users = document.querySelectorAll('.chat-users')
     this.userItems = document.querySelectorAll('.chat-users__user-item')
     this.userDots = document.querySelectorAll('.chat-users__select-dot')
 
@@ -40,7 +40,11 @@ class NewChat {
   toggleState() {
 
     this.addUserBtn.classList.toggle('chat-rooms__new-room__add-container--active')
-    this.users.classList.toggle('chat-users--selectable')
+
+    for(let usersContainer of this.users) {
+
+      usersContainer.classList.toggle('chat-users--selectable')
+    }
 
     if(!this.selectedUser) {
 
@@ -57,7 +61,10 @@ class NewChat {
 
     this.addUserBtn.classList.remove('chat-rooms__new-room__add-container--active')
     
-    this.users.classList.remove('chat-users--selectable')
+    for(let usersContainer of this.users) {
+
+      usersContainer.classList.remove('chat-users--selectable')
+    }
 
     this.selectedUser = ''
   }
