@@ -8,6 +8,11 @@
     padding: 0 40px;
   }
 
+  @mixin atLarge {
+    margin: 30px 0;
+    padding: 0 20px;
+  }
+
   &__avatar-container {
     width: 36px;
     height: 36px;
@@ -27,6 +32,11 @@
       width: 56px;
       height: 56px;
     }
+
+    @mixin atLarge {
+      width: 42px;
+      height: 42px;
+    }
   }
 
   &__avatar {
@@ -44,6 +54,11 @@
       font-size: 1.35rem;
       font-weight: 400;
     }
+
+    @mixin atLarge {
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
   }
 
   &__text-container {
@@ -58,11 +73,20 @@
       @mixin atMedium {
         margin-right: 15px;
       }
+
+      @mixin atLarge {
+        margin-right: 12px;
+      }
     }
 
     @mixin atMedium {
       max-width: 300px;
       margin-left: 15px;
+    }
+
+    @mixin atLarge {
+      max-width: 250px;
+      margin-left: 12px;
     }
   }
 
@@ -99,6 +123,12 @@
       font-size: 1.35rem;
       margin-bottom: 10px;
       padding: 12px 18px;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      padding: 10px 14px;
     }
   }
 }

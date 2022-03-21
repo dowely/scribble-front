@@ -18,6 +18,7 @@ const subMenu = document.querySelector('.sub-menu-chat')
 const chatContainers = document.querySelectorAll('.content__viewer--chat > div')
 const search = document.querySelector('#search-field__input')
 const userItems = document.querySelectorAll('.chat-users__user-item')
+const users = document.querySelectorAll('.chat-users')
 
 const sliderBar = new SliderBar(onSliderBar)
 
@@ -39,6 +40,8 @@ search.addEventListener('keyup', filter)
 
 function filter() {
 
+  let count = 0
+
   userItems.forEach(item => {
 
     let name = item.querySelector('.chat-users__name').textContent
@@ -49,11 +52,22 @@ function filter() {
       match(title)
     ) {
       item.style.display = 'flex'
+      count++
 
     } else {
 
       item.style.display = 'none'
-    }      
+    }
+    
+    users.forEach(container => {
+
+      container.lastElementChild.classList.remove('chat-users__no-match--pop')
+    })
+  })
+
+  users.forEach(container => {
+
+    if(count === 0) container.lastElementChild.classList.add('chat-users__no-match--pop')
   })
 }
 

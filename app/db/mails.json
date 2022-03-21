@@ -15,7 +15,7 @@
     {
       "id": 5,
       "history": [],
-      "initials": "CE",
+      "avatar": "assets/images/christopher-evans.png",
       "from": "Christopher Evans",
       "to": [],
       "time": "2:34 PM",
@@ -27,7 +27,7 @@
     {
       "id": 0,
       "history": [],
-      "initials": "SW",
+      "avatar": "assets/images/shirley-ward.png",
       "from": "Shirley Ward",
       "to": [],
       "time": "02/21/22",
@@ -53,7 +53,7 @@
     {
       "id": 1,
       "history": [0],
-      "initials": "JS",
+      "avatar": "assets/images/joyce-stafford.png",
       "to": ["Joyce Stafford"],
       "time": "12:56 AM",
       "sent": "Tuesday, February 22, 2022, 12:56 AM",

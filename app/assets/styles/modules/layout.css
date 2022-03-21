@@ -131,6 +131,10 @@
     @mixin atLarge {
       padding: 0 $controlPxLarge $controlPyLarge;
     }
+
+    @mixin atXLarge {
+      padding: 0 $controlPxXLarge $controlPyLarge;
+    }
   }
 
   &__circle {

@@ -8,10 +8,6 @@
     flex-direction: column;
     position: relative;
     overflow-y: auto;
-
-    @mixin atLarge {
-      
-    }
   }
 
   &__wrapper--focused {
@@ -24,7 +20,7 @@
     }
 
     @mixin atLarge {
-      
+      height: 51px;
     }
   }
 
@@ -73,6 +69,11 @@
       height: 65px;
       padding: 0 110px;
     }
+
+    @mixin atLarge {
+      height: 50px;
+      padding: 0 80px;
+    }
   }
 
   &__new-room__wrapper { 
@@ -83,6 +84,10 @@
       height: 50px;
       max-width: 500px;
     }
+
+    @mixin atLarge {
+      height: 40px;
+    }
   }
 
   &__new-room__add-container {
@@ -92,10 +97,16 @@
     border-radius: 50%;
     position: relative;
     transition: border-color .3s ease-out;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     @mixin atMedium {
       transform-origin: 0 0;
       transform: scale(1.5625);
+    }
+
+    @mixin atLarge {
+      transform: scale(1.25);
     }
   }
 
