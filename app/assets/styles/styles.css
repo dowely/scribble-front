@@ -11,9 +11,11 @@
 @import 'modules/menu.css';
 @import 'modules/content.css';
 
+@import 'modules/sub-menu/sub-menu-organizer.css';
 @import 'modules/sub-menu/sub-menu-mail.css';
 @import 'modules/sub-menu/sub-menu-team.css';
 @import 'modules/sub-menu/sub-menu-chat.css';
+@import 'modules/top-bar/top-bar.css';
 @import 'modules/top-bar/top-bar-mail.css';
 @import 'modules/top-bar/top-bar-team.css';
 @import 'modules/top-bar/top-bar-chat.css';
@@ -25,6 +27,8 @@
 @import 'components/sub-menu/_date-filter.css';
 @import 'components/sub-menu/_slider-bar.css';
 @import 'components/sub-menu/_chat-notifier.css';
+@import 'components/sub-menu/_bell-notifier.css';
+@import 'components/sub-menu/_notifications.css';
 
 @import 'components/mail/_mail-card.css';
 @import 'components/mail/_mail-list.css';

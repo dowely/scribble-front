@@ -2,7 +2,11 @@
 
   <div class="slider-bar__notifier-container">
 
-    <% if(route == 'mail') { %>
+    <% if(route == 'organizer') { %>
+
+      <%- include _bell-notifier.ejs %>
+
+    <% } else if(route == 'mail') { %>
 
       <%- include _mail-notifier.ejs %>
 
@@ -20,7 +24,9 @@
 
       <div class="slider-bar__item" data-index="1">
     
-        <% if(route == 'mail') { %>
+        <% if(route == 'organizer') { %>
+          <span>Calendar</span>
+        <% } else if(route == 'mail') { %>
           <span>Inbox</span>
         <% } else if(route == 'chat') { %>
           <span>Forum</span>
@@ -30,7 +36,9 @@
     
       <div class="slider-bar__item" data-index="2">
     
-        <% if(route == 'mail') { %>
+        <% if(route == 'organizer') { %>
+          <span>Schedule</span>
+        <% } else if(route == 'mail') { %>
           <span>Sent</span>
         <% } else if(route == 'chat') { %>
           <span>Group</span>
@@ -40,7 +48,9 @@
     
       <div class="slider-bar__item" data-index="3">
     
-        <% if(route == 'mail') { %>
+        <% if(route == 'organizer') { %>
+          <span>Items</span>
+        <% } else if(route == 'mail') { %>
           <span>Drafts</span>
         <% } else if(route == 'chat') { %>
           <span>Priv</span>

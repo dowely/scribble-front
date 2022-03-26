@@ -13,7 +13,11 @@
 
       <div class="layout__sub-menu-container">
 
-        <% if(route == 'mail') { %>
+        <% if(route == 'organizer') { %>
+
+          <%- include partials/sub-menu/organizer.ejs %>
+
+        <% } else if(route == 'mail') { %>
 
           <%- include partials/sub-menu/mail.ejs %>
 

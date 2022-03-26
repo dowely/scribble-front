@@ -1,0 +1,66 @@
+.notifications {
+  height: 100%;
+  display: flex;
+
+  &__msg {
+    padding: 0 20px;
+    border-radius: $pill;
+    background-color: rgba(0, 0, 0, .3);
+
+    .notifications[data-count="0"] & {
+      flex: auto;
+      text-align: center;
+    }
+  }
+
+  &__msg::before {
+    content: 'Notifications : ';
+
+    .notifications[data-count="0"] & {
+      content: 'No notifications at the moment';
+    }
+  }
+
+  &__msg::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: -9px;
+  }
+
+  &__msg span {
+    
+    &:first-child {
+      margin-left: 12px;
+    }
+
+    .notifications[data-count="0"] & {
+      display: none;
+    }
+  }
+
+  &__arrow {
+    display: flex;
+    width: 30px;
+    border-radius: $pill;
+    background-color: rgba(0, 0, 0, .3);
+
+    .notifications[data-count="0"] & {
+      display: none;
+    }
+  }
+
+  &__arrow--left {
+    margin-left: auto;
+  }
+
+  &__arrow--right {
+    margin-left: 18px;
+  }
+
+  &__arrow__icon {
+    width: 12px;
+    height: 20px;
+    margin: auto;
+  }
+}

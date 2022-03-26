@@ -11,6 +11,16 @@ module.exports = [
     chunks: ['login']
   }),
   new HtmlWebpackPlugin({
+    filename: 'organizer.html',
+    template: './app/pages/app.ejs',
+    title: 'Scribble App | Organizer',
+    chunks: ['app', 'organizer'],
+    templateParameters: {
+      route: 'organizer',
+      bell: 4
+    }
+  }),
+  new HtmlWebpackPlugin({
     filename: 'mail.html',
     template: './app/pages/app.ejs',
     title: 'Scribble App | Mail',

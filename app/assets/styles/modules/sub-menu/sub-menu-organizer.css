@@ -1,0 +1,104 @@
+.sub-menu-organizer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, minmax(0, auto));
+  color: white;
+
+  &__control {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    height: $controlHeightBaseline;
+    margin-bottom: $controlMbBaseline;
+
+    .sub-menu-organizer__slider-bar &,
+    .sub-menu-organizer__date-filter &,
+    .sub-menu-organizer__notifications & {
+      margin-bottom: 0;
+    }
+
+    @mixin atMedium {
+      max-width: 440px;
+      margin-left: 0;
+      height: $controlHeightMedium;
+      margin-bottom: $controlMbMedium;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      width: 440px;
+    }
+  }
+
+  &__control--reveal {
+    height: 0;
+    margin-bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s ease-out .3s, opacity .3s ease-in 1ms;
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-bottom: $controlMbMedium;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+    }
+
+    .sub-menu-organizer--search & {
+      height: $controlHeightBaseline;
+      margin-bottom: $controlMbBaseline;
+      visibility: visible;
+      opacity: 1;
+      transition: all .4s ease-out, opacity .3s ease-in .4s;
+
+      @mixin atMedium {
+        height: $controlHeightMedium;
+        margin-bottom: $controlMbMedium;
+      }
+
+      @mixin atLarge {
+        height: $controlHeightLarge;
+      }
+    }
+  }
+
+  &__date-filter &__control--overlay {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 2.35s ease-out, visibility 1ms 2.35s; 
+
+    .sub-menu-organizer--search & {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 2.35s ease-out 2.35s, visibility 1ms;
+    }
+  }
+
+  &__notifications &__control--overlay {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &__slider-bar &__control--overlay {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 2.35s ease-out 2.35s, visibility 1ms;
+
+    .sub-menu-organizer--search & {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 2.35s ease-out, visibility 1ms 2.35s;
+    }
+  }
+
+  &__date-filter,
+  &__notifications,
+  &__slider-bar {
+    grid-column: 1 / -1;
+    grid-row: -2 / -1;
+  }
+}

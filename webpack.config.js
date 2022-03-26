@@ -14,6 +14,7 @@ module.exports = {
   entry: {
     app: './app/assets/scripts/App.js',
     login: './app/assets/scripts/Login.js',
+    organizer: './app/assets/scripts/Organizer.js',
     mail: './app/assets/scripts/Mail.js',
     team: './app/assets/scripts/Team.js',
     chat: './app/assets/scripts/Chat.js'
@@ -46,7 +47,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/chat.html'
+    open: 'http://localhost:3000/organizer.html'
   },
   output: {
     filename: '[name].bundle.js',

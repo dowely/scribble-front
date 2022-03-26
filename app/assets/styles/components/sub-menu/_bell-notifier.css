@@ -1,0 +1,32 @@
+.bell-notifier {
+  position: relative;
+
+  &__icon {
+    display: block;
+    width: 22px;
+    height: 24px;
+
+    @mixin atMedium {
+      width: 37px;
+      height: 32px;
+    }
+  }
+
+  &__dot {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: $mainGreen;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-10%, -10%);
+
+    @mixin atMedium {
+      width: 18px;
+      height: 18px;
+      transform: translate(-20%, -20%);
+    }
+  }
+}

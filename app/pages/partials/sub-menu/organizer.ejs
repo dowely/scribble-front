@@ -1,0 +1,74 @@
+<!-- sub-menu-organizer--search -->
+<!-- sub-menu-organizer--notifications -->
+<div class="sub-menu-organizer">
+  
+  <div class="sub-menu-organizer__top-bar">
+    <div class="sub-menu-organizer__control">
+      <div class="top-bar top-bar-organizer">
+      
+        <div class="top-bar__back">
+          <div class="top-bar__back-tap-area" id="back-tap-area"></div>
+          <svg class="top-bar__back-icon">
+            <use href="#arrow-left-regular"></use>
+          </svg>
+        </div>
+      
+        <h2 class="top-bar__title">Organizer</h2>
+      
+        <div class="top-bar__tools">
+
+          <div class="top-bar__notifier">
+      
+            <%- include ../components/sub-menu/_bell-notifier.ejs %>
+      
+          </div>
+      
+          <div class="top-bar__ellipsis">
+
+            <div class="top-bar__ellipsis-tap-area"></div>
+      
+            <svg class="top-bar__ellipsis-icon">
+              <use href="#ellipsis-vertical-solid"></use>
+            </svg>
+      
+          </div>
+      
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-menu-organizer__search-field">
+    <div class="sub-menu-organizer__control sub-menu-organizer__control--reveal">
+      
+      <%- include ../components/sub-menu/_search-field.ejs %>
+
+    </div>
+  </div>
+
+  <div class="sub-menu-organizer__date-filter">
+    <div class="sub-menu-organizer__control sub-menu-organizer__control--overlay">
+      
+      <%- include ../components/sub-menu/_date-filter.ejs %>
+
+    </div>
+  </div>
+
+  <div class="sub-menu-organizer__notifications">
+    <div class="sub-menu-organizer__control sub-menu-organizer__control--overlay">
+
+      <%- include ../components/sub-menu/_notifications.ejs %>
+
+    </div>
+  </div>
+
+  <div class="sub-menu-organizer__slider-bar">
+    <div class="sub-menu-organizer__control sub-menu-organizer__control--overlay">
+      
+      <%- include ../components/sub-menu/_slider-bar.ejs %>
+
+    </div>
+  </div>
+
+</div>

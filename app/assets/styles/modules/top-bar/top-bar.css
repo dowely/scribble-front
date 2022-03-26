@@ -1,0 +1,79 @@
+.top-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &__back {
+    position: relative;
+
+    @mixin atMedium {
+      display: none;
+    }
+  }
+
+  &__back-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(2, 1.5);
+    cursor: pointer;
+  }
+
+  &__back-icon {
+    display: block;
+    height: 24px;
+    width: 21px;
+  }
+
+  &__title {
+    font-size: 1.65rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    margin: 0 auto 0 15px;
+
+    @mixin atMedium {
+      margin-left: 0;
+      margin-right: 25px;
+      font-size: 2rem;
+    }
+  }
+
+  &__tools {
+    display: flex;
+    align-items: center;
+  }
+
+  &__tools > div {
+    margin-left: 35px;
+
+    @mixin atMedium {
+      margin-left: 0;
+    }
+  }
+
+  &__ellipsis {
+    position: relative;
+    cursor: pointer;
+
+    @mixin atMedium {
+      display: none;
+    }
+  }
+  
+  &__ellipsis-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(6, 1.5);
+  }
+
+  &__ellipsis-icon {
+    display: block;
+    height: 24px;
+    width: 7px;
+  }
+}
