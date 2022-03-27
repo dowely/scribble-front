@@ -1,21 +1,31 @@
 <div class="notifications" data-count="<%= bell %>">
 
-  <div class="notifications__msg">
-    <span>1</span>
-    <span>/</span>
-    <span><%= bell %></span>
+  <div class="notifications__bell-container">
+
+    <%- include _bell-notifier.ejs %>
+
   </div>
 
-  <div class="notifications__arrow notifications__arrow--left">
-    <svg class="notifications__arrow__icon">
-      <use href="#angle-left-solid"></use>
-    </svg>
-  </div>
+  <div class="notifications__overlay">
 
-  <div class="notifications__arrow notifications__arrow--right">
-    <svg class="notifications__arrow__icon">
-      <use href="#angle-right-solid"></use>
-    </svg>
+    <div class="notifications__msg">
+      <span>1</span>
+      <span>/</span>
+      <span><%= bell %></span>
+    </div>
+  
+    <div class="notifications__arrow notifications__arrow--left">
+      <svg class="notifications__arrow__icon">
+        <use href="#angle-left-solid"></use>
+      </svg>
+    </div>
+  
+    <div class="notifications__arrow notifications__arrow--right">
+      <svg class="notifications__arrow__icon">
+        <use href="#angle-right-solid"></use>
+      </svg>
+    </div>
+
   </div>
 
 </div>

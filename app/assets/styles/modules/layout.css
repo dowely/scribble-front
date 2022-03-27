@@ -125,7 +125,8 @@
     }
   }
 
-  &__content-container--chat {
+  &__content-container--chat,
+  &__content-container--organizer {
     padding: 0;
 
     @mixin atLarge {

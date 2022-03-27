@@ -33,6 +33,10 @@
     }
   }
 
+  &__left-col--organizer {
+    position: relative;
+  }
+
   &__right-col {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
@@ -96,6 +100,42 @@
 
     @mixin atLarge {
       border-top: none;
+    }
+  }
+
+  &__viewer--organizer {
+    height: 100%;
+    box-shadow: none;
+  }
+
+  &__navigation-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__index-1-container {
+    display: none;
+
+    .content__left-col[data-index="1"] & {
+      display: block;
+    }
+  }
+
+  &__index-2-container {
+    display: none;
+
+    .content__left-col[data-index="2"] & {
+      display: block;
+    }
+  }
+
+  &__index-3-container {
+    display: none;
+
+    .content__left-col[data-index="3"] & {
+      display: block;
     }
   }
 }

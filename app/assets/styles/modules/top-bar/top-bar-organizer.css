@@ -1,4 +1,4 @@
-.top-bar {
+.top-bar-organizer {
   height: 100%;
   display: flex;
   align-items: center;
@@ -35,31 +35,26 @@
 
     @mixin atMedium {
       margin-left: 0;
-      margin-right: 25px;
       font-size: 2rem;
     }
   }
 
-  &__tools {
+  &__toggles {
     display: flex;
     align-items: center;
-  }
-
-  &__tools > div {
-    margin-left: 35px;
 
     @mixin atMedium {
-      margin-left: 0;
+      display: none;
     }
+  }
+
+  &__toggles > div {
+    margin-left: 35px;
   }
 
   &__ellipsis {
     position: relative;
     cursor: pointer;
-
-    @mixin atMedium {
-      display: none;
-    }
   }
   
   &__ellipsis-tap-area {

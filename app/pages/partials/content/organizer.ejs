@@ -1,0 +1,49 @@
+<div class="content">
+
+  <div class="content__left-col content__left-col--organizer" data-index="3">
+
+    <div class="content__viewer content__viewer--organizer">
+
+      <div class="content__index-1-container">
+        index 1
+      </div>
+
+      <div class="content__index-2-container">
+        index 2
+      </div>
+
+      <div class="content__index-3-container">
+        <div class="items-list" data-items-type="task">
+          
+          <% items.tasks.forEach(task => { %>
+
+            <div class="items-list__card-container" data-card-type="task">
+
+              <%- include ../../../assets/templates/organizer/_item-card.ejs %>
+
+            </div>
+
+          <% }) %>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="content__navigation-container">
+      
+      <%- include ../components/organizer/_bottom-navigation.ejs %>
+
+    </div>
+
+  </div>
+
+  <div class="content__right-col">
+    <div class="content__viewer content__viewer--organizer"></div>
+  </div>
+
+  <div class="content__central-col">
+    <div class="content__viewer content__viewer--organizer"></div>
+  </div>
+
+</div>

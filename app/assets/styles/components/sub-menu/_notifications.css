@@ -1,6 +1,36 @@
 .notifications {
   height: 100%;
   display: flex;
+  user-select: none;
+  
+  &__bell-container {
+    display: none;
+
+    @mixin atMedium {
+      display: block;
+      margin-right: 24px;
+    }
+
+    @mixin atLarge {
+      order: 2;
+      margin-right: 0;
+      margin-left: 30px;
+    }
+  }
+
+  &__overlay {
+    flex: 1;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .35s ease-out, visibility 1ms .35s;
+
+    .sub-menu-organizer--notifications & {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity .35s ease-out .35s, visibility 1ms .35s;
+    }
+  } 
 
   &__msg {
     padding: 0 20px;
@@ -11,6 +41,16 @@
       flex: auto;
       text-align: center;
     }
+
+    @mixin atMedium {
+      padding: 0 25px;
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border: 1px solid white;
+      font-weight: 300;
+    }
   }
 
   &__msg::before {
@@ -19,6 +59,10 @@
     .notifications[data-count="0"] & {
       content: 'No notifications at the moment';
     }
+
+    @mixin atMedium {
+      font-size: 1.15rem;
+    }
   }
 
   &__msg::after {
@@ -26,12 +70,20 @@
     display: inline-block;
     height: 100%;
     vertical-align: -9px;
+
+    @mixin atMedium {
+      vertical-align: -13px;
+    }
   }
 
   &__msg span {
     
     &:first-child {
       margin-left: 12px;
+
+      @mixin atMedium {
+        margin-left: 15px;
+      }
     }
 
     .notifications[data-count="0"] & {
@@ -41,12 +93,26 @@
 
   &__arrow {
     display: flex;
-    width: 30px;
+    width: $controlHeightBaseline;
     border-radius: $pill;
     background-color: rgba(0, 0, 0, .3);
+    cursor: pointer;
 
     .notifications[data-count="0"] & {
       display: none;
+    }
+
+    @mixin atMedium {
+      width: $controlHeightMedium;
+    }
+
+    @mixin atLarge {
+      width: $controlHeightLarge;
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border: 1px solid white;
     }
   }
 
@@ -62,5 +128,10 @@
     width: 12px;
     height: 20px;
     margin: auto;
+
+    @mixin atMedium {
+      width: 16px;
+      height: 26px;
+    }
   }
 }

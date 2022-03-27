@@ -35,7 +35,11 @@
 
       <div class="layout__content-container layout__content-container--<%= route %>">
 
-        <% if(route == 'mail') { %>
+        <% if(route == 'organizer') { %>
+
+          <%- include partials/content/organizer.ejs %>
+
+        <% } else if(route == 'mail') { %>
 
           <%- include partials/content/mail.ejs %>
 
@@ -57,5 +61,16 @@
     <div class="layout__circle layout__circle--small"></div>
     
   </div>
+
+  <% if(route === 'organizer') {
+  
+    let __items__ = JSON.stringify(items)
+  
+  %>
+
+  <script>let __items__ = '<%- __items__ %>'</script>
+
+  <% } %>
+
 </body>
 </html>

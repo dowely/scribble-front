@@ -4,30 +4,30 @@
   
   <div class="sub-menu-organizer__top-bar">
     <div class="sub-menu-organizer__control">
-      <div class="top-bar top-bar-organizer">
+      <div class="top-bar-organizer">
       
-        <div class="top-bar__back">
-          <div class="top-bar__back-tap-area" id="back-tap-area"></div>
-          <svg class="top-bar__back-icon">
+        <div class="top-bar-organizer__back">
+          <div class="top-bar-organizer__back-tap-area" id="back-tap-area"></div>
+          <svg class="top-bar-organizer__back-icon">
             <use href="#arrow-left-regular"></use>
           </svg>
         </div>
       
-        <h2 class="top-bar__title">Organizer</h2>
+        <h2 class="top-bar-organizer__title">Organizer</h2>
       
-        <div class="top-bar__tools">
+        <div class="top-bar-organizer__toggles">
 
-          <div class="top-bar__notifier">
+          <div class="top-bar-organizer__notifier">
       
             <%- include ../components/sub-menu/_bell-notifier.ejs %>
       
           </div>
       
-          <div class="top-bar__ellipsis">
+          <div class="top-bar-organizer__ellipsis">
 
-            <div class="top-bar__ellipsis-tap-area"></div>
+            <div class="top-bar-organizer__ellipsis-tap-area"></div>
       
-            <svg class="top-bar__ellipsis-icon">
+            <svg class="top-bar-organizer__ellipsis-icon">
               <use href="#ellipsis-vertical-solid"></use>
             </svg>
       
@@ -56,7 +56,7 @@
   </div>
 
   <div class="sub-menu-organizer__notifications">
-    <div class="sub-menu-organizer__control sub-menu-organizer__control--overlay">
+    <div class="sub-menu-organizer__control">
 
       <%- include ../components/sub-menu/_notifications.ejs %>
 

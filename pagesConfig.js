@@ -1,5 +1,6 @@
 const mails = require('./app/db/mails.json')
 const users = require('./app/db/users.json')
+const items = require('./app/db/items.json')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -17,7 +18,8 @@ module.exports = [
     chunks: ['app', 'organizer'],
     templateParameters: {
       route: 'organizer',
-      bell: 4
+      bell: 4,
+      items
     }
   }),
   new HtmlWebpackPlugin({
