@@ -1,0 +1,320 @@
+.bottom-navigation {
+  display: flex;
+  height: 58px;
+  position: relative;
+  min-width: fit-content;
+
+  @mixin atMedium {
+    height: 70px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @mixin atLarge {
+    max-width: 100%;
+  }
+
+  &__plus-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: $primaryPurple;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 1;
+
+    @mixin atMedium {
+      width: 78px;
+      height: 78px;
+      top: -37px;
+    }
+
+    @mixin atLarge {
+      background-color: rgba(0, 0, 0, .3);
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border: 1px solid white;
+    }
+  }
+
+  &__plus-bar {
+    width: 42px;
+    height: 4px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    @mixin atMedium {
+      width: 51px;
+      height: 5px;
+    }
+  }
+
+  &__left-end {
+    flex: 1;
+    border-top: 2.25px solid $gray50;
+    background-color: white;
+
+    @mixin atMedium {
+      border-left: 2.25px solid $gray50;
+      border-bottom: 2.25px solid $gray50;
+      border-top-left-radius: 40px;
+    }
+
+    @mixin atLarge {
+      border: none;
+      width: 20px;
+      flex: none;
+      border-bottom-left-radius: 40px;
+      background-color: rgba(0, 0, 0, .3);
+    }
+
+    @mixin atXLarge {
+      border-top: 1px solid white;
+      border-left: 1px solid white;
+      border-bottom: 1px solid white;
+      background-color: transparent;
+    }
+  }
+
+  &__right-end {
+    flex: 1;
+    order: 3;
+    border-top: 2.25px solid $gray50;
+    background-color: white;
+
+    @mixin atMedium {
+      border-right: 2.25px solid $gray50;
+      border-bottom: 2.25px solid $gray50;
+      border-top-right-radius: 40px;
+    }
+
+    @mixin atLarge {
+      border: none;
+      width: 20px;
+      flex: none;
+      border-bottom-right-radius: 40px;
+      background-color: rgba(0, 0, 0, .3);
+    }
+
+    @mixin atXLarge {
+      border-top: 1px solid white;
+      border-right: 1px solid white;
+      border-bottom: 1px solid white;
+      background-color: transparent;
+    }
+  }
+
+  &__wrapper {
+    flex: auto;
+    max-width: 400px;
+    min-width: 340px;
+    display: flex;
+    justify-content: space-around;
+
+    @mixin atMedium {
+      max-width: unset;
+      min-width: unset;
+      width: 440px;
+    }
+
+    @mixin atLarge {
+      width: 0;
+    }
+  }
+
+  &__notch-container {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+
+    @mixin atMedium {
+      border-bottom: 2.25px solid $gray50;
+    }
+
+    @mixin atLarge {
+      border-bottom: none;
+    }
+
+    @mixin atXLarge {
+      border-bottom: 1px solid white;
+    }
+  }
+
+  &__notch {
+    margin: 0 12px 14px;
+    width: 80px;
+    box-shadow: 0 0 0 40px white;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border: 2.25px solid $gray50;
+    clip-path: inset(11px -14px -16px -14px);
+
+    @mixin atMedium {
+      width: 96px;
+      box-shadow: 0 0 0 50px white;
+      border-bottom-left-radius: 48px;
+      border-bottom-right-radius: 48px;
+      margin: 0 16px 18px;
+      clip-path: inset(15px -16px -18px -16px);
+    }
+
+    @mixin atLarge {
+      box-shadow: 0 0 0 50px rgba(0, 0, 0, .3);
+      border: none;
+      margin: 0 16px 20px;
+      clip-path: inset(15px -16px -20px -16px);
+    }
+
+    @mixin atXLarge {
+      box-shadow: unset;
+      border: 1px solid white;
+      margin: 0 16px 18px;
+      clip-path: inset(15px -16px -18px -16px);
+    }
+  }
+
+  &__arcs {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: absolute;
+    border: 2.25px solid $gray50;
+    background-color: white;
+    clip-path: inset(0 0 62%);
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+    }
+
+    @mixin atLarge {
+      background-color: rgba(0, 0, 0, .3);
+      border: none;
+      clip-path: inset(0 0 62.5%);
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border: 1px solid white;
+    }
+  }
+
+  &__arcs--left {
+    transform: translateX(-52%);
+
+    @mixin atMedium {
+      transform: translateX(-49%);
+    }
+
+    @mixin atLarge {
+      transform: translate(-55%);
+    }
+
+    @mixin atXLarge {
+      transform: translate(-54%);
+    }
+  }
+
+  &__arcs--right {
+    right: 0;
+    transform: translateX(52%);
+
+    @mixin atMedium {
+      transform: translateX(49%);
+    }
+
+    @mixin atLarge {
+      transform: translate(55%);
+    }
+
+    @mixin atXLarge {
+      transform: translate(54%);
+    }
+  }
+
+  &__icons-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 2.25px solid $gray50;
+    background-color: white;
+
+    @mixin atMedium {
+      border-bottom: 2.25px solid $gray50;
+    }
+
+    @mixin atLarge {
+      background-color: rgba(0, 0, 0, .3);
+      border: none;
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border-bottom: 1px solid white;
+      border-top: 1px solid white;
+    }
+  }
+
+  &__icons {
+    display: block;
+    color: $gray30;
+    cursor: pointer;
+
+    @mixin atLarge {
+      color: rgba(255, 255, 255, .5);
+    }
+  }
+
+  &__icons--pen {
+    width: 32px;
+    height: 32px;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__icons--list-check {
+    width: 34px;
+    height: 32px;
+
+    @mixin atMedium {
+      width: 48px;
+      height: 40px;
+    }
+  }
+
+  &__icons--calendar {
+    width: 28px;
+    height: 32px;
+
+    @mixin atMedium {
+      width: 35px;
+      height: 40px;
+    }
+  }
+
+  &__icons--user-group {
+    width: 40px;
+    height: 32px;
+
+    @mixin atMedium {
+      width: 50px;
+      height: 40px;
+    }
+  }
+}
