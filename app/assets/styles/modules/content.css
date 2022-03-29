@@ -115,25 +115,24 @@
     right: 0;
   }
 
-  &__index-1-container {
+  &__index-container {
     display: none;
+    height: 100%;
+  }
 
-    .content__left-col[data-index="1"] & {
+  &__index-container--1 {
+     .content__left-col[data-index="1"] & {
       display: block;
     }
   }
 
-  &__index-2-container {
-    display: none;
-
+  &__index-container--2 {
     .content__left-col[data-index="2"] & {
       display: block;
     }
   }
 
-  &__index-3-container {
-    display: none;
-
+  &__index-container--3 {
     .content__left-col[data-index="3"] & {
       display: block;
     }

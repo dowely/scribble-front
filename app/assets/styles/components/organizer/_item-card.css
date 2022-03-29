@@ -1,0 +1,121 @@
+.item-card {
+  background-color: white;
+  display: flex;
+  color: $mainBlack;
+
+  &__left-strip {
+    flex: none;
+    width: 8px;
+
+    [data-card-type="task"] & {
+      background-color: $primaryOrange;
+    }
+  }
+
+  &__content {
+    padding: 14px 15px 14px 12px;
+    flex: auto;
+    width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__date {
+    font-size: .75rem;
+    color: $gray50;
+    font-weight: 400;
+    margin: 7px 0 10px;
+
+    span {
+      margin-right: 14px;
+    }
+  }
+
+  &__body {
+    margin: 0;
+    font-size: .75rem;
+    line-height: 2.5ex;
+    min-height: 7.5ex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  &__task-toggle-container {
+    flex: none;
+    width: 55px;
+    padding-top: 14px;
+    position: relative;
+  }
+
+  &__task-checkbox-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+
+  &__task-checkbox-icon--checked {
+    display: none;
+
+    [data-task-status="done"] & {
+      display: block;
+    }
+  }
+
+  &__task-status {
+    font-size: .75rem;
+    margin-top: 48px;
+
+    [data-task-status="pending"] & {
+      color: $primaryOrange;
+    }
+
+    [data-task-status="done"] & {
+      color: #7ddf64;
+    }
+
+    [data-task-status="in progress"] & {
+      color: $largeGradientBlue;
+    }
+
+    [data-task-status="overdue"] & {
+      color: $primaryRed;
+    }    
+  }
+
+  &__right-buttons {
+    flex: none;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+  }
+
+  &__icon {
+    color: $gray30;
+  }
+
+  &__icon--edit {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__icon--trash {
+    display: block;
+    width: 22px;
+    height: 25px;
+  }
+}

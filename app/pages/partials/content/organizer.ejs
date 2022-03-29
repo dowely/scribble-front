@@ -4,26 +4,43 @@
 
     <div class="content__viewer content__viewer--organizer">
 
-      <div class="content__index-1-container">
+      <div class="content__index-container content__index-container--1">
         index 1
       </div>
 
-      <div class="content__index-2-container">
+      <div class="content__index-container content__index-container--2">
         index 2
       </div>
 
-      <div class="content__index-3-container">
-        <div class="items-list" data-items-type="task">
-          
-          <% items.tasks.forEach(task => { %>
+      <div class="content__index-container content__index-container--3">
+        <div class="items" data-items-type="task">
 
-            <div class="items-list__card-container" data-card-type="task">
+          <div class="items__heading"></div>
 
-              <%- include ../../../assets/templates/organizer/_item-card.ejs %>
+          <ul class="items__list items__list--tasks">
 
-            </div>
+            <% items.tasks.forEach(item => {
+            
+              item.type = 'task'
+              item.task = true
+              item.shortened = false
+            %>
 
-          <% }) %>
+              <% if(item.status === 'done') { %>
+  
+                <div class="items__list__divider"><span>Done</span></div>
+  
+              <% } %>
+  
+              <li class="items__list__card-container">
+  
+                <%- include ../../../assets/templates/organizer/_item-card.ejs %>
+  
+              </li>
+  
+            <% }) %>
+
+          </ul>
 
         </div>
       </div>

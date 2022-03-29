@@ -1,0 +1,87 @@
+.items {
+  height: 100%;
+  padding: 20px 15px 95px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 15px;
+    right: 15px;
+    bottom: calc(100% - 69px);
+    top: 49px;
+    background-image: linear-gradient(to bottom, $mainSilver, transparent);
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 95px;
+    top: calc(100% - 115px);
+    background-image: linear-gradient(to bottom, transparent, $mainSilver);
+  }
+
+  &__heading {
+    font-size: 1.5rem;
+    line-height: .8;
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+
+  &__heading::before {
+    margin-right: 10px;
+
+    .items[data-items-type="task"] & {
+      content: 'Tasks:'
+    }
+  }
+
+  &__heading::after {
+
+    .items[data-items-type="task"] & {
+      content: '5'
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex: auto;
+    height: 0;
+    overflow-y: auto;
+  }
+
+  &__list__card-container {
+    margin: 20px 5px;
+    box-shadow: 0 0 5px 1px $gray30;
+
+    &:first-child {
+      margin-top: 15px;
+    }
+  }
+
+  &__list__divider {
+    height: 2px;
+    background-color: $gray50;
+    color: $gray70;
+    position: relative;
+    margin: 25px 0;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $mainSilver;
+      padding: 0 15px;
+    }
+  }
+}

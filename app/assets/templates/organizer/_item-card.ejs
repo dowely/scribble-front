@@ -1,3 +1,63 @@
-<div class="item-card">
-  <%= task.id %>
+<div class="item-card" data-card-type="<%= item.type %>">
+  
+  <div class="item-card__left-strip"></div>
+
+  <div class="item-card__content">
+
+    <h3 class="item-card__title"><%= item.title %></h3>
+
+    <% if(!item.shortened) { %>
+
+    <h4 class="item-card__date"><span><%= item.note ? 'Pin date:' : item.meeting ? 'Meeting date:' : item.task ? 'Due date:' : 'Event date:' %></span><%= item.meetingDate || item.eventDate || item.dueDate || item.pinDate %></h4>
+
+    <% } %>
+
+    <% if(item.task || item.note) { %>
+
+    <p class="item-card__body"><%= item.body || item.description %></p>
+
+    <% } else { %>
+
+    <p class="item-card__time"><span><%= item.event ? 'Event time:' : 'Meeting time:' %></span><%= item.eventTime || item.meetingTime %></p>
+
+    <% } %>
+
+    <% if(item.event || item.meeting) { %>
+
+      <p class="item-card__details"><span><%= item.event ? 'Venue' : 'Attendees' %></span><%= item.venue || item.attendees %></p>
+  
+    <% } %>
+
+  </div>
+
+  <% if(item.task) { %>
+
+  <div class="item-card__task-toggle-container" data-task-status="<%= item.status %>">
+
+    <svg class="item-card__task-checkbox-icon">
+      <use href="#square-regular"></use>
+    </svg>
+
+    <svg class="item-card__task-checkbox-icon item-card__task-checkbox-icon--checked">
+      <use href="#square-check-regular"></use>
+    </svg>
+
+    <p class="item-card__task-status"><%= item.status %></p>
+
+  </div>
+
+  <% } %>
+
+  <div class="item-card__right-buttons">
+
+    <svg class="item-card__icon item-card__icon--edit">
+      <use href="#pen-to-square-regular"></use>
+    </svg>
+
+    <svg class="item-card__icon item-card__icon--trash">
+      <use href="#trash-can-regular"></use>
+    </svg>
+
+  </div>
+
 </div>
