@@ -2,13 +2,40 @@
   background-color: white;
   display: flex;
   color: $mainBlack;
+  overflow: hidden;
 
   &__left-strip {
     flex: none;
     width: 8px;
 
+    @mixin atMedium {
+      width: 11px;
+    }
+
+    @mixin atLarge {
+      width: 10px;
+    }
+
     [data-card-type="task"] & {
       background-color: $primaryOrange;
+    }
+
+    [data-card-type="event"] & {
+      background-color: $primaryBlue;
+    }
+
+    [data-card-type="meeting"] & {
+      background-color: $primaryRed;
+      background-image: linear-gradient(-45deg, transparent 0, transparent 8%, white 8%, white 16%, transparent 16%, transparent 24%, white 24%, white 32%, transparent 32%, transparent 40%, white 40%, white 48%, transparent 48%, transparent 56%, white 56%, white 64%, transparent 64%, transparent 72%, white 72%, white 80%, transparent 80%, transparent 88%, white 88%, white 96%, transparent 96%, transparent 100%);
+      box-shadow: 1px 0 4px 0 rgba(0, 0, 0, .4);
+    }
+
+    [data-card-type="meeting"][data-meeting-status="accepted"] & {
+      background-image: none;
+    }
+
+    [data-card-type="note"] & {
+      background-color: $primaryGreen;
     }
   }
 
@@ -16,6 +43,14 @@
     padding: 14px 15px 14px 12px;
     flex: auto;
     width: 0;
+
+    @mixin atMedium {
+      padding: 22px 25px; 
+    }
+
+    @mixin atLarge {
+      padding: 16px 20px;
+    }
   }
 
   &__title {
@@ -25,6 +60,14 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.3rem;
+    }
   }
 
   &__date {
@@ -36,6 +79,85 @@
     span {
       margin-right: 14px;
     }
+
+    @mixin atMedium {
+      font-size: .95rem;
+      margin: 9px 0 13px;
+    }
+
+    @mixin atLarge {
+      font-size: .875rem;
+      margin: 8px 0 11px;
+    }
+  }
+
+  &__time {
+    font-size: .75rem;
+    margin-top: 11px;
+    margin-bottom: 5px;
+
+    span {
+      margin-right: 15px;
+    }
+
+    @mixin atMedium {
+      font-size: .95rem;
+      margin-top: 15px;
+      margin-bottom: 8px;
+    }
+
+    @mixin atLarge {
+      font-size: .875rem;
+      margin-top: 12px;
+      margin-bottom: 7px;
+    }
+  }
+
+  &__details {
+    font-size: .75rem;
+    margin: 0;
+    line-height: 2.5ex;
+    min-height: 5ex;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+
+    span {
+      margin-right: 39px;
+      float: left;
+      height: 5ex;
+
+      @mixin atMedium {
+        margin-right: 47px;
+      }
+
+      @mixin atLarge {
+        margin-right: 44px;
+      }
+
+      [data-card-type="meeting"] & {
+        margin-right: 32px;
+
+        @mixin atMedium {
+          margin-right: 36px;
+        }
+
+        @mixin atLarge {
+          margin-right: 35px;
+        }
+      }
+    }
+
+    @mixin atMedium {
+      font-size: .95rem;
+    }
+
+    @mixin atLarge {
+      font-size: .875rem;
+    }
   }
 
   &__body {
@@ -43,11 +165,20 @@
     font-size: .75rem;
     line-height: 2.5ex;
     min-height: 7.5ex;
+    white-space: pre-wrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3; /* number of lines to show */
     -webkit-box-orient: vertical;
+
+    @mixin atMedium {
+      font-size: .95rem;
+    }
+
+    @mixin atLarge {
+      font-size: .875rem;
+    }
   }
 
   &__task-toggle-container {
@@ -55,6 +186,16 @@
     width: 55px;
     padding-top: 14px;
     position: relative;
+
+    @mixin atMedium {
+      width: 75px;
+      padding-top: 22px;
+    }
+
+    @mixin atLarge {
+      width: 68px;
+      padding-top: 18px;
+    }
   }
 
   &__task-checkbox-icon {
@@ -62,6 +203,16 @@
     width: 24px;
     height: 24px;
     position: absolute;
+
+    @mixin atMedium {
+      width: 34px;
+      height: 34px;
+    }
+
+    @mixin atLarge {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__task-checkbox-icon--checked {
@@ -75,6 +226,16 @@
   &__task-status {
     font-size: .75rem;
     margin-top: 48px;
+
+    @mixin atMedium {
+      font-size: .95rem;
+      margin-top: 65px;
+    }
+
+    @mixin atLarge {
+      font-size: .875rem;
+      margin-top: 56px;
+    }
 
     [data-task-status="pending"] & {
       color: $primaryOrange;
@@ -101,6 +262,16 @@
     justify-content: space-between;
     align-items: center;
     padding: 14px 0;
+
+    @mixin atMedium {
+      width: 75px;
+      padding: 22px 0;
+    }
+
+    @mixin atLarge {
+      width: 68px;
+      padding: 18px 0;
+    }
   }
 
   &__icon {
@@ -111,11 +282,31 @@
     display: block;
     width: 24px;
     height: 24px;
+
+    @mixin atMedium {
+      width: 34px;
+      height: 34px;
+    }
+
+    @mixin atLarge {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   &__icon--trash {
     display: block;
     width: 22px;
     height: 25px;
+
+    @mixin atMedium {
+      width: 32px;
+      height: 35px;
+    }
+
+    @mixin atLarge {
+      width: 29px;
+      height: 33px;
+    }
   }
 }

@@ -1,0 +1,99 @@
+<div class="items" data-items-type="note">
+
+  <div class="items__heading"></div>
+
+  <ul class="items__list items__list--tasks">
+
+    <% items.tasks.forEach(item => {
+    
+      item.type = 'task'
+      item.task = true
+      item.shortened = false
+    %>
+
+      <% if(item.status === 'done') { %>
+
+        <div class="items__list__divider"><span>Done</span></div>
+
+      <% } %>
+
+      <li class="items__list__card-container">
+
+        <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+      </li>
+
+    <% }) %>
+
+  </ul>
+
+  <ul class="items__list items__list--events">
+
+    <% items.events.forEach(item => {
+    
+      item.type = 'event'
+      item.event = true
+      item.shortened = false
+    %>
+
+      <% if(item.past) { %>
+
+        <div class="items__list__divider"><span>Past</span></div>
+
+      <% } %>
+
+      <li class="items__list__card-container">
+
+        <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+      </li>
+
+    <% }) %>
+
+  </ul>
+
+  <ul class="items__list items__list--meetings">
+
+    <% items.meetings.forEach(item => {
+    
+      item.type = 'meeting'
+      item.meeting = true
+      item.shortened = false
+    %>
+
+      <% if(item.past) { %>
+
+        <div class="items__list__divider"><span>Past</span></div>
+
+      <% } %>
+
+      <li class="items__list__card-container">
+
+        <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+      </li>
+
+    <% }) %>
+
+  </ul>
+
+  <ul class="items__list items__list--notes">
+
+    <% items.notes.forEach(item => {
+    
+      item.type = 'note'
+      item.note = true
+      item.shortened = false
+    %>
+
+      <li class="items__list__card-container">
+
+        <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+      </li>
+
+    <% }) %>
+
+  </ul>
+
+</div>

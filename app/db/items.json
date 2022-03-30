@@ -36,5 +36,115 @@
       "dueDate": "2 Feb 2022",
       "status": "done"
     }
+  ],
+  "events":
+  [
+    {
+      "id": 8461,
+      "title": "Suzanne's birthday",
+      "eventDate": "15 Feb 2022",
+      "eventTime": "19:00 - 24:00",
+      "eventStart": "7:00 PM",
+      "venue": "98 Brown Street, Walnut Creek Fonda Concert Hall",
+      "past": false
+    },
+    {
+      "id": 3279,
+      "title": "Dentist check-up",
+      "eventDate": "23 Feb 2022",
+      "eventTime": "17:00 - 17:45",
+      "eventStart": "5:00 PM",
+      "venue": "Dentos, 250 Boggess Street, Wichita Falls",
+      "past": false
+    },
+    {
+      "id": 3156,
+      "title": "Bank loan appointment",
+      "eventDate": "25 Feb 2022",
+      "eventTime": "10:15 - 11:45",
+      "eventStart": "10:15 AM",
+      "venue": "Big Bank, 424 Park Boulevard, Baxter",
+      "past": false
+    },
+    {
+      "id": 7866,
+      "title": "Car service",
+      "eventDate": "3 Mar 2022",
+      "eventTime": "16:00 - 17:30",
+      "eventStart": "4:00 PM",
+      "venue": "GP Car, 676 Hinkle Lake Road, Worcester",
+      "past": false
+    },
+    {
+      "id": 6599,
+      "title": "Semifinals on TV",
+      "eventDate": "5 Feb 2022",
+      "eventTime": "20:15 - 22:30",
+      "eventStart": "8:15 PM",
+      "venue": "on TV",
+      "past": true
+    }
+  ],
+  "meetings":
+  [
+    {
+      "id": 5692,
+      "title": "Discuss new ideas",
+      "meetingDate": "28 Feb 2022",
+      "meetingTime": "14:00 - 16:00",
+      "meetingStart": "2:00 PM",
+      "attendees": "Joyce Stafford, Robert Tucker, Christopher Evans, Shirley Ward",
+      "status": "pending",
+      "past": false
+    },
+    {
+      "id": 2247,
+      "title": "Calendar app kick-off",
+      "meetingDate": "25 Feb 2022",
+      "meetingTime": "11:30 - 12:15",
+      "meetingStart": "11:30 AM",
+      "attendees": "James Adams, Julie Cruz",
+      "status": "accepted",
+      "past": false
+    }
+  ],
+  "notes":
+  [
+    {
+      "id": 2114,
+      "title": "Movies wish list",
+      "pinDate": "2 Feb 2022",
+      "body": "- Shutter's Island\n- Scream 3\n- Notebook\n- Saving private Rayan\n- Shawshank redemption\n- Jocker\n- Transporter 2"
+    },
+    {
+      "id": 6431,
+      "title": "Car sell announcement",
+      "pinDate": "5 Feb 2022",
+      "body": "These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided."
+    },
+    {
+      "id": 8112,
+      "title": "Workout plan",
+      "pinDate": "10 Feb 2022",
+      "body": "To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+    },
+    {
+      "id": 1054,
+      "title": "Home decoration",
+      "pinDate": "15 Feb 2022",
+      "body": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."
+    },
+    {
+      "id": 8614,
+      "title": "Chocolate cake recipe",
+      "pinDate": "25 Feb 2022",
+      "body": "- flour\n- suggar\n- butter\n- cacao\n- eggs\n- cream\nOn the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish."
+    },
+    {
+      "id": 9846,
+      "title": "Ideas for new web project",
+      "pinDate": "28 Feb 2022",
+      "body": "These cases are perfectly simple and easy to distinguish. We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. "
+    }
   ]
 }

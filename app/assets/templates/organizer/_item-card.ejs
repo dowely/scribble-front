@@ -1,4 +1,4 @@
-<div class="item-card" data-card-type="<%= item.type %>">
+<div class="item-card" data-card-type="<%= item.type %>" <%- item.meeting ? `data-meeting-status="${item.status}"` : `` %>>
   
   <div class="item-card__left-strip"></div>
 
@@ -24,7 +24,7 @@
 
     <% if(item.event || item.meeting) { %>
 
-      <p class="item-card__details"><span><%= item.event ? 'Venue' : 'Attendees' %></span><%= item.venue || item.attendees %></p>
+      <p class="item-card__details"><span><%= item.event ? 'Venue:' : 'Attendees:' %></span><%= item.venue || item.attendees %></p>
   
     <% } %>
 

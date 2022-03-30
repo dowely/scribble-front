@@ -5,27 +5,53 @@
   flex-direction: column;
   position: relative;
 
+  @mixin atMedium {
+    padding: 30px 0 135px;
+  }
+
+  @mixin atLarge {
+    padding: 0 0 125px;
+  }
+
   &::before {
     content: '';
     display: block;
     position: absolute;
     z-index: 1;
-    left: 15px;
-    right: 15px;
+    left: 0;
+    right: 0;
     bottom: calc(100% - 69px);
     top: 49px;
     background-image: linear-gradient(to bottom, $mainSilver, transparent);
+
+    @mixin atMedium {
+      top: 74px;
+      bottom: calc(100% - 108px);
+    }
+
+    @mixin atLarge {
+      display: none;
+    }
   }
 
   &::after {
     content: '';
     display: block;
     position: absolute;
-    left: 15px;
-    right: 15px;
+    left: 0;
+    right: 0;
     bottom: 95px;
     top: calc(100% - 115px);
     background-image: linear-gradient(to bottom, transparent, $mainSilver);
+
+    @mixin atMedium {
+      bottom: 134px;
+      top: calc(100% - 168px);
+    }
+
+    @mixin atLarge {
+      display: none;
+    }
   }
 
   &__heading {
@@ -33,13 +59,52 @@
     line-height: .8;
     margin-bottom: 10px;
     margin-left: 5px;
+    color: $mainBlack;
+
+    @mixin atMedium {
+      font-size: 2.35rem;
+      margin-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.65rem;
+      font-weight: 300;
+      margin-left: 0;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    @mixin atXLarge {
+      font-size: 1.6rem;
+    }
   }
 
   &__heading::before {
     margin-right: 10px;
 
+    @mixin atMedium {
+      margin-right: 20px;
+    }
+
+    @mixin atLarge {
+      margin-right: 15px;
+    }
+
     .items[data-items-type="task"] & {
       content: 'Tasks:'
+    }
+
+    .items[data-items-type="event"] & {
+      content: 'Events:'
+    }
+
+    .items[data-items-type="meeting"] & {
+      content: 'Meetings:'
+    }
+
+    .items[data-items-type="note"] & {
+      content: 'Notes:'
     }
   }
 
@@ -48,9 +113,22 @@
     .items[data-items-type="task"] & {
       content: '5'
     }
+
+    .items[data-items-type="event"] & {
+      content: '5'
+    }
+
+    .items[data-items-type="meeting"] & {
+      content: '2'
+    }
+
+    .items[data-items-type="note"] & {
+      content: '6'
+    }
   }
 
   &__list {
+    display: none;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -59,12 +137,59 @@
     overflow-y: auto;
   }
 
+  &__list--tasks {
+    [data-items-type="task"] & {
+      display: block;
+    }
+  }
+
+  &__list--events {
+    [data-items-type="event"] & {
+      display: block;
+    }
+  }
+
+  &__list--meetings {
+    [data-items-type="meeting"] & {
+      display: block;
+    }
+  }
+
+  &__list--notes {
+    [data-items-type="note"] & {
+      display: block;
+    }
+  }
+
   &__list__card-container {
     margin: 20px 5px;
     box-shadow: 0 0 5px 1px $gray30;
+    cursor: pointer;
 
     &:first-child {
       margin-top: 15px;
+
+      @mixin atMedium {
+        margin-top: 35px;
+      }
+
+      @mixin atLarge {
+        margin-top: 0;
+      }
+    }
+
+    @mixin atMedium {
+      margin: 30px 10px;
+      box-shadow: 0 0 7px 3px $gray30;
+    }
+
+    @mixin atLarge {
+      margin: 20px 5px 20px 0;
+      box-shadow: none;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -75,6 +200,27 @@
     position: relative;
     margin: 25px 0;
 
+    @mixin atMedium {
+      height: 3px;
+      margin: 40px 0;
+    }
+
+    @mixin atLarge {
+      height: 2px;
+      margin: 30px 0;
+      background-color: transparent;
+      display: flex;
+      justify-content: space-between;
+      
+      &::before,
+      &::after {
+        content: '';
+        width: 40%;
+        background-color: rgba(255, 255, 255, .6);
+        display: block;
+      }
+    }
+
     span {
       position: absolute;
       top: 50%;
@@ -82,6 +228,18 @@
       transform: translate(-50%, -50%);
       background-color: $mainSilver;
       padding: 0 15px;
+
+      @mixin atMedium {
+        font-size: 1.5rem;
+        padding: 0 20px;
+      }
+
+      @mixin atLarge {
+        font-size: 1.25rem;
+        background-color: transparent;
+        padding: 0;
+        color: rgba(255, 255, 255, .8);
+      }
     }
   }
 }
