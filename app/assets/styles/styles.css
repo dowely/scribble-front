@@ -33,6 +33,7 @@
 @import 'components/organizer/_bottom-navigation.css';
 @import 'components/organizer/_items.css';
 @import 'components/organizer/_item-card.css';
+@import 'components/organizer/_calendar-card.css';
 
 @import 'components/mail/_mail-card.css';
 @import 'components/mail/_mail-list.css';

@@ -1,11 +1,27 @@
 <div class="content">
 
-  <div class="content__left-col content__left-col--organizer" data-index="3">
+  <div class="content__left-col content__left-col--organizer" data-index="1">
 
     <div class="content__viewer content__viewer--organizer">
 
       <div class="content__index-container content__index-container--1">
-        index 1
+        
+        <div class="calendar">
+
+          <div class="calendar__calendar-card-container">
+
+            <% let year = 2022, month = 1, today = '11 Feb 2022' %>
+
+            <%- include ../components/organizer/_calendar-card.ejs %>
+
+          </div>
+
+          <div class="calendar__calendar-display-container">
+
+          </div>
+
+        </div>
+
       </div>
 
       <div class="content__index-container content__index-container--2">

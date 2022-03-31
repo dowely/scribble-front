@@ -1,0 +1,6 @@
+.calendar-card {
+  
+  &__main {
+    display: flex;
+  }
+}
