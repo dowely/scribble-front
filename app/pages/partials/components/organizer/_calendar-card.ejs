@@ -4,16 +4,7 @@ let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
 
 let weekdays = ['Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-let items = {
-  2: ['task', 'note'],
-  5: ['event', 'note'],
-  9: ['task'],
-  10: ['note'],
-  15: ['task', 'event', 'note'],
-  23: ['task', 'event'],
-  25: ['task', 'event', 'meeting', 'note'],
-  28: ['task', 'meeting', 'note']
-}
+let items = itemServer.dots(month)
 
 let dates = [[], [], [], [], [], [], []] <!-- 7 weekdays -->
 
@@ -54,6 +45,18 @@ dates.forEach((weekdayArr, day) => {
 
     <div class="calendar-card__nav-buttons">
 
+      <div class="calendar-card__nav-btn">
+        <svg class="calendar-card__angle-icon">
+          <use href="#angle-left-solid"></use>
+        </svg>
+      </div>
+
+      <div class="calendar-card__nav-btn">
+        <svg class="calendar-card__angle-icon">
+          <use href="#angle-right-solid"></use>
+        </svg>
+      </div>
+
     </div>
 
   </div>
@@ -74,11 +77,15 @@ dates.forEach((weekdayArr, day) => {
   
             <h6 class="calendar-card__date"><%= date.str %></h6>
 
-            <% if(date.currentMonth) date.items.forEach(item => { %>
+            <div class="calendar-card__item-dots">
 
-            <span class="calendar-card__item-dot calendar-card__item-dot--<%= item %>">.</span>
+              <% if(date.currentMonth) date.items.forEach(item => { %>
 
-            <% }) %>
+              <span class="calendar-card__item-dot calendar-card__item-dot--<%= item %>"></span>
+    
+              <% }) %>
+
+            </div>
       
           </div>
   

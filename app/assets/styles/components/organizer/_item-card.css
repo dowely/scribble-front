@@ -179,6 +179,12 @@
     @mixin atLarge {
       font-size: .875rem;
     }
+
+    .item-card--shortened & {
+      -webkit-line-clamp: 2;
+      min-height: 5ex;
+      margin-top: 5px;
+    }
   }
 
   &__task-toggle-container {
@@ -237,6 +243,10 @@
       margin-top: 56px;
     }
 
+    .item-card--shortened & {
+      margin-top: 30px;
+    }
+
     [data-task-status="pending"] & {
       color: $primaryOrange;
     }
@@ -271,6 +281,10 @@
     @mixin atLarge {
       width: 68px;
       padding: 18px 0;
+    }
+
+    .item-card--shortened & {
+      padding: 10px;
     }
   }
 

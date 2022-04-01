@@ -1,0 +1,39 @@
+<div class="calendar-display">
+
+  <div class="calendar-display__header"></div>
+  
+  <div class="calendar-display__items">
+    
+    <% 
+
+    let itemGroups = itemServer.groupedItems(month), key
+    
+    for(key in itemGroups) { %>
+
+    <div class="calendar-display__item-group" data-id="<%= key %>">
+
+      <% itemGroups[key].forEach(item => {
+      
+      item.shortened = true
+
+      %> 
+
+      <div class="calendar-display__card-container">
+
+      <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+      </div>
+
+      <% }) %>
+
+    </div>
+
+    <% }
+    
+    %>
+
+  </div>
+
+  <div class="calendar-display__footer"></div>
+
+</div>

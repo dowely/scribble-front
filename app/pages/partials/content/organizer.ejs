@@ -8,15 +8,21 @@
         
         <div class="calendar">
 
-          <div class="calendar__calendar-card-container">
+          <%
+            
+            let year = 2022, month = 1, today = '10 Feb 2022'
+            
+          %>
 
-            <% let year = 2022, month = 1, today = '11 Feb 2022' %>
+          <div class="calendar__calendar-card-container">
 
             <%- include ../components/organizer/_calendar-card.ejs %>
 
           </div>
 
           <div class="calendar__calendar-display-container">
+
+            <%- include ../components/organizer/_calendar-display.ejs %>
 
           </div>
 

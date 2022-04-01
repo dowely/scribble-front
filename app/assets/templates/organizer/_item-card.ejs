@@ -1,4 +1,4 @@
-<div class="item-card" data-card-type="<%= item.type %>" <%- item.meeting ? `data-meeting-status="${item.status}"` : `` %>>
+<div class="item-card<%= item.shortened ? ' item-card--shortened' : '' %>" data-card-type="<%= item.type %>" <%- item.meeting ? `data-meeting-status="${item.status}"` : `` %>>
   
   <div class="item-card__left-strip"></div>
 

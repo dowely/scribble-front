@@ -1,6 +1,156 @@
 .calendar-card {
+  background-color: white;
+  color: $mainBlack;
+  padding: 10px 18px 6px;
+
+  &__nav-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    margin-right: auto;
+
+    span {
+      display: inline-block;
+
+      &:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &__nav-buttons {
+    display: flex;
+    width: 82px;
+    justify-content: space-between;
+  }
+
+  &__nav-btn {
+    background-color: $gray30;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+  }
+
+  &__angle-icon {
+    display: block;
+    color: white;
+    width: 12px;
+    height: 20px;
+    margin: auto;
+  }
   
   &__main {
     display: flex;
+    margin: 0 -12px 0 -10px;
+  }
+
+  &__weekday-col {
+
+    &--Monday {
+      flex: 52;
+    }
+
+    &--Tuesday {
+      flex: 49;
+    }
+
+    &--Wednsday {
+      flex: 55;
+    }
+
+    &--Thursday {
+      flex: 50;
+    }
+
+    &--Friday {
+      flex: 41;
+    }
+
+    &--Saturday {
+      flex: 48;
+    }
+
+    &--Sunday {
+      flex: 51;
+    }
+  }
+
+  &__weekday {
+    font-size: .825rem;
+    font-weight: 400;
+    color: $gray50;
+    margin: 0 0 8px;
+    text-align: center;
+  }
+
+  &__date-container {
+    width: 32px;
+    height: 32px;
+    margin: 2px auto;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  &__date-container--today {
+    background-color: $mainLavender;
+  }
+
+  &__date-container--selected:not(.calendar-card__date-container--today) {
+    border: 1px solid $topGradientLight;
+  }
+
+  &__date {
+    font-size: .75rem;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    line-height: 32px;
+    color: $gray30;
+
+    .calendar-card__date-container--current & {
+      color: $mainBlack;
+    }
+  }
+
+  &__item-dots {
+    font-size: 0;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    .calendar-card__date-container--today & {
+      display: none;
+    }
+  }
+
+  &__item-dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    margin: 0 .5px;
+
+    &--task {
+      background-color: $primaryOrange;
+    }
+
+    &--event {
+      background-color: $primaryBlue;
+    }
+
+    &--meeting {
+      background-color: $primaryRed;
+    }
+
+    &--note {
+      background-color: $primaryGreen;
+    }
   }
 }

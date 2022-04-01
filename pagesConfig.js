@@ -1,6 +1,7 @@
 const mails = require('./app/db/mails.json')
 const users = require('./app/db/users.json')
 const items = require('./app/db/items.json')
+const ItemServer = require('./app/db/itemServer.js')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -19,7 +20,8 @@ module.exports = [
     templateParameters: {
       route: 'organizer',
       bell: 4,
-      items
+      items,
+      itemServer: new ItemServer(items)
     }
   }),
   new HtmlWebpackPlugin({
