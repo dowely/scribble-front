@@ -35,6 +35,7 @@
 @import 'components/organizer/_item-card.css';
 @import 'components/organizer/_calendar.css';
 @import 'components/organizer/_calendar-card.css';
+@import 'components/organizer/_calendar-display.css';
 
 @import 'components/mail/_mail-card.css';
 @import 'components/mail/_mail-list.css';

@@ -3,6 +3,7 @@
   display: flex;
   color: $mainBlack;
   overflow: hidden;
+  cursor: pointer;
 
   &__left-strip {
     flex: none;
@@ -111,6 +112,18 @@
       margin-top: 12px;
       margin-bottom: 7px;
     }
+
+    .item-card--shortened & {
+      margin-top: 5px;
+
+      @mixin atMedium {
+        margin-top: 15px;
+      }
+
+      @mixin atLarge {
+        margin-top: 12px;
+      }
+    }
   }
 
   &__details {
@@ -158,6 +171,15 @@
     @mixin atLarge {
       font-size: .875rem;
     }
+
+    .item-card--shortened & {
+      -webkit-line-clamp: 1;
+      min-height: 2.5ex;
+
+      span {
+        height: 2.5ex;
+      }
+    }
   }
 
   &__body {
@@ -184,6 +206,10 @@
       -webkit-line-clamp: 2;
       min-height: 5ex;
       margin-top: 5px;
+
+      @mixin atMedium {
+        margin-top: 12px;
+      }
     }
   }
 
@@ -245,6 +271,10 @@
 
     .item-card--shortened & {
       margin-top: 30px;
+
+      @mixin atMedium {
+        margin-top: 45px;
+      }
     }
 
     [data-task-status="pending"] & {
@@ -284,7 +314,11 @@
     }
 
     .item-card--shortened & {
-      padding: 10px;
+      padding: 8px 0;
+
+      @mixin atMedium {
+        padding: 14px 0;
+      }
     }
   }
 

@@ -41,7 +41,8 @@ ItemServer.prototype.groupedItems = function(month) {
     else groupedItems[item.date].push(item)
   })
 
-  return groupedItems
+  return sortByDate(groupedItems, 1)
+  /* 1 for ascending, -1 for descending */
 }
 
 module.exports = ItemServer
@@ -54,4 +55,19 @@ function filterByMonth(items, month) {
 
     return new Date(item.date).getMonth() === month
   })
+}
+
+function sortByDate(obj, order) {
+
+  return Object.fromEntries(Object.entries(obj).sort((a, b) => {
+
+    let [keyOne] = a
+    let [keyTwo] = b
+
+    keyOne = Number(keyOne.substring(0, keyOne.indexOf(' ')))
+    keyTwo = Number(keyTwo.substring(0, keyTwo.indexOf(' ')))
+
+    return (keyOne - keyTwo) * order
+
+  }))
 }

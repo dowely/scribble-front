@@ -1,24 +1,36 @@
 <div class="calendar-display">
 
-  <div class="calendar-display__header"></div>
+  <div class="calendar-display__header">
+
+    <p class="calendar-display__time-distance">
+      In 5 days
+    </p>
+
+    <p class="calendar-display__card-iterator">
+      1 / 3
+    </p>
+
+  </div>
   
+  <!-- calendar-display__items--hidden (transition) -->
   <div class="calendar-display__items">
-    
+    <!-- calendar-display__item-group--selected (display: block) -->
+    <!-- calendar-display__card-container--visible (display: block)-->
     <% 
 
     let itemGroups = itemServer.groupedItems(month), key
     
     for(key in itemGroups) { %>
 
-    <div class="calendar-display__item-group" data-id="<%= key %>">
+    <div class="calendar-display__item-group<%= key === '15 Feb 2022' ? ' calendar-display__item-group--selected' : '' %>" data-id="<%= key %>">
 
-      <% itemGroups[key].forEach(item => {
+      <% itemGroups[key].forEach((item, index) => {
       
       item.shortened = true
 
       %> 
 
-      <div class="calendar-display__card-container">
+      <div class="calendar-display__card-container<%= index === 0 ? ' calendar-display__card-container--visible' : '' %>">
 
       <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
 
@@ -34,6 +46,32 @@
 
   </div>
 
-  <div class="calendar-display__footer"></div>
+  <div class="calendar-display__footer">
+
+    <div class="calendar-display__prev-container">
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-left-solid"></use>
+      </svg>
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-left-solid"></use>
+      </svg>
+
+    </div>
+
+    <div class="calendar-display__next-container">
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-right-solid"></use>
+      </svg>
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-right-solid"></use>
+      </svg>
+
+    </div>
+
+  </div>
 
 </div>

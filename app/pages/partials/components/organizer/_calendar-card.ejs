@@ -16,7 +16,7 @@ dates.forEach((weekdayArr, day) => {
 
     let myDate = new Date(year, month, 1 - offset + day + i * 7)
 
-    myDate.str = myDate.getDate()
+    myDate.str = String(myDate.getDate())
     myDate.currentMonth = myDate.getMonth() === month
     myDate.items = items[myDate.str] || []
 
@@ -70,10 +70,10 @@ dates.forEach((weekdayArr, day) => {
         <h4 class="calendar-card__weekday"><%= weekdays[day].substring(0, 3) %></h4>
   
         <div class="calendar-card__dates">
-  
+        <!-- calendar-card__date-container--selected -->
           <% weekdayArr.forEach(date => { %>
-  
-          <div class="calendar-card__date-container<%= date.currentMonth ? ' calendar-card__date-container--current' : '' %><%= date.getTime() === new Date(today).getTime() ? ' calendar-card__date-container--today' : '' %>" data-id="<%= `${date.str} ${months[month].substring(0, 3)} ${year}` %>">
+          
+          <div class="calendar-card__date-container<%= date.currentMonth ? ' calendar-card__date-container--current' : '' %><%= date.getTime() === new Date(today).getTime() ? ' calendar-card__date-container--today' : '' %><%= date.str === '15' ? ' calendar-card__date-container--selected' : '' %>" data-id="<%= `${date.str} ${months[month].substring(0, 3)} ${year}` %>">
   
             <h6 class="calendar-card__date"><%= date.str %></h6>
 

@@ -164,7 +164,6 @@
   &__list__card-container {
     margin: 20px 5px;
     box-shadow: 0 0 5px 1px $gray30;
-    cursor: pointer;
 
     &:first-child {
       margin-top: 15px;

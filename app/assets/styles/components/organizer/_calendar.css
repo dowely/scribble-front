@@ -1,12 +1,49 @@
 .calendar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  @mixin atMedium {
+    padding-top: 40px;
+  }
+
+  @mixin atLarge {
+    padding-top: 0;
+    padding-bottom: 130px;
+  }
 
   &__calendar-card-container {
+    width: 100%;
     max-width: 400px;
-    margin: 0 auto;
+    flex: 1;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .3);
+
+    @mixin atMedium {
+      max-width: 500px;
+      box-shadow: 0 0 8px 3px rgba(0, 0, 0, .3);
+      border-radius: 20px;
+      overflow: hidden;
+      flex: 1 0 fit-content;
+    }
+
+    @mixin atLarge {
+      max-height: 400px;
+      box-shadow: none;
+    }
   }
 
   &__calendar-display-container {
-    padding-top: 20px;
+    width: 100%;
+    padding: 15px 15px 67px;
+
+    @mixin atMedium {
+      padding: 25px 10px 82px;
+    }
+
+    @mixin atLarge {
+      display: none;
+    }
   }
 }

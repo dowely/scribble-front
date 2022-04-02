@@ -1,12 +1,39 @@
 .calendar-card {
   background-color: white;
   color: $mainBlack;
-  padding: 10px 18px 6px;
+  padding: 10px 18px 4px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @mixin atMedium {
+    padding: 25px 32px 12px;
+  }
+
+  @mixin atLarge {
+    padding: 18px 32px 4px;
+  }
+
+  @mixin atXLarge {
+    padding: 25px 32px 12px;
+  }
 
   &__nav-bar {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
+
+    @mixin atMedium {
+      margin-bottom: 24px;
+    }
+
+    @mixin atLarge {
+      margin-bottom: 18px;
+    }
+
+    @mixin atXLarge {
+      margin-bottom: 24px;
+    }
   }
 
   &__title {
@@ -20,12 +47,36 @@
         margin-right: 5px;
       }
     }
+
+    @mixin atMedium {
+      font-size: 1.75rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1.55rem;
+    }
+
+    @mixin atXLarge {
+      font-size: 1.75rem;
+    }
   }
 
   &__nav-buttons {
     display: flex;
     width: 82px;
     justify-content: space-between;
+
+    @mixin atMedium {
+      width: 105px;
+    }
+
+    @mixin atLarge {
+      width: 90px;
+    }
+
+    @mixin atXLarge {
+      width: 105px;
+    }
   }
 
   &__nav-btn {
@@ -34,6 +85,22 @@
     height: 30px;
     border-radius: 50%;
     display: flex;
+    cursor: pointer;
+
+    @mixin atMedium {
+      width: 38px;
+      height: 38px;
+    }
+
+    @mixin atLarge {
+      width: 32px;
+      height: 32px;
+    }
+
+    @mixin atXLarge {
+      width: 38px;
+      height: 38px;
+    }
   }
 
   &__angle-icon {
@@ -42,11 +109,39 @@
     width: 12px;
     height: 20px;
     margin: auto;
+
+    @mixin atMedium {
+      width: 16px;
+      height: 28px;
+    }
+
+    @mixin atLarge {
+      width: 14px;
+      height: 24px;
+    }
+
+    @mixin atXLarge {
+      width: 16px;
+      height: 28px;
+    }
   }
   
   &__main {
+    flex: 1;
     display: flex;
     margin: 0 -12px 0 -10px;
+
+    @mixin atMedium {
+      margin: 0 -17px 0 -18px;
+    }
+
+    @mixin atLarge {
+      margin: 0 -14px 0 -13px;
+    }
+
+    @mixin atXLarge {
+      margin: 0 -17px 0 -18px;
+    }
   }
 
   &__weekday-col {
@@ -80,20 +175,70 @@
     }
   }
 
+  &__weekday-col {
+    display: flex;
+    flex-direction: column;
+
+    &::after {
+      display: block;
+      content: '';
+      flex: .1; /* extra margin at the bottom */
+
+      @mixin atMedium {
+        flex: 0;
+      }
+    }
+  }
+
   &__weekday {
     font-size: .825rem;
     font-weight: 400;
     color: $gray50;
     margin: 0 0 8px;
     text-align: center;
+
+    @mixin atMedium {
+      font-size: .95rem;
+    }
+
+    @mixin atLarge {
+      font-size: .85rem;
+    }
+
+    @mixin atXLarge {
+      font-size: .95rem;
+    }
+  }
+
+  &__dates {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   &__date-container {
-    width: 32px;
-    height: 32px;
-    margin: 2px auto;
+    width: 31px;
+    height: 31px;
+    margin: 0 auto;
     border-radius: 50%;
     position: relative;
+    cursor: pointer;
+
+    @mixin atMedium {
+      width: 40px;
+      height: 40px;
+    }
+
+    @mixin atLarge {
+      width: 35px;
+      height: 35px;
+    }
+
+    @mixin atXLarge {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &__date-container--today {
@@ -109,8 +254,23 @@
     font-weight: 400;
     margin: 0;
     text-align: center;
-    line-height: 32px;
+    line-height: 30px;
     color: $gray30;
+
+    @mixin atMedium {
+      font-size: .95rem;
+      line-height: 36px;
+    }
+
+    @mixin atLarge {
+      font-size: .8rem;
+      line-height: 33px;
+    }
+
+    @mixin atXLarge {
+      font-size: .95rem;
+      line-height: 36px;
+    }
 
     .calendar-card__date-container--current & {
       color: $mainBlack;
@@ -125,6 +285,10 @@
     right: 0;
     text-align: center;
 
+    @mixin atMedium {
+      bottom: 6px;
+    }
+
     .calendar-card__date-container--today & {
       display: none;
     }
@@ -136,6 +300,22 @@
     height: 4px;
     border-radius: 50%;
     margin: 0 .5px;
+
+    @mixin atMedium {
+      width: 5px;
+      height: 5px;
+      margin: 0 1px;
+    }
+
+    @mixin atLarge {
+      width: 4px;
+      height: 4px;
+    }
+
+    @mixin atXLarge {
+      width: 5px;
+      height: 5px;
+    }
 
     &--task {
       background-color: $primaryOrange;
