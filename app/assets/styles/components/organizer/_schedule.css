@@ -1,0 +1,199 @@
+.schedule {
+  color: $mainBlack;
+  height: 100%;
+  background-color: white;
+  padding: 20px 20px 95px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @mixin atMedium {
+    padding: 35px 0 130px;
+  }
+
+  @mixin atLarge {
+    background-color: transparent;
+    padding-top: 0;
+    padding-bottom: 125px;
+  }
+
+  &__header {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    flex: none;
+
+    @mixin atMedium {
+      max-width: 500px;
+      font-size: 1.75rem;
+      margin-bottom: 28px;
+    }
+
+    @mixin atLarge {
+      color: white;
+      font-weight: 300;
+      font-size: 1.65rem;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__list {
+    width: 100%;
+    max-width: 400px;
+    flex: 1;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding-right: 5px;
+
+    @mixin atMedium {
+      max-width: 500px;
+    }
+
+    @mixin atLarge {
+      background-color: white;
+      border-radius: 20px;
+    }
+
+    @mixin atXLarge {
+      background-color: transparent;
+    }
+  }
+
+  &__list-item {
+    display: flex;
+
+    @mixin atLarge {
+      &:first-child ul {
+        margin-top: 15px;
+      }
+
+      &:last-child ul {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  &__timeline {
+    width: 70px;
+    position: relative;
+    display: flex;
+
+    @mixin atMedium {
+      width: 100px;
+    }
+  }
+
+  &__day-tag {
+    white-space: pre-line;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    padding-top: 12px;
+    border-right: 2px solid $gray30;
+    margin-right: 18px;
+    margin-left: -10px;
+    text-align: center;
+    flex: 1;
+
+    @mixin atMedium {
+      font-size: 1.35rem;
+      margin-right: 32px;
+      margin-left: -15px;
+      border-width: 3px;
+      padding-top: 16px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.15rem;
+      margin-right: 25px;
+      margin-left: 0;
+      padding-top: 13px;
+
+      .schedule__list-item:first-child & {
+        padding-top: calc(13px + 15px);
+      }
+    }
+
+    @mixin atXLarge {
+      border-color: white;
+      border-width: 2px;
+      color: white;
+      font-weight: 300;
+      clip-path: polygon(0 -5%, 100% -5%, 100% 28px, calc(100% - 5px) 28px, calc(100% - 5px) 41px, 100% 41px, 100% 105%, 0 105%);
+
+      .schedule__list-item:first-child & {
+        clip-path: polygon(0 0, 100% 0, 100% 43px, calc(100% - 5px) 43px, calc(100% - 5px) 56px, 100% 56px, 100% 100%, 0 100%);
+      }
+    }
+  }
+
+  &__dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid $gray30;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 19px;
+    transform: translate(50%, -50%);
+
+    @mixin atMedium {
+      width: 16px;
+      height: 16px;
+      border-width: 3px;
+      right: 32.5px;
+      top: calc(82px / 2);
+    }
+
+    @mixin atLarge {
+      width: 14px;
+      height: 14px;
+      right: 26px;
+      top: calc(68px / 2);
+
+      .schedule__list-item:first-child & {
+        top: calc(68px / 2 + 15px);
+      }
+    }
+
+    @mixin atXLarge {
+      border-color: white;
+      background-color: transparent;
+      border-width: 2px;
+    }
+  }
+
+  &__dot--solid {
+    background-color: $gray30;
+
+    @mixin atXLarge {
+      background-color: white;
+    }
+  } 
+
+  &__ribons {
+    padding: 0;
+    list-style-type: none;
+    flex: 1;
+  }
+
+  &__ribon-container {
+    padding: 10px 0;
+    height: 61px;
+
+    @mixin atMedium {
+      padding: 14px 0;
+      height: 83px;
+    }
+
+    @mixin atLarge {
+      padding: 11px 0;
+      height: 69px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<% const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] %>
+
+<div class="schedule">
+
+  <p class="schedule__header">February 2022</p>
+
+  <ul class="schedule__list">
+
+    <%
+
+    let itemGroups = itemServer.groupedItems(month), key
+
+    for(key in itemGroups) {
+    
+    let date = new Date(key)  
+    
+    %>
+
+    <li class="schedule__list-item" data-date="<%= key %>">
+
+      <div class="schedule__timeline">
+
+        <h5 class="schedule__day-tag"><%= date.getDate() %>
+          <%= days[date.getDay()] %>
+        </h5>
+
+        <div class="schedule__dot<%= key === today ? ' schedule__dot--solid' : '' %>"></div>
+
+      </div>
+
+      <ul class="schedule__ribons">
+
+        <% itemGroups[key].forEach(item => { %>
+
+        <li class="schedule__ribon-container">
+
+          <%- include ../../../../assets/templates/organizer/_schedule-ribon.ejs %>
+
+        </li>
+
+        <% }) %>
+
+      </ul>
+
+    </li>
+
+    <% } %>
+
+  </ul>
+
+</div>

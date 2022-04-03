@@ -106,11 +106,7 @@
   &__viewer--organizer {
     height: 100%;
     box-shadow: none;
-    max-width: 430px; /* 30px to compensate for items padding */
-
-    @mixin atMedium {
-      max-width: 520px; /* 10px to compensate for item-card shadow margin */
-    }
+    max-width: none; 
   }
 
   &__navigation-container {
