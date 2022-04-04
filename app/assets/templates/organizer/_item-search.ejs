@@ -1,0 +1,25 @@
+<div class="item-search">
+
+  <p class="item-search__heading">Search results:<span><%= itemServer.count(month) %></span></p>
+
+  <ul class="item-search__list">
+
+    <% let items = itemServer.groupedItems(month), key %>
+
+    <% for(key in items) {
+
+      items[key].forEach(item => { %>
+
+        <li class="item-search__card-container" data-date="<%= key %>">
+
+          <%- include ./_item-card.ejs %>
+    
+        </li>
+
+      <% })
+
+    } %>
+
+  </ul>
+  
+</div>

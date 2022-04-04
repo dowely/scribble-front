@@ -16,6 +16,11 @@ function ItemServer(items) {
   }
 }
 
+ItemServer.prototype.count = function(month) {
+
+  return filterByMonth(this.combinedItems, month).length
+}
+
 ItemServer.prototype.dots = function(month) {
 
   const dots = {}

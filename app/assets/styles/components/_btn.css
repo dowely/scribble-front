@@ -61,4 +61,151 @@
       font-size: 1.38rem;
     }
   }
+
+  &--deny {
+    background-color: $primaryRed;
+    color: white;
+    width: 90px;
+    height: 32px;
+    font-weight: 300;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 120px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+    }
+  }
+
+  &--accept {
+    background-color: $primaryGreen;
+    width: 110px;
+    height: 32px;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 140px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+    }
+  }
+
+  &--tentative {
+    background-color: $primaryBlue;
+    width: 130px;
+    height: 32px;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 160px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+    }
+  }
+
+  &--in-progress {
+    background-color: $largeGradientBlue;
+    color: white;
+    font-weight: 300;
+    width: 140px;
+    height: 32px;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 180px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+      border: 2px solid white;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+      border: none;
+    }
+  }
+
+  
+  &--done {
+    background-color: $primaryGreen;
+    width: 100px;
+    height: 32px;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 130px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+    }
+  }
+
+  &--dismiss {
+    background-color: $primaryOrange;
+    width: 110px;
+    height: 32px;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 140px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+    }
+  }
+
+  &--snooze {
+    background-color: $primaryBlue;
+    width: 110px;
+    height: 32px;
+
+    @mixin atMedium {
+      font-size: 1.4rem;
+      height: 44px;
+      width: 140px;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+    }
+
+    @mixin atXLarge {
+      height: 46px;
+    }
+  }
 }

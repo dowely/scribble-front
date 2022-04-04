@@ -1,0 +1,94 @@
+<% let item %>
+
+<ul class="notification-display">
+
+  <li class="notification-display__item notification-display__item--visible">
+
+    <h4 class="notification-display__title">Meeting request</h4>
+
+    <div class="notification-display__card-container">
+
+    <%
+    
+      item = items.meetings[1]
+      item.type = 'meeting'
+      item.meeting = true
+      item.shortened = false
+
+    %>
+
+    <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+    </div>
+
+    <form class="notification-display__buttons">
+
+      <button class="btn btn--deny" type="submit" name="action" value="deny">Deny</button>
+
+      <button class="btn btn--accept" type="submit" name="action" value="accept">Accept</button>
+
+      <button class="btn btn--tentative" type="submit" name="action" value="tentative">Tentative</button>
+
+    </form>
+
+  </li>
+
+  <li class="notification-display__item">
+
+    <h4 class="notification-display__title">Task overdue</h4>
+
+    <div class="notification-display__card-container">
+
+    <%
+    
+      item = items.tasks[0]
+      item.type = 'task'
+      item.task = true
+      item.shortened = false
+
+    %>
+
+    <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+    </div>
+
+    <form class="notification-display__buttons">
+
+      <button class="btn btn--in-progress" type="submit" name="action" value="inProgress">In progress</button>
+
+      <button class="btn btn--done" type="submit" name="action" value="done">Done</button>
+
+    </form>
+
+  </li>
+
+  <li class="notification-display__item">
+
+    <h4 class="notification-display__title">Event reminder</h4>
+
+    <div class="notification-display__card-container">
+
+    <%
+    
+      item = items.events[0]
+      item.type = 'event'
+      item.event = true
+      item.shortened = false
+
+    %>
+
+    <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
+
+    </div>
+
+    <form class="notification-display__buttons">
+
+      <button class="btn btn--dismiss" type="submit" name="action" value="dismiss">Dismiss</button>
+
+      <button class="btn btn--snooze" type="submit" name="action" value="snooze">Snooze</button>
+
+    </form>
+
+  </li>
+
+</ul>

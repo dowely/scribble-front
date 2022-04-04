@@ -1,4 +1,4 @@
-<div class="calendar-display">
+<div class="calendar-display" data-target="<%= target %>">
 
   <div class="calendar-display__header">
 
@@ -7,7 +7,7 @@
     </p>
 
     <p class="calendar-display__card-iterator">
-      1 / 3
+      1 / <%= target === 'left' ? '3' : '2' %>
     </p>
 
   </div>
@@ -26,11 +26,11 @@
 
       <% itemGroups[key].forEach((item, index) => {
       
-      item.shortened = true
+      item.shortened = target === 'left' ? true : false
 
       %> 
 
-      <div class="calendar-display__card-container<%= index === 0 ? ' calendar-display__card-container--visible' : '' %>">
+      <div class="calendar-display__card-container<%= target === 'left' && index === 0 || target === 'right' && index < 2 ? ' calendar-display__card-container--visible' : '' %>">
 
       <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
 

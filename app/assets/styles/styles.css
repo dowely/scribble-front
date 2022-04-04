@@ -38,6 +38,8 @@
 @import 'components/organizer/_calendar-display.css';
 @import 'components/organizer/_schedule.css';
 @import 'components/organizer/_schedule-ribon.css';
+@import 'components/organizer/_notification-display.css';
+@import 'components/organizer/_item-search.css';
 
 @import 'components/mail/_mail-card.css';
 @import 'components/mail/_mail-list.css';
