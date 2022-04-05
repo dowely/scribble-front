@@ -1,0 +1,169 @@
+<div class="item-read" data-type="<%= item.type %>">
+
+  <div class="item-read__header">
+
+    <h4 class="item-read__item-type"><%= item.type %></h4>
+
+    <div class="item-read__buttons">
+
+      <svg class="item-read__icon item-read__icon--trash">
+        <use href="#trash-can-regular"></use>
+      </svg>
+
+      <svg class="item-read__icon item-read__icon--edit">
+        <use href="#pen-to-square-regular"></use>
+      </svg>
+
+      <svg class="item-read__icon item-read__icon--close">
+        <use href="#circle-xmark-regular"></use>
+      </svg>
+
+    </div>
+
+  </div>
+
+  <div class="item-read__content">
+
+    <h2 class="item-read__title"><%= item.title %></h2>
+
+    <div class="item-read__date">
+
+      <h5 class="item-read__entry-name"><%= item.meeting ? 'Meeting date:' : item.event ? 'Event date:' : item.task ? 'Due date:' : 'Pined on' %></h5>
+
+      <p class="item-read__entry"><%= item.fullDate %></p>
+    
+    </div>
+
+    <% if(item.task) { %>
+
+    <div class="item-read__task">
+
+      <h5 class="item-read__entry-name">Status:</h5>
+
+      <form class="item-read__task-form">
+
+        <div class="item-read__task-form__row">
+
+          <label for="pending">pending
+            
+            <input type="checkbox" id="pending" name="taskStatus" value="pending"<%= item.status === 'pending' ? 'checked' : '' %>>
+
+            <svg class="item-read__checkbox">
+              <use href="#square-regular"></use>
+            </svg>
+
+            <svg class="item-read__checkbox item-read__checkbox--checked">
+              <use href="#square-check-regular"></use>
+            </svg>
+            
+          </label>
+
+          <label for="inProgress">in progress
+
+            <input type="checkbox" id="inProgress" name="taskStatus" value="inProgress"<%= item.status === 'in progress' ? 'checked' : '' %>>
+
+            <svg class="item-read__checkbox">
+              <use href="#square-regular"></use>
+            </svg>
+
+            <svg class="item-read__checkbox item-read__checkbox--checked">
+              <use href="#square-check-regular"></use>
+            </svg>
+            
+          </label>
+
+        </div>
+
+        <div class="item-read__task-form__row">
+
+          <label for="done">done
+
+            <input type="checkbox" id="done" name="taskStatus" value="done"<%= item.status === 'done' ? 'checked' : '' %>>
+
+            <svg class="item-read__checkbox">
+              <use href="#square-regular"></use>
+            </svg>
+
+            <svg class="item-read__checkbox item-read__checkbox--checked">
+              <use href="#square-check-regular"></use>
+            </svg>
+            
+          </label>
+
+          <label for="overdue">overdue
+
+            <input type="checkbox" id="overdue" name="taskStatus" value="overdue"<%= item.status === 'overdue' ? 'checked' : '' %>>
+
+            <svg class="item-read__checkbox">
+              <use href="#square-regular"></use>
+            </svg>
+
+            <svg class="item-read__checkbox item-read__checkbox--checked">
+              <use href="#square-check-regular"></use>
+            </svg>
+            
+          </label>
+
+        </div>
+
+      </form>
+
+    </div>
+
+    <% } %>
+
+    <% if(item.event || item.meeting) { %>
+
+    <div class="item-read__time-row">
+
+      <div class="item-read__time">
+
+        <h5 class="item-read__entry-name">Time:</h5>
+
+        <p class="item-read__entry"><%= item.eventStart || item.meetingStart %></p>
+
+      </div>
+
+      <% if(item.meeting) { %>
+
+      <div class="item-read__meeting">
+
+        <h5 class="item-read__entry-name">Status:</h5>
+
+        <p class="item-read__entry"><%= item.status %></p>
+
+      </div>
+
+      <% } %>
+
+    </div>
+
+    <div class="item-read__reminder">
+
+      <h5 class="item-read__entry-name">Reminder:</h5>
+
+      <p class="item-read__entry"><%= item.reminder %></p>
+
+    </div>
+
+    <% } %>
+
+    <% if(item.note) { %>
+
+    <p class="item-read__note-body"><%= item.body %></p>
+
+    <% } else { %>
+
+    <div class="item-read__details">
+
+      <h5 class="item-read__entry-name"><%= item.task ? 'Description:' : item.event ? 'Venue:' : 'Attendees:' %></h5>
+
+      <p class="item-read__entry"><%= item.description || item.venue || item.attendees %></p>
+
+    </div>
+
+    <% } %>
+
+  </div>
+
+</div>

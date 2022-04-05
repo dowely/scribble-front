@@ -10,6 +10,7 @@ function ItemServer(items) {
       item.type = key.slice(0, -1)
       item[item.type] = true
       item.date = item.dueDate || item.eventDate || item.meetingDate || item.pinDate
+      item.fullDate = getFullDate(item.date)
 
       this.combinedItems.push(item)
     })
@@ -75,4 +76,17 @@ function sortByDate(obj, order) {
     return (keyOne - keyTwo) * order
 
   }))
+}
+
+function getFullDate(dateStr) {
+
+  const days = ['Sunday', 'Monaday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday']
+
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+  const date  = new Date(dateStr)
+
+  const text = days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
+
+  return text
 }

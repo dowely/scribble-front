@@ -53,7 +53,8 @@
       "eventTime": "19:00 - 24:00",
       "eventStart": "7:00 PM",
       "venue": "98 Brown Street, Walnut Creek Fonda Concert Hall",
-      "past": false
+      "past": false,
+      "reminder": "5 days before"
     },
     {
       "id": 3279,
@@ -62,7 +63,8 @@
       "eventTime": "17:00 - 17:45",
       "eventStart": "5:00 PM",
       "venue": "Dentos, 250 Boggess Street, Wichita Falls",
-      "past": false
+      "past": false,
+      "reminder": "1 hour before"
     },
     {
       "id": 3156,
@@ -71,7 +73,8 @@
       "eventTime": "10:15 - 11:45",
       "eventStart": "10:15 AM",
       "venue": "Big Bank, 424 Park Boulevard, Baxter",
-      "past": false
+      "past": false,
+      "reminder": "2 days before"
     },
     {
       "id": 7866,
@@ -80,7 +83,8 @@
       "eventTime": "16:00 - 17:30",
       "eventStart": "4:00 PM",
       "venue": "GP Car, 676 Hinkle Lake Road, Worcester",
-      "past": false
+      "past": false,
+      "reminder": "1 day before"
     },
     {
       "id": 6599,
@@ -89,7 +93,8 @@
       "eventTime": "20:15 - 22:30",
       "eventStart": "8:15 PM",
       "venue": "on TV",
-      "past": true
+      "past": true,
+      "reminder": "30 min before"
     }
   ],
   "meetings":
@@ -102,7 +107,8 @@
       "meetingStart": "11:30 AM",
       "attendees": "James Adams, Julie Cruz",
       "status": "accepted",
-      "past": false
+      "past": false,
+      "reminder": "1 hour before"
     },
     {
       "id": 5692,
@@ -112,7 +118,8 @@
       "meetingStart": "2:00 PM",
       "attendees": "Joyce Stafford, Robert Tucker, Christopher Evans, Shirley Ward",
       "status": "pending",
-      "past": false
+      "past": false,
+      "reminder": "3 hours before"
     }
   ],
   "notes":
@@ -145,11 +152,11 @@
       "id": 8614,
       "title": "Chocolate cake recipe",
       "pinDate": "25 Feb 2022",
-      "body": "- flour\n- suggar\n- butter\n- cacao\n- eggs\n- cream\nOn the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish."
+      "body": "- flour\n- suggar\n- butter\n- cacao\n- eggs\n- cream\n\nOn the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish."
     },
     {
       "id": 9846,
-      "title": "Ideas for new web project",
+      "title": "Ideas for new web project based on React",
       "pinDate": "28 Feb 2022",
       "body": "These cases are perfectly simple and easy to distinguish. We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. "
     }
