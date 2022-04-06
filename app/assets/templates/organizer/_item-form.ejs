@@ -1,0 +1,271 @@
+<form class="item-form">
+
+  <h2 class="item-form__heading">Create new <%= formType %></h2>
+
+  <label for="title">Title
+    <input type="text" id="title" name="title" required maxlength="30" placeholder="0/30">
+  </label>
+
+  <fieldset>
+
+    <legend><%= formType === 'note' ? 'Pin date' : formType === 'task' ? 'Due date' : 'Date' %></legend>
+
+    <label for="day">Day
+      <input type="number" id="day" name="day" required min="1" max="31" placeholder="dd">
+    </label>
+
+    <span>/</span>
+
+    <label for="month">Month
+      <input type="number" id="month" name="month" required min="1" max="12" placeholder="mm">
+    </label>
+
+    <span>/</span>
+
+    <label for="year">Year
+      <input type="number" id="year" name="year" required min="1970" max="2070" placeholder="yyyy">
+    </label>
+
+  </fieldset>
+
+  <% if(formType === 'task') { %>
+
+  <fieldset>
+
+    <legend>Status</legend>
+
+    <label for="pending" data-check>pending
+
+      <input type="radio" name="taskStatus" id="pending" value="pending" checked>
+
+      <svg class="item-form__checkbox">
+        <use href="#square-regular"></use>
+      </svg>
+
+      <svg class="item-form__checkbox item-form__checkbox--checked">
+        <use href="#square-check-regular"></use>
+      </svg>
+
+    </label>
+
+    <label for="inProgress">in progress
+
+      <input type="radio" name="taskStatus" id="inProgress" value="inProgress">
+
+      <svg class="item-form__checkbox">
+        <use href="#square-regular"></use>
+      </svg>
+
+      <svg class="item-form__checkbox item-form__checkbox--checked">
+        <use href="#square-check-regular"></use>
+      </svg>
+
+    </label>
+
+  </fieldset>
+
+  <% } %>
+
+  <% if(formType === 'event' || formType === 'meeting') { %>
+
+  <fieldset>
+
+    <legend>Time</legend>
+
+    <div class="item-form__fieldset-col">
+
+      <label for="hour">Hour
+        <input type="number" id="hour" name="hour" required min="0" max="12" placeholder="hh">
+      </label>
+  
+      <span>:</span>
+  
+      <label for="min">Minutes
+        <input type="number" id="min" name="min" min="0" max="59" placeholder="mm">
+      </label>
+
+    </div>
+
+    <div class="item-form__fieldset-col">
+
+      <label for="am" data-check>am
+        <input type="radio" id="am" name="dayTime" value="am" checked>
+      </label>
+
+      <div class="item-form__toggler-container">
+        <div class="toggler">
+          <span class="toggler__inner"></span>
+          <span class="toggler__dot"></span>
+        </div>
+      </div>
+
+      <label for="pm">pm
+        <input type="radio" id="pm" name="dayTime" value="pm">
+      </label>
+
+    </div>
+
+  </fieldset>
+
+  <label for="duration">Duration
+
+    <input type="number" id="duration" name="duration" min="0" max="480" value="30" step="15">
+
+    <div class="item-form__incrementor">
+
+      <svg class="item-form__angle">
+        <use href="#angle-left-solid"></use>
+      </svg>
+
+      <svg class="item-form__angle">
+        <use href="#angle-left-solid"></use>
+      </svg>
+
+    </div>
+
+    <span>minutes</span>
+
+  </label>
+
+  <fieldset>
+
+    <legend>Reminder</legend>
+
+    <label for="reminderBase">Remainder base
+
+      <input type="number" id="reminderBase" name="reminderBase" min="0" max="180" value="15">
+
+      <div class="item-form__incrementor">
+
+        <svg class="item-form__angle">
+          <use href="#angle-left-solid"></use>
+        </svg>
+  
+        <svg class="item-form__angle">
+          <use href="#angle-left-solid"></use>
+        </svg>
+  
+      </div>
+
+    </label>
+
+    <div class="item-form__fieldset-col">
+
+      <label for="reminderMin">min
+        <input type="radio" id="reminderMin" name="reminderMultiplier" value="min" checked>
+      </label>
+
+      <span>/</span>
+
+      <label for="reminderHour">h
+        <input type="radio" id="reminderHour" name="reminderMultiplier" value="h">
+      </label>
+
+      <span>/</span>
+
+      <label for="reminderDay">day
+        <input type="radio" id="reminderDay" name="reminderMultiplier" value="day">
+      </label>
+
+    </div>
+
+    <span>before</span>
+
+  </fieldset>
+
+  <% } %>
+
+  <% if(formType === 'meeting') { %>
+
+  <fieldset class="item-form__attendees">
+
+    <legend>Attendees:</legend>
+
+    <ul class="item-form__attendees__list">
+      
+      <li>Julie Cruz<button>remove</button></li>
+
+      <li>Robert Tucker<button>remove</button></li>
+
+    </ul>
+
+    <label for="userSearch" data-wait="false">User search
+
+      <input type="search" id="userSearch" placeholder="Enter a username..." maxlength="30">
+
+      <div class="item-form__attendees__search-icon">
+
+        <svg class="item-form__attendees__glass">
+          <use href="#magnifying-glass-solid"></use>
+        </svg>
+
+        <svg class="item-form__attendees__spinner">
+          <use href="#spinner-solid"></use>
+        </svg>
+
+      </div>
+
+    </label>
+
+    <label for="attendeesSelect">User select
+      <select name="attendees" id="attendeesSelect" multiple size="3">
+
+        <option value="Joyce Stafford">Joyce Stafford
+          <div class="item-form__attendees__plus-container">
+            <span></span><span></span>
+          </div>
+        </option>
+
+        <option value="Robert Tucker">Robert Tucker
+          <div class="item-form__attendees__plus-container">
+            <span></span><span></span>
+          </div>
+        </option>
+
+        <option value="Julie Cruz">Julie Cruz
+          <div class="item-form__attendees__plus-container">
+            <span></span><span></span>
+          </div>
+        </option>
+
+        <option value="Christopher Evans">Christopher Evans
+          <div class="item-form__attendees__plus-container">
+            <span></span><span></span>
+          </div>
+        </option>
+
+        <option value="Shirley Ward">Shirley Ward
+          <div class="item-form__attendees__plus-container">
+            <span></span><span></span>
+          </div>
+        </option>
+
+        <option value="James Adams">James Adams
+          <div class="item-form__attendees__plus-container">
+            <span></span><span></span>
+          </div>
+        </option>
+
+      </select>
+    </label>
+
+  </fieldset>
+
+  <% } else { %>
+
+    <label for="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>"><%= formType === 'note' ? 'Body' : formType === 'task' ? 'Description' : 'Venue' %>
+    
+    <textarea name="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>" id="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>" cols="30" rows="10"></textarea>
+    
+    </label>
+
+  <% } %>
+
+  <fieldset>
+
+    <input type="button" value="Discard">
+    <input type="submit" value="Save">
+
+  </fieldset>
+
+</form>

@@ -60,7 +60,7 @@
 
   </div>
 
-  <div class="content__right-col content__right-col--organizer content__right-col--visible">
+  <div class="content__right-col content__right-col--organizer">
     <div class="content__viewer content__viewer--organizer">
 
 
@@ -83,8 +83,26 @@
     </div>
   </div>
 
-  <div class="content__central-col">
-    <div class="content__viewer content__viewer--organizer"></div>
+  <div class="content__central-col content__central-col--visible">
+    <div class="content__viewer content__viewer--organizer">
+
+      <% let formType = 'note' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+      <% formType = 'task' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+      <% formType = 'meeting' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+      <% formType = 'event' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+    </div>
   </div>
 
 </div>
