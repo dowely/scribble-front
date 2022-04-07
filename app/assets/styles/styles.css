@@ -41,6 +41,8 @@
 @import 'components/organizer/_notification-display.css';
 @import 'components/organizer/_item-search.css';
 @import 'components/organizer/_item-read.css';
+@import 'components/organizer/_item-form.css';
+@import 'components/organizer/_toggler.css';
 
 @import 'components/mail/_mail-card.css';
 @import 'components/mail/_mail-list.css';

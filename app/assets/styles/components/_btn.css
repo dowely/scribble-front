@@ -208,4 +208,19 @@
       height: 46px;
     }
   }
+
+  &--form-save {
+    background-color: $primaryGreen;
+    width: 100px;
+    height: 34px;
+    border: 1px solid $primaryGreenDarker;
+  }
+
+  &--form-discard {
+    background-color: $primaryRed;
+    width: 100px;
+    height: 34px;
+    color: white;
+    border: 1px solid $primaryRedDarker;
+  }
 }

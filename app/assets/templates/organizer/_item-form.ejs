@@ -2,8 +2,8 @@
 
   <h2 class="item-form__heading">Create new <%= formType %></h2>
 
-  <label for="title">Title
-    <input type="text" id="title" name="title" required maxlength="30" placeholder="0/30">
+  <label for="title" data-placeholder="0/30">Title
+    <input type="text" id="title" name="title" required maxlength="30">    
   </label>
 
   <fieldset>
@@ -107,7 +107,39 @@
 
   </fieldset>
 
-  <label for="duration">Duration
+  <fieldset>
+
+    <legend>Reminder</legend>
+
+    <label for="reminderBase">Remainder base
+      <input type="number" id="reminderBase" name="reminderBase" min="0" max="180" value="15">
+    </label>
+
+    <div class="item-form__fieldset-col">
+
+      <label for="reminderMin" data-check>min
+        <input type="radio" id="reminderMin" name="reminderMultiplier" value="min" checked>
+      </label>
+
+      <span>/</span>
+
+      <label for="reminderHour">h
+        <input type="radio" id="reminderHour" name="reminderMultiplier" value="h">
+      </label>
+
+      <span>/</span>
+
+      <label for="reminderDay">day
+        <input type="radio" id="reminderDay" name="reminderMultiplier" value="day">
+      </label>
+
+    </div>
+
+    <span data-flex-none>before</span>
+
+  </fieldset>
+
+  <label for="duration">Duration<br>
 
     <input type="number" id="duration" name="duration" min="0" max="480" value="30" step="15">
 
@@ -126,52 +158,6 @@
     <span>minutes</span>
 
   </label>
-
-  <fieldset>
-
-    <legend>Reminder</legend>
-
-    <label for="reminderBase">Remainder base
-
-      <input type="number" id="reminderBase" name="reminderBase" min="0" max="180" value="15">
-
-      <div class="item-form__incrementor">
-
-        <svg class="item-form__angle">
-          <use href="#angle-left-solid"></use>
-        </svg>
-  
-        <svg class="item-form__angle">
-          <use href="#angle-left-solid"></use>
-        </svg>
-  
-      </div>
-
-    </label>
-
-    <div class="item-form__fieldset-col">
-
-      <label for="reminderMin">min
-        <input type="radio" id="reminderMin" name="reminderMultiplier" value="min" checked>
-      </label>
-
-      <span>/</span>
-
-      <label for="reminderHour">h
-        <input type="radio" id="reminderHour" name="reminderMultiplier" value="h">
-      </label>
-
-      <span>/</span>
-
-      <label for="reminderDay">day
-        <input type="radio" id="reminderDay" name="reminderMultiplier" value="day">
-      </label>
-
-    </div>
-
-    <span>before</span>
-
-  </fieldset>
 
   <% } %>
 
@@ -255,16 +241,16 @@
 
     <label for="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>"><%= formType === 'note' ? 'Body' : formType === 'task' ? 'Description' : 'Venue' %>
     
-    <textarea name="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>" id="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>" cols="30" rows="10"></textarea>
+    <textarea name="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>" id="<%= formType === 'note' ? 'body' : formType === 'task' ? 'description' : 'venue' %>" rows="7"></textarea>
     
     </label>
 
   <% } %>
 
-  <fieldset>
+  <fieldset class="item-form__buttons">
 
-    <input type="button" value="Discard">
-    <input type="submit" value="Save">
+    <input class="btn btn--form-discard" type="button" value="Discard">
+    <input class="btn btn--form-save" type="submit" value="Save">
 
   </fieldset>
 

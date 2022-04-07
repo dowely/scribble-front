@@ -1,0 +1,250 @@
+.item-form {
+  background-color: white;
+  padding: 15px 18px 80px;
+
+  &__heading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+
+  label {
+    display: block;
+    color: $gray50;
+    text-indent: 20px;
+    line-height: 2;
+    position: relative;
+    flex: 1;
+
+    &::after {
+      position: absolute;
+      right: 12px;
+      bottom: 5px;
+      font-size: .85rem;
+      color: $gray30;
+      content: attr(data-placeholder);
+    }
+  }
+
+  label[for="day"],
+  label[for="month"],
+  label[for="year"],
+  label[for="hour"],
+  label[for="min"],
+  label[for="reminderBase"] {
+    font-size: 0;
+  }
+
+  label[for="body"],
+  label[for="description"],
+  label[for="venue"] {
+    margin-top: 25px;
+  }
+
+  label[for="duration"] {
+    margin-top: 18px;
+  }
+
+  label[data-check] {
+    color: $mainBlack;
+  }
+
+  label[for="pending"],
+  label[for="inProgress"] {
+    line-height: 24px; /* checkbox height */
+    text-indent: 12px;
+    padding-top: 5px;
+    /* flex-basis: 50%; */
+  }
+
+  label[for="pending"] {
+    padding-left: 20px;
+  }
+
+  label[for="am"],
+  label[for="pm"],
+  label[for="reminderBase"],
+  label[for="reminderMin"],
+  label[for="reminderHour"],
+  label[for="reminderDay"] {
+    text-indent: 0;
+    text-align: center;
+  }
+
+  label[for="reminderBase"] {
+    text-align: left;
+    flex: none;
+    width: 22.25%;
+  }
+
+  label[for="reminderHour"] {
+    flex: .7;
+  }
+
+  input:not([type="button"]):not([type="submit"]) {
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 55px;
+    border-radius: $pill;
+    border: 1px solid $gray50;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: $gray30;
+    }
+  }
+
+  input#day,
+  input#month,
+  input#year,
+  input#hour,
+  input#min,
+  input#duration,
+  input#reminderBase {
+    padding: 0;
+    text-align: center;
+  }
+
+  input#pending,
+  input#inProgress,
+  input#am,
+  input#pm,
+  input#reminderMin,
+  input#reminderHour,
+  input#reminderDay {
+    display: inline-block;
+    width: 0;
+    height: 0;
+  }
+
+  input#duration {
+    display: inline-block;
+    width: 28.58%;
+  }
+
+  input#reminderBase {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  fieldset {
+    border: none;
+    margin: 25px 0 0;
+    padding: 24px 0 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    span {
+      flex: .25;
+      text-align: center;
+    }
+
+    span[data-flex-none] {
+      flex: none;
+    }
+  }
+
+  fieldset.item-form__attendees {
+    display: block;
+  }
+
+  fieldset.item-form__buttons {
+    padding-top: 12px;
+    justify-content: space-between;
+  }
+
+  legend {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    color: $gray50;
+  }
+
+  textarea {
+    display: block;
+    width: 100%;
+    resize: none;
+    border-color: $gray50;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  &__checkbox {
+    display: block;
+    width: 24px;
+    height: 24px;
+    float: left;
+
+    [data-check] & {
+      display: none;
+    }
+  }
+
+  &__checkbox--checked {
+    display: none;
+
+    [data-check] & {
+      display: block;
+      color: $mainBlack;
+    }
+  }
+
+  &__fieldset-col {
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    label[for="reminderBase"] + & {
+      flex: none;
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  &__incrementor {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 20px;
+
+    label[for="reminderBase"] & {
+      margin-right: 0;
+    }
+  }
+
+  &__angle {
+    display: block;
+    width: 25px;
+    height: 25px;
+
+    &:first-of-type {
+      transform: rotate(90deg);
+      margin-top: -5px;  
+    }
+
+    &:last-of-type {
+      transform: rotate(-90deg);
+      margin-bottom: -5px;
+    }
+  }
+
+  &__attendees__glass {
+    display: block;
+    width: 28px;
+    height: 28px;
+  }
+
+  &__attendees__spinner {
+    display: block;
+    width: 28px;
+    height: 28px;
+  }
+
+  &__toggler-container {
+    width: 45px;
+    height: 30px;
+    margin: 0 -5px;
+  }
+}
