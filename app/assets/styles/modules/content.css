@@ -74,6 +74,10 @@
   &__central-col--visible {
     opacity: 1;
     z-index: 4;
+
+    @mixin atLarge {
+      z-index: 6;
+    }
   }
 
   &__viewer {
@@ -122,6 +126,12 @@
   &__viewer--organizer {
     height: 100%;
     box-shadow: none;
+    max-width: none; 
+  }
+
+  &__viewer--central {
+    height: 100%;
+    width: 100%;
     max-width: none; 
   }
 

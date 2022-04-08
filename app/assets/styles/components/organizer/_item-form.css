@@ -1,11 +1,62 @@
 .item-form {
   background-color: white;
   padding: 15px 18px 80px;
+  height: 100%;
+
+  @mixin atMedium {
+    background-color: transparent;
+    padding: 40px 0 130px;
+  }
+
+  @mixin atLarge {
+    padding: 0;
+  }
+
+  &__wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+
+    @mixin atMedium {
+      max-width: 500px;
+      background-color: white;
+      padding: 30px;
+      max-height: 100%;
+      overflow: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 8px 3px rgba(0, 0, 0, .3);
+    }
+
+    @mixin atLarge {
+      box-shadow: none;
+      max-width: 940px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: space-between;
+      height: 100%;
+      padding: 20px 30px;
+    }
+
+    @mixin atXLarge {
+      max-width: 945px;
+    }
+  }
 
   &__heading {
     font-size: 1.5rem;
     font-weight: 400;
     margin: 0 0 10px;
+
+    @mixin atMedium {
+      font-size: 1.75rem;
+      margin-bottom: 15px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
   }
 
   label {
@@ -16,6 +67,22 @@
     position: relative;
     flex: 1;
 
+    @mixin atMedium {
+      font-size: 1.15rem;
+    }
+
+    @mixin atMedium {
+      font-size: 1rem;
+    }
+  }
+
+  label[for="title"] {
+    flex: none;
+
+    @mixin atLarge {
+      width: 45%;
+    } 
+
     &::after {
       position: absolute;
       right: 12px;
@@ -23,6 +90,16 @@
       font-size: .85rem;
       color: $gray30;
       content: attr(data-placeholder);
+
+      @mixin atMedium {
+        right: 20px;
+        font-size: 1rem;
+      }
+
+      @mixin atLarge {
+        right: 12px;
+        font-size: .85rem;
+      }
     }
   }
 
@@ -31,7 +108,9 @@
   label[for="year"],
   label[for="hour"],
   label[for="min"],
-  label[for="reminderBase"] {
+  label[for="reminderBase"],
+  label[for="userSearch"],
+  label[for="attendeesSelect"] {
     font-size: 0;
   }
 
@@ -39,10 +118,17 @@
   label[for="description"],
   label[for="venue"] {
     margin-top: 25px;
+    flex: none;
+
+    @mixin atLarge {
+      width: 45%;
+      margin-top: 40px;
+    }
   }
 
   label[for="duration"] {
-    margin-top: 18px;
+    margin-top: 17px;
+    flex: none;
   }
 
   label[data-check] {
@@ -54,7 +140,12 @@
     line-height: 24px; /* checkbox height */
     text-indent: 12px;
     padding-top: 5px;
-    /* flex-basis: 50%; */
+    cursor: pointer;
+    /* flex-basis: 50%; to include padding in width calc */
+
+    @mixin atMedium {
+      line-height: 28px;
+    }
   }
 
   label[for="pending"] {
@@ -66,7 +157,8 @@
   label[for="reminderBase"],
   label[for="reminderMin"],
   label[for="reminderHour"],
-  label[for="reminderDay"] {
+  label[for="reminderDay"],
+  label[for="attendeesSelect"] {
     text-indent: 0;
     text-align: center;
   }
@@ -81,6 +173,16 @@
     flex: .7;
   }
 
+  label[for="reminderMin"],
+  label[for="reminderHour"],
+  label[for="reminderDay"] {
+    cursor: pointer;
+  }
+
+  label[for="userSearch"] {
+    border-bottom: 1px solid $gray50;
+  }
+
   input:not([type="button"]):not([type="submit"]) {
     display: block;
     width: 100%;
@@ -91,9 +193,30 @@
     border: 1px solid $gray50;
     font-size: 1rem;
 
+    @mixin atMedium {
+      font-size: 1.15rem;
+      height: 45px;
+      padding-right: 65px;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+      height: 40px;
+      padding-right: 55px;
+    }
+
     &::placeholder {
       color: $gray30;
     }
+  }
+
+  input[type="number"] {
+    appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    appearance: none; 
   }
 
   input#day,
@@ -105,6 +228,10 @@
   input#reminderBase {
     padding: 0;
     text-align: center;
+
+    @mixin atMedium {
+      padding-bottom: 2px;
+    }
   }
 
   input#pending,
@@ -117,6 +244,7 @@
     display: inline-block;
     width: 0;
     height: 0;
+    opacity: 0;
   }
 
   input#duration {
@@ -129,6 +257,14 @@
     vertical-align: middle;
   }
 
+  input#userSearch {
+    border-radius: 0;
+    border: none;
+    width: calc(100% - 60px);
+    padding-right: 10px;
+    outline: none;
+  }
+
   fieldset {
     border: none;
     margin: 25px 0 0;
@@ -136,6 +272,17 @@
     display: flex;
     align-items: center;
     position: relative;
+
+    @mixin atMedium {
+      padding-top: 29px;
+      margin-top: 30px;
+    }
+
+    @mixin atLarge {
+      width: 45%;
+      padding-top: 24px;
+      margin-top: 20px;
+    } 
 
     span {
       flex: .25;
@@ -149,6 +296,16 @@
 
   fieldset.item-form__attendees {
     display: block;
+    padding-top: 0;
+    margin-top: 34px;
+
+    @mixin atLarge {
+      margin-top: 50px;
+    }
+
+    @mixin atLarge {
+      margin-top: 25px;
+    }
   }
 
   fieldset.item-form__buttons {
@@ -156,20 +313,91 @@
     justify-content: space-between;
   }
 
+  fieldset.item-form__attendees + fieldset.item-form__buttons {
+    padding-top: 5px;
+  }
+
   legend {
     position: absolute;
     top: 0;
     left: 20px;
     color: $gray50;
+
+    @mixin atMedium {
+      font-size: 1.15rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+    }
   }
 
   textarea {
     display: block;
     width: 100%;
     resize: none;
-    border-color: $gray50;
+    border: 1px solid $gray50;
     border-radius: 20px;
     padding: 20px;
+
+    @mixin atLarge {
+      height: 200px
+    }
+  }
+
+  textarea#venue {
+    @mixin atLarge {
+      height: 130px;
+    }
+  }
+
+  select {
+    font-size: 1rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    scrollbar-width: none; /* force hidden scrollbal for moz */
+    padding: 0;
+  }
+
+  option {
+    height: 40px;
+    padding: 0;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    @mixin atMedium {
+      height: 45px;
+      font-size: 1.15rem;
+    }
+
+    @mixin atLarge {
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    &::after {
+      content: '\FF0B';
+      font-size: 3rem;
+      font-weight: 300;
+      color: $gray50;
+      display: block;
+      box-sizing: border-box;
+      height: 100%;
+      width: 60px;
+      line-height: 37px;
+      text-align: center;
+      background-color: $gray10;
+      border-left: 1px solid $gray30;
+      margin-left: auto;
+    }
+
+    &:not(:first-of-type) {
+      border-top: 1px solid $gray50;
+    }
   }
 
   &__checkbox {
@@ -177,6 +405,11 @@
     width: 24px;
     height: 24px;
     float: left;
+
+    @mixin atMedium {
+      width: 30px;
+      height: 30px;
+    }
 
     [data-check] & {
       display: none;
@@ -218,6 +451,7 @@
     display: block;
     width: 25px;
     height: 25px;
+    cursor: pointer;
 
     &:first-of-type {
       transform: rotate(90deg);
@@ -230,21 +464,119 @@
     }
   }
 
-  &__attendees__glass {
-    display: block;
-    width: 28px;
-    height: 28px;
+  &__attendees__list {
+    list-style-type: none;
+    margin: -2px 0 0 42%;
+    padding: 0;
+
+    li {
+      display: flex;
+      height: 25px;
+
+      @mixin atMedium {
+        height: 28px;
+      }
+
+      @mixin atMedium {
+        height: 25px;
+      }
+
+      &:not(:first-of-type) {
+        margin-top: 8px;
+
+        @mixin atMedium {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    h6 {
+      margin: 0;
+      align-self: center;
+      width: 0;
+      flex: 1;
+      font-size: 1rem;
+      font-weight: 400;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      @mixin atMedium {
+        font-size: 1.15rem;
+      }
+
+      @mixin atMedium {
+        font-size: 1rem;
+      }
+    }
+
+    button {
+      flex: none;
+      border: none;
+      font-size: 0;
+      width: 25px;
+      margin-left: 5px;
+      background-color: $gray20;
+      border-radius: 50%;
+      padding: 0;
+      cursor: pointer;
+
+      @mixin atMedium {
+        width: 28px;
+      }
+
+      @mixin atMedium {
+        width: 25px;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 3px;
+        width: 16px;
+        margin: 0 auto;
+        background-color: $gray50;
+      }
+    }
   }
 
-  &__attendees__spinner {
+  &__attendees__inputs {
+    border: 1px solid $gray50;
+    margin-top: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+
+    @mixin atMedium {
+      margin-top: 20px;
+    }
+
+    @mixin atMedium {
+      margin-top: 15px;
+    }
+  }
+
+  &__attendees__search-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: calc(100% - 60px);
+    background-color: $gray10;
+    border-left: 1px solid $gray30;
+    display: flex;
+  }
+
+  &__attendees__glass {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
+    margin: auto;
   }
 
   &__toggler-container {
     width: 45px;
     height: 30px;
     margin: 0 -5px;
+    cursor: pointer;
   }
 }

@@ -84,19 +84,7 @@
   </div>
 
   <div class="content__central-col content__central-col--visible">
-    <div class="content__viewer content__viewer--organizer">
-
-      <% let formType = 'note' %>
-
-      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
-
-      <% formType = 'task' %>
-
-      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
-
-      <% formType = 'meeting' %>
-
-      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+    <div class="content__viewer content__viewer--central">
 
       <% formType = 'event' %>
 
@@ -106,3 +94,22 @@
   </div>
 
 </div>
+
+<!--
+
+<%  formType = 'note' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+<%  formType = 'task' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+  
+ 
+<%  formType = 'meeting' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+
+
+      
