@@ -52,6 +52,20 @@
     margin-left: 35px;
   }
 
+  &__notifier {
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__notifier-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(2, 1.5);
+  }
+
   &__ellipsis {
     position: relative;
     cursor: pointer;

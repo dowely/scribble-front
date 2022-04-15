@@ -55,11 +55,9 @@
     z-index: 3;
   }
 
-  &__right-col--organizer {
+  &__right-col--visible-on-large {
     @mixin atLarge {
-      .content__left-col[data-index="1"] ~ & {
-        opacity: 1;
-      }
+      opacity: 1;
     }
   }
 
@@ -132,7 +130,8 @@
   &__viewer--central {
     height: 100%;
     width: 100%;
-    max-width: none; 
+    max-width: none;
+    box-shadow: none;
   }
 
   &__navigation-container {

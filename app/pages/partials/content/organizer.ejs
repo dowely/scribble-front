@@ -12,7 +12,7 @@
 
   </div>
 
-  <div class="content__left-col content__left-col--hidden" data-index="1">
+  <div class="content__left-col" data-index="1">
 
     <div class="content__viewer content__viewer--organizer">
 
@@ -60,35 +60,35 @@
 
   </div>
 
-  <div class="content__right-col content__right-col--organizer">
+  <div class="content__right-col content__right-col--visible-on-large">
     <div class="content__viewer content__viewer--organizer">
 
 
-      <!-- target = 'right' include ../components/organizer/_calendar-display.ejs -->
+      <% target = 'right' %> 
+      
+      <% include ../components/organizer/_calendar-display.ejs %>
 
       <!-- include ../../../assets/templates/organizer/_item-search.ejs 7449, 9846 3156, 2247, 9244, 8614-->
 
-      <%
+      <!--
       
         let samples = itemServer.combinedItems.filter(item => [9244].some(id => id === item.id))
 
-        samples.forEach(item => { %>
+        samples.forEach(item => {
 
-          <%- include ../../../assets/templates/organizer/_item-read.ejs %>
+           include ../../../assets/templates/organizer/_item-read.ejs 
 
-        <% })
+        })
         
-      %>
+        -->
 
     </div>
   </div>
 
-  <div class="content__central-col content__central-col--visible">
+  <div class="content__central-col">
     <div class="content__viewer content__viewer--central">
 
-      <% formType = 'event' %>
-
-      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
+      
 
     </div>
   </div>
@@ -96,6 +96,10 @@
 </div>
 
 <!--
+
+  <% formType = 'event' %>
+
+      <%- include ../../../assets/templates/organizer/_item-form.ejs %>
 
 <%  formType = 'note' %>
 
