@@ -2,18 +2,16 @@ class Views {
 
   viewState = {
     subMenu: 'default', /* search, notifications */
-    leftColIndex: 0, /* 1 - 4 */
+    leftColIndex: 0, /* 1 - 3 */
     colOnTop: 'left', /* right, central */
     twoCols: undefined /* true, false */
   }
 
   sliderBar = document.querySelector('.slider-bar')
 
-  bell = document.querySelector('.top-bar-organizer__notifier-tap-area')
-
-  ellipsis = document.querySelector('.top-bar-organizer__ellipsis-tap-area')
-
   subMenu = document.querySelector('.sub-menu-organizer')
+
+  content = document.querySelector('.content')
 
   columns = {
     left: document.querySelector('.content__left-col'),
@@ -30,57 +28,13 @@ class Views {
   constructor() {
 
     this.viewState.leftColIndex = this.sliderBar.dataset.index
-    
+
+    this.viewState.twoCols = this.signalTwoColumns()
+
     this.events()
   }
 
   events() {
-
-    this.ellipsis.addEventListener('click', () => {
-
-      if(this.viewState.subMenu === 'notifications') {
-
-        this.subMenu.className = 'sub-menu-organizer sub-menu-organizer--search'
-
-        this.viewState.subMenu = 'search'
-
-      } else if(this.viewState.subMenu === 'search') {
-
-        this.subMenu.classList.remove('sub-menu-organizer--search')
-
-        this.viewState.subMenu = 'default'
-
-      } else {
-
-        this.subMenu.classList.add('sub-menu-organizer--search')
-
-        this.viewState.subMenu = 'search'
-
-      }
-    })
-
-    this.bell.addEventListener('click', () => {
-
-      if(this.viewState.subMenu === 'search') {
-
-        this.subMenu.className = 'sub-menu-organizer sub-menu-organizer--notifications'
-
-        this.viewState.subMenu = 'notifications'
-
-      } else if(this.viewState.subMenu === 'notifications') {
-
-        this.subMenu.classList.remove('sub-menu-organizer--notifications')
-
-        this.viewState.subMenu = 'default'
-
-      } else {
-
-        this.subMenu.classList.add('sub-menu-organizer--notifications')
-
-        this.viewState.subMenu = 'notifications'
-
-      }
-    })
 
     this.sliderBar.addEventListener('click', async e => {
 
@@ -102,6 +56,52 @@ class Views {
         this.fadeIn('left', 'viewer')
       }
     })
+  }
+
+  notifications() {
+
+    if(this.viewState.subMenu === 'search') {
+
+      this.subMenu.className = 'sub-menu-organizer sub-menu-organizer--notifications'
+
+      this.viewState.subMenu = 'notifications'
+
+    } else if(this.viewState.subMenu === 'notifications') {
+
+      this.subMenu.classList.remove('sub-menu-organizer--notifications')
+
+      this.viewState.subMenu = 'default'
+
+    } else {
+
+      this.subMenu.classList.add('sub-menu-organizer--notifications')
+
+      this.viewState.subMenu = 'notifications'
+
+    }
+  }
+
+  search() {
+
+    if(this.viewState.subMenu === 'notifications') {
+
+      this.subMenu.className = 'sub-menu-organizer sub-menu-organizer--search'
+
+      this.viewState.subMenu = 'search'
+
+    } else if(this.viewState.subMenu === 'search') {
+
+      this.subMenu.classList.remove('sub-menu-organizer--search')
+
+      this.viewState.subMenu = 'default'
+
+    } else {
+
+      this.subMenu.classList.add('sub-menu-organizer--search')
+
+      this.viewState.subMenu = 'search'
+
+    }
   }
 
   fadeOut(col, viewer) {
@@ -153,8 +153,9 @@ class Views {
     }
   }
 
-  updateViewState() {
+  signalTwoColumns() {
 
+    return getComputedStyle(this.content).getPropertyValue('grid-template-columns').indexOf(' ') !== -1
   }
 }
 
