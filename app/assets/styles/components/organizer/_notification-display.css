@@ -38,10 +38,13 @@
       color: white;
       font-weight: 300;
       margin-bottom: 20px;
+      font-size: 1.65rem;
+      line-height: .9;
     }
 
     @mixin atXLarge {
-      margin-bottom: 25px;
+      margin-bottom: 34px;
+      
     }
   }
 

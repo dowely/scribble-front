@@ -1,0 +1,102 @@
+<%
+
+let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+let weekdays = ['Monday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+let dates = [[], [], [], [], [], [], []] <!-- 7 weekdays -->
+
+let offset = new Date(year, month, 1).getDay() - 1
+
+offset = offset < 0 ? 6 : offset
+
+dates.forEach((weekdayArr, day) => {
+
+  for(let i = 0; i < 6; i++) {
+
+    let myDate = new Date(year, month, 1 - offset + day + i * 7)
+
+    myDate.str = String(myDate.getDate())
+    myDate.currentMonth = myDate.getMonth() === month
+    myDate.items = dots[myDate.str] || []
+
+    weekdayArr.push(myDate)
+  }
+
+})
+
+%>
+
+<div class="calendar-card">
+
+  <div class="calendar-card__nav-bar">
+
+    <div class="calendar-card__title">
+
+      <span class="calendar-card__month">
+        <%= months[month] %>
+      </span>
+
+      <span class="calendar-card__year">
+        <%= year %>
+      </span>
+
+    </div>
+
+    <div class="calendar-card__nav-buttons">
+
+      <div class="calendar-card__nav-btn">
+        <svg class="calendar-card__angle-icon">
+          <use href="#angle-left-solid"></use>
+        </svg>
+      </div>
+
+      <div class="calendar-card__nav-btn">
+        <svg class="calendar-card__angle-icon">
+          <use href="#angle-right-solid"></use>
+        </svg>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="calendar-card__main">
+
+    <% dates.forEach((weekdayArr, day) => { %>
+
+      <div class="calendar-card__weekday-col calendar-card__weekday-col--<%= weekdays[day] %>">
+
+        <h4 class="calendar-card__weekday"><%= weekdays[day].substring(0, 3) %></h4>
+  
+        <div class="calendar-card__dates">
+        <!-- calendar-card__date-container--selected -->
+          <% weekdayArr.forEach(date => { %>
+          
+          <div class="calendar-card__date-container<%= date.currentMonth ? ' calendar-card__date-container--current' : '' %><%= date.getTime() === today.getTime() ? ' calendar-card__date-container--today' : '' %><%= date.str === '15' ? ' calendar-card__date-container--selected' : '' %>" data-id="<%= `${date.str} ${months[month].substring(0, 3)} ${year}` %>">
+  
+            <h6 class="calendar-card__date"><%= date.str %></h6>
+            
+            <div class="calendar-card__item-dots">
+
+              <% if(date.currentMonth) date.items.forEach(item => { %>
+
+              <span class="calendar-card__item-dot calendar-card__item-dot--<%= item %>"></span>
+    
+              <% }) %>
+
+            </div>
+      
+          </div>
+  
+          <% }) %>
+  
+        </div>
+  
+      </div>
+
+    <% }) %>
+
+  </div>
+
+</div>

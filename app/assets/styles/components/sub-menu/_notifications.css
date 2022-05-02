@@ -5,6 +5,8 @@
   
   &__bell-container {
     display: none;
+    position: relative;
+    cursor: pointer;
 
     @mixin atMedium {
       display: block;
@@ -16,6 +18,15 @@
       margin-right: 0;
       margin-left: 30px;
     }
+  }
+
+  &__notifier-tap-area {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(2, 1.5);
   }
 
   &__overlay {
