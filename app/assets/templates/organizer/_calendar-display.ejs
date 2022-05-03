@@ -1,0 +1,79 @@
+<div class="calendar-display" data-target="<%= target %>">
+
+  <div class="calendar-display__header">
+
+    <p class="calendar-display__time-distance">
+      Today
+    </p>
+
+    <p class="calendar-display__card-iterator">
+      <%= itemCount === 0 ? `` : `foo` %>
+    </p>
+
+  </div>
+  
+  <!-- calendar-display__items--hidden (transition) -->
+  <div class="calendar-display__items">
+    <!-- calendar-display__item-group--selected (display: block) -->
+    <!-- calendar-display__card-container--visible (display: block)-->
+    <% 
+    
+    for(let key in itemGroups) { %>
+
+    <div class="calendar-display__item-group" data-id="<%= key %>">
+
+      <% itemGroups[key].forEach((item, index) => {
+      
+      item.shortened = target === 'left' ? true : false
+
+      %> 
+
+      <div class="calendar-display__card-container<%= target === 'left' && index === 0 || target === 'right' && index < 2 ? ' calendar-display__card-container--visible' : '' %>">
+
+      <%- itemCardTemplate({item}) %>
+
+      </div>
+
+      <% }) %>
+
+    </div>
+
+    <% }
+    
+    %>
+
+    <div class="calendar-display__item-group calendar-display__item-group--selected" data-id="empty">
+      <h3>There are no items</h3>
+    </div>
+
+  </div>
+
+  <div class="calendar-display__footer">
+
+    <div class="calendar-display__prev-container">
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-left-solid"></use>
+      </svg>
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-left-solid"></use>
+      </svg>
+
+    </div>
+
+    <div class="calendar-display__next-container">
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-right-solid"></use>
+      </svg>
+
+      <svg class="calendar-display__footer-icon">
+        <use href="#angle-right-solid"></use>
+      </svg>
+
+    </div>
+
+  </div>
+
+</div>

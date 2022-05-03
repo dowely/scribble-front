@@ -18,6 +18,8 @@
   &__time-distance {
     margin-top: 0;
     margin-bottom: 10px;
+    opacity: 1;
+    transition: opacity .2s ease-out;
 
     @mixin atMedium {
       font-size: 1.65rem;
@@ -33,6 +35,10 @@
     }
   }
 
+  &__time-distance--faded {
+    opacity: 0;
+  }
+
   &__card-iterator {
     margin: 0;
 
@@ -42,12 +48,34 @@
     }
   }
 
+  &__items {
+    min-height: 87px;
+    opacity: 1;
+    transition: opacity .2s ease-out;
+  }
+
+  &__items--hidden {
+    opacity: 0;
+  }
+
   &__item-group {
     display: none;
   }
 
   &__item-group--selected {
     display: block;
+  }
+
+  &__item-group[data-id="empty"] {
+    h3 {
+      color: $gray50;
+      font-weight: 500;
+      border: 1px solid $gray20;
+      margin: 0;
+      height: 87px;
+      line-height: 87px;
+      text-align: center;
+    }
   }
 
   &__card-container {

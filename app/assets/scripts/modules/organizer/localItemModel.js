@@ -8,7 +8,7 @@ class LocalItemModel {
   constructor() {
     
     this.data = localStorage.getItem('items') || this.init(staticDB)
-    console.log(this.data)
+
     this.volatileMemory = this.load()
 
   }
@@ -28,7 +28,15 @@ class LocalItemModel {
         const localDate = new Date(staticDate)
 
         localDate.setFullYear(now.getFullYear())
-        localDate.setMonth(now.getMonth())
+        
+        if(item.title === 'Car service') {
+          
+          localDate.setMonth(now.getMonth() + 1)
+
+        } else {
+
+          localDate.setMonth(now.getMonth())
+        }
 
         if(key === 'tasks') item.dueDate = this.simpleDate(localDate)
         if(key === 'events') item.eventDate = this.simpleDate(localDate)
@@ -76,12 +84,41 @@ class LocalItemModel {
     return dots
   }
 
+  groupedItems (month) {
+
+    const groupedItems = {}
+  
+    this.filterByMonth(this.volatileMemory, month).forEach(item => {
+  
+      if(!groupedItems[item.date]) groupedItems[item.date] = [item]
+      else groupedItems[item.date].push(item)
+    })
+  
+    return this.sortByDate(groupedItems, 1)
+    /* 1 for ascending, -1 for descending */
+  }
+
   filterByMonth(items, month) {
 
     return items.filter(item => {
   
       return new Date(item.date).getMonth() === month
     })
+  }
+
+  sortByDate(obj, order) {
+
+    return Object.fromEntries(Object.entries(obj).sort((a, b) => {
+  
+      let [keyOne] = a
+      let [keyTwo] = b
+  
+      keyOne = Number(keyOne.substring(0, keyOne.indexOf(' ')))
+      keyTwo = Number(keyTwo.substring(0, keyTwo.indexOf(' ')))
+  
+      return (keyOne - keyTwo) * order
+  
+    }))
   }
 
   getFullDate(date) {
@@ -93,6 +130,11 @@ class LocalItemModel {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     return `${dateObj.getDate()} ${months[dateObj.getMonth()].substring(0, 3)} ${dateObj.getFullYear()}`
+  }
+
+  itemCountOn(date) {
+
+    return this.volatileMemory.filter(item => item.date === date).length
   }
 }
 
