@@ -1,3 +1,5 @@
+import debounce from 'lodash/debounce'
+
 class Views {
 
   viewState = {
@@ -56,6 +58,12 @@ class Views {
         this.fadeIn('left', 'viewer')
       }
     })
+
+    addEventListener('resize', debounce(() => {
+
+      this.viewState.twoCols = this.signalTwoColumns()
+
+    }, 500).bind(this))
   }
 
   notifications() {

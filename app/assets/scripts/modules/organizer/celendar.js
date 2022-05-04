@@ -21,9 +21,10 @@ class Calendar {
 
   displayHookRight = document.querySelector('.content__right-col .content__viewer')
 
-  constructor(localItemModel) {
+  constructor(views, localItemModel) {
 
     this.localItemModel = localItemModel
+    this.views = views
 
     this.cardHook.innerHTML = cardTemplate({
       year: this.today.year,
@@ -39,19 +40,30 @@ class Calendar {
       itemCardTemplate
     })
 
+    this.displayHookRight.innerHTML = displayTemplate({
+      target: 'right',
+      itemCount: this.localItemModel.itemCountOn(this.today.date),
+      itemGroups: this.localItemModel.groupedItems(this.today.month),
+      itemCardTemplate
+    })
+
     this.itemGroups = document.querySelectorAll('.calendar-display__item-group')
 
-    this.itemGroupEmpty = document.querySelector('.calendar-display__item-group[data-id="empty"]')
+    this.itemGroupsEmpty = document.querySelectorAll('.calendar-display__item-group[data-id="empty"]')
 
     this.dateContainers = document.querySelectorAll('.calendar-card__date-container')
 
-    this.selectedItemGroup = document.querySelector('.calendar-display__item-group[data-id="empty"]')
+    this.selectedItemGroups = [...document.querySelectorAll('.calendar-display__item-group[data-id="empty"]')]
 
-    this.items = document.querySelector('.calendar-display__items')
+    this.items = document.querySelectorAll('.calendar-display__items')
 
-    this.timeDistance = document.querySelector('.calendar-display__time-distance')
+    this.timeDistances = document.querySelectorAll('.calendar-display__time-distance')
 
-    this.cardIteratorLeft = document.querySelector('.calendar-display[data-target="left"] .calendar-display__card-iterator')
+    this.cardIterators = document.querySelectorAll('.calendar-display__card-iterator')
+
+    this.prevBtns = document.querySelectorAll('.calendar-display__prev-container')
+
+    this.nextBtns = document.querySelectorAll('.calendar-display__next-container')
 
     this.itemGroups.forEach(itemGroup => {
 
@@ -75,6 +87,134 @@ class Calendar {
 
       dateContainer.onclick = this.selectDate.bind(this)
     })
+
+    const dispBtns = [...this.prevBtns, ...this.nextBtns]
+
+    dispBtns.forEach(dispBtn => {
+
+      dispBtn.onclick = this.anotherCard.bind(this)
+    })
+  }
+
+  anotherCard(e) {
+
+    const count = this.selectedItemGroups[0].children.length
+
+    if(count > 1) {
+
+      const direction = e.target.closest('div').classList.contains('calendar-display__next-container') ? 'next' : 'prev'
+
+      const step = e.target.closest('.calendar-display').dataset.target === 'left' ? 'one' : 'two'
+
+      switch(direction) {
+
+        case 'next':
+
+          if(this.selectedItemGroups.index === count) {
+
+            this.selectedItemGroups.index = 1
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          } else if(this.selectedItemGroups.index === count - 1) {
+
+            this.selectedItemGroups.index = step === 'one' ? count : 1
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          } else if(this.selectedItemGroups.index) {
+
+            if(step === 'one' || this.selectedItemGroups.index % 2 === 0) {
+
+              this.selectedItemGroups.index +=1
+
+            } else {
+
+              this.selectedItemGroups.index +=2
+            }
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          } else {
+
+            this.selectedItemGroups.index = step === 'one' ? 2 : count > 2 ? 3 : 1
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          }
+
+          break
+
+        case 'prev':
+
+          if(this.selectedItemGroups.index === 1) {
+
+            this.selectedItemGroups.index = count
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          } else if(this.selectedItemGroups.index === 2) {
+
+            this.selectedItemGroups.index = step === 'one' ? 1 : count
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          } else if(this.selectedItemGroups.index) {
+
+            if(step === 'one' || this.selectedItemGroups.index % 2 !== 0) {
+
+              this.selectedItemGroups.index -=1
+
+            } else {
+
+              this.selectedItemGroups.index -=2
+            }
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          } else {
+
+            this.selectedItemGroups.index = count
+
+            this.updateCardsView(this.selectedItemGroups.index)
+
+            this.tickIterator(this.selectedItemGroups.index)
+
+          }
+
+          break
+      }
+
+    }
+
+  }
+
+  updateCardsView(index) {
+    console.log('now showing ', index)
+    const onTheRight = this.views.viewState.twoCols ? 1 : 0
+
+  }
+
+  tickIterator(index) {
+
+    this.cardIterators[0].firstElementChild.textContent = index
+
+    this.cardIterators[1].firstElementChild.textContent = index % 2 === 0 ? (index / 2 < 1 ? 1 : index / 2) : (index + 1) / 2
+
   }
 
   selectDate(e) {
@@ -99,46 +239,62 @@ class Calendar {
   }
 
   async showItems(date) {
-    
-    const match = [...this.itemGroups].find(itemGroup => itemGroup.dataset.id === date)
 
-    if(match) {
+    const onTheRight = this.views.viewState.twoCols ? 1 : 0
+    
+    const matches = [...this.itemGroups].filter(itemGroup => itemGroup.dataset.id === date)
+
+    if(matches.length > 0) {
 
       await new Promise(res => {
 
-        this.items.ontransitionend = res
+        this.items[onTheRight].ontransitionend = res
 
-        this.items.classList.add('calendar-display__items--hidden')
+        this.items[onTheRight].classList.add('calendar-display__items--hidden')
       })
       
-      this.selectedItemGroup.classList.remove('calendar-display__item-group--selected')
+      this.selectedItemGroups[0].classList.remove('calendar-display__item-group--selected')
 
-      match.classList.add('calendar-display__item-group--selected')
+      this.selectedItemGroups[1].classList.remove('calendar-display__item-group--selected')
 
-      this.items.classList.remove('calendar-display__items--hidden')
+      matches[0].classList.add('calendar-display__item-group--selected')
 
-      this.selectedItemGroup = match
+      matches[1].classList.add('calendar-display__item-group--selected')
+
+      this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+
+      this.selectedItemGroups[0] = matches[0]
+      
+      this.selectedItemGroups[1] = matches[1]
 
     } else {
 
       await new Promise(res => {
 
-        this.items.ontransitionend = res
+        this.items[onTheRight].ontransitionend = res
 
-        this.items.classList.add('calendar-display__items--hidden')
+        this.items[onTheRight].classList.add('calendar-display__items--hidden')
       })
 
-      this.selectedItemGroup.classList.remove('calendar-display__item-group--selected')
+      this.selectedItemGroups[0].classList.remove('calendar-display__item-group--selected')
 
-      this.itemGroupEmpty.classList.add('calendar-display__item-group--selected')
+      this.selectedItemGroups[1].classList.remove('calendar-display__item-group--selected')
 
-      this.items.classList.remove('calendar-display__items--hidden')
+      this.itemGroupsEmpty[0].classList.add('calendar-display__item-group--selected')
 
-      this.selectedItemGroup = this.itemGroupEmpty
+      this.itemGroupsEmpty[1].classList.add('calendar-display__item-group--selected')
+
+      this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+
+      this.selectedItemGroups[0] = this.itemGroupsEmpty[0]
+
+      this.selectedItemGroups[1] = this.itemGroupsEmpty[1]
     }
   }
 
   async updateTimeDistance(date) {
+
+    const onTheRight = this.views.viewState.twoCols ? 1 : 0
 
     const offset = (new Date(date) - this.today.date) / 8.64e+7
     
@@ -175,19 +331,40 @@ class Calendar {
 
     await new Promise(res => {
 
-      this.timeDistance.ontransitionend = res
+      this.timeDistances[onTheRight].ontransitionend = res
 
-      this.timeDistance.classList.add('calendar-display__time-distance--faded')
+      this.timeDistances[onTheRight].classList.add('calendar-display__time-distance--faded')
     })
 
-    this.timeDistance.textContent = str
+    this.timeDistances[0].textContent = str
+    
+    this.timeDistances[1].textContent = str
 
-    this.timeDistance.classList.remove('calendar-display__time-distance--faded')
+    this.timeDistances[onTheRight].classList.remove('calendar-display__time-distance--faded')
   }
 
-  updateIterator(date) {
+  async updateIterator(date) {
 
-    this.cardIteratorLeft.textContent = this.localItemModel.itemCountOn(date)
+    const onTheRight = this.views.viewState.twoCols ? 1 : 0
+
+    const itemCount = this.localItemModel.itemCountOn(date)
+
+    const strLeft = itemCount === 0 ? `` : `<span>1</span> / <span>${itemCount}</span>`
+
+    const strRight = itemCount === 0 ? `` : `<span>1</span> / <span>${itemCount % 2 === 0 ? itemCount / 2 : Math.ceil(itemCount / 2)}</span>`
+
+    await new Promise(res => {
+
+      this.cardIterators[onTheRight].ontransitionend = res
+
+      this.cardIterators[onTheRight].classList.add('calendar-display__card-iterator--faded')
+    })
+
+    this.cardIterators[0].innerHTML = strLeft
+
+    this.cardIterators[1].innerHTML = strRight
+
+    this.cardIterators[onTheRight].classList.remove('calendar-display__card-iterator--faded')
   }
 }
 

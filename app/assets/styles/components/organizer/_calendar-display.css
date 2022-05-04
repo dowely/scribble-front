@@ -41,11 +41,17 @@
 
   &__card-iterator {
     margin: 0;
+    opacity: 1;
+    transition: opacity .2s ease-out;
 
     @mixin atMedium {
       font-size: 1.4rem;
       margin-top: 2px;
     }
+  }
+
+  &__card-iterator--faded {
+    opacity: 0;
   }
 
   &__items {
@@ -75,6 +81,15 @@
       height: 87px;
       line-height: 87px;
       text-align: center;
+
+      @mixin atLarge {
+        color: white;
+        font-weight: 300;
+        font-size: 1.5rem;
+        height: 148px;
+        line-height: 148px;
+        border-color: white;
+      }
     }
   }
 

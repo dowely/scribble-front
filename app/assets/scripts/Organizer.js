@@ -19,5 +19,5 @@ const localItemModel = new LocalItemModel()
 
 new Notifications(views)
 new Search(views)
-new Calendar(localItemModel)
+new Calendar(views, localItemModel)
 

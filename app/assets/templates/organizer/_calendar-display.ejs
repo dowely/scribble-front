@@ -7,7 +7,7 @@
     </p>
 
     <p class="calendar-display__card-iterator">
-      <%= itemCount === 0 ? `` : `foo` %>
+      <%- itemCount === 0 ? `` : target === 'left' ? `<span>1</span> / <span>${itemCount}</span>` : `<span>1<span> / <span>${itemCount % 2 === 0 ? itemCount / 2 : Math.ceil(itemCount / 2)}<span>` %>
     </p>
 
   </div>
