@@ -275,6 +275,12 @@
     .calendar-card__date-container--current & {
       color: $mainBlack;
     }
+
+    transition: transform 1.5s ease-out;
+
+    .calendar-card--next & {
+      transform: translateX(-500px);
+    }
   }
 
   &__item-dots {
