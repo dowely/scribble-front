@@ -15,3 +15,15 @@
     @mixin-content;
   }
 }
+
+@define-mixin dateReplacement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .calendar-card--next &,
+  .calendar-card--prev & {
+    transform: translateX(0);
+  }
+}

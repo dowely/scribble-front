@@ -16,6 +16,8 @@ class Calendar {
 
   displayedMonth = this.today.date
 
+  sliderTransition = false
+
   selectedDate
 
   cardHook = document.querySelector('.calendar__calendar-card-container')
@@ -116,17 +118,32 @@ class Calendar {
 
     this.prevMonth.addEventListener('click', () => {
 
-      this.calendarSlider.prev(this.displayedMonth)
+      if(!this.sliderTransition) {
+
+        this.calendarSlider.prev(this.displayedMonth, this.today.date)
+
+        this.sliderTransition = true
+      }
     })
 
     this.nextMonth.addEventListener('click', () => {
 
-      this.calendarSlider.next(this.displayedMonth)
+      if(!this.sliderTransition) {
+
+        this.calendarSlider.next(this.displayedMonth, this.today.date)
+
+        this.sliderTransition = true
+      }
     })
   }
 
-  onMonthChange() {
+  onMonthChange(date) {
 
+    this.displayedMonth = date
+
+    this.sliderTransition = false
+
+    console.log(this.displayedMonth);
   }
 
   anotherCard(e) {

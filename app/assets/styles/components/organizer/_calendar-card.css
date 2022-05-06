@@ -276,11 +276,28 @@
       color: $mainBlack;
     }
 
-    transition: transform 1.5s ease-out;
+    .calendar-card--prev & {
+      transform: translateX(450px);
+      transition: transform 1s ease-out;
+    }
 
     .calendar-card--next & {
-      transform: translateX(-500px);
+      transform: translateX(-450px);
+      transition: transform 1s ease-out;
     }
+  }
+
+  &__date--replacement-ltr {
+    @mixin dateReplacement{};
+
+    transform: translateX(-450px);
+  }
+
+  &__date--replacement-rtl {
+    @mixin dateReplacement{};
+
+    transform: translateX(450px);
+
   }
 
   &__item-dots {
@@ -297,6 +314,35 @@
 
     .calendar-card__date-container--today & {
       display: none;
+    }
+
+    transition: transform 1s ease-out;
+
+    .calendar-card--prev & {
+      transform: translateX(450px);
+    }
+
+    .calendar-card--next & {
+      transform: translateX(-450px);
+    }
+  }
+
+  &__item-dots--replacement-ltr {
+
+    transform: translateX(-450px);
+
+    .calendar-card--prev & {
+      transform: translateX(0);
+    }
+
+  }
+
+  &__item-dots--replacement-rtl {
+
+    transform: translateX(450px);
+
+    .calendar-card--next & {
+      transform: translateX(0);
     }
   }
 
