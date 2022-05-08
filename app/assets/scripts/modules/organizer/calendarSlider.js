@@ -1,4 +1,5 @@
 import cardTemplate from '/app/assets/templates/organizer/_calendar-card.ejs'
+import debounce from 'lodash/debounce'
 
 class CalendarSlider {
 
@@ -14,10 +15,25 @@ class CalendarSlider {
 
   month = this.title.querySelector('.calendar-card__month')
 
+  year = this.title.querySelector('.calendar-card__year')
+
+  calendarWidth = getComputedStyle(this.calendarCard).getPropertyValue('width')
+
   constructor(localItemModel, callback) {
 
     this.localItemModel = localItemModel
     this.callback = callback
+
+    this.calendarCard.style.setProperty('--calendar-width', this.calendarWidth)
+
+    addEventListener('resize', debounce(() => {
+
+      this.calendarWidth = getComputedStyle(this.calendarCard).getPropertyValue('width')
+
+      this.calendarCard.style.setProperty('--calendar-width', this.calendarWidth)
+
+    }, 500).bind(this))
+    
   }
 
   async prev(date, today) {
@@ -28,12 +44,12 @@ class CalendarSlider {
       year: date.getFullYear(),
       month: date.getMonth(),
       today,
-      dots: this.localItemModel.dots(date.getMonth())
+      dots: this.localItemModel.dots(date)
     })
 
     this.beforeTransition('ltr')
 
-    this.updateMonth(date.getMonth())
+    this.updateMonth(date)
 
     await this.transition('prev')
     
@@ -50,12 +66,12 @@ class CalendarSlider {
       year: date.getFullYear(),
       month: date.getMonth(),
       today,
-      dots: this.localItemModel.dots(date.getMonth())
+      dots: this.localItemModel.dots(date)
     })
 
     this.beforeTransition('rtl')
 
-    this.updateMonth(date.getMonth())
+    this.updateMonth(date)
 
     await this.transition('next')
     
@@ -65,7 +81,6 @@ class CalendarSlider {
   }
 
   afterTransition() {
-    console.log('aftertransition', new Date().getTime())
 
     for(const dateContainer of this.dateContainers) {
 
@@ -83,7 +98,7 @@ class CalendarSlider {
   transition (direction) {
     
     return new Promise(res => {
-      console.log('transition', new Date().getTime())
+
       const date = document.querySelector('.calendar-card__date')
 
       date.ontransitionend = res
@@ -99,16 +114,29 @@ class CalendarSlider {
     })
   }
 
-  updateMonth(month) {
-    console.log('updateMonth')
+  updateMonth(date) {
+
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-    this.month.textContent = months[month]
+    new Promise(res => {
 
+      this.title.ontransitionend = res
+      this.title.ontransitioncance = res
+
+      this.title.classList.add('calendar-card__title--faded')
+
+    }).then(() => {
+
+      this.month.textContent = months[date.getMonth()]
+      this.year.textContent = date.getFullYear()
+
+      this.title.classList.remove('calendar-card__title--faded')
+
+    })
   }
 
   beforeTransition(direction) {
-    console.log('beforeTransition')
+
     const replacementDateCols = this.replacement.querySelectorAll('.calendar-card__weekday-col')
 
     for(const [weekday, dayCol] of [...this.dateCols].entries()) {
@@ -120,15 +148,19 @@ class CalendarSlider {
 
         replacementDate.className = `calendar-card__date calendar-card__date--replacement-${direction}`
 
-        replacementDate.dataset.foo = 'bar'
-
         replacementDots.className = `calendar-card__item-dots calendar-card__item-dots--replacement-${direction}`
 
         replacementDate.textContent = replacementDateCols[weekday].querySelector('.calendar-card__dates').children[week]. querySelector('.calendar-card__date').textContent
 
+        replacementDots.innerHTML = replacementDateCols[weekday].querySelector('.calendar-card__dates').children[week]. querySelector('.calendar-card__item-dots').innerHTML
+
         dateContainer.appendChild(replacementDate).insertAdjacentElement('afterend', replacementDots)
 
-        dateContainer.className = replacementDateCols[weekday].querySelector('.calendar-card__dates').children[week].className
+        setTimeout(() => {
+
+          dateContainer.className = replacementDateCols[weekday].querySelector('.calendar-card__dates').children[week].className
+
+        }, 5)
 
         dateContainer.dataset.id = replacementDateCols[weekday].querySelector('.calendar-card__dates').children[week].dataset.id
       }

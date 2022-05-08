@@ -69,11 +69,11 @@ class LocalItemModel {
 
   }
 
-  dots(month) {
+  dots(date) {
 
     const dots = {}
     
-    this.filterByMonth(this.volatileMemory, month).forEach(item => {
+    this.filterByMonth(this.volatileMemory, date).forEach(item => {
   
       let day = item.date.substring(0, item.date.indexOf(' '))
   
@@ -84,25 +84,34 @@ class LocalItemModel {
     return dots
   }
 
-  groupedItems (month) {
+  groupedItems(date, today) {
 
     const groupedItems = {}
   
-    this.filterByMonth(this.volatileMemory, month).forEach(item => {
+    this.filterByMonth(this.volatileMemory, date).forEach(item => {
   
       if(!groupedItems[item.date]) groupedItems[item.date] = [item]
       else groupedItems[item.date].push(item)
     })
-  
+   
+    if(today && !groupedItems[today]) {
+
+      this.volatileMemory.filter(item => item.date === today).forEach(item => {
+
+        if(!groupedItems[today]) groupedItems[today] = [item]
+        else groupedItems[today].push(item)
+      })
+    }
+
     return this.sortByDate(groupedItems, 1)
     /* 1 for ascending, -1 for descending */
   }
 
-  filterByMonth(items, month) {
+  filterByMonth(items, date) {
 
     return items.filter(item => {
   
-      return new Date(item.date).getMonth() === month
+      return new Date(item.date).setDate(1) === date.setDate(1)
     })
   }
 

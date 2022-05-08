@@ -35,20 +35,20 @@ class Calendar {
       year: this.today.year,
       month: this.today.month,
       today: this.today.date,
-      dots: this.localItemModel.dots(this.today.month)
+      dots: this.localItemModel.dots(this.today.date)
     })
 
     this.displayHookLeft.innerHTML = displayTemplate({
       target: 'left',
       itemCount: this.localItemModel.itemCountOn(this.localItemModel.simpleDate(this.today.date)),
-      itemGroups: this.localItemModel.groupedItems(this.today.month),
+      itemGroups: this.localItemModel.groupedItems(this.today.date),
       itemCardTemplate
     })
 
     this.displayHookRight.innerHTML = displayTemplate({
       target: 'right',
       itemCount: this.localItemModel.itemCountOn(this.localItemModel.simpleDate(this.today.date)),
-      itemGroups: this.localItemModel.groupedItems(this.today.month),
+      itemGroups: this.localItemModel.groupedItems(this.today.date),
       itemCardTemplate
     })
 
@@ -76,27 +76,10 @@ class Calendar {
 
     this.itemGroups.forEach(itemGroup => {
 
-      if(itemGroup.dataset.id === this.localItemModel.simpleDate(this.today.date)) {
-
-        itemGroup.classList.add('calendar-display__item-group--selected')
-
-        if(itemGroup.closest('.calendar-display').dataset.target === 'left') {
-
-          this.selectedItemGroups[0] = itemGroup
-
-          this.itemGroupsEmpty[0].classList.remove('calendar-display__item-group--selected')
-
-        } else {
-
-          this.selectedItemGroups[1] = itemGroup
-
-          this.itemGroupsEmpty[1].classList.remove('calendar-display__item-group--selected')
-
-        }    
-      }
+      this.selectItemGroup(itemGroup)
     })
 
-    this.calendarSlider = new CalendarSlider(this.localItemModel, this.onMonthChange.bind(this))
+    this.calendarSlider = new CalendarSlider(this.localItemModel, this.afterMonthChange.bind(this))
 
     this.events()
 
@@ -120,6 +103,8 @@ class Calendar {
 
       if(!this.sliderTransition) {
 
+        this.beforeMonthChange(-1)
+
         this.calendarSlider.prev(this.displayedMonth, this.today.date)
 
         this.sliderTransition = true
@@ -130,6 +115,8 @@ class Calendar {
 
       if(!this.sliderTransition) {
 
+        this.beforeMonthChange(1)
+
         this.calendarSlider.next(this.displayedMonth, this.today.date)
 
         this.sliderTransition = true
@@ -137,13 +124,95 @@ class Calendar {
     })
   }
 
-  onMonthChange(date) {
+  selectItemGroup(itemGroup) {
+
+    if(itemGroup.dataset.id === this.localItemModel.simpleDate(this.today.date)) {
+
+      itemGroup.classList.add('calendar-display__item-group--selected')
+
+      if(itemGroup.closest('.calendar-display').dataset.target === 'left') {
+
+        this.selectedItemGroups[0] = itemGroup
+
+        this.itemGroupsEmpty[0].classList.remove('calendar-display__item-group--selected')
+
+      } else {
+
+        this.selectedItemGroups[1] = itemGroup
+
+        this.itemGroupsEmpty[1].classList.remove('calendar-display__item-group--selected')
+
+      }    
+    }
+  }
+
+  async beforeMonthChange(direction) {
+
+    const displayReplacementLeft = document.createElement('DIV')
+    const displayReplacementRight = document.createElement('DIV')
+
+    const newDate = new Date(this.displayedMonth)
+    newDate.setMonth(newDate.getMonth() + direction)
+
+    displayReplacementLeft.innerHTML = displayTemplate({
+      target: 'left',
+      itemCount: this.localItemModel.itemCountOn(this.localItemModel.simpleDate(this.today.date)),
+      itemGroups: this.localItemModel.groupedItems(newDate, this.localItemModel.simpleDate(this.today.date)),
+      itemCardTemplate
+    })
+
+    displayReplacementRight.innerHTML = displayTemplate({
+      target: 'right',
+      itemCount: this.localItemModel.itemCountOn(this.localItemModel.simpleDate(this.today.date)),
+      itemGroups: this.localItemModel.groupedItems(newDate, this.localItemModel.simpleDate(this.today.date)),
+      itemCardTemplate
+    })
+
+    const newItemsLeft = displayReplacementLeft.querySelector('.calendar-display__items')
+    const newItemsRight = displayReplacementRight.querySelector('.calendar-display__items')
+
+    const onTheRight = this.views.viewState.twoCols ? 1 : 0
+
+    await new Promise(res => {
+
+      if(this.timeDistances[0].textContent === 'today') res()
+      else {
+
+        this.items[onTheRight].ontransitionend = res
+
+        this.items[onTheRight].classList.add('calendar-display__items--hidden')
+
+        this.updateTimeDistance(this.localItemModel.simpleDate(this.today.date))
+
+        this.updateIterator(this.localItemModel.simpleDate(this.today.date))
+      }
+    })
+
+    this.items[0].innerHTML = newItemsLeft.innerHTML
+    this.items[1].innerHTML = newItemsRight.innerHTML
+
+    this.itemGroups = document.querySelectorAll('.calendar-display__item-group')
+
+    this.selectedItemGroups = [...document.querySelectorAll('.calendar-display__item-group[data-id="empty"]')]
+
+    this.itemGroupsEmpty = document.querySelectorAll('.calendar-display__item-group[data-id="empty"]')
+
+    this.selectedDate = undefined
+
+    this.showItems(this.localItemModel.simpleDate(this.today.date), true)
+
+    if(this.timeDistances[0].textContent !== 'Today') {
+
+      this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+    }
+  }
+
+  afterMonthChange(date) {
 
     this.displayedMonth = date
 
     this.sliderTransition = false
 
-    console.log(this.displayedMonth);
   }
 
   anotherCard(e) {
@@ -301,18 +370,18 @@ class Calendar {
 
       this.selectedDate.classList.add('calendar-card__date-container--selected')
 
-      this.showItems(this.selectedDate.dataset.id)
-
       this.updateTimeDistance(this.selectedDate.dataset.id)
 
       this.updateIterator(this.selectedDate.dataset.id)
+
+      this.showItems(this.selectedDate.dataset.id)
 
       this.selectedItemGroups.index = undefined
 
     }
   }
 
-  async showItems(date) {
+  async showItems(date, noTransition) {
 
     const onTheRight = this.views.viewState.twoCols ? 1 : 0
     
@@ -322,9 +391,16 @@ class Calendar {
 
       await new Promise(res => {
 
-        this.items[onTheRight].ontransitionend = res
+        if(noTransition) {
 
-        this.items[onTheRight].classList.add('calendar-display__items--hidden')
+          res()
+
+        } else {
+
+          this.items[onTheRight].ontransitionend = res
+
+          this.items[onTheRight].classList.add('calendar-display__items--hidden')
+        }
       })
       
       this.selectedItemGroups[0].classList.remove('calendar-display__item-group--selected')
@@ -341,15 +417,25 @@ class Calendar {
 
       this.updateCardsView()
 
-      this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+      if(!noTransition) {
+
+        this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+      }
 
     } else {
 
       await new Promise(res => {
 
-        this.items[onTheRight].ontransitionend = res
+        if(noTransition) {
 
-        this.items[onTheRight].classList.add('calendar-display__items--hidden')
+          res()
+
+        } else {
+
+          this.items[onTheRight].ontransitionend = res
+
+          this.items[onTheRight].classList.add('calendar-display__items--hidden')
+        }
       })
 
       this.selectedItemGroups[0].classList.remove('calendar-display__item-group--selected')
@@ -360,7 +446,10 @@ class Calendar {
 
       this.itemGroupsEmpty[1].classList.add('calendar-display__item-group--selected')
 
-      this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+      if(!noTransition) {
+
+        this.items[onTheRight].classList.remove('calendar-display__items--hidden')
+      }
 
       this.selectedItemGroups[0] = this.itemGroupsEmpty[0]
 
@@ -373,7 +462,7 @@ class Calendar {
 
     const onTheRight = this.views.viewState.twoCols ? 1 : 0
 
-    const offset = (new Date(date) - this.today.date) / 8.64e+7
+    const offset = Math.ceil((new Date(date) - this.today.date) / 8.64e+7)
     
     let str
 

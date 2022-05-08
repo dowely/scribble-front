@@ -59,6 +59,13 @@
     @mixin atXLarge {
       font-size: 1.75rem;
     }
+
+    opacity: 1;
+    transition: opacity .4s ease-out;
+
+    &--faded {
+      opacity: 0;
+    }
   }
 
   &__nav-buttons {
@@ -130,6 +137,7 @@
     flex: 1;
     display: flex;
     margin: 0 -12px 0 -10px;
+    overflow: hidden;
 
     @mixin atMedium {
       margin: 0 -17px 0 -18px;
@@ -243,6 +251,12 @@
 
   &__date-container--today {
     background-color: $mainLavender;
+    transition: background-color .4s ease-out;
+
+    .calendar-card--next &,
+    .calendar-card--prev & {
+      background-color: transparent;
+    }
   }
 
   &__date-container--selected:not(.calendar-card__date-container--today) {
@@ -272,31 +286,35 @@
       line-height: 36px;
     }
 
+    .calendar-card__date-container--today & {
+      color: white;
+    }
+
     .calendar-card__date-container--current & {
       color: $mainBlack;
     }
 
     .calendar-card--prev & {
-      transform: translateX(450px);
-      transition: transform 1s ease-out;
+      transform: translateX(calc(1 * var(--calendar-width)));
+      transition: transform .8s ease-out;
     }
 
     .calendar-card--next & {
-      transform: translateX(-450px);
-      transition: transform 1s ease-out;
+      transform: translateX(calc(-1 * var(--calendar-width)));
+      transition: transform .8s ease-out;
     }
   }
 
   &__date--replacement-ltr {
     @mixin dateReplacement{};
 
-    transform: translateX(-450px);
+    transform: translateX(calc(-1 * var(--calendar-width)));
   }
 
   &__date--replacement-rtl {
     @mixin dateReplacement{};
 
-    transform: translateX(450px);
+    transform: translateX(calc(1 * var(--calendar-width)));
 
   }
 
@@ -316,20 +334,20 @@
       display: none;
     }
 
-    transition: transform 1s ease-out;
-
     .calendar-card--prev & {
-      transform: translateX(450px);
+      transform: translateX(calc(1 * var(--calendar-width)));
+      transition: transform .8s ease-out;
     }
 
     .calendar-card--next & {
-      transform: translateX(-450px);
+      transform: translateX(calc(-1 * var(--calendar-width)));
+      transition: transform .8s ease-out;
     }
   }
 
   &__item-dots--replacement-ltr {
 
-    transform: translateX(-450px);
+    transform: translateX(calc(-1 * var(--calendar-width)));
 
     .calendar-card--prev & {
       transform: translateX(0);
@@ -339,7 +357,7 @@
 
   &__item-dots--replacement-rtl {
 
-    transform: translateX(450px);
+    transform: translateX(calc(1 * var(--calendar-width)));
 
     .calendar-card--next & {
       transform: translateX(0);

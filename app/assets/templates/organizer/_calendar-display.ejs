@@ -2,9 +2,7 @@
 
   <div class="calendar-display__header">
 
-    <p class="calendar-display__time-distance">
-      Today
-    </p>
+    <p class="calendar-display__time-distance">today</p>
 
     <p class="calendar-display__card-iterator">
       <%- itemCount === 0 ? `` : target === 'left' ? `<span>1</span> / <span>${itemCount}</span>` : `<span>1</span> / <span>${itemCount % 2 === 0 ? itemCount / 2 : Math.ceil(itemCount / 2)}</span>` %>
