@@ -36,7 +36,25 @@ class Views {
     this.events()
   }
 
-  async render(target, node) {
+  render(target, node) {
+
+    function stepOne() {
+      
+    }
+
+    function stepTwo() {
+  
+      stepOne()
+
+    }
+
+    function stepThree() {
+      
+      stepTwo()
+
+    }
+
+    stepThree()
 
     if(this.viewState.twoCols && this.viewState.leftColIndex === '1') {
       
