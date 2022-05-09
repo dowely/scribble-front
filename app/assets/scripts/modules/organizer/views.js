@@ -36,6 +36,67 @@ class Views {
     this.events()
   }
 
+  async render(target, node) {
+
+    if(this.viewState.twoCols && this.viewState.leftColIndex === '1') {
+      
+      if(this.viewState.colOnTop === 'left') {
+
+        if(target === 'right') {
+
+
+
+        } else if(target === 'central') {
+
+
+
+        } else {
+
+          
+
+        }
+
+      } else if(this.viewState.colOnTop === 'right') {
+        
+        await this.fadeOut('right')
+
+        this.dynamicContent(node)
+
+        this.fadeIn('right')
+
+      } else if(this.viewState.colOnTop === 'central') {
+
+
+      }
+
+    } else if(this.viewState.twoCols) {
+
+      if(this.viewState.colOnTop === 'left') {
+
+
+      } else if(this.viewState.colOnTop === 'right') {
+
+
+      } else if(this.viewState.colOnTop === 'central') {
+
+
+      }
+
+    } else {
+
+      if(this.viewState.colOnTop === 'left') {
+
+
+      } else if(this.viewState.colOnTop === 'right') {
+
+
+      } else if(this.viewState.colOnTop === 'central') {
+
+
+      } 
+    }
+  }
+
   events() {
 
     this.sliderBar.addEventListener('click', async e => {
@@ -112,6 +173,24 @@ class Views {
     }
   }
 
+  dynamicContent(node) {
+
+    this.viewers.right.firstElementChild.classList.add('calendar-display--flat')
+
+    if(this.viewers.right.children[1]) {
+
+      this.viewers.right.children[1].replaceWith(node)
+
+    } else {
+
+      this.viewers.right.appendChild(node)
+    }
+  }
+
+  calendar() {
+    //restore right display
+  }
+
   fadeOut(col, viewer) {
     return new Promise((res, rej) => {
 
@@ -136,8 +215,9 @@ class Views {
   
         if(col === 'right') {
           this.columns[col].classList.remove('content__right-col--visible')
-        }
 
+          this.columns[col].classList.remove('content__right-col--visible-on-large')
+        }
       }
     })
   }

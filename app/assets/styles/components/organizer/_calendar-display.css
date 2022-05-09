@@ -5,6 +5,11 @@
     position: relative;
   }
 
+  &--flat {
+    height: 0;
+    transform: scale(0);
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;

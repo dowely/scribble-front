@@ -3,6 +3,7 @@ import Views from './modules/organizer/views.js'
 import Notifications from './modules/organizer/notifications'
 import Search from './modules/organizer/search'
 import Calendar from './modules/organizer/celendar.js'
+import ItemCard from './modules/organizer/itemCard.js'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -20,4 +21,4 @@ const localItemModel = new LocalItemModel()
 new Notifications(views)
 new Search(views)
 new Calendar(views, localItemModel)
-
+new ItemCard(views, localItemModel)
