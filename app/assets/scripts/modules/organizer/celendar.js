@@ -376,6 +376,8 @@ class Calendar {
 
       this.showItems(this.selectedDate.dataset.id)
 
+      if(this.views.viewState.colOnTop === 'right') this.views.render('left')
+
       this.selectedItemGroups.index = undefined
 
     }

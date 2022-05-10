@@ -1,3 +1,5 @@
+import itemReadTemplate from '/app/assets/templates/organizer/_item-read.ejs'
+
 class ItemCard {
 
   itemCardCollections = document.querySelectorAll('.calendar-display__items, .items__list')
@@ -5,6 +7,7 @@ class ItemCard {
   constructor(views, localItemModel) {
 
     this.views = views
+    this.localItemModel = localItemModel
 
     this.events()
   }
@@ -26,11 +29,18 @@ class ItemCard {
 
     if(target.closest('.item-card__content')) {
 
-      const itemRead = document.createElement('H1')
-      itemRead.textContent = `Read item ${cardId}`
-
-      this.views.render('right', itemRead)
+      this.views.render('right', this.itemReadNode(cardId))
     }
+  }
+
+  itemReadNode(id) {
+
+    const container = document.createElement('DIV')
+    const itemObj = this.localItemModel.getItemById(id)
+    console.log(itemObj);
+    container.innerHTML = itemReadTemplate({item: itemObj})
+
+    return container.querySelector('.item-read')
   }
 }
 

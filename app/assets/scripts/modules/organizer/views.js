@@ -27,7 +27,9 @@ class Views {
     central: document.querySelector('.content__central-col .content__viewer'),
   }
 
-  constructor() {
+  constructor(bottomNav) {
+
+    this.bottomNav = bottomNav
 
     this.viewState.leftColIndex = this.sliderBar.dataset.index
 
@@ -36,83 +38,53 @@ class Views {
     this.events()
   }
 
-  render(target, node) {
+  async render(target, node) {
 
-    function stepOne() {
+    const fadeOut = async function(that) {
+
+      const veil = that.viewState.twoCols && that.viewState.colOnTop === 'left' && that.viewState.leftColIndex === '1' ? 'right' : that.viewState.colOnTop
       
+      await that.fadeOut(veil)
     }
 
-    function stepTwo() {
-  
-      stepOne()
+    const content = async function(that) {
 
+      if(target === 'left') that.calendar()
+      if(target === 'right') that.dynamicContent(node)
+      if(target === 'central') that.formLoader(node)
     }
 
-    function stepThree() {
-      
-      stepTwo()
+    const fadeIn = async function(that) {
 
+      that.fadeIn(target)
     }
 
-    stepThree()
+    const sequence = []
 
-    if(this.viewState.twoCols && this.viewState.leftColIndex === '1') {
-      
-      if(this.viewState.colOnTop === 'left') {
+    if(
 
-        if(target === 'right') {
+      !this.viewState.twoCols ||
+      this.viewState.colOnTop !== 'left' ||
+      this.viewState.leftColIndex === '1'
 
+    ) sequence.push(fadeOut)
 
+    sequence.push(content)
 
-        } else if(target === 'central') {
+    sequence.push(fadeIn)
 
+    let step = 0
 
+    do{
 
-        } else {
+      await sequence[step](this)
 
-          
+      step++
 
-        }
+    } while(step < sequence.length)
 
-      } else if(this.viewState.colOnTop === 'right') {
-        
-        await this.fadeOut('right')
+    this.viewState.colOnTop = target
 
-        this.dynamicContent(node)
-
-        this.fadeIn('right')
-
-      } else if(this.viewState.colOnTop === 'central') {
-
-
-      }
-
-    } else if(this.viewState.twoCols) {
-
-      if(this.viewState.colOnTop === 'left') {
-
-
-      } else if(this.viewState.colOnTop === 'right') {
-
-
-      } else if(this.viewState.colOnTop === 'central') {
-
-
-      }
-
-    } else {
-
-      if(this.viewState.colOnTop === 'left') {
-
-
-      } else if(this.viewState.colOnTop === 'right') {
-
-
-      } else if(this.viewState.colOnTop === 'central') {
-
-
-      } 
-    }
   }
 
   events() {
@@ -125,6 +97,9 @@ class Views {
       if(this.viewState.leftColIndex != index) {
 
         this.viewState.leftColIndex = this.sliderBar.dataset.index = index
+
+        if(index === '3') this.bottomNav.select()
+        else this.bottomNav.reset()
 
         if(index !== '1') this.columns.right.classList.remove('content__right-col--visible-on-large')
 
@@ -206,7 +181,19 @@ class Views {
   }
 
   calendar() {
-    //restore right display
+
+    if(this.viewers.right.children[1]) {
+
+      this.viewers.right.children[1].remove()
+
+      this.viewers.right.firstElementChild.classList.remove('calendar-display--flat')
+
+      this.columns.right.classList.add('content__right-col--visible-on-large')
+    }
+  }
+
+  formLoader(node) {
+
   }
 
   fadeOut(col, viewer) {

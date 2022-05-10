@@ -130,8 +130,22 @@ class LocalItemModel {
     }))
   }
 
-  getFullDate(date) {
+  getItemById(itemId) {
 
+    return this.volatileMemory.find(item => item.id == itemId)
+  }
+
+  getFullDate(dateStr) {
+
+    const days = ['Sunday', 'Monaday', 'Tuesday', 'Wednsday', 'Thursday', 'Friday', 'Saturday']
+
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+    const date  = new Date(dateStr)
+
+    const text = days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear()
+
+    return text
   }
 
   simpleDate(dateObj) {

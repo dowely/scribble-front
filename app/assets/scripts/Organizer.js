@@ -4,6 +4,8 @@ import Notifications from './modules/organizer/notifications'
 import Search from './modules/organizer/search'
 import Calendar from './modules/organizer/celendar.js'
 import ItemCard from './modules/organizer/itemCard.js'
+import BottomNavigation from './modules/organizer/bottomNav.js'
+import ee from 'event-emitter'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -15,10 +17,23 @@ if(module.hot) {
   module.hot.accept()
 }
 
-const views = new Views()
+ee(BottomNavigation.prototype)
+
+const bottomNav = new BottomNavigation()
+const views = new Views(bottomNav)
 const localItemModel = new LocalItemModel()
 
 new Notifications(views)
 new Search(views)
 new Calendar(views, localItemModel)
 new ItemCard(views, localItemModel)
+
+bottomNav.on('newItem', type => {
+
+  console.log('create new ', type);
+})
+
+bottomNav.on('selectItems', type => {
+
+  console.log(type, 'items selected')
+})

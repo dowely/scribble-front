@@ -270,11 +270,21 @@
 
   &__icons {
     display: block;
-    color: $gray30;
+    color: $gray70;
     cursor: pointer;
+    transition: color .3s ease-out;
+
+    .bottom-navigation[data-selected] & {
+      color: $gray20;
+    }
 
     @mixin atLarge {
-      color: rgba(255, 255, 255, .5);
+      color: white;
+
+      .bottom-navigation[data-selected] & {
+        color: rgba(255, 255, 255, .3);
+      }
+      
     }
   }
 
@@ -282,9 +292,17 @@
     width: 32px;
     height: 32px;
 
+    .bottom-navigation[data-selected="note"] & {
+      color: $gray70;
+    }
+
     @mixin atMedium {
       width: 40px;
       height: 40px;
+
+      .bottom-navigation[data-selected="note"] & {
+        color: white;
+      }
     }
   }
 
@@ -292,9 +310,17 @@
     width: 34px;
     height: 32px;
 
+    .bottom-navigation[data-selected="task"] & {
+      color: $gray70;
+    }
+
     @mixin atMedium {
       width: 48px;
       height: 40px;
+
+      .bottom-navigation[data-selected="task"] & {
+        color: white;
+      }
     }
   }
 
@@ -302,9 +328,17 @@
     width: 28px;
     height: 32px;
 
+    .bottom-navigation[data-selected="event"] & {
+      color: $gray70;
+    }
+
     @mixin atMedium {
       width: 35px;
       height: 40px;
+
+      .bottom-navigation[data-selected="event"] & {
+        color: white;
+      }
     }
   }
 
@@ -312,9 +346,17 @@
     width: 40px;
     height: 32px;
 
+    .bottom-navigation[data-selected="meeting"] & {
+      color: $gray70;
+    }
+
     @mixin atMedium {
       width: 50px;
       height: 40px;
+
+      .bottom-navigation[data-selected="meeting"] & {
+        color: white;
+      }
     }
   }
 }
