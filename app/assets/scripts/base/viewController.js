@@ -137,6 +137,7 @@ class ViewController {
 
     if(hook == 'right') {
       this.columns[hook].classList.add('content__right-col--visible')
+      this.columns['left'].classList.add('content__left-col--hidden')
     }
 
   }

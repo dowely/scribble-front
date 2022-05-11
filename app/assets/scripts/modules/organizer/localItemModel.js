@@ -37,11 +37,13 @@ class LocalItemModel {
 
           localDate.setMonth(now.getMonth())
         }
-
+        
         if(key === 'tasks') item.dueDate = this.simpleDate(localDate)
         if(key === 'events') item.eventDate = this.simpleDate(localDate)
         if(key === 'meetings') item.meetingDate = this.simpleDate(localDate)
         if(key === 'notes') item.pinDate = this.simpleDate(localDate)
+
+        if(key === 'tasks' && item.status !== 'done' && (now.getTime() > new Date(item.dueDate).getTime())) item.status = 'overdue'
       })
     }
 

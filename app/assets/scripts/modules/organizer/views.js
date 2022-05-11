@@ -188,7 +188,10 @@ class Views {
 
       this.viewers.right.firstElementChild.classList.remove('calendar-display--flat')
 
-      this.columns.right.classList.add('content__right-col--visible-on-large')
+      if(this.viewState.leftColIndex === '1') {
+
+        this.columns.right.classList.add('content__right-col--visible-on-large')
+      }
     }
   }
 
@@ -241,6 +244,7 @@ class Views {
   
       if(col ==='right') {
         this.columns[col].classList.add('content__right-col--visible')
+        this.columns['left'].classList.add('content__left-col--hidden')
       }
 
     }

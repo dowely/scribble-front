@@ -113,22 +113,28 @@
   }
 
   &__heading::after {
+    transition: opacity .2s ease-out;
 
     .items[data-items-type="task"] & {
-      content: '5'
+      content: var(--task-count, '6');
     }
 
     .items[data-items-type="event"] & {
-      content: '5'
+      content: var(--event-count, '5');
     }
 
     .items[data-items-type="meeting"] & {
-      content: '2'
+      content: var(--meeting-count, '2');
     }
 
     .items[data-items-type="note"] & {
-      content: '6'
+      content: var(--note-count, '6');
     }
+  }
+
+  &__heading--faded::after {
+
+    opacity: 0;
   }
 
   &__list {

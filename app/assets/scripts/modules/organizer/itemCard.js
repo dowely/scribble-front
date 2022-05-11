@@ -1,25 +1,24 @@
-import itemReadTemplate from '/app/assets/templates/organizer/_item-read.ejs'
-
 class ItemCard {
 
-  itemCardCollections = document.querySelectorAll('.calendar-display__items, .items__list')
+  constructor() {}
 
-  constructor(views, localItemModel) {
+  events(cardNode) {
 
-    this.views = views
-    this.localItemModel = localItemModel
+    if(cardNode) {
 
-    this.events()
-  }
 
-  events() {
 
-    for(const collection of this.itemCardCollections) {
+    } else {
 
-      collection.addEventListener('click', e => {
+      const itemCardCollections = document.querySelectorAll('.calendar-display__items, .items__list')
 
-        if(e.target.closest('.item-card')) this.onClick(e.target)
-      })
+      for(const collection of itemCardCollections) {
+
+        collection.addEventListener('click', e => {
+
+          if(e.target.closest('.item-card')) this.onClick(e.target)
+        })
+      }
     }
   }
 
@@ -29,19 +28,11 @@ class ItemCard {
 
     if(target.closest('.item-card__content')) {
 
-      this.views.render('right', this.itemReadNode(cardId))
+      this.emit('itemRead', cardId)
+
     }
   }
 
-  itemReadNode(id) {
-
-    const container = document.createElement('DIV')
-    const itemObj = this.localItemModel.getItemById(id)
-    console.log(itemObj);
-    container.innerHTML = itemReadTemplate({item: itemObj})
-
-    return container.querySelector('.item-read')
-  }
 }
 
 export default ItemCard
