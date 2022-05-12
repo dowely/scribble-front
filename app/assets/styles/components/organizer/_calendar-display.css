@@ -10,6 +10,11 @@
     transform: scale(0);
   }
 
+  .content__right-col:not(.content__right-col--visible-on-large) &[data-target="right"] {
+    transition: visibility 1ms .3s;
+    visibility: hidden;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;

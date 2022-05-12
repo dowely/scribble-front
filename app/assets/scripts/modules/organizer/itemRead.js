@@ -1,6 +1,9 @@
 import itemReadTemplate from '/app/assets/templates/organizer/_item-read.ejs'
 
 class ItemRead {
+
+  currentNode
+
   constructor() {}
 
   events(readNode) {
@@ -37,6 +40,8 @@ class ItemRead {
     const node = container.querySelector('.item-read')
 
     this.events(node)
+
+    this.currentId = item.id
 
     return node
   }

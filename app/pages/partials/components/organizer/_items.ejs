@@ -11,12 +11,6 @@
       item.shortened = false
     %>
 
-      <% if(item.status === 'done') { %>
-
-        <div class="items__list__divider"><span>Done</span></div>
-
-      <% } %>
-
       <li class="items__list__card-container">
 
         <%- include ../../../../assets/templates/organizer/_item-card.ejs %>
@@ -35,12 +29,6 @@
       item.event = true
       item.shortened = false
     %>
-
-      <% if(item.past) { %>
-
-        <div class="items__list__divider"><span>Past</span></div>
-
-      <% } %>
 
       <li class="items__list__card-container">
 

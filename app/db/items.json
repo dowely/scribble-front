@@ -2,6 +2,13 @@
   "tasks":
   [
     {
+      "id": 7611,
+      "title": "Clean out the garage",
+      "description": "For this reason, dummy text usually consists of a more or less random series of words.",
+      "dueDate": "2 Feb 2022",
+      "status": "done"
+    },
+    {
       "id": 2374,
       "title": "Change winter tires",
       "description": "One disadvantage of Lorum Ipsum is that in Latin certain letters appear more visual elements of a document or presentation.",
@@ -35,17 +42,19 @@
       "description": "These are usually used when a text is required purely to fill a space.",
       "dueDate": "28 Feb 2022",
       "status": "in progress"
-    },
-    {
-      "id": 7611,
-      "title": "Clean out the garage",
-      "description": "For this reason, dummy text usually consists of a more or less random series of words.",
-      "dueDate": "2 Feb 2022",
-      "status": "done"
     }
   ],
   "events":
   [
+    {
+      "id": 6599,
+      "title": "Semifinals on TV",
+      "eventDate": "5 Feb 2022",
+      "eventTime": "20:15 - 22:30",
+      "eventStart": "8:15 PM",
+      "venue": "on TV",
+      "reminder": "30 min before"
+    },
     {
       "id": 8461,
       "title": "Suzanne's birthday",
@@ -53,7 +62,6 @@
       "eventTime": "19:00 - 24:00",
       "eventStart": "7:00 PM",
       "venue": "98 Brown Street, Walnut Creek Fonda Concert Hall",
-      "past": false,
       "reminder": "5 days before"
     },
     {
@@ -63,7 +71,6 @@
       "eventTime": "17:00 - 17:45",
       "eventStart": "5:00 PM",
       "venue": "Dentos, 250 Boggess Street, Wichita Falls",
-      "past": false,
       "reminder": "1 hour before"
     },
     {
@@ -73,7 +80,6 @@
       "eventTime": "10:15 - 11:45",
       "eventStart": "10:15 AM",
       "venue": "Big Bank, 424 Park Boulevard, Baxter",
-      "past": false,
       "reminder": "2 days before"
     },
     {
@@ -83,18 +89,7 @@
       "eventTime": "16:00 - 17:30",
       "eventStart": "4:00 PM",
       "venue": "GP Car, 676 Hinkle Lake Road, Worcester",
-      "past": false,
       "reminder": "1 day before"
-    },
-    {
-      "id": 6599,
-      "title": "Semifinals on TV",
-      "eventDate": "5 Feb 2022",
-      "eventTime": "20:15 - 22:30",
-      "eventStart": "8:15 PM",
-      "venue": "on TV",
-      "past": true,
-      "reminder": "30 min before"
     }
   ],
   "meetings":

@@ -4,6 +4,8 @@ class Items {
 
   items = document.querySelector('.items')
 
+  dividers = document.querySelectorAll('.items__list__divider')
+
   heading = document.querySelector('.items__heading')
 
   cardContainers = document.querySelectorAll('.items__list__card-container')
@@ -83,7 +85,7 @@ class Items {
       }
     }
 
-    if(containerToRemove.type === this.items.dataset.itemsType) {
+    if(containerToRemove.type === this.items.dataset.itemsType && this.views.viewState.leftColIndex === '3') {
 
       await this.fadeOut(containerToRemove)
 
@@ -111,15 +113,33 @@ class Items {
   collapse(container) {
     return new Promise(res => {
 
-      container.ontransitionend = container.ontransitioncancel = res
+      if(container.parentElement.children.length === 1){
+        
+        res()
 
-      container.style.height = getComputedStyle(container).getPropertyValue('height')
+      } else if(!container.nextElementSibling) {
 
-      setTimeout(() => {
+        if(container.parentElement.scrollTop === 0) res()
 
-        container.style.height = 0
+        const heightToScroll = Number(getComputedStyle(container).getPropertyValue('height').slice(0, -2)) + Number(getComputedStyle(container.previousElementSibling).getPropertyValue('margin-bottom').slice(0, -2))
 
-      }, 1)
+        container.parentElement.scrollBy({top: -heightToScroll, behavior: 'smooth'})
+
+        setTimeout(res, 400)
+
+      } else {
+
+        container.ontransitionend = container.ontransitioncancel = res
+
+        container.style.height = getComputedStyle(container).getPropertyValue('height')
+
+        setTimeout(() => {
+
+          container.style.height = 0
+
+        }, 1)
+
+      }
 
     })
   }
@@ -130,9 +150,13 @@ class Items {
 
       this.itemsCount[itemsType] += operator
 
-      this.heading.ontransitionend = this.heading.ontransitioncancel = res
+      if(this.views.viewState.leftColIndex === '3') {
 
-      this.heading.classList.add('items__heading--faded')
+        this.heading.ontransitionend = this.heading.ontransitioncancel = res
+
+        this.heading.classList.add('items__heading--faded')
+
+      } else res()
 
     }).then(() => {
 

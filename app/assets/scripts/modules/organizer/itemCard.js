@@ -31,6 +31,11 @@ class ItemCard {
       this.emit('itemRead', cardId)
 
     }
+
+    if(target.closest('.item-card__icon--trash')) {
+
+      this.emit('delete', cardId)
+    }
   }
 
 }

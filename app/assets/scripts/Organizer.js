@@ -8,6 +8,7 @@ import BottomNavigation from './modules/organizer/bottomNav.js'
 import ee from 'event-emitter'
 import Items from './modules/organizer/items.js'
 import ItemRead from './modules/organizer/itemRead.js'
+import CalendarDisplay from './modules/organizer/calendarDisplay.js'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -34,6 +35,8 @@ const items = new Items(views, localItemModel)
 new Notifications(views)
 new Search(views)
 new Calendar(views, localItemModel)
+const calendarDisplay = new CalendarDisplay(views)
+
 
 itemCard.events()
 
@@ -54,6 +57,15 @@ itemCard.on('itemRead', cardId => {
   views.render('right', itemRead.createNode(item))
 })
 
+itemCard.on('delete', cardId => {
+
+  items.pop(cardId)
+
+  calendarDisplay.pop(cardId)
+
+  if(itemRead.currentId == cardId) itemRead.emit('close')
+})
+
 itemRead.on('close', () => {
 
   views.render('left')
@@ -64,4 +76,6 @@ itemRead.on('delete', itemId => {
   views.render('left')
 
   items.pop(itemId)
+
+  calendarDisplay.pop(itemId)
 })
