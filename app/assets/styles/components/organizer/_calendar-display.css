@@ -106,6 +106,7 @@
   &__card-container {
     display: none;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, .3);
+    transition: opacity .2s ease-out;
 
     @mixin atMedium {
       box-shadow: 0 0 7px 2px rgba(0, 0, 0, .3);
@@ -124,6 +125,10 @@
 
   &__card-container--visible {
     display: block;
+  }
+
+  &__card-container--faded {
+    opacity: 0;
   }
 
   &__footer {

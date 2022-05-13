@@ -27,34 +27,33 @@ class CalendarDisplay {
 
     const funcStack = []
 
-    if(this.cardVisible(card)) {
+    const container = card.parentElement
 
-      this.fadeOut(card, funcStack)
+    if(this.fadeOut(card, funcStack)) {
 
-      this.collapse(card, funcStack)
+      if(!this.collapse(card, funcStack)) {
 
-      this.fadeIn(card, funcStack)
-
+        this.fadeIn(card, funcStack)
+      }
     }
 
-    this.remove(card, funcStack)
+    this.remove(container, funcStack)
 
-    this.updateIterator(card, funcStack)
+    if(!this.onEmptyGroup(card, funcStack)) {
 
-    this.onEmptyGroup(card, funcStack)
+      this.updateIterator(card, funcStack)
+    }
 
     return async function(target) {
 
-      console.log('Sequence on the ', target);
-
       for(let step = 0; step < funcStack.length; step++) {
 
-        await funcStack[step](card)
+        await funcStack[step](target)
       }
     }
   }
 
-  cardVisible(card) {
+  fadeOut(card, sequence) {
 
     if(this.views.viewState.leftColIndex !== '1') return false
 
@@ -64,49 +63,181 @@ class CalendarDisplay {
 
     if(!card.parentElement.classList.contains('calendar-display__card-container--visible')) return false
 
-    return true
+    sequence.push(target => new Promise(res => {
 
-  }
+      console.log('Hi from fade out on the ', target)
 
-  fadeOut(card, sequence) {
-    
-    sequence.push(card => new Promise(res => {
+      const container = card.parentElement
 
-      console.log('Hi from fade out')
+      container.ontransitionend = container.ontransitioncancel = res
 
-      res()
+      container.classList.add('calendar-display__card-container--faded')
+
     }))
+
+    return true
+    
   }
 
   collapse(card, sequence) {
 
-    if(card.parentElement.nextElementSibling && card.parentElement.nextElementSibling.classList.contains('calendar-display__card-container--visible')) {
+    if(card.parentElement.nextElementSibling !== card.parentElement.parentElement.lastElementChild) return false
 
-      sequence.push(card => new Promise(res => {
+    if(!card.parentElement.nextElementSibling.classList.contains('calendar-display__card-container--visible')) return false
 
-        console.log('Hi from collapse')
+    sequence.push(target => new Promise(res => {
 
-        res()
+      console.log('Hi from collapse on the ', target)
 
-      }))
-    }
+      const container = card.parentElement
+
+      const height = getComputedStyle(container).getPropertyValue('height')
+
+      container.ontransitionend = container.ontransitioncancel = res
+
+      container.style.cssText = `
+        transition: height .3s ease-in;
+        height: ${height};
+      `
+      setTimeout(() => container.style.height = 0, 5)
+
+    }))
+
+    return true
   }
 
   fadeIn(card, sequence) {
 
+    if(!card.parentElement.nextElementSibling) return
+
+    sequence.push(target => new Promise(res => {
+
+      console.log('Hi from fade in on the ', target)
+
+      const container = card.parentElement
+
+      container.ontransitionend = container.ontransitioncancel = res
+
+      this.replaceCardNodeIn(card.parentElement)
+
+      container.classList.remove('calendar-display__card-container--faded')
+
+    }))
+
   }
 
-  remove(card, sequence) {
+  remove(container, sequence) {
+
+    const firstInSequence = sequence.length === 0 ? true : false
+
+    sequence.push(target => new Promise(res => {
+
+      console.log('Hi from remove on the ', target)
+      
+      if(firstInSequence || container.classList.contains('calendar-display__card-container--faded')) {
+
+        if(target === 'left') {
+
+          this.shuffle(container)
+
+          this.passOnVisibility(container)
+
+        } 
+
+        container.remove()
+
+      } else {
+
+        this.removeEmptiedContainer(container.parentElement)
+
+      }
+
+      res()
+
+    }))
+
+  }
+
+  onEmptyGroup(card, sequence) {
+
+    if(card.parentElement.parentElement.children.length > 0) return false
+
+    sequence.push(target => new Promise(res => {
+
+      console.log('Hi from empty group on the ', target)
+
+      res()
+
+    }))
+
+    return true
 
   }
 
   updateIterator(card, sequence) {
 
+    sequence.push(target => new Promise(res => {
+
+      console.log('Hi from update iterator on the ', target)
+
+      res()
+
+    }))
+
   }
 
-  onEmptyGroup(card, funcStack) {
+  replaceCardNodeIn(cardContainer, replacement = cardContainer.nextElementSibling) { 
+
+    if(replacement.classList.contains('calendar-display__card-container--visible')) {
+
+      this.replaceCardNodeIn(cardContainer, replacement.nextElementSibling)
+
+    } else {
+
+      cardContainer.firstElementChild.replaceWith(replacement.firstElementChild)
+    }
+  }
+
+  removeEmptiedContainer(itemGroup) {
+
+    for(const container of itemGroup.children) {
+
+      if(container.children.length === 0) container.remove()
+    }
 
   }
+
+  passOnVisibility(containerToRemove) {
+
+    const containers = [...containerToRemove.parentElement.children]
+
+    const siblings = []
+
+    siblings.next = 0
+
+    containers.forEach((container, index, arr) => {
+
+      if(container === containerToRemove && index < arr.length - 1) siblings.next = index
+
+      if(container.classList.contains('calendar-display__card-container--visible')) container.visible = true
+
+      if(container !== containerToRemove) siblings.push(container)
+
+    })
+
+    if(siblings.length && !siblings.find(sibling => sibling.visible)) siblings[siblings.next].classList.add('calendar-display__card-container--visible')
+
+  }
+
+  shuffle(container) {
+
+    const children = [...container.parentElement.children]
+
+    if(container.nextElementSibling && container.nextElementSibling.nextElementSibling && (children.indexOf(container) + 1 ) % 2 !== 0) {
+      container.parentElement.insertBefore(container.nextElementSibling.nextElementSibling, container.nextElementSibling)
+    } 
+
+  } // for target left
 
 }
 
