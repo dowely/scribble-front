@@ -161,6 +161,11 @@ class LocalItemModel {
 
     return this.volatileMemory.filter(item => item.date === date).length
   }
+
+  pop(itemId) {
+
+    this.volatileMemory.splice(this.volatileMemory.indexOf(this.volatileMemory.find(item => item.id == itemId)), 1)
+  }
 }
 
 export default LocalItemModel

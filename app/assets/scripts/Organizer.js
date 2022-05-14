@@ -34,7 +34,9 @@ const items = new Items(views, localItemModel)
 
 new Notifications(views)
 new Search(views)
-new Calendar(views, localItemModel)
+const calendar = new Calendar(views, localItemModel)
+
+ee(CalendarDisplay.prototype)
 const calendarDisplay = new CalendarDisplay(views)
 
 
@@ -59,6 +61,8 @@ itemCard.on('itemRead', cardId => {
 
 itemCard.on('delete', cardId => {
 
+  localItemModel.pop(cardId)
+
   items.pop(cardId)
 
   calendarDisplay.pop(cardId)
@@ -79,3 +83,27 @@ itemRead.on('delete', itemId => {
 
   calendarDisplay.pop(itemId)
 })
+
+calendarDisplay.on('emptyGroup', () => {
+
+  calendar.updateItemGroups()
+
+  calendar.selectDate()
+})
+
+calendarDisplay.on('updateIterator', date => {
+
+  if(localItemModel.itemCountOn(date) < calendar.selectedItemGroups.index) calendar.selectedItemGroups.index--
+
+  calendar.updateIterator()
+
+})
+
+
+/** view */
+
+/** models */
+
+/** controlers */
+
+/** events */

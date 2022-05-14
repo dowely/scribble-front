@@ -15,11 +15,18 @@ class CalendarDisplay {
 
     cardsToRemove = cardsToRemove.filter(card => card.dataset.itemId === itemId)
 
+    const itemDate = cardsToRemove[1].parentElement.parentElement.dataset.id
+
     const leftSequence = this.generateSequence(cardsToRemove[0])
     const rightSequence = this.generateSequence(cardsToRemove[1])
 
-    leftSequence('left')
-    rightSequence('right')
+    Promise.all([leftSequence('left'), rightSequence('right')])
+      
+      .then((resultArr) => {
+
+        if(resultArr[0]) this.emit('emptyGroup')
+        else this.emit('updateIterator', itemDate)
+      })
 
   }
 
@@ -28,6 +35,8 @@ class CalendarDisplay {
     const funcStack = []
 
     const container = card.parentElement
+
+    const group = container.parentElement
 
     if(this.fadeOut(card, funcStack)) {
 
@@ -39,17 +48,24 @@ class CalendarDisplay {
 
     this.remove(container, funcStack)
 
-    if(!this.onEmptyGroup(card, funcStack)) {
+    if(!this.removeEmptyGroup(group, funcStack)) {
 
-      this.updateIterator(card, funcStack)
+      this.updateIterator(group, funcStack)
     }
 
     return async function(target) {
 
+      let emptied
+
       for(let step = 0; step < funcStack.length; step++) {
 
-        await funcStack[step](target)
+        const result = await funcStack[step](target)
+
+        if(result === 'empty') emptied = true
+
       }
+
+      return emptied
     }
   }
 
@@ -69,7 +85,12 @@ class CalendarDisplay {
 
       const container = card.parentElement
 
-      container.ontransitionend = container.ontransitioncancel = res
+      container.ontransitionend = container.ontransitioncancel = e => {
+
+        e.stopPropagation()
+
+        res()
+      }
 
       container.classList.add('calendar-display__card-container--faded')
 
@@ -116,7 +137,12 @@ class CalendarDisplay {
 
       const container = card.parentElement
 
-      container.ontransitionend = container.ontransitioncancel = res
+      container.ontransitionend = container.ontransitioncancel = e => {
+
+        e.stopPropagation()
+
+        res()
+      }
 
       this.replaceCardNodeIn(card.parentElement)
 
@@ -142,7 +168,7 @@ class CalendarDisplay {
 
           this.passOnVisibility(container)
 
-        } 
+        }
 
         container.remove()
 
@@ -158,15 +184,17 @@ class CalendarDisplay {
 
   }
 
-  onEmptyGroup(card, sequence) {
+  removeEmptyGroup(group, sequence) {
 
-    if(card.parentElement.parentElement.children.length > 0) return false
+    if(group.children.length > 1) return false
 
     sequence.push(target => new Promise(res => {
 
       console.log('Hi from empty group on the ', target)
 
-      res()
+      group.remove()
+
+      res('empty')
 
     }))
 
@@ -174,7 +202,7 @@ class CalendarDisplay {
 
   }
 
-  updateIterator(card, sequence) {
+  updateIterator(group, sequence) {
 
     sequence.push(target => new Promise(res => {
 

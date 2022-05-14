@@ -360,7 +360,7 @@ class Calendar {
 
   selectDate(e) {
     
-    const target = e.target.closest('.calendar-card__date-container')
+    const target = e ? e.target.closest('.calendar-card__date-container') : document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
 
     if(target.classList.contains('calendar-card__date-container--current')) {
 
@@ -402,6 +402,7 @@ class Calendar {
           this.items[onTheRight].ontransitionend = res
 
           this.items[onTheRight].classList.add('calendar-display__items--hidden')
+
         }
       })
       
@@ -411,11 +412,11 @@ class Calendar {
 
       matches[0].classList.add('calendar-display__item-group--selected')
 
-      matches[1].classList.add('calendar-display__item-group--selected')
+      matches[matches.length - 1].classList.add('calendar-display__item-group--selected')
 
       this.selectedItemGroups[0] = matches[0]
       
-      this.selectedItemGroups[1] = matches[1]
+      this.selectedItemGroups[1] = matches[matches.length - 1]
 
       this.updateCardsView()
 
@@ -499,9 +500,10 @@ class Calendar {
 
     await new Promise(res => {
 
-      this.timeDistances[onTheRight].ontransitionend = res
+      this.timeDistances[onTheRight].ontransitionend = this.timeDistances[onTheRight].ontransitioncancel = res
 
       this.timeDistances[onTheRight].classList.add('calendar-display__time-distance--faded')
+
     })
 
     this.timeDistances[0].textContent = str
@@ -509,17 +511,20 @@ class Calendar {
     this.timeDistances[1].textContent = str
 
     this.timeDistances[onTheRight].classList.remove('calendar-display__time-distance--faded')
+
   }
 
   async updateIterator(date) {
+
+    date = date ? date : (document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')).dataset.id
 
     const onTheRight = this.views.viewState.twoCols ? 1 : 0
 
     const itemCount = this.localItemModel.itemCountOn(date)
 
-    const strLeft = itemCount === 0 ? `` : `<span>1</span> / <span>${itemCount}</span>`
+    const strLeft = itemCount === 0 ? `<span></span>` : `<span>${this.selectedItemGroups.index || 1}</span> / <span>${itemCount}</span>`
 
-    const strRight = itemCount === 0 ? `` : `<span>1</span> / <span>${itemCount % 2 === 0 ? itemCount / 2 : Math.ceil(itemCount / 2)}</span>`
+    const strRight = itemCount === 0 ? `<span></span>` : `<span>${this.selectedItemGroups.index ? Math.ceil(this.selectedItemGroups.index / 2) : 1}</span> / <span>${itemCount % 2 === 0 ? itemCount / 2 : Math.ceil(itemCount / 2)}</span>`
 
     await new Promise(res => {
 
@@ -533,6 +538,10 @@ class Calendar {
     this.cardIterators[1].innerHTML = strRight
 
     this.cardIterators[onTheRight].classList.remove('calendar-display__card-iterator--faded')
+  }
+
+  updateItemGroups() {
+    this.itemGroups = document.querySelectorAll('.calendar-display__item-group')
   }
 }
 
