@@ -79,6 +79,8 @@ itemRead.on('delete', itemId => {
 
   views.render('left')
 
+  localItemModel.pop(cardId)
+
   items.pop(itemId)
 
   calendarDisplay.pop(itemId)

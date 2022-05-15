@@ -1,3 +1,5 @@
+import CalendarDots from "./calendarDots"
+
 class CalendarDisplay {
 
   left = document.querySelector('.calendar-display[data-target="left"]')
@@ -26,6 +28,8 @@ class CalendarDisplay {
 
         if(resultArr[0]) this.emit('emptyGroup')
         else this.emit('updateIterator', itemDate)
+
+        CalendarDots.update(document.querySelector(`.calendar-display__item-group[data-id="${itemDate}"]`))
       })
 
   }
@@ -166,9 +170,9 @@ class CalendarDisplay {
 
           this.shuffle(container)
 
-          this.passOnVisibility(container)
-
         }
+
+        this.passOnVisibility(container, target)
 
         container.remove()
 
@@ -235,7 +239,7 @@ class CalendarDisplay {
 
   }
 
-  passOnVisibility(containerToRemove) {
+  passOnVisibility(containerToRemove, target) {
 
     const containers = [...containerToRemove.parentElement.children]
 
@@ -245,7 +249,10 @@ class CalendarDisplay {
 
     containers.forEach((container, index, arr) => {
 
-      if(container === containerToRemove && index < arr.length - 1) siblings.next = index
+      if(container === containerToRemove) {
+
+        siblings.next = index < arr.length - 1 ? index : index - 1
+      }
 
       if(container.classList.contains('calendar-display__card-container--visible')) container.visible = true
 
@@ -253,7 +260,24 @@ class CalendarDisplay {
 
     })
 
-    if(siblings.length && !siblings.find(sibling => sibling.visible)) siblings[siblings.next].classList.add('calendar-display__card-container--visible')
+    if(siblings.length && !siblings.find(sibling => sibling.visible)) {
+
+      const successors = target === 'right' ?
+        [siblings[siblings.next], siblings[siblings.next - 1]] :
+        [siblings[siblings.next]]
+
+      successors.forEach(successor => {
+
+        successor.className = 'calendar-display__card-container calendar-display__card-container--visible calendar-display__card-container--faded'
+
+        setTimeout(() => {
+
+          successor.classList.remove('calendar-display__card-container--faded')
+
+        }, 5)
+      })
+
+    } 
 
   }
 

@@ -43,7 +43,7 @@ class LocalItemModel {
         if(key === 'meetings') item.meetingDate = this.simpleDate(localDate)
         if(key === 'notes') item.pinDate = this.simpleDate(localDate)
 
-        if(key === 'tasks' && item.status !== 'done' && (now.getTime() > new Date(item.dueDate).getTime())) item.status = 'overdue'
+        if(key === 'tasks' && item.status !== 'done' && (now.getTime() > new Date(item.dueDate).getTime() + 8.64e+7)) item.status = 'overdue'
       })
     }
 
