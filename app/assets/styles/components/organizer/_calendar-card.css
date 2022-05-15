@@ -370,6 +370,7 @@
     height: 4px;
     border-radius: 50%;
     margin: 0 .5px;
+    transition: transform .3s ease-in;
 
     @mixin atMedium {
       width: 5px;
@@ -402,5 +403,9 @@
     &--note {
       background-color: $primaryGreen;
     }
+  }
+
+  &__item-dot--implode {
+    transform: scale(0);
   }
 }

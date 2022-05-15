@@ -29,7 +29,7 @@ class CalendarDisplay {
         if(resultArr[0]) this.emit('emptyGroup')
         else this.emit('updateIterator', itemDate)
 
-        CalendarDots.update(document.querySelector(`.calendar-display__item-group[data-id="${itemDate}"]`))
+        CalendarDots.update(itemDate)
       })
 
   }
