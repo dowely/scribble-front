@@ -50,7 +50,7 @@ class Views {
     const content = async function(that) {
 
       if(target === 'left') that.calendar()
-      if(target === 'right') that.dynamicContent(node)
+      if(target === 'right' && node) that.dynamicContent(node)
       if(target === 'central') that.formLoader(node)
     }
 
@@ -64,8 +64,9 @@ class Views {
     if(
 
       !this.viewState.twoCols ||
-      this.viewState.colOnTop !== 'left' ||
-      this.viewState.leftColIndex === '1'
+      target !== 'central' &&
+      (this.viewState.colOnTop !== 'left' ||
+      this.viewState.leftColIndex === '1')
 
     ) sequence.push(fadeOut)
 
@@ -197,6 +198,15 @@ class Views {
 
   formLoader(node) {
 
+    if(this.viewers.central.children.length) {
+
+      this.viewers.central.firstElementChild.replaceWith(node)
+
+    } else {
+
+      this.viewers.central.appendChild(node)
+
+    }
   }
 
   fadeOut(col, viewer) {
@@ -226,6 +236,10 @@ class Views {
 
           this.columns[col].classList.remove('content__right-col--visible-on-large')
         }
+
+        if(col === 'central') {
+          this.columns.central.classList.remove('content__central-col--visible')
+        }
       }
     })
   }
@@ -239,12 +253,16 @@ class Views {
     } else {
 
       if(col === 'left') {
-        this.columns[col].classList.remove('content__left-col--hidden')
+        this.columns['left'].classList.remove('content__left-col--hidden')
       }
   
       if(col ==='right') {
-        this.columns[col].classList.add('content__right-col--visible')
+        this.columns['right'].classList.add('content__right-col--visible')
         this.columns['left'].classList.add('content__left-col--hidden')
+      }
+
+      if(col === 'central') {
+        this.columns['central'].classList.add('content__central-col--visible')
       }
 
     }

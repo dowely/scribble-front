@@ -27,6 +27,8 @@ class Items {
 
     this.localizeItems()
 
+    this.update()
+
   }
 
   localizeItems() {
@@ -44,7 +46,51 @@ class Items {
 
       container.innerHTML = itemCardTemplate({item})
 
-      itemCard.replaceWith(container.querySelector('.item-card'))
+      const replacement = container.querySelector('.item-card')
+
+      replacement.setAttribute("data-item-date", item.date)
+
+      itemCard.replaceWith(replacement)
+
+    }
+
+    for(const count in this.itemsCount) {
+
+      this.heading.style.setProperty(`--${count}-count`, `"${this.itemsCount[count]}"`)
+    }
+
+  }
+
+  update() {
+
+    const localItems = {
+
+      note: this.localItemModel.getItemsByType('note'),
+      event: this.localItemModel.getItemsByType('event'),
+      task: this.localItemModel.getItemsByType('task'),
+      meeting: this.localItemModel.getItemsByType('meeting')
+    }
+
+    for(const key in localItems) {
+
+      const list = this.items.querySelector(`.items__list--${key}s`)
+      
+      list.innerHTML = ''
+
+      localItems[key].forEach(item => {
+
+        const li = document.createElement('LI')
+
+        li.className = "items__list__card-container"
+
+        li.innerHTML = itemCardTemplate({item})
+
+        list.appendChild(li)
+
+      })
+
+      this.itemsCount[key] = localItems[key].length
+      
     }
 
     for(const count in this.itemsCount) {

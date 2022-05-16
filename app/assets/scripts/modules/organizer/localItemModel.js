@@ -166,6 +166,27 @@ class LocalItemModel {
 
     this.volatileMemory.splice(this.volatileMemory.indexOf(this.volatileMemory.find(item => item.id == itemId)), 1)
   }
+
+  push(item) {
+
+    let id
+
+    do {
+
+      id = Math.floor(1000 + Math.random() * 9000)
+
+    } while(this.getItemById(id))
+
+    item.id = id
+
+    this.volatileMemory.push(item)
+
+  }
+
+  getItemsByType(type) {
+
+    return this.volatileMemory.filter(item => item[type]).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  }
 }
 
 export default LocalItemModel

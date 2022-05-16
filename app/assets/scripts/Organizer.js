@@ -9,6 +9,7 @@ import ee from 'event-emitter'
 import Items from './modules/organizer/items.js'
 import ItemRead from './modules/organizer/itemRead.js'
 import CalendarDisplay from './modules/organizer/calendarDisplay.js'
+import Form from './modules/organizer/form.js'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -39,12 +40,32 @@ const calendar = new Calendar(views, localItemModel)
 ee(CalendarDisplay.prototype)
 const calendarDisplay = new CalendarDisplay(views)
 
+ee(Form.prototype)
+const form = new Form(views, localItemModel)
 
 itemCard.events()
 
+form.on('newItem', item => {
+
+  localItemModel.push(item)
+
+  items.update()
+
+  itemCard.events()
+
+  views.render(form.backTo)
+})
+
+form.on('discard', () => {
+
+  views.render(form.backTo)
+})
+
 bottomNav.on('newItem', type => {
 
-  console.log('create new ', type);
+  form.backTo = views.viewState.colOnTop === 'central' ? form.backTo : views.viewState.colOnTop
+
+  views.render('central', form.createNode({type}))
 })
 
 bottomNav.on('selectItems', type => {
@@ -79,7 +100,7 @@ itemRead.on('delete', itemId => {
 
   views.render('left')
 
-  localItemModel.pop(cardId)
+  localItemModel.pop(itemId)
 
   items.pop(itemId)
 
