@@ -1,22 +1,66 @@
 import CalendarDots from "./calendarDots"
+import itemCardTemplate from '/app/assets/templates/organizer/_item-card.ejs'
 
 class CalendarDisplay {
 
   left = document.querySelector('.calendar-display[data-target="left"]')
 
-  right = document.querySelector('.calendar-display[data-target="left"]')
+  right = document.querySelector('.calendar-display[data-target="right"]')
 
-  constructor(views) {
+  constructor(views, localItemModel) {
 
     this.views = views
+
+    this.localItemModel = localItemModel
+  }
+
+  update(item) {
+
+    let groups = document.querySelectorAll(`.calendar-display__item-group[data-id="${item.date}"]`)
+
+    if(groups.length === 0) {
+
+      groups = [document.createElement('DIV'), document.createElement('DIV')]
+
+      groups.forEach(group => {
+
+        group.className = 'calendar-display__item-group'
+
+        group.setAttribute('data-id', item.date)
+      })
+
+      this.left.querySelector('.calendar-display__items').appendChild(groups[0])
+
+      this.right.querySelector('.calendar-display__items').appendChild(groups[1])
+
+    }
+
+    groups.forEach((group, i) => {
+
+      const cardContainer = document.createElement('DIV')
+
+      item.shortened = i === 0 ? true : false
+
+      cardContainer.innerHTML = itemCardTemplate({item})
+
+      cardContainer.className = 'calendar-display__card-container'
+
+      group.appendChild(cardContainer)
+
+    })
+
+    if(groups[1].querySelectorAll('.calendar-display__card-container--visible').length === 1) groups[1].lastElementChild.classList.add('calendar-display__card-container--visible')
+
+    CalendarDots.update(item.date)
+
   }
 
   pop(itemId) {
-
+    console.log(document.querySelectorAll('.calendar-display .item-card'))
     let cardsToRemove = [...document.querySelectorAll('.calendar-display .item-card')]
 
     cardsToRemove = cardsToRemove.filter(card => card.dataset.itemId === itemId)
-
+    
     const itemDate = cardsToRemove[1].parentElement.parentElement.dataset.id
 
     const leftSequence = this.generateSequence(cardsToRemove[0])
@@ -157,7 +201,7 @@ class CalendarDisplay {
   }
 
   remove(container, sequence) {
-
+    
     const firstInSequence = sequence.length === 0 ? true : false
 
     sequence.push(target => new Promise(res => {
@@ -165,14 +209,16 @@ class CalendarDisplay {
       console.log('Hi from remove on the ', target)
       
       if(firstInSequence || container.classList.contains('calendar-display__card-container--faded')) {
-
+        
         if(target === 'left') {
 
           this.shuffle(container)
 
-        }
+        } else {
 
-        this.passOnVisibility(container, target)
+          this.passOnVisibility(container, target)
+
+        }
 
         container.remove()
 
@@ -240,7 +286,7 @@ class CalendarDisplay {
   }
 
   passOnVisibility(containerToRemove, target) {
-
+    
     const containers = [...containerToRemove.parentElement.children]
 
     const siblings = []
@@ -260,12 +306,25 @@ class CalendarDisplay {
 
     })
 
-    if(siblings.length && !siblings.find(sibling => sibling.visible)) {
+    if(siblings.length && siblings.filter(sibling => sibling.visible).length < 2) {
 
-      const successors = target === 'right' ?
-        [siblings[siblings.next], siblings[siblings.next - 1]] :
-        [siblings[siblings.next]]
+      const successors = []
 
+      if(!siblings.find(sibling => sibling.visible)) {
+
+        successors[0] = siblings[siblings.next]
+        successors[1] = siblings[siblings.next - 1]
+
+      } else if(siblings[siblings.next].nextElementSibling) {
+        
+        successors[0] = siblings[siblings.next]
+        successors[1] = siblings[siblings.next + 1]
+
+      } else {
+
+        successors[0] = siblings[siblings.next]
+      }
+      
       successors.forEach(successor => {
 
         successor.className = 'calendar-display__card-container calendar-display__card-container--visible calendar-display__card-container--faded'
@@ -275,6 +334,7 @@ class CalendarDisplay {
           successor.classList.remove('calendar-display__card-container--faded')
 
         }, 5)
+
       })
 
     } 

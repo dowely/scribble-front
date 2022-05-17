@@ -63,7 +63,7 @@ class BottomNavigation {
 
               this.reset()
 
-            }, 500)
+            }, 200)
           }
 
         }

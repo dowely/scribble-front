@@ -38,7 +38,7 @@ new Search(views)
 const calendar = new Calendar(views, localItemModel)
 
 ee(CalendarDisplay.prototype)
-const calendarDisplay = new CalendarDisplay(views)
+const calendarDisplay = new CalendarDisplay(views, localItemModel)
 
 ee(Form.prototype)
 const form = new Form(views, localItemModel)
@@ -50,6 +50,12 @@ form.on('newItem', item => {
   localItemModel.push(item)
 
   items.update()
+
+  calendarDisplay.update(item)
+
+  calendar.updateItemGroups()
+
+  calendar.selectDate()
 
   itemCard.events()
 
