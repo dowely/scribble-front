@@ -45,21 +45,23 @@ const form = new Form(views, localItemModel)
 
 itemCard.events()
 
-form.on('newItem', item => {
+form.on('newItem', async item => {
 
   localItemModel.push(item)
 
-  items.update()
+  const itemsCards = items.update()
 
-  calendarDisplay.update(item)
+  itemCard.events(itemsCards)
 
-  calendar.updateItemGroups()
+  const calendarCards = calendarDisplay.update(item)
 
-  calendar.selectDate()
+  itemCard.events(calendarCards)
 
-  itemCard.events()
+  const updateIterator = calendar.updateItemGroups(item.date)
 
-  views.render(form.backTo)
+  await views.render(form.backTo)
+
+  if(updateIterator) calendar.updateIterator()
 })
 
 form.on('discard', () => {
@@ -71,7 +73,14 @@ bottomNav.on('newItem', type => {
 
   form.backTo = views.viewState.colOnTop === 'central' ? form.backTo : views.viewState.colOnTop
 
-  views.render('central', form.createNode({type}))
+  let selectedDate
+
+  if(views.viewState.colOnTop === 'left' && views.viewState.leftColIndex === '1') {
+
+    selectedDate = calendar.selectedDate ? calendar.selectedDate.dataset.id : calendar.today.date
+  }
+
+  views.render('central', form.createNode({type, selectedDate}))
 })
 
 bottomNav.on('selectItems', type => {
@@ -87,7 +96,7 @@ itemCard.on('itemRead', cardId => {
 })
 
 itemCard.on('delete', cardId => {
-
+  
   localItemModel.pop(cardId)
 
   items.pop(cardId)
@@ -133,6 +142,12 @@ calendarDisplay.on('updateIterator', date => {
 
 /** models */
 
-/** controlers */
+/** controler */
+
+  /** controler */
+  /** controler */
+  /** controler */
+
+  /** events */
 
 /** events */

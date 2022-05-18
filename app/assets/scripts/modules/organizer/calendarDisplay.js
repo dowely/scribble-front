@@ -16,6 +16,8 @@ class CalendarDisplay {
 
   update(item) {
 
+    const newCards = []
+
     let groups = document.querySelectorAll(`.calendar-display__item-group[data-id="${item.date}"]`)
 
     if(groups.length === 0) {
@@ -47,16 +49,20 @@ class CalendarDisplay {
 
       group.appendChild(cardContainer)
 
+      newCards.push(cardContainer.firstElementChild)
+
     })
 
     if(groups[1].querySelectorAll('.calendar-display__card-container--visible').length === 1) groups[1].lastElementChild.classList.add('calendar-display__card-container--visible')
 
     CalendarDots.update(item.date)
 
+    return newCards
+
   }
 
   pop(itemId) {
-    console.log(document.querySelectorAll('.calendar-display .item-card'))
+
     let cardsToRemove = [...document.querySelectorAll('.calendar-display .item-card')]
 
     cardsToRemove = cardsToRemove.filter(card => card.dataset.itemId === itemId)
@@ -301,13 +307,14 @@ class CalendarDisplay {
       }
 
       if(container.classList.contains('calendar-display__card-container--visible')) container.visible = true
+      else container.visible = false
 
       if(container !== containerToRemove) siblings.push(container)
 
     })
 
     if(siblings.length && siblings.filter(sibling => sibling.visible).length < 2) {
-
+      
       const successors = []
 
       if(!siblings.find(sibling => sibling.visible)) {
@@ -315,16 +322,11 @@ class CalendarDisplay {
         successors[0] = siblings[siblings.next]
         successors[1] = siblings[siblings.next - 1]
 
-      } else if(siblings[siblings.next].nextElementSibling) {
-        
-        successors[0] = siblings[siblings.next]
-        successors[1] = siblings[siblings.next + 1]
-
       } else {
 
         successors[0] = siblings[siblings.next]
       }
-      
+
       successors.forEach(successor => {
 
         successor.className = 'calendar-display__card-container calendar-display__card-container--visible calendar-display__card-container--faded'
@@ -345,9 +347,27 @@ class CalendarDisplay {
 
     const children = [...container.parentElement.children]
 
+    let shuffled = false
+
     if(container.nextElementSibling && container.nextElementSibling.nextElementSibling && (children.indexOf(container) + 1 ) % 2 !== 0) {
+
       container.parentElement.insertBefore(container.nextElementSibling.nextElementSibling, container.nextElementSibling)
-    } 
+
+      shuffled = true
+    }
+
+    if(container.classList.contains('calendar-display__card-container--visible') && children.length > 1) {
+
+      let visIndex = children.indexOf(container)
+
+      if(visIndex === children.length - 1) visIndex--
+
+      else if(shuffled) visIndex +=2
+
+      else visIndex +=1
+
+      children[visIndex].classList.add('calendar-display__card-container--visible')
+    }
 
   } // for target left
 

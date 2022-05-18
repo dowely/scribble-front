@@ -71,6 +71,8 @@ class Items {
       meeting: this.localItemModel.getItemsByType('meeting')
     }
 
+    const newCards = []
+
     for(const key in localItems) {
 
       const list = this.items.querySelector(`.items__list--${key}s`)
@@ -87,16 +89,22 @@ class Items {
 
         list.appendChild(li)
 
+        newCards.push(li.firstElementChild)
+
       })
 
       this.itemsCount[key] = localItems[key].length
       
     }
 
+    this.cardContainers = document.querySelectorAll('.items__list__card-container')
+
     for(const count in this.itemsCount) {
 
       this.heading.style.setProperty(`--${count}-count`, `"${this.itemsCount[count]}"`)
     }
+
+    return newCards
 
   }
 

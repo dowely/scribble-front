@@ -14,15 +14,30 @@ class Form {
 
   createNode(config) {
 
+    const date = config.selectedDate ? new Date(config.selectedDate) : undefined
+
     const container = document.createElement('DIV')
 
     container.innerHTML = formTemplate({formType: config.type})
 
     const node = container.querySelector('.item-form')
 
+    if(date) this.populateDateFields(node, date)
+
     this.events(node)
 
     return node
+  }
+
+  populateDateFields(node, dateObj) {
+
+    const fields = node.elements
+
+    fields["day"].value = dateObj.getDate()
+
+    fields["month"].value = dateObj.getMonth() + 1
+
+    fields["year"].value = dateObj.getFullYear()
   }
 
   events(formNode) {
@@ -79,16 +94,55 @@ class Form {
 
     return item
   }
+
+  note(fields) {
+
+    const date = new Date(fields["year"].value, fields["month"].value - 1, fields["day"].value)
+
+    const simpleDate = this.localItemModel.simpleDate(date)
+
+    const item = {
+
+      type: 'note',
+      note: true,
+      title: fields["title"].value,
+      pinDate: simpleDate,
+      body: fields["body"].value,
+      date: simpleDate,
+      fullDate: this.localItemModel.getFullDate(simpleDate)
+    } 
+
+    return item
+  }
+
+  event(fields) {
+
+    const date = new Date(fields["year"].value, fields["month"].value - 1, fields["day"].value)
+
+    const simpleDate = this.localItemModel.simpleDate(date)
+
+    const item = {
+
+      type: 'event',
+      event: true,
+      title: fields["title"],
+      eventDate: simpleDate,
+
+    }
+
+  }
 }
 
 export default Form
 
 /**
 {
-  "id": 7611,
-  "title": "Clean out the garage",
-  "description": "For this reason, dummy text usually consists of a more or less random series of words.",
-  "dueDate": "2 Feb 2022",
-  "status": "done"
-}
+      "id": 6599,
+      "title": "Semifinals on TV",
+      "eventDate": "5 Feb 2022",
+      "eventTime": "20:15 - 22:30",
+      "eventStart": "8:15 PM",
+      "venue": "on TV",
+      "reminder": "30 min before"
+    }
 */

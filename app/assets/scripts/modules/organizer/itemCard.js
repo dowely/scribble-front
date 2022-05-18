@@ -2,37 +2,27 @@ class ItemCard {
 
   constructor() {}
 
-  events(cardNode) {
+  events(cardNodes) {
 
-    if(cardNode) {
+    const cards = cardNodes ? cardNodes : [...document.querySelectorAll('.item-card')]
 
+    for(const card of cards) {
 
-
-    } else {
-
-      const itemCardCollections = document.querySelectorAll('.calendar-display__items, .items__list')
-
-      for(const collection of itemCardCollections) {
-
-        collection.addEventListener('click', e => {
-
-          if(e.target.closest('.item-card')) this.onClick(e.target)
-        })
-      }
+      card.addEventListener('click', this.onClick.bind(this))
     }
   }
 
-  onClick(target) {
+  onClick(e) {
 
-    const cardId = target.closest('.item-card').dataset.itemId
+    const cardId = e.target.closest('.item-card').dataset.itemId
 
-    if(target.closest('.item-card__content')) {
+    if(e.target.closest('.item-card__content')) {
 
       this.emit('itemRead', cardId)
 
     }
 
-    if(target.closest('.item-card__icon--trash')) {
+    if(e.target.closest('.item-card__icon--trash')) {
 
       this.emit('delete', cardId)
     }

@@ -540,8 +540,49 @@ class Calendar {
     this.cardIterators[onTheRight].classList.remove('calendar-display__card-iterator--faded')
   }
 
-  updateItemGroups() {
+  updateItemGroups(itemDate) {
     this.itemGroups = document.querySelectorAll('.calendar-display__item-group')
+
+    const displayedContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
+
+    const dateId = displayedContainer.dataset.id
+
+    const updateIterator = itemDate === dateId ? true : false
+
+    this.itemGroups.forEach(group => {
+
+      if(group.dataset.id === dateId) {
+
+        group.classList.add('calendar-display__item-group--selected')
+        
+        if(group.closest('.calendar-display').dataset.target === 'left') {
+
+          this.selectedItemGroups[0] = group
+
+          this.itemGroupsEmpty[0].classList.remove('calendar-display__item-group--selected')
+
+          group.firstElementChild.classList.add('calendar-display__card-container--visible')
+
+        } else {
+
+          this.selectedItemGroups[1] = group
+
+          this.itemGroupsEmpty[1].classList.remove('calendar-display__item-group--selected')
+
+          for(let i = 0; i < group.children.length; i++) {
+
+            group.children[i].classList.add('calendar-display__card-container--visible')
+
+            if(i === 1) break
+          }
+
+        }
+
+      }
+    })
+
+    return updateIterator
+
   }
 }
 
