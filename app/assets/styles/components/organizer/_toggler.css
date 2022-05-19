@@ -12,6 +12,7 @@
     height: 100%;
     background-color: white;
     border-radius: $pill;
+    transition: all .2s ease-out;
 
     .toggler[data-toggled] & {
       background-color: $gray50;
@@ -27,6 +28,7 @@
     padding: 16.5%;
     background-color: $gray50;
     border-radius: 50%;
+    transition: all .2s ease-out;
 
     .toggler[data-toggled] & {
       background-color: white;

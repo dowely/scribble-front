@@ -76,7 +76,7 @@
     <div class="item-form__fieldset-col">
 
       <label for="hour">Hour
-        <input type="number" id="hour" name="hour" required min="0" max="12" placeholder="hh">
+        <input type="number" id="hour" name="hour" required min="0" max="11" placeholder="hh">
       </label>
   
       <span>:</span>
@@ -142,7 +142,7 @@
 
   <label for="duration">Duration<br>
 
-    <input type="number" id="duration" name="duration" min="0" max="480" value="30" step="15">
+    <input type="number" id="duration" name="duration" min="0" max="480" value="30">
 
     <div class="item-form__incrementor">
 
@@ -180,7 +180,7 @@
 
       <label for="userSearch">User search
 
-        <input type="search" id="userSearch" placeholder="Enter a username..." maxlength="30">
+        <input type="search" id="userSearch" placeholder="Enter a username..." maxlength="30" autocomplete="off">
   
         <div class="item-form__attendees__search-icon">
   
@@ -193,15 +193,15 @@
       </label>
   
       <label for="attendeesSelect">User select
-        <select name="attendees[]" id="attendeesSelect" multiple size="2">
+        <select name="attendees[]" id="attendeesSelect" multiple size="1">
   
           <option value="Joyce Stafford">Joyce Stafford</option>
   
-          <option value="Robert Tucker">Robert Tucker</option>
+          <option value="Robert Tucker" selected>Robert Tucker</option>
   
           <option value="Julie Cruz">Julie Cruz</option>
   
-          <option value="Christopher Evans">Christopher Evans</option>
+          <option value="Christopher Evans" selected>Christopher Evans</option>
   
           <option value="Shirley Ward">Shirley Ward</option>
   
