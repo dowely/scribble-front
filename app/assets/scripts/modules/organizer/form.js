@@ -4,6 +4,8 @@ class Form {
 
   backTo
 
+  mode
+
   constructor(views, localItemModel) {
 
     this.views = views
@@ -14,19 +16,56 @@ class Form {
 
   createNode(config) {
 
-    const date = config.selectedDate ? new Date(config.selectedDate) : undefined
-
     const container = document.createElement('DIV')
 
     container.innerHTML = formTemplate({formType: config.type})
 
     const node = container.querySelector('.item-form')
 
-    if(date) this.populateDateFields(node, date)
+    if(config.item) {
+
+      node.itemId = config.item.id
+
+      this.populateItemFields(node, config.item)
+
+    } else if(config.selectedDate) {
+
+      const date = new Date(config.selectedDate)
+
+      this.populateDateFields(node, date)
+
+    } 
 
     this.events(node)
 
     return node
+  }
+
+  populateItemFields(node, itemObj) {
+
+    const fields = node.elements
+
+    const date = new Date(itemObj.date)
+
+    const type = itemObj.type.charAt(0).toUpperCase() + itemObj.type.slice(1)
+
+    fields["title"].value = itemObj.title
+
+    fields["day"].value = date.getDate()
+
+    fields["month"].value = date.getMonth() + 1
+
+    fields["year"].value = date.getFullYear()
+
+    this[`populate${type}Fields`](node, itemObj)
+
+  }
+
+  populateNoteFields(node, itemObj) {
+
+    const fields = node.elements
+
+    fields["body"].value = itemObj.body
   }
 
   populateDateFields(node, dateObj) {
@@ -42,7 +81,10 @@ class Form {
 
   events(formNode) {
 
-    formNode.addEventListener('submit', this.save.bind(this))
+    formNode.addEventListener('submit', e => {
+
+      this.save(e, formNode.itemId)
+    })
 
     formNode.querySelector('.btn--form-discard').addEventListener('click', () => this.emit('discard'))
 
@@ -262,13 +304,15 @@ class Form {
     return matchingOptions
   }
 
-  save(e) {
+  save(e, id) {
 
     e.preventDefault()
 
     const item = this[e.target.dataset.type](e.target.elements)
 
-    this.emit('newItem', item)
+    item.id = id
+
+    this.emit(this.mode, item)
   }
 
   task(fields) {
@@ -414,6 +458,20 @@ class Form {
     const timeStr = `${startHour}:${startMin.toString().padStart(2, '0')} - ${endHour}:${endMin.toString().padStart(2, '0')}`
 
     return timeStr
+
+  }
+
+  static isItemInDisplayedMonth(item, displayedMonth) {
+
+    let itemDate = new Date(item.date)
+
+    let displayedDate = new Date(displayedMonth)
+
+    itemDate.setDate(1)
+
+    displayedDate.setDate(1)
+
+    return itemDate.getTime() === displayedDate.getTime()
 
   }
 

@@ -26,6 +26,12 @@ class ItemCard {
 
       this.emit('delete', cardId)
     }
+
+    if(e.target.closest('.item-card__icon--edit')) {
+
+      this.emit('edit', cardId)
+    }
+
   }
 
 }

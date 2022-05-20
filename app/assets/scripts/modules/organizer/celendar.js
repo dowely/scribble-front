@@ -26,10 +26,11 @@ class Calendar {
 
   displayHookRight = document.querySelector('.content__right-col .content__viewer')
 
-  constructor(views, localItemModel) {
+  constructor(views, localItemModel, itemCard) {
 
     this.localItemModel = localItemModel
     this.views = views
+    this.itemCard = itemCard
 
     this.cardHook.innerHTML = cardTemplate({
       year: this.today.year,
@@ -213,6 +214,8 @@ class Calendar {
 
     this.sliderTransition = false
 
+    this.itemCard.events([...this.items[0].querySelectorAll('.item-card'), ...this.items[1].querySelectorAll('.item-card')])
+
   }
 
   anotherCard(e) {
@@ -384,7 +387,7 @@ class Calendar {
   }
 
   async showItems(date, noTransition) {
-
+  
     const onTheRight = this.views.viewState.twoCols ? 1 : 0
     
     const matches = [...this.itemGroups].filter(itemGroup => itemGroup.dataset.id === date)
@@ -542,7 +545,7 @@ class Calendar {
 
   updateItemGroups(itemDate) {
     this.itemGroups = document.querySelectorAll('.calendar-display__item-group')
-
+    
     const displayedContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
 
     const dateId = displayedContainer.dataset.id
@@ -550,11 +553,11 @@ class Calendar {
     const updateIterator = itemDate === dateId ? true : false
 
     this.itemGroups.forEach(group => {
-
+      
       if(group.dataset.id === dateId) {
 
         group.classList.add('calendar-display__item-group--selected')
-        
+
         if(group.closest('.calendar-display').dataset.target === 'left') {
 
           this.selectedItemGroups[0] = group

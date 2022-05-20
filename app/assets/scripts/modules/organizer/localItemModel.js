@@ -183,6 +183,13 @@ class LocalItemModel {
 
   }
 
+  edit(item) {
+
+    const atIndex = this.volatileMemory.findIndex(el => el.id == item.id)
+
+    this.volatileMemory.splice(atIndex, 1, item)
+  }
+
   getItemsByType(type) {
 
     return this.volatileMemory.filter(item => item[type]).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())

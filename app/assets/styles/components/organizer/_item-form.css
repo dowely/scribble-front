@@ -341,6 +341,12 @@
     border: 1px solid $gray50;
     border-radius: 20px;
     padding: 20px;
+    line-height: 1.5;
+    scrollbar-width: none; /* moz */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     @mixin atLarge {
       height: 200px

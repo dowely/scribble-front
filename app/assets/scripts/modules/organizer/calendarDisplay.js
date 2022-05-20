@@ -61,27 +61,31 @@ class CalendarDisplay {
 
   }
 
-  pop(itemId) {
+  async pop(itemId, temporarily) {
 
     let cardsToRemove = [...document.querySelectorAll('.calendar-display .item-card')]
 
-    cardsToRemove = cardsToRemove.filter(card => card.dataset.itemId === itemId)
+    cardsToRemove = cardsToRemove.filter(card => card.dataset.itemId == itemId)
     
     const itemDate = cardsToRemove[1].parentElement.parentElement.dataset.id
 
     const leftSequence = this.generateSequence(cardsToRemove[0])
     const rightSequence = this.generateSequence(cardsToRemove[1])
 
-    Promise.all([leftSequence('left'), rightSequence('right')])
+    await Promise.all([leftSequence('left'), rightSequence('right')])
       
       .then((resultArr) => {
 
-        if(resultArr[0]) this.emit('emptyGroup')
-        else this.emit('updateIterator', itemDate)
+        if(!temporarily) {
 
-        CalendarDots.update(itemDate)
+          if(resultArr[0]) this.emit('emptyGroup')
+          else this.emit('updateIterator', itemDate)
+
+          CalendarDots.update(itemDate)
+
+        }
+
       })
-
   }
 
   generateSequence(card) {

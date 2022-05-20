@@ -35,7 +35,7 @@ const items = new Items(views, localItemModel)
 
 new Notifications(views)
 new Search(views)
-const calendar = new Calendar(views, localItemModel)
+const calendar = new Calendar(views, localItemModel, itemCard)
 
 ee(CalendarDisplay.prototype)
 const calendarDisplay = new CalendarDisplay(views, localItemModel)
@@ -53,15 +53,50 @@ form.on('newItem', async item => {
 
   itemCard.events(itemsCards)
 
-  const calendarCards = calendarDisplay.update(item)
+  let updateIterator
 
-  itemCard.events(calendarCards)
+  if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth)) {
 
-  const updateIterator = calendar.updateItemGroups(item.date)
+    const calendarCards = calendarDisplay.update(item)
+
+    itemCard.events(calendarCards)
+
+    updateIterator = calendar.updateItemGroups(item.date)
+
+  }
 
   await views.render(form.backTo)
 
   if(updateIterator) calendar.updateIterator()
+
+})
+
+form.on('edit', async item => {
+
+  localItemModel.edit(item)
+
+  const itemsCards = items.update()
+
+  itemCard.events(itemsCards)
+
+  const displayedDateContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
+
+  const displayedDate = displayedDateContainer ?  displayedDateContainer.dataset.id : localItemModel.simpleDate(calendar.today.date)
+
+  await calendarDisplay.pop(item.id, item.date === displayedDate)
+
+  if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth)) {
+
+    const calendarCards = calendarDisplay.update(item)
+
+    itemCard.events(calendarCards)
+
+    calendar.updateItemGroups()
+
+  }
+
+  views.render(form.backTo)
+
 })
 
 form.on('discard', () => {
@@ -72,6 +107,8 @@ form.on('discard', () => {
 bottomNav.on('newItem', type => {
 
   form.backTo = views.viewState.colOnTop === 'central' ? form.backTo : views.viewState.colOnTop
+
+  form.mode = 'newItem'
 
   let selectedDate
 
@@ -106,6 +143,18 @@ itemCard.on('delete', cardId => {
   if(itemRead.currentId == cardId) itemRead.emit('close')
 })
 
+itemCard.on('edit', cardId => {
+
+  form.backTo = views.viewState.colOnTop === 'central' ? form.backTo : views.viewState.colOnTop
+
+  form.mode = 'edit'
+
+  const item = localItemModel.getItemById(cardId)
+
+  views.render('central', form.createNode({type: item.type, item}))
+
+})
+
 itemRead.on('close', () => {
 
   views.render('left')
@@ -137,17 +186,30 @@ calendarDisplay.on('updateIterator', date => {
 
 })
 
+/** Route/Controller */
 
-/** view */
+  /** view */
 
-/** models */
+  /** models */
 
-/** controler */
+  /** module */
+  /** module */
 
-  /** controler */
-  /** controler */
-  /** controler */
+    /** sub module */
+    /** sub module */
+
+    /** events */
+
+  /** module */
 
   /** events */
 
-/** events */
+  /** scripts folders
+   * 
+   * global
+   * views
+   * models
+   * controllers
+   * modules
+   * 
+   */
