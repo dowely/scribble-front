@@ -5,6 +5,10 @@
   overflow: hidden;
   cursor: pointer;
 
+  @mixin atLarge {
+    min-height: 154px;
+  }
+
   &__left-strip {
     flex: none;
     width: 8px;

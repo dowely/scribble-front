@@ -79,23 +79,33 @@ form.on('edit', async item => {
 
   itemCard.events(itemsCards)
 
-  const displayedDateContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
+  if(item.sameDate) {
 
-  const displayedDate = displayedDateContainer ?  displayedDateContainer.dataset.id : localItemModel.simpleDate(calendar.today.date)
-
-  await calendarDisplay.pop(item.id, item.date === displayedDate)
-
-  if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth)) {
-
-    const calendarCards = calendarDisplay.update(item)
+    const calendarCards = calendarDisplay.edit(item)
 
     itemCard.events(calendarCards)
 
-    calendar.updateItemGroups()
+  } else {
 
-  }
+     //const displayedDateContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
 
-  views.render(form.backTo)
+    //const displayedDate = displayedDateContainer ?  displayedDateContainer.dataset.id : localItemModel.simpleDate(calendar.today.date)
+
+    await calendarDisplay.pop(item.id)//, item.date === displayedDate
+
+    if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth)) {
+
+      const calendarCards = calendarDisplay.update(item)
+  
+      itemCard.events(calendarCards)
+  
+      calendar.updateItemGroups()
+  
+    }
+
+  } 
+
+  views.render(form.backTo)  
 
 })
 
@@ -162,13 +172,13 @@ itemRead.on('close', () => {
 
 itemRead.on('delete', itemId => {
 
-  views.render('left')
-
   localItemModel.pop(itemId)
 
   items.pop(itemId)
 
   calendarDisplay.pop(itemId)
+
+  views.render('left')
 })
 
 calendarDisplay.on('emptyGroup', () => {

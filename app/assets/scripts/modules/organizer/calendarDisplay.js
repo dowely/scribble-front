@@ -14,6 +14,29 @@ class CalendarDisplay {
     this.localItemModel = localItemModel
   }
 
+  edit(item) {
+
+    const containersToEdit = [
+
+      this.left.querySelector(`.item-card[data-item-id="${item.id}"]`).parentElement,
+      this.right.querySelector(`.item-card[data-item-id="${item.id}"]`).parentElement
+    ]
+
+    const newCards = []
+
+    containersToEdit.forEach((container, i) => {
+
+      item.shortened = i === 0 ? true : false
+
+      container.innerHTML = itemCardTemplate({item})
+
+      newCards.push(container.querySelector('.item-card'))
+
+    })
+
+    return newCards
+  }
+
   update(item) {
 
     const newCards = []
@@ -134,6 +157,8 @@ class CalendarDisplay {
     if(card.closest('.calendar__calendar-display-container') && getComputedStyle(card.closest('.calendar__calendar-display-container')).getPropertyValue('display') === 'none') return false //left side hidden
 
     if(card.closest('.calendar-display[data-target="right"]') && !this.views.viewState.twoCols && this.views.viewState.colOnTop === 'left') return false
+
+    if(this.views.viewState.colOnTop !== 'left') return false
 
     if(!card.parentElement.classList.contains('calendar-display__card-container--visible')) return false
 
@@ -325,6 +350,11 @@ class CalendarDisplay {
 
         successors[0] = siblings[siblings.next]
         successors[1] = siblings[siblings.next - 1]
+
+      } else if(siblings.length > 1) {
+
+        successors[0] = siblings[siblings.next]
+        successors[1] = siblings[siblings.next + 1]
 
       } else {
 

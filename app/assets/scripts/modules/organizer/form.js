@@ -22,9 +22,12 @@ class Form {
 
     const node = container.querySelector('.item-form')
 
+    this.events(node)
+
     if(config.item) {
 
       node.itemId = config.item.id
+      node.itemDate = config.item.date
 
       this.populateItemFields(node, config.item)
 
@@ -35,8 +38,6 @@ class Form {
       this.populateDateFields(node, date)
 
     } 
-
-    this.events(node)
 
     return node
   }
@@ -68,6 +69,157 @@ class Form {
     fields["body"].value = itemObj.body
   }
 
+  populateTaskFields(node, itemObj) {
+
+    const fields = node.elements
+
+    fields["description"].value = itemObj.description
+
+    const status = itemObj.status.substr(itemObj.status.lastIndexOf(' ') + 1)
+
+    const regEx = new RegExp(status, 'i')
+
+    fields["taskStatus"].forEach(radio => {
+
+      if(radio.value.match(regEx)) {
+
+        radio.checked = true
+
+        radio.parentElement.setAttribute('data-check', '')
+
+      } else {
+
+        radio.parentElement.removeAttribute('data-check')
+      }
+    })
+  }
+
+  populateEventFields(node, itemObj) {
+
+    const fields = node.elements
+
+    fields["venue"].value = itemObj.venue
+
+    this.populateTimeFields(node, itemObj.eventStart)
+
+    this.populateReminderFields(node, itemObj.reminder)
+
+    this.populateDurationFields(node, itemObj.eventTime)
+    
+  }
+
+  populateMeetingFields(node, itemObj) {
+
+    const fields = node.elements
+
+    this.populateTimeFields(node, itemObj.meetingStart)
+
+    this.populateReminderFields(node, itemObj.reminder)
+
+    this.populateDurationFields(node, itemObj.meetingTime)
+
+    const attendees = itemObj.attendees.split(', ')
+
+    Array.from(fields["attendees[]"].options).forEach(option => {
+      
+      if(attendees.find(attendee => attendee === option.text)) {
+
+        option.selected = true
+
+      } else {
+
+        option.selected = false
+      }
+    })
+
+    fields["attendees[]"].dispatchEvent(new Event('change'))
+
+  }
+
+  populateDurationFields(node, timeStr) {
+
+    const fields = node.elements
+
+    const splitIndex = timeStr.indexOf('-')
+
+    const startStr = timeStr.substring(0, splitIndex - 1)
+    const endStr = timeStr.substring(splitIndex + 2)
+
+    let startHour = Number(startStr.substring(0, startStr.indexOf(':')))
+    let startMin = Number(startStr.substring(startStr.indexOf(':') + 1))
+
+    const endHour = Number(endStr.substring(0, endStr.indexOf(':')))
+    const endMin = Number(endStr.substring(endStr.indexOf(':') + 1))
+
+    let minCount = 0
+
+    while(startMin !== endMin || startHour !== endHour) {
+
+      minCount++
+
+      if(startMin + 1 === 60) {
+
+        startMin = 0
+        startHour++
+
+      } else startMin++
+
+      if(startHour === 24) startHour = 0
+
+    }
+
+    fields["duration"].value = minCount
+
+  }
+
+  populateReminderFields(node, reminderStr) {
+
+    const fields = node.elements
+
+    const base = reminderStr.substring(0, reminderStr.indexOf(' '))
+
+    const multiplier = reminderStr.substr(reminderStr.indexOf(' ') + 1, 1)
+
+    fields["reminderMultiplier"].forEach(radioBtn => {
+
+      const value = radioBtn.value.charAt(0)
+
+      if(multiplier === value) {
+
+        radioBtn.checked = true
+
+        radioBtn.parentElement.setAttribute('data-check', '')
+
+      } else {
+
+        radioBtn.parentElement.removeAttribute('data-check')
+
+      }
+    })
+
+    fields["reminderBase"].value = base
+  }
+
+  populateTimeFields(node, startStr) {
+
+    const fields = node.elements
+
+    fields["hour"].value = startStr.substring(0, startStr.indexOf(':'))
+
+    fields["min"].value = startStr.substr(startStr.indexOf(':') + 1, 2)
+
+    fields[startStr.substr(-2).toLowerCase()].checked = true
+
+    fields[startStr.substr(-2).toLowerCase()].parentElement.setAttribute('data-check', '')
+    
+    fields[startStr.substr(-2).toLowerCase() === 'am' ? 'pm' : 'am'].parentElement.removeAttribute('data-check')
+
+    const toggled = fields[startStr.substr(-2).toLowerCase()].parentElement.previousElementSibling
+
+    if(toggled) toggled.firstElementChild.setAttribute('data-toggled', '')
+
+  }
+
   populateDateFields(node, dateObj) {
 
     const fields = node.elements
@@ -83,7 +235,7 @@ class Form {
 
     formNode.addEventListener('submit', e => {
 
-      this.save(e, formNode.itemId)
+      this.save(e, formNode.itemId, formNode.itemDate)
     })
 
     formNode.querySelector('.btn--form-discard').addEventListener('click', () => this.emit('discard'))
@@ -304,13 +456,15 @@ class Form {
     return matchingOptions
   }
 
-  save(e, id) {
+  save(e, id, date) {
 
     e.preventDefault()
 
     const item = this[e.target.dataset.type](e.target.elements)
 
     item.id = id
+
+    item.sameDate = date === item.date ? true : false
 
     this.emit(this.mode, item)
   }
