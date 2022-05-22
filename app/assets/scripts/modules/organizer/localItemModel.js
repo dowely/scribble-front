@@ -9,8 +9,17 @@ class LocalItemModel {
     
     this.data = localStorage.getItem('items') || this.init(staticDB)
 
-    this.volatileMemory = this.load()
+    if(typeof this.data === 'string') {
 
+      this.volatileMemory = JSON.parse(this.data)
+
+    } else this.volatileMemory = this.load()   
+
+  }
+
+  writeToStorage() {
+
+    localStorage.setItem('items', JSON.stringify(this.volatileMemory))
   }
 
   init(staticDB) {

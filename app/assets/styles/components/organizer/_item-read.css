@@ -218,7 +218,7 @@
     }
   }
 
-  input[type="checkbox"] {
+  input[type="radio"] {
     width: 0;
     height: 0;
   }
@@ -242,6 +242,10 @@
     }
   }
 
+  label[data-disabled] {
+    color: $gray50;
+  }
+
   &__checkbox {
     display: block;
     width: 24px;
@@ -255,7 +259,7 @@
       margin-right: 15px;
     }
 
-    input[checked] ~ & {
+    input[data-check] ~ & {
       display: none;
     }
   }
@@ -263,7 +267,7 @@
   &__checkbox--checked {
     display: none;
 
-    input[checked] ~ & {
+    input[data-check] ~ & {
       display: block;
     }
   }

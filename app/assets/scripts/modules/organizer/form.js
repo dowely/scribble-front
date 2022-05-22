@@ -38,7 +38,7 @@ class Form {
       this.populateDateFields(node, date)
 
     } 
-
+    
     return node
   }
 
@@ -87,10 +87,13 @@ class Form {
 
         radio.parentElement.setAttribute('data-check', '')
 
-      } else {
-
-        radio.parentElement.removeAttribute('data-check')
       }
+    })
+
+    fields["taskStatus"].forEach(radio => {
+
+      if(!radio.checked) radio.parentElement.removeAttribute('data-check')
+
     })
   }
 
@@ -467,6 +470,7 @@ class Form {
     item.sameDate = date === item.date ? true : false
 
     this.emit(this.mode, item)
+    
   }
 
   task(fields) {

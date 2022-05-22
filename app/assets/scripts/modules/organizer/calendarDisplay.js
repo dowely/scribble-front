@@ -84,7 +84,7 @@ class CalendarDisplay {
 
   }
 
-  async pop(itemId, temporarily) {
+  async pop(itemId) {
 
     let cardsToRemove = [...document.querySelectorAll('.calendar-display .item-card')]
 
@@ -99,14 +99,10 @@ class CalendarDisplay {
       
       .then((resultArr) => {
 
-        if(!temporarily) {
+        if(resultArr[0]) this.emit('emptyGroup')
+        else this.emit('updateIterator', itemDate)
 
-          if(resultArr[0]) this.emit('emptyGroup')
-          else this.emit('updateIterator', itemDate)
-
-          CalendarDots.update(itemDate)
-
-        }
+        CalendarDots.update(itemDate)
 
       })
   }
@@ -164,8 +160,6 @@ class CalendarDisplay {
 
     sequence.push(target => new Promise(res => {
 
-      console.log('Hi from fade out on the ', target)
-
       const container = card.parentElement
 
       container.ontransitionend = container.ontransitioncancel = e => {
@@ -191,8 +185,6 @@ class CalendarDisplay {
 
     sequence.push(target => new Promise(res => {
 
-      console.log('Hi from collapse on the ', target)
-
       const container = card.parentElement
 
       const height = getComputedStyle(container).getPropertyValue('height')
@@ -216,8 +208,6 @@ class CalendarDisplay {
 
     sequence.push(target => new Promise(res => {
 
-      console.log('Hi from fade in on the ', target)
-
       const container = card.parentElement
 
       container.ontransitionend = container.ontransitioncancel = e => {
@@ -240,8 +230,6 @@ class CalendarDisplay {
     const firstInSequence = sequence.length === 0 ? true : false
 
     sequence.push(target => new Promise(res => {
-
-      console.log('Hi from remove on the ', target)
       
       if(firstInSequence || container.classList.contains('calendar-display__card-container--faded')) {
         
@@ -275,8 +263,6 @@ class CalendarDisplay {
 
     sequence.push(target => new Promise(res => {
 
-      console.log('Hi from empty group on the ', target)
-
       group.remove()
 
       res('empty')
@@ -290,8 +276,6 @@ class CalendarDisplay {
   updateIterator(group, sequence) {
 
     sequence.push(target => new Promise(res => {
-
-      console.log('Hi from update iterator on the ', target)
 
       res()
 
@@ -351,7 +335,7 @@ class CalendarDisplay {
         successors[0] = siblings[siblings.next]
         successors[1] = siblings[siblings.next - 1]
 
-      } else if(siblings.length > 1) {
+      } else if(siblings[siblings.next].nextElementSibling) {
 
         successors[0] = siblings[siblings.next]
         successors[1] = siblings[siblings.next + 1]

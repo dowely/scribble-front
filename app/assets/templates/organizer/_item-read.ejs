@@ -44,9 +44,9 @@
 
         <div class="item-read__task-form__row">
 
-          <label for="pending">pending
+          <label for="pendingRead" <%= item.status === 'overdue' || item.status === 'done' ? 'data-disabled' : '' %>>pending
             
-            <input type="checkbox" id="pending" name="taskStatus" value="pending"<%= item.status === 'pending' ? 'checked' : '' %>>
+            <input type="radio" id="pendingRead" name="taskStatus" value="pending"<%= item.status === 'pending' ? 'checked data-check' : '' %> <%= item.status === 'overdue' || item.status === 'done' ? 'disabled' : '' %>>
 
             <svg class="item-read__checkbox">
               <use href="#square-regular"></use>
@@ -58,9 +58,9 @@
             
           </label>
 
-          <label for="inProgress">in progress
+          <label for="inProgressRead" <%= item.status === 'overdue' || item.status === 'done' ? 'data-disabled' : '' %>>in progress
 
-            <input type="checkbox" id="inProgress" name="taskStatus" value="inProgress"<%= item.status === 'in progress' ? 'checked' : '' %>>
+            <input type="radio" id="inProgressRead" name="taskStatus" value="inProgress"<%= item.status === 'in progress' ? 'checked data-check' : '' %> <%= item.status === 'overdue' || item.status === 'done' ? 'disabled' : '' %>>
 
             <svg class="item-read__checkbox">
               <use href="#square-regular"></use>
@@ -76,9 +76,9 @@
 
         <div class="item-read__task-form__row">
 
-          <label for="done">done
+          <label for="doneRead">done
 
-            <input type="checkbox" id="done" name="taskStatus" value="done"<%= item.status === 'done' ? 'checked' : '' %>>
+            <input type="radio" id="doneRead" name="taskStatus" value="done"<%= item.status === 'done' ? 'checked data-check' : '' %>>
 
             <svg class="item-read__checkbox">
               <use href="#square-regular"></use>
@@ -90,9 +90,9 @@
             
           </label>
 
-          <label for="overdue">overdue
+          <label for="overdueRead" <%= item.status === 'overdue' ? '' : 'data-disabled' %>>overdue
 
-            <input type="checkbox" id="overdue" name="taskStatus" value="overdue"<%= item.status === 'overdue' ? 'checked' : '' %>>
+            <input type="radio" id="overdueRead" name="taskStatus" value="overdue"<%= item.status === 'overdue' ? 'checked data-check' : '' %> disabled>
 
             <svg class="item-read__checkbox">
               <use href="#square-regular"></use>

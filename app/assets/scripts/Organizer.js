@@ -45,6 +45,8 @@ const form = new Form(views, localItemModel)
 
 itemCard.events()
 
+addEventListener('beforeunload', () => localItemModel.writeToStorage())
+
 form.on('newItem', async item => {
 
   localItemModel.push(item)
@@ -87,11 +89,7 @@ form.on('edit', async item => {
 
   } else {
 
-     //const displayedDateContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
-
-    //const displayedDate = displayedDateContainer ?  displayedDateContainer.dataset.id : localItemModel.simpleDate(calendar.today.date)
-
-    await calendarDisplay.pop(item.id)//, item.date === displayedDate
+    await calendarDisplay.pop(item.id)
 
     if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth)) {
 
@@ -103,7 +101,9 @@ form.on('edit', async item => {
   
     }
 
-  } 
+  }
+
+  if(itemRead.currentId == item.id) itemRead.update(item)
 
   views.render(form.backTo)  
 
@@ -165,9 +165,49 @@ itemCard.on('edit', cardId => {
 
 })
 
+itemCard.on('done', cardId => {
+
+  const item = localItemModel.getItemById(cardId)
+
+  item.status = 'done'
+
+  const itemsCards = items.update()
+
+  itemCard.events(itemsCards)
+
+  const calendarCards = calendarDisplay.edit(item)
+
+  itemCard.events(calendarCards)
+
+})
+
 itemRead.on('close', () => {
 
   views.render('left')
+})
+
+itemRead.on('statusChange', item => {
+
+  const itemsCards = items.update()
+
+  itemCard.events(itemsCards)
+
+  const calendarCards = calendarDisplay.edit(item)
+
+  itemCard.events(calendarCards)
+    
+})
+
+itemRead.on('edit', itemId => {
+
+  form.backTo = views.viewState.colOnTop === 'central' ? form.backTo : views.viewState.colOnTop
+
+  form.mode = 'edit'
+
+  const item = localItemModel.getItemById(itemId)
+
+  views.render('central', form.createNode({type: item.type, item}))
+
 })
 
 itemRead.on('delete', itemId => {

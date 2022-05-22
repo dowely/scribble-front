@@ -32,6 +32,21 @@ class ItemCard {
       this.emit('edit', cardId)
     }
 
+    if(e.target.closest('.item-card__task-checkbox-icon')) {
+
+      const toggle = e.target.closest('.item-card__task-toggle-container')
+
+      if(toggle.dataset.taskStatus !== 'done') {
+
+        toggle.dataset.taskStatus = 'done'
+
+        toggle.lastElementChild.textContent = 'done'
+
+        this.emit('done', cardId)
+      }
+     
+    }
+
   }
 
 }
