@@ -399,6 +399,16 @@ class Form {
         }
       })
 
+      attSelect.addEventListener('mousedown', e => {
+
+        e.preventDefault()
+
+        e.target.closest('option').selected = true
+
+        attSelect.dispatchEvent(new Event('change'))
+        
+      })
+
       attSelect.addEventListener('change', () => {
 
         let newList = ''
