@@ -25,13 +25,13 @@ class Items {
 
     this.localItemModel = localItemModel
 
-    this.localizeItems()
+    //this.localizeItems()
 
     this.update()
 
   }
 
-  localizeItems() {
+  /* overwritten by update() localizeItems() {
 
     const container = document.createElement('DIV')
 
@@ -59,7 +59,7 @@ class Items {
       this.heading.style.setProperty(`--${count}-count`, `"${this.itemsCount[count]}"`)
     }
 
-  }
+  } */
 
   update() {
 

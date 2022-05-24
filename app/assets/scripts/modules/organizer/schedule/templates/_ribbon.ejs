@@ -1,0 +1,29 @@
+<div class="schedule-ribon" data-type="<%= item.type %>"<%- item.task ? ` data-task-status="${item.status}"` : `` %><%- item.meeting ? ` data-mtg-status="${item.status}"` : `` %>>
+
+  <h6 class="schedule-ribon__title"><%= item.title %></h6>
+
+  <% if(item.task) { %>
+
+  <svg class="schedule-ribon__checkbox">
+    <use href="#square-regular"></use>
+  </svg>
+
+  <svg class="schedule-ribon__checkbox schedule-ribon__checkbox--checked">
+    <use href="#square-check-regular"></use>
+  </svg>
+
+  <% } %>
+
+  <% if(item.event || item.meeting ) { %>
+
+  <span class="schedule-ribon__time"><%= item.eventStart || item.meetingStart %></span>
+
+  <% } %>
+
+  <% if(item.meeting) { %>
+
+  <div class="schedule-ribon__mtg-status"></div>
+
+  <% } %>
+  
+</div>

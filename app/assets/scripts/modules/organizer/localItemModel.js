@@ -13,13 +13,19 @@ class LocalItemModel {
 
       this.volatileMemory = JSON.parse(this.data)
 
-    } else this.volatileMemory = this.load()   
+    } else {
+
+      this.volatileMemory = this.load()
+
+      localStorage.setItem('items', '[]')
+    }   
 
   }
 
   writeToStorage() {
 
-    localStorage.setItem('items', JSON.stringify(this.volatileMemory))
+    if(localStorage.getItem('items')) localStorage.setItem('items', JSON.stringify(this.volatileMemory))
+
   }
 
   init(staticDB) {
@@ -93,6 +99,70 @@ class LocalItemModel {
     }) 
     
     return dots
+  }
+
+  getTodaysGroup(dateObj) {
+
+    let todaysGroup
+
+    const todaysItem = this.volatileMemory.find(item => new Date(item.date).getTime() === dateObj.getTime())
+
+    if(todaysItem) {
+
+      todaysGroup = this.volatileMemory.filter(item => item.date === todaysItem.date)
+
+      todaysGroup.date = todaysItem.date
+
+      todaysGroup.as = 'today'
+
+    }
+
+    return todaysGroup
+
+  }
+
+  getNextGroup(dateObj) {
+
+    let nextGroup
+
+    const timeSortedItems = [...this.volatileMemory].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) // asc
+
+    const nextItem = timeSortedItems.find(item => new Date(item.date).getTime() > dateObj.getTime())
+
+    if(nextItem) {
+
+      nextGroup = timeSortedItems.filter(item => item.date === nextItem.date)
+
+      nextGroup.date = nextItem.date
+
+      nextGroup.as = 'next'
+
+    }
+
+    return nextGroup
+
+  }
+
+  getPrevGroup(dateObj) {
+
+    let prevGroup
+
+    const timeSortedItems = [...this.volatileMemory].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) //dsc
+
+    const prevItem = timeSortedItems.find(item => new Date(item.date).getTime() < dateObj.getTime())
+
+    if(prevItem) {
+
+      prevGroup = timeSortedItems.filter(item => item.date === prevItem.date)
+
+      prevGroup.date = prevItem.date
+
+      prevGroup.as = 'prev'
+
+    }
+
+    return prevGroup
+
   }
 
   groupedItems(date, today) {

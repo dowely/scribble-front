@@ -10,6 +10,7 @@ import Items from './modules/organizer/items.js'
 import ItemRead from './modules/organizer/itemRead.js'
 import CalendarDisplay from './modules/organizer/calendarDisplay.js'
 import Form from './modules/organizer/form.js'
+import Schedule from './modules/organizer/schedule/schedule'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -42,6 +43,9 @@ const calendarDisplay = new CalendarDisplay(views, localItemModel)
 
 ee(Form.prototype)
 const form = new Form(views, localItemModel)
+
+ee(Schedule.prototype)
+const schedule = new Schedule(localItemModel)
 
 itemCard.events()
 
