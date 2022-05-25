@@ -1,13 +1,23 @@
+import throttle from 'lodash/throttle'
 import FeedNode from "./feedNode"
 
 class Feed {
+
+  node = document.querySelector('ul.schedule__list')
+
+  prevScrollTop
+
+  noLaterItems = false
+
+  noPriorItems = false
 
   today = {
     year: new Date().getFullYear(),
     month: new Date().getMonth(),
     day: new Date().getDate(),
     get date() {
-      return new Date(this.year, this.month, this.day)
+      //return new Date(this.year, this.month, this.day)
+      return new Date(2022, 4, 9)
     }
   }
 
@@ -34,7 +44,64 @@ class Feed {
       
       this.feedNodes = this.initialGroups.map(itemGroup => new FeedNode([...itemGroup], itemGroup.date, itemGroup.selected))
 
+      this.node.innerHTML = ''
+
+      this.feedNodes.forEach(feedNode => this.node.appendChild(feedNode.node))
+
     }
+
+    this.events()
+
+  }
+
+  events() {
+
+    this.node.addEventListener('scroll', throttle(this.onScroll, 200).bind(this))
+
+    this.node.addEventListener('scrolledToTop', this.prependFeedNode.bind(this))
+
+    this.node.addEventListener('scrolledToBottom', this.appendFeedNode.bind(this))
+
+  }
+
+  prependFeedNode() {
+
+    const newGroup = this.itemModel.getPrevGroup(this.feedNodes[0].date)
+
+    if(!newGroup && !this.noPriorItems) this.startOfItems()
+    else if(newGroup) {
+
+      this.feedNodes.unshift(new FeedNode([...newGroup], newGroup.date, false))
+
+      this.node.prepend(this.feedNodes[0].node)
+
+      this.node.scrollTop = this.node.children[1].offsetTop
+
+    }
+
+  }
+
+  appendFeedNode() {
+
+    const newGroup = this.itemModel.getNextGroup(this.feedNodes[this.feedNodes.length - 1].date)
+
+    if(!newGroup && !this.noLaterItems) this.endOfItems()
+    else if(newGroup) {
+
+      this.feedNodes.push(new FeedNode([...newGroup], newGroup.date, false))
+
+      this.node.appendChild(this.feedNodes.at(-1).node)
+
+    }
+  }
+
+  onScroll() {
+
+    if(this.node.scrollTop > this.prevScrollTop) this.checkIfScrolledToBottom()
+
+    if(this.node.scrollTop < this.prevScrollTop) this.checkIfScrolledToTop()
+
+    this.prevScrollTop = this.node.scrollTop
 
   }
 
@@ -91,6 +158,68 @@ class Feed {
       iterator++
 
     }
+  }
+
+  scrollToSelectedNode() {
+
+    const selectedNode = this.feedNodes.find(feedNode => feedNode.selected).node
+
+    const offsetTop = Math.ceil(selectedNode.offsetTop) + 1
+
+    this.node.scrollTop = this.prevScrollTop = offsetTop
+
+    if(this.node.scrollTop < offsetTop) this.endOfItems()
+
+  }
+
+  endOfItems() {
+
+    this.noLaterItems = true
+
+    const lastLi = document.createElement('LI')
+
+    lastLi.className = 'schedule__list-end'
+
+    lastLi.textContent = 'There are no later items'
+
+    this.node.appendChild(lastLi)
+
+  }
+
+  startOfItems() {
+
+    this.noPriorItems = true
+
+    const firstLi = document.createElement('LI')
+
+    firstLi.className = 'schedule__list-start'
+
+    firstLi.textContent = 'There are no prior items'
+
+    this.node.prepend(firstLi)
+
+    this.node.scrollTop = this.node.children[1].offsetTop
+
+  }
+
+  checkIfScrolledToTop() {
+
+    if(this.node.scrollTop < 1) this.node.dispatchEvent(new Event('scrolledToTop'))
+
+  }
+
+  checkIfScrolledToBottom() {
+
+    const lastElOffset = this.node.lastElementChild.offsetTop
+
+    const lastElHeight = this.node.lastElementChild.offsetHeight
+
+    const parentHeight = this.node.offsetHeight
+
+    const parentScrollTop = this.node.scrollTop
+
+    if((lastElOffset + lastElHeight) - (parentHeight + parentScrollTop) < 1) this.node.dispatchEvent(new Event('scrolledToBottom'))
+
   }
 }
 

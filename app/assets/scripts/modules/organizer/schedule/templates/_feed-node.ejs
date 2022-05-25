@@ -4,7 +4,7 @@
 
   <div class="schedule__timeline">
 
-    <h5 class="schedule__day-tag"><%= date.getDate() %> <%= days[date.getDay()] %></h5>
+    <h5 class="schedule__day-tag"><%= date.getDate() %><br><%= days[date.getDay()] %></h5>
 
     <div class="schedule__dot<%= selected ? ' schedule__dot--solid' : '' %>"></div>
 

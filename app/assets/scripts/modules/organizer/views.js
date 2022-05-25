@@ -111,6 +111,9 @@ class Views {
         if(index === '1') this.columns.right.classList.add('content__right-col--visible-on-large')
 
         this.fadeIn('left', 'viewer')
+
+        if(index === '2') this.emit('schedule')
+
       }
     })
 

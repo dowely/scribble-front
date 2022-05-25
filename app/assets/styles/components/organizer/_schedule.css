@@ -49,6 +49,7 @@
     list-style-type: none;
     padding-right: 5px;
     scrollbar-width: none; /* moz */
+    position: relative; /* for offsetParent */
 
     &::-webkit-scrollbar {
       display: none;
@@ -81,6 +82,20 @@
         margin-bottom: 15px;
       }
     }
+  }
+
+  &__list-end {
+    border: 1px solid $gray30;
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  &__list-start {
+    border: 1px solid $gray30;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
   }
 
   &__timeline {

@@ -24,19 +24,25 @@ class FeedNode {
     this.container.innerHTML = feedNodeTemplate({simpleDate: this.simpleDate, date: this.date, selected: this.selected})
 
     this.node = this.container.querySelector('li.schedule__list-item')
+
+    this.ribons.forEach(this.mountRibbons.bind(this))
+
   }
+
+  mountRibbons(ribbon) {
+
+    const hook = this.node.querySelector('ul.schedule__ribons')
+
+    const container = document.createElement('LI')
+
+    container.className = 'schedule__ribon-container'
+
+    container.appendChild(ribbon.node)
+
+    hook.appendChild(container)
+
+  }
+
 }
 
 export default FeedNode
-
-/*
-<% ribons.forEach(ribon => { %>
-
-  <li class="schedule__ribon-container">
-
-    <%- ribon.html %>
-
-  </li>
-
-<% }) %>
-*/

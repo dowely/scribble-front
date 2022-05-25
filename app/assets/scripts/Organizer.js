@@ -30,7 +30,9 @@ const bottomNav = new BottomNavigation()
 const itemCard = new ItemCard()
 const itemRead = new ItemRead()
 
+ee(Views.prototype)
 const views = new Views(bottomNav)
+
 const localItemModel = new LocalItemModel()
 const items = new Items(views, localItemModel)
 
@@ -45,7 +47,7 @@ ee(Form.prototype)
 const form = new Form(views, localItemModel)
 
 ee(Schedule.prototype)
-const schedule = new Schedule(localItemModel)
+const schedule = new Schedule(views, localItemModel)
 
 itemCard.events()
 
