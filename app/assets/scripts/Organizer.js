@@ -33,7 +33,9 @@ const itemRead = new ItemRead()
 ee(Views.prototype)
 const views = new Views(bottomNav)
 
+ee(LocalItemModel.prototype)
 const localItemModel = new LocalItemModel()
+
 const items = new Items(views, localItemModel)
 
 new Notifications(views)
@@ -63,7 +65,7 @@ form.on('newItem', async item => {
 
   let updateIterator
 
-  if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth)) {
+  if(Form.isItemInDisplayedMonth(item, calendar.displayedMonth) || item.date === localItemModel.simpleDate(calendar.today.date)) {
 
     const calendarCards = calendarDisplay.update(item)
 
@@ -141,12 +143,17 @@ bottomNav.on('selectItems', type => {
   items.select(type)
 })
 
-itemCard.on('itemRead', cardId => {
+itemCard.on('itemRead', readItem)
 
-  const item = localItemModel.getItemById(cardId)
+schedule.on('read', readItem)
+
+function readItem(itemId) {
+
+  const item = localItemModel.getItemById(itemId)
 
   views.render('right', itemRead.createNode(item))
-})
+
+}
 
 itemCard.on('delete', cardId => {
   
@@ -171,11 +178,17 @@ itemCard.on('edit', cardId => {
 
 })
 
-itemCard.on('done', cardId => {
+itemCard.on('done', itemDone)
 
-  const item = localItemModel.getItemById(cardId)
+schedule.on('done', itemDone)
+
+function itemDone(itemId) {
+
+  const item = localItemModel.getItemById(itemId)
 
   item.status = 'done'
+
+  localItemModel.emit('itemEdit', item)
 
   const itemsCards = items.update()
 
@@ -185,7 +198,7 @@ itemCard.on('done', cardId => {
 
   itemCard.events(calendarCards)
 
-})
+}
 
 itemRead.on('close', () => {
 

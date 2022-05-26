@@ -1,11 +1,17 @@
 import Feed from './feed'
+import ee from 'event-emitter'
+
+ee(Feed.prototype)
 
 class Schedule {
+
+  feed
+
   constructor(views, itemModel) {
 
     this.views = views
 
-    this.feed = new Feed(itemModel)
+    this.itemModel = itemModel
 
     this.events()
 
@@ -13,7 +19,17 @@ class Schedule {
 
   events() {
 
-    this.views.once('schedule', () => this.feed.scrollToSelectedNode())
+    this.views.once('schedule', () => {
+
+      this.feed = new Feed(this.itemModel)
+      
+      this.feed.scrollToSelectedNode()
+
+      this.feed.on('done', itemId => this.emit('done', itemId))
+
+      this.feed.on('read', itemId => this.emit('read', itemId))
+
+    })
   }
 }
 

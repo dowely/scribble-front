@@ -1,5 +1,8 @@
 import throttle from 'lodash/throttle'
 import FeedNode from "./feedNode"
+import ee from 'event-emitter'
+
+ee(FeedNode.prototype)
 
 class Feed {
 
@@ -16,8 +19,8 @@ class Feed {
     month: new Date().getMonth(),
     day: new Date().getDate(),
     get date() {
-      //return new Date(this.year, this.month, this.day)
-      return new Date(2022, 4, 9)
+      return new Date(this.year, this.month, this.day)
+      //return new Date(2022, 4, 9)
     }
   }
 
@@ -62,6 +65,71 @@ class Feed {
 
     this.node.addEventListener('scrolledToBottom', this.appendFeedNode.bind(this))
 
+    this.itemModel.on('newItem', this.addNewItem.bind(this))
+
+    this.itemModel.on('itemEdit', this.editItem.bind(this))
+
+    this.addFeedNodeEventListeners(this.feedNodes)
+
+  }
+
+  addFeedNodeEventListeners(feedNodes) {
+
+    feedNodes.forEach(feedNode => {
+
+      feedNode.on('done', itemId => this.emit('done', itemId))
+
+      feedNode.on('read', itemId => this.emit('read', itemId))
+
+    })
+  }
+
+  editItem(editedItem) {
+
+    const hostingNode = this.feedNodes.find(feedNode => feedNode.simpleDate === editedItem.date)
+
+    try {
+
+      hostingNode.editItem(editedItem)
+
+    } catch {
+
+      console.error('Failed to establish hosting node')
+
+    }
+  }
+
+  addNewItem(newItem) {
+
+    let hostingNode = this.feedNodes.find(feedNode => feedNode.simpleDate === newItem.date)
+
+    if(hostingNode) hostingNode.appendItem(newItem)
+    else {
+
+      const newNode = new FeedNode([newItem], newItem.date, false)
+
+      this.addFeedNodeEventListeners([newNode])
+
+      const atIndex = this.feedNodes.findIndex(feedNode => feedNode.date > newNode.date)
+
+      if(atIndex < 0) { // at the end
+        
+        const prevSibling = this.feedNodes.at(-1).node
+
+        this.feedNodes.push(newNode)
+
+        prevSibling.after(newNode.node)
+
+      } else {
+
+        const nextSibling = this.feedNodes[atIndex].node
+
+        this.feedNodes.splice(atIndex, 0, newNode)
+
+        this.node.insertBefore(newNode.node, nextSibling)
+
+      }
+    }
   }
 
   prependFeedNode() {
@@ -71,7 +139,11 @@ class Feed {
     if(!newGroup && !this.noPriorItems) this.startOfItems()
     else if(newGroup) {
 
-      this.feedNodes.unshift(new FeedNode([...newGroup], newGroup.date, false))
+      const newFeedNode = new FeedNode([...newGroup], newGroup.date, false)
+
+      this.addFeedNodeEventListeners([newFeedNode])
+
+      this.feedNodes.unshift(newFeedNode)
 
       this.node.prepend(this.feedNodes[0].node)
 
@@ -88,7 +160,11 @@ class Feed {
     if(!newGroup && !this.noLaterItems) this.endOfItems()
     else if(newGroup) {
 
-      this.feedNodes.push(new FeedNode([...newGroup], newGroup.date, false))
+      const newFeedNode = new FeedNode([...newGroup], newGroup.date, false)
+
+      this.addFeedNodeEventListeners([newFeedNode])
+
+      this.feedNodes.push(newFeedNode)
 
       this.node.appendChild(this.feedNodes.at(-1).node)
 
@@ -168,7 +244,7 @@ class Feed {
 
     this.node.scrollTop = this.prevScrollTop = offsetTop
 
-    if(this.node.scrollTop < offsetTop) this.endOfItems()
+    if(this.node.scrollTop < offsetTop) this.node.scrollBy({top: -100})
 
   }
 

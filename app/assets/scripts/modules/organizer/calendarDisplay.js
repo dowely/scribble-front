@@ -335,7 +335,7 @@ class CalendarDisplay {
         successors[0] = siblings[siblings.next]
         successors[1] = siblings[siblings.next - 1]
 
-      } else if(siblings[siblings.next].nextElementSibling) {
+      } else if(siblings[siblings.next + 1] && siblings[siblings.next].nextElementSibling) {
 
         successors[0] = siblings[siblings.next]
         successors[1] = siblings[siblings.next + 1]

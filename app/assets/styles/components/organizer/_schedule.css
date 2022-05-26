@@ -84,18 +84,52 @@
     }
   }
 
-  &__list-end {
+  &__list-end,
+  &__list-start {
     border: 1px solid $gray30;
     margin-top: 15px;
     padding: 10px;
     text-align: center;
+
+    @mixin atMedium {
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 1.25rem;
+      color: $gray50;
+    }
+
+    @mixin atLarge {
+      margin-left: 5px;
+    }
+
+    @mixin atXLarge {
+      color: white;
+      font-weight: 100;
+      border-color: white;
+    }
   }
 
   &__list-start {
-    border: 1px solid $gray30;
     margin-bottom: 15px;
-    padding: 10px;
-    text-align: center;
+    margin-top: 0;
+
+    @mixin atMedium {
+      margin-bottom: 20px;
+    }
+
+    @mixin atLarge {
+      margin-top: 20px;
+    }
+
+    @mixin atXLarge {
+      margin-top: 0;
+    }
+  }
+
+  &__list-end {
+    @mixin atLarge {
+      margin-bottom: 20px;
+    }
   }
 
   &__timeline {

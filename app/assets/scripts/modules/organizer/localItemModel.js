@@ -96,6 +96,8 @@ class LocalItemModel {
   
       if(!dots[day]) dots[day] = [item.type]
       else dots[day].push(item.type)
+
+      dots[day] = [...new Set(dots[day])]
     }) 
     
     return dots
@@ -260,6 +262,8 @@ class LocalItemModel {
 
     this.volatileMemory.push(item)
 
+    this.emit('newItem', item)
+
   }
 
   edit(item) {
@@ -267,6 +271,8 @@ class LocalItemModel {
     const atIndex = this.volatileMemory.findIndex(el => el.id == item.id)
 
     this.volatileMemory.splice(atIndex, 1, item)
+
+    this.emit('itemEdit', item)
   }
 
   getItemsByType(type) {

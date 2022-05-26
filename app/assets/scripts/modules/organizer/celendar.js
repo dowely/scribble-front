@@ -212,6 +212,8 @@ class Calendar {
 
     this.displayedMonth = date
 
+    this.selectedDate = undefined
+
     this.sliderTransition = false
 
     this.itemCard.events([...this.items[0].querySelectorAll('.item-card'), ...this.items[1].querySelectorAll('.item-card')])
@@ -519,7 +521,15 @@ class Calendar {
 
   async updateIterator(date) {
 
-    date = date ? date : (document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')).dataset.id
+    try {
+
+      date = typeof date === 'string' ? date : (document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')).dataset.id
+
+    } catch {
+
+      date = this.localItemModel.simpleDate(this.today.date)
+
+    }
 
     const onTheRight = this.views.viewState.twoCols ? 1 : 0
 
@@ -548,7 +558,7 @@ class Calendar {
     
     const displayedContainer = document.querySelector('.calendar-card__date-container--selected') || document.querySelector('.calendar-card__date-container--today')
 
-    const dateId = displayedContainer.dataset.id
+    const dateId = displayedContainer ? displayedContainer.dataset.id : this.localItemModel.simpleDate(this.today.date)
 
     const updateIterator = itemDate === dateId ? true : false
 
