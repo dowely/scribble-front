@@ -16,13 +16,21 @@ class CalendarDisplay {
 
   edit(item) {
 
-    const containersToEdit = [
+    let containersToEdit, newCards = []
 
-      this.left.querySelector(`.item-card[data-item-id="${item.id}"]`).parentElement,
-      this.right.querySelector(`.item-card[data-item-id="${item.id}"]`).parentElement
-    ]
+    try {
 
-    const newCards = []
+      containersToEdit = [
+
+        this.left.querySelector(`.item-card[data-item-id="${item.id}"]`).parentElement,
+        this.right.querySelector(`.item-card[data-item-id="${item.id}"]`).parentElement
+      ]
+
+    } catch {
+
+      return newCards
+
+    }
 
     containersToEdit.forEach((container, i) => {
 
@@ -86,11 +94,21 @@ class CalendarDisplay {
 
   async pop(itemId) {
 
+    let itemDate
+
     let cardsToRemove = [...document.querySelectorAll('.calendar-display .item-card')]
 
     cardsToRemove = cardsToRemove.filter(card => card.dataset.itemId == itemId)
     
-    const itemDate = cardsToRemove[1].parentElement.parentElement.dataset.id
+    try {
+
+      itemDate = cardsToRemove[1].parentElement.parentElement.dataset.id
+
+    } catch {
+
+      return
+
+    }
 
     const leftSequence = this.generateSequence(cardsToRemove[0])
     const rightSequence = this.generateSequence(cardsToRemove[1])

@@ -198,6 +198,8 @@ function itemDone(itemId) {
 
   itemCard.events(calendarCards)
 
+  if(itemRead.currentId == itemId) itemRead.update(item)
+
 }
 
 itemRead.on('close', () => {
@@ -206,6 +208,8 @@ itemRead.on('close', () => {
 })
 
 itemRead.on('statusChange', item => {
+
+  localItemModel.emit('itemEdit', item)
 
   const itemsCards = items.update()
 

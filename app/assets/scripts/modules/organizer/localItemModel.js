@@ -245,7 +245,12 @@ class LocalItemModel {
 
   pop(itemId) {
 
-    this.volatileMemory.splice(this.volatileMemory.indexOf(this.volatileMemory.find(item => item.id == itemId)), 1)
+    const itemToRemove = this.volatileMemory.find(item => item.id == itemId)
+
+    this.volatileMemory.splice(this.volatileMemory.indexOf(itemToRemove), 1)
+
+    this.emit('itemRemoved', itemToRemove)
+
   }
 
   push(item) {

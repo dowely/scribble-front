@@ -59,7 +59,7 @@ class Feed {
 
   events() {
 
-    this.node.addEventListener('scroll', throttle(this.onScroll, 200).bind(this))
+    this.node.addEventListener('scroll', throttle(this.onScroll, 200, { 'trailing': true }).bind(this))
 
     this.node.addEventListener('scrolledToTop', this.prependFeedNode.bind(this))
 
@@ -82,6 +82,34 @@ class Feed {
       feedNode.on('read', itemId => this.emit('read', itemId))
 
     })
+  }
+
+  deleteItem(info) {
+
+    const hostingNode = this.feedNodes.find(feedNode => feedNode.simpleDate === info.removedItem.date)
+
+    try {
+
+      if(hostingNode.ribbons.length < 2) this.removeFeedNode({feedNode: hostingNode, transition: info.transition})
+
+      else hostingNode.removeItem({item: info.removedItem, transition: info.transition})
+
+    } catch(e) {
+
+      console.error(e.message)
+
+    }
+  }
+
+  removeFeedNode(info) {
+
+    const atIndex = this.feedNodes.indexOf(info.feedNode)
+
+    this.feedNodes.splice(atIndex, 1)
+
+    if(!info.transition) info.feedNode.node.remove()
+    else info.feedNode.transitionOut()
+
   }
 
   editItem(editedItem) {
@@ -147,10 +175,11 @@ class Feed {
 
       this.node.prepend(this.feedNodes[0].node)
 
-      this.node.scrollTop = this.node.children[1].offsetTop
+      const marginOffset = getComputedStyle(this.node.children[0].lastElementChild).getPropertyValue('margin-top').slice(0, -2)
+
+      this.node.scrollTop = this.node.children[1].offsetTop - Number(marginOffset)
 
     }
-
   }
 
   appendFeedNode() {
@@ -272,9 +301,11 @@ class Feed {
 
     firstLi.textContent = 'There are no prior items'
 
+    const marginOffset = getComputedStyle(this.node.children[0].lastElementChild).getPropertyValue('margin-top').slice(0, -2)
+
     this.node.prepend(firstLi)
 
-    this.node.scrollTop = this.node.children[1].offsetTop
+    this.node.scrollTop = this.node.children[1].offsetTop - Number(marginOffset)
 
   }
 

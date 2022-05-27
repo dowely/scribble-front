@@ -66,6 +66,19 @@ class FeedNode {
 
   }
 
+  removeItem(info) {
+
+    const ribbon = this.ribbons.find(ribbon => ribbon.item === info.item)
+
+    const atIndex = this.ribbons.indexOf(ribbon)
+
+    this.ribbons.splice(atIndex, 1)
+
+    if(!info.transition) ribbon.node.parentElement.remove()
+    else ribbon.transitionOut()
+
+  }
+
   appendItem(newItem) {
 
     const newRibbon = new Ribbon(newItem)
@@ -94,6 +107,77 @@ class FeedNode {
 
   }
 
+  transitionOut() {
+
+    const duration = 300 // ms
+
+    const height = this.node.offsetHeight
+
+    const dayTag = this.node.querySelector('.schedule__day-tag')
+
+    const dot = this.node.querySelector('.schedule__dot')
+
+    const ribbon = this.node.querySelector('.schedule__ribons')
+
+    const fadeOut = new Promise(res => {
+
+      dayTag.ontransitionend = dayTag.ontransitioncancel = e => {
+
+        e.stopPropagation()
+
+        res()
+      }
+
+      dayTag.style.cssText = `
+        transition: color ${duration}ms ease-out;
+        color: transparent;
+      `
+
+      dot.style.cssText = `
+        transition: all ${duration}ms ease-out;
+        width: 0;
+        height: 0;
+        border-width: 0;
+      `
+
+      ribbon.style.cssText = `
+        transition: opacity ${duration}ms ease-out;
+        opacity: 0;
+      `
+
+      this.node.style.cssText = `
+        height: ${height}px;
+      `
+    })
+
+    const collapse = () => {
+
+      return new Promise(res => {
+
+        setTimeout(() => {
+
+          this.node.ontransitionend = this.node.ontransitioncancel = e => {
+  
+            e.stopPropagation()
+    
+            res()
+    
+          }
+
+        }, 50)
+  
+        this.node.style.cssText = `
+          transition: height ${duration}ms ease-out;
+          height: 0;
+        `
+      })
+    }
+
+    fadeOut
+      .then(collapse)
+      .then(() => this.node.remove())
+
+  }
 }
 
 export default FeedNode

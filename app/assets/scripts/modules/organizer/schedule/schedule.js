@@ -29,7 +29,18 @@ class Schedule {
 
       this.feed.on('read', itemId => this.emit('read', itemId))
 
+      this.itemModel.on('itemRemoved', removedItem => {
+
+        if(this.views.viewState.twoCols && this.views.viewState.leftColIndex === '2') {
+  
+          this.feed.deleteItem({removedItem, transition: true})
+  
+        } else this.feed.deleteItem({removedItem, transition: false})
+  
+      })
+
     })
+
   }
 }
 
