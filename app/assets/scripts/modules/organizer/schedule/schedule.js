@@ -1,4 +1,5 @@
 import Feed from './feed'
+import header from './header'
 import ee from 'event-emitter'
 
 ee(Feed.prototype)
@@ -6,6 +7,8 @@ ee(Feed.prototype)
 class Schedule {
 
   feed
+
+  header
 
   constructor(views, itemModel) {
 
@@ -22,8 +25,12 @@ class Schedule {
     this.views.once('schedule', () => {
 
       this.feed = new Feed(this.itemModel)
-      
+
+      header.hideInitially()
+
       this.feed.scrollToSelectedNode()
+
+      this.feed.on('monthChange', monthRange => header.render(monthRange))
 
       this.feed.on('done', itemId => this.emit('done', itemId))
 

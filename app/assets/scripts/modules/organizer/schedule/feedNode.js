@@ -12,6 +12,8 @@ class FeedNode {
 
   container = document.createElement('DIV')
 
+  isVisible
+
   constructor(items, date, selected = false) {
 
     this.items = items

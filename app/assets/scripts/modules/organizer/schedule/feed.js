@@ -10,6 +10,8 @@ class Feed {
 
   prevScrollTop
 
+  monthRange = [0, 0] //miliseconds
+
   noLaterItems = false
 
   noPriorItems = false
@@ -206,7 +208,46 @@ class Feed {
 
     if(this.node.scrollTop < this.prevScrollTop) this.checkIfScrolledToTop()
 
+    this.updateMonthRange()
+
     this.prevScrollTop = this.node.scrollTop
+
+  }
+
+  updateMonthRange() {
+
+    const visibleNodes = this.flagVisibleNodes()
+
+    const startDate = new Date(visibleNodes.at(0).date).setDate(1)
+    const endDate = new Date(visibleNodes.at(-1).date).setDate(1)
+    
+    if(
+      this.monthRange[0] !== startDate ||
+      this.monthRange[1] !== endDate
+    ) {
+
+      this.monthRange[0] = startDate
+
+      this.monthRange[1] = endDate
+
+      this.emit('monthChange', [startDate, endDate])
+
+    }
+  }
+
+  flagVisibleNodes() {
+
+    this.feedNodes.forEach(feedNode => {
+
+      const aboveBottom = this.node.scrollTop + this.node.offsetHeight > feedNode.node.offsetTop
+
+      const belowTop = this.node.scrollTop < feedNode.node.offsetTop + feedNode.node.offsetHeight
+
+      feedNode.isVisible = aboveBottom && belowTop ? true : false
+
+    })
+
+    return this.feedNodes.filter(feedNode => feedNode.isVisible)
 
   }
 

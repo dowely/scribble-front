@@ -24,6 +24,8 @@
     margin-top: 0;
     margin-bottom: 15px;
     flex: none;
+    display: flex;
+    transition: all .3s ease-out;
 
     @mixin atMedium {
       max-width: 500px;
@@ -37,6 +39,23 @@
       font-size: 1.65rem;
       margin-bottom: 20px;
     }
+
+    p {
+      margin: 0;
+      flex: 1;
+      width: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  &__header--faded {
+    opacity: 0;
+  }
+
+  &__header--transparent {
+    color: transparent;
   }
 
   &__list {
