@@ -1,7 +1,7 @@
 import LocalItemModel from './modules/organizer/localItemModel.js'
 import Views from './modules/organizer/views.js'
 import Notifications from './modules/organizer/notifications'
-import Search from './modules/organizer/search'
+import Search from './modules/organizer/search/search'
 import Calendar from './modules/organizer/celendar.js'
 import ItemCard from './modules/organizer/itemCard.js'
 import BottomNavigation from './modules/organizer/bottomNav.js'
@@ -39,7 +39,10 @@ const localItemModel = new LocalItemModel()
 const items = new Items(views, localItemModel)
 
 new Notifications(views)
-new Search(views)
+
+ee(Search.prototype)
+const search = new Search(views, localItemModel)
+
 const calendar = new Calendar(views, localItemModel, itemCard)
 
 ee(CalendarDisplay.prototype)
@@ -54,6 +57,8 @@ const schedule = new Schedule(views, localItemModel)
 itemCard.events()
 
 addEventListener('beforeunload', () => localItemModel.writeToStorage())
+
+search.on('newResults', cards => itemCard.events(cards))
 
 form.on('newItem', async item => {
 
@@ -258,31 +263,3 @@ calendarDisplay.on('updateIterator', date => {
   calendar.updateIterator()
 
 })
-
-/** Route/Controller */
-
-  /** view */
-
-  /** models */
-
-  /** module */
-  /** module */
-
-    /** sub module */
-    /** sub module */
-
-    /** events */
-
-  /** module */
-
-  /** events */
-
-  /** scripts folders
-   * 
-   * global
-   * views
-   * models
-   * controllers
-   * modules
-   * 
-   */

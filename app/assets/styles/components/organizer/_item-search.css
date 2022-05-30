@@ -41,6 +41,8 @@
   }
 
   &__list {
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
     padding: 0 15px;
     margin: 0;
@@ -48,6 +50,11 @@
     overflow-y: auto;
     width: 100%;
     max-width: 430px;
+    scrollbar-width: none; /* moz */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     @mixin atMedium {
       max-width: 530px;
@@ -61,7 +68,7 @@
 
   &__card-container {
     box-shadow: 0 0 5px 1px $gray30;
-    margin: 20px 0;
+    margin: 10px 0;
 
     &:first-child {
       margin-top: 5px;
@@ -78,12 +85,12 @@
     }
 
     @mixin atMedium {
-      margin: 30px 0;
+      margin: 15px 0;
     }
 
     @mixin atLarge {
       box-shadow: none;
-      margin: 25px 0;
+      margin: 12px 0;
     }
   }
 }

@@ -5,6 +5,15 @@ class LocalItemModel {
   data
   volatileMemory
 
+  today = {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    day: new Date().getDate(),
+    get date() {
+      return new Date(this.year, this.month, this.day)
+    }
+  }
+
   constructor() {
     
     this.data = localStorage.getItem('items') || this.init(staticDB)
@@ -12,6 +21,8 @@ class LocalItemModel {
     if(typeof this.data === 'string') {
 
       this.volatileMemory = JSON.parse(this.data)
+
+      this.checkIfOverdue()
 
     } else {
 
@@ -84,6 +95,20 @@ class LocalItemModel {
 
     return combinedItems
 
+  }
+
+  checkIfOverdue() {
+
+    this.volatileMemory.forEach(item => {
+
+      if(item.task) {
+
+        const dueDate = new Date(item.date)
+
+        if(this.today.date.getTime() > dueDate.getTime()) item.status = 'overdue'
+
+      }
+    })
   }
 
   dots(date) {
@@ -283,6 +308,25 @@ class LocalItemModel {
   getItemsByType(type) {
 
     return this.volatileMemory.filter(item => item[type]).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  }
+
+  getItemsByQuery(query) {
+
+    const results = []
+
+    this.volatileMemory.forEach(item => {
+
+      let content = item.title + ' ' + (item.body ? item.body : item.description ? item.description : item.venue ? item.venue : item.attendees) + ' ' + (item.status ? item.status : '')
+
+      content = content.toLowerCase()
+
+      if(content.indexOf(query.term) > -1) results.push(item)
+
+    })
+
+    results.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+    return results
   }
 }
 
