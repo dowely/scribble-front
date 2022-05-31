@@ -153,7 +153,7 @@ class Calendar {
     const displayReplacementRight = document.createElement('DIV')
 
     const newDate = new Date(this.displayedMonth)
-    newDate.setMonth(newDate.getMonth() + direction)
+    newDate.setDate(direction < 0 ? 0 : 32)
 
     displayReplacementLeft.innerHTML = displayTemplate({
       target: 'left',

@@ -43,5 +43,9 @@
       border: 1px solid white;
       font-weight: 300;
     }
+
+    &::selection {
+      background-color: cyan;
+    }
   }
 }

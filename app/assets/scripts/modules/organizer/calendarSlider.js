@@ -38,7 +38,7 @@ class CalendarSlider {
 
   async prev(date, today) {
 
-    date.setMonth(date.getMonth() - 1)
+    date.setDate(0)
     
     this.replacement.innerHTML = cardTemplate({
       year: date.getFullYear(),
@@ -60,7 +60,7 @@ class CalendarSlider {
 
   async next(date, today) {
     
-    date.setMonth(date.getMonth() + 1)
+    date.setDate(32)
     
     this.replacement.innerHTML = cardTemplate({
       year: date.getFullYear(),
