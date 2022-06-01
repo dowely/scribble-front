@@ -13,14 +13,10 @@ class DateFilter {
 
   after = Infinity
 
-  error = ''
-
   constructor() {
 
+    
 
-
-    //this.before.setSelectionRange(3, 3)
-    //this.before.focus()
   }
 
 }

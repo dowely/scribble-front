@@ -62,14 +62,14 @@ class Search {
     searchTerm.on('input', term => {
 
       if(!term) {
-        
-        this.views.render('left')
 
-      } else if(!dateFilter.error) {
+        if(this.views.viewState.colOnTop !== 'left') this.views.render('left')
+
+      } else {
 
         this.displayResults({term})
 
-      } else console.log(dateFilter.error)
+      } 
 
     })
 

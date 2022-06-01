@@ -1,10 +1,10 @@
 class DateField {
 
-  month = 'mm'
+  selectionStart = 0
 
-  date = 'dd'
+  selectionEnd = 8
 
-  year = 'yy'
+  format = 'mm/dd/yy'
 
   constructor(inputField) {
 
@@ -15,60 +15,46 @@ class DateField {
   }
 
   events() {
+    
+    this.inputField.addEventListener('pointerdown', () => {
+
+      if(this.inputField.value === '') console.log('empty')
+
+    })
 
     this.inputField.addEventListener('beforeinput', e => {
 
       e.preventDefault()
+ 
+      if(e.inputType === 'insertText' && this.isValid(e.data)) {
+        
+        this.insertNumber(e.data)
 
-      const value = this.inputField.value
-
-      if(value.indexOf('/') >= this.inputField.selectionEnd) {
-
-        this.emit('monthChange', e)
-
-      } else if(this.inputField.selectionStart > value.indexOf('/') && value.lastIndexOf('/') >= this.inputField.selectionEnd) {
-
-        this.emit('dateChange', e)
-
-      } else if(this.inputField.selectionStart > value.lastIndexOf('/')) {
-
-        this.emit('yearChange', e)
-
+        //update selection start
+        
       }
 
-      console.log(this.inputField.selectionStart, this.inputField.selectionEnd)
-
     })
 
-    this.on('monthChange', e => {
+  }
 
-      console.log('month change')
+  isNumber(char) {
 
-    })
+  }
 
-    this.on('dateChange', e => {
+  validateAt_0() {
 
-      console.log('date change')
-
-    })
-
-    this.on('yearChange', e => {
-
-      console.log('year change')
-
-    })
-
-    this.inputField.addEventListener('select', e => {
-
-      console.log(e)
-
-    })
-
-    this.inputField.addEventListener('mousedrag', e => {
-
-      console.log(e)
-    })
+    
   }
 }
 
 export default DateField
+
+// correctDate() on month/date/year input
+// on blur check if selectionStart == selectionEnd
+// on collapsed selection blur
+// selected part is undefinded and faded
+// selection may be expanded by clicking or selecting
+// selection may be reduced only by input
+// when selectionStart == selectionEnd calculate date and blur
+// on partial select replace numbers from part of format string

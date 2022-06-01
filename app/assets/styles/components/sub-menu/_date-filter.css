@@ -25,16 +25,18 @@
 
   &__input {
     width: 100px;
+    padding: 0 10px;
     border: none;
     outline: none;
     background-color: rgba(0, 0, 0, .3);
     color: #fff;
-    text-align: center;
+    text-align: left;
     font-size: .9rem;
     border-radius: $pill;
 
     @mixin atMedium {
       width: 130px;
+      padding: 0 14px;
       font-size: 1.15rem;
     }
 
@@ -44,8 +46,18 @@
       font-weight: 300;
     }
 
+    &::placeholder {
+      color: rgba(255, 255, 255, .5);
+
+      @mixin atXLarge {
+        font-weight: 300;
+      }
+    }
+
     &::selection {
-      background-color: cyan;
+      color: white;
+      background-color: rgba(255, 255, 255, .4);
+      border-radius: 2px;
     }
   }
 }
