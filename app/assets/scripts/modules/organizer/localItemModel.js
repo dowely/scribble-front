@@ -312,7 +312,7 @@ class LocalItemModel {
 
   getItemsByQuery(query) {
 
-    const results = []
+    let results = []
 
     this.volatileMemory.forEach(item => {
 
@@ -321,6 +321,14 @@ class LocalItemModel {
       content = content.toLowerCase()
 
       if(content.indexOf(query.term) > -1) results.push(item)
+
+    })
+
+    results = results.filter(item => {
+
+      const itemDateObj = new Date(item.date).getTime()
+
+      return itemDateObj >= query.before && itemDateObj <= query.after
 
     })
 

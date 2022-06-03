@@ -26,6 +26,8 @@ class DateField {
 
     })
 
+    this.inputField.addEventListener('pointerdown', () => this.userSelection = true)
+
     this.inputField.addEventListener('pointerup', () => {
 
       this.timer = setTimeout(() => {
@@ -34,13 +36,11 @@ class DateField {
 
         this.select()
 
-      }, 100)
-
-      this.userSelection = true
+      }, 200)
 
     })
 
-    this.inputField.addEventListener('select', (e) => {
+    this.inputField.addEventListener('select', () => {
 
       clearTimeout(this.timer)
 
@@ -56,16 +56,6 @@ class DateField {
 
     this.inputField.addEventListener('beforeinput', e => {
 
-      if(!e.cancelable) {
-
-        this.inputField.value = this.format + "     "
- 
-        setTimeout(() => this.reset(), 200)
-
-        return
-
-      }
-
       e.preventDefault()
  
       if(e.inputType === 'insertText' && this.isValid(e.data)) {
@@ -76,13 +66,18 @@ class DateField {
 
         this.select()
         
-      } else this.reset()
+      } 
 
     })
+
+    this.inputField.addEventListener('input', this.reset.bind(this))
 
     this.inputField.addEventListener('blur', () => {
 
       if(this.selectionStart !== this.selectionEnd) this.reset()
+      else  this.correctDate()
+
+      this.emit('dateInput', this.inputField.value)
 
     })
 
@@ -110,6 +105,10 @@ class DateField {
 
     while(this.inputField.value.charAt(end) !== '/' && end < this.inputField.value.length) end++
 
+    if(start > this.selectionStart) start = this.selectionStart
+
+    if(end < this.selectionEnd) end = this.selectionEnd
+
     this.inputField.selectionStart = this.selectionStart = start
 
     this.inputField.selectionEnd = this.selectionEnd = end
@@ -120,7 +119,13 @@ class DateField {
 
       this.inputField.style.textAlign = 'left'
 
-    }
+    } else this.placeholderSelection()
+
+  }
+
+  placeholderSelection() {
+
+    this.inputField.setRangeText(this.format.substring(this.selectionStart, this.selectionEnd))
 
   }
 
@@ -180,7 +185,13 @@ class DateField {
 
     if(this.inputField.value.charAt(this.selectionEnd - 1) === '/') this.selectionEnd--
 
-    this.inputField.setSelectionRange(this.selectionStart, this.selectionEnd)
+    if(!(this.selectionStart === 0 && this.selectionEnd === this.format.length)) {
+
+      this.inputField.setSelectionRange(this.selectionStart, this.selectionEnd)
+
+      this.placeholderSelection()
+
+    }
 
     if(this.selectionStart === this.selectionEnd) this.inputField.blur()
 
@@ -188,12 +199,123 @@ class DateField {
 
   isValid(char) {
 
-    return !isNaN(char) && char !== ' '
+    const isNumber = !isNaN(char) && char !== ' '
+
+    const inRange = this[`validateAt_${this.selectionStart}`](char)
+
+    return  isNumber && inRange
   }
 
-  validateAt_0() {
+  validateAt_0(char) {
 
+    if(parseInt(char) > 1) {
+
+      this.inputField.setRangeText('0', this.selectionStart, this.selectionStart + 1)
+
+      this.selectionStart++
+
+      this.select()
+
+    }
+
+    return true
+  }
+
+  validateAt_1(char) {
+
+    const prevNum = parseInt(this.inputField.value.charAt(0))
+
+    const num = parseInt(char)
+
+    if(prevNum === 0 && num === 0) return false
+
+    if(prevNum === 1 && num > 2) return false
+
+    return true
+
+  }
+
+  validateAt_3(char) {
+
+    const num = parseInt(char)
+
+    if(num > 3 || this.inputField.value.substring(0, 2) === '02' && num > 2) {
+
+      this.inputField.setRangeText('0', this.selectionStart, this.selectionStart + 1)
+
+      this.selectionStart++
+
+      this.select()
+
+    }
+
+    return true
+
+  }
+
+  validateAt_4(char) {
+
+    const prevNum = parseInt(this.inputField.value.charAt(3))
+
+    const num = parseInt(char)
+
+    if(prevNum === 0 && num === 0) return false
+
+    if(prevNum > 1) {
+
+      const testResult = this.dateTest(
+        parseInt(this.inputField.value.substring(0, 2)),
+        parseInt(this.inputField.value.charAt(3) + char))
+
+      return typeof testResult === 'number' ? false : true
+
+    }
+
+    return true
+
+  }
+
+  validateAt_6() {return true}
+
+  validateAt_7() {return true}
+
+  dateTest(month, date, year = 2024 ) { // leap year
+
+    const dateObj = new Date(year, month - 1, date)
+
+    if(dateObj.getMonth() !== month - 1) {
+
+      dateObj.setDate(0)
+
+      return dateObj.getDate()
+
+    } else return true
+  }
+  
+  correctDate() {
+
+    const testResult = this.dateTest(
+      parseInt(this.inputField.value.substring(0, 2)),
+      parseInt(this.inputField.value.substring(3, 5)),
+      parseInt('20' + this.inputField.value.substring(6))
+    )
     
+    if(typeof testResult === 'number') this.inputField.setRangeText(testResult, 3, 5)
+
+  }
+
+  write(miliseconds) {
+
+    const dateObj = new Date(miliseconds)
+
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0')
+
+    const date = (dateObj.getDate()).toString().padStart(2, '0')
+
+    const year = dateObj.getFullYear().toString().substring(2)
+
+    this.inputField.value = `${month}/${date}/${year}`
+
   }
 }
 

@@ -61,15 +61,29 @@ class Search {
 
     searchTerm.on('input', term => {
 
-      if(!term) {
+      if(!term && dateFilter.before === -Infinity && dateFilter.after === Infinity) {
 
         if(this.views.viewState.colOnTop !== 'left') this.views.render('left')
 
       } else {
 
-        this.displayResults({term})
+        this.displayResults({term, before: dateFilter.before, after: dateFilter.after})
 
       } 
+
+    })
+
+    dateFilter.on('input', (before, after) => {
+
+      if(before === -Infinity && after === Infinity && searchTerm.term === '') {
+
+        if(this.views.viewState.colOnTop !== 'left') this.views.render('left')
+
+      } else {
+
+        this.displayResults({term: searchTerm.term, before, after})
+
+      }
 
     })
 

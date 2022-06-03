@@ -4,7 +4,7 @@ class SearchTerm {
 
   inputField = document.querySelector('#search-field__input')
 
-  term
+  term = ''
 
   delayId
 
