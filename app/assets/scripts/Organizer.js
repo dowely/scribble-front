@@ -1,6 +1,6 @@
 import LocalItemModel from './modules/organizer/localItemModel.js'
 import Views from './modules/organizer/views.js'
-import Notifications from './modules/organizer/notifications'
+import Notifications from './modules/organizer/notifications/notifications'
 import Search from './modules/organizer/search/search'
 import Calendar from './modules/organizer/celendar.js'
 import ItemCard from './modules/organizer/itemCard.js'
@@ -38,7 +38,8 @@ const localItemModel = new LocalItemModel()
 
 const items = new Items(views, localItemModel)
 
-new Notifications(views)
+ee(Notifications.prototype)
+const notifications = new Notifications(views, localItemModel)
 
 ee(Search.prototype)
 const search = new Search(views, localItemModel)

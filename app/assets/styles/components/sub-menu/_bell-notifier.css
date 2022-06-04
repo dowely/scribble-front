@@ -14,7 +14,7 @@
   }
 
   &__dot {
-    display: block;
+    display: none;
     width: 10px;
     height: 10px;
     background-color: $mainGreen;
@@ -28,6 +28,10 @@
       width: 15px;
       height: 15px;
       transform: translate(-10%, 0);
+    }
+
+    .bell-notifier--yes & {
+      display: block;
     }
   }
 }

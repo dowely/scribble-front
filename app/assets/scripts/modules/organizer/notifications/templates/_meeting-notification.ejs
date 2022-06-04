@@ -1,0 +1,22 @@
+<li class="notification-display__item">
+  <!--notification-display__item--visible-->
+
+  <h4 class="notification-display__title">Meeting request</h4>
+
+  <div class="notification-display__card-container">
+
+  <%- cardHTML %>
+
+  </div>
+
+  <form class="notification-display__buttons">
+
+    <button class="btn btn--deny" type="submit" name="action" value="deny">Deny</button>
+
+    <button class="btn btn--accept" type="submit" name="action" value="accept">Accept</button>
+
+    <button class="btn btn--tentative" type="submit" name="action" value="tentative">Tentative</button>
+
+  </form>
+
+</li>

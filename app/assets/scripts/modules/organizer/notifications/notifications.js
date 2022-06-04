@@ -1,18 +1,27 @@
+import pool from './pool'
+
 class Notifications {
 
-  bells = []
+  bells = [
+    document.querySelector('.top-bar-organizer__notifier-tap-area'),
+    document.querySelector('.slider-bar__notifier-tap-area'),
+    document.querySelector('.notifications__notifier-tap-area')
+  ]
 
-  constructor(views) {
+  bellNotifiers = document.querySelectorAll('.bell-notifier')
+
+  constructor(views, localItemModel) {
 
     this.views = views
 
-    this.bells.push(document.querySelector('.top-bar-organizer__notifier-tap-area'))
+    this.localItemModel = localItemModel
 
-    this.bells.push(document.querySelector('.slider-bar__notifier-tap-area'))
+    pool.load(localItemModel)
 
-    this.bells.push(document.querySelector('.notifications__notifier-tap-area'))
+    pool.add(localItemModel)
 
     this.events()
+    console.log(pool.notifications);
   }
 
   events() {
@@ -23,12 +32,19 @@ class Notifications {
 
         e.stopPropagation()
 
-        this.toggle()
+        
       })
     })
   }
 
-  async toggle() {
+  
+}
+
+export default Notifications
+
+/**
+
+async toggle() {
 
     this.views.notifications()
 
@@ -73,6 +89,5 @@ class Notifications {
         }
       }
   }
-}
 
-export default Notifications
+ */
