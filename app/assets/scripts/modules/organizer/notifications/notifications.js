@@ -1,4 +1,7 @@
+import display from './display'
 import pool from './pool'
+import navigator from './navigator'
+
 
 class Notifications {
 
@@ -16,12 +19,12 @@ class Notifications {
 
     this.localItemModel = localItemModel
 
+    this.events()
+
     pool.load(localItemModel)
 
     pool.add(localItemModel)
 
-    this.events()
-    console.log(pool.notifications);
   }
 
   events() {
@@ -32,11 +35,78 @@ class Notifications {
 
         e.stopPropagation()
 
+        this.toggle()
         
       })
     })
+
+    pool.on('changed', change => {
+      
+      if(change === 'collection') {
+
+        if(pool.notifications.length > 0) {
+
+          [...this.bellNotifiers].forEach(bell => {
+            bell.classList.add('bell-notifier--yes')
+          })
+
+        } else {
+
+          [...this.bellNotifiers].forEach(bell => {
+            bell.classList.remove('bell-notifier--yes')
+          })
+
+        } 
+      }
+    })
+
+    pool.on('newCard', cardNode => {
+      
+      setTimeout(() => this.emit('newCard', cardNode), 1)
+    }) 
   }
 
+  async toggle() {
+
+    const action = this.views.viewState.subMenu === 'notifications' ? 'close' : 'open'
+    
+    switch(action) {
+
+      case 'open':
+
+        navigator.init()
+
+        display.init()
+
+        this.views.notifications()
+
+        await this.views.fadeOut('left', 'viewer')
+
+        this.views.columns.left.dataset.index = '4'
+
+        this.views.fadeIn('left', 'viewer')
+
+        break
+
+      case 'close':
+
+        this.views.notifications()
+
+        await this.views.fadeOut('left', 'viewer')
+
+        this.views.columns.left.dataset.index = this.views.viewState.leftColIndex
+
+        this.views.fadeIn('left', 'viewer')
+
+        break
+
+      default:
+
+        console.log('Error in toggle function')
+
+    }
+
+  }
   
 }
 

@@ -5,6 +5,8 @@ class Pool {
 
   notifications = []
 
+  index = 0
+
   constructor() {this.events()}
 
   events() {
@@ -13,12 +15,29 @@ class Pool {
 
   }
 
+  changeIndex(delta) {
+
+    this.index += delta
+
+    if(this.index < 0) this.index = this.notifications.length - 1
+
+    if(this.index === this.notifications.length) this.index = 0
+
+    this.emit('changed', 'index')
+
+  }
+
   storePool() {
 
-    const ids = this.notifications.map(notification => notification.item.id)
+    const keyExists = localStorage.getItem('notifications')
 
-    localStorage.setItem('notifications', JSON.stringify(ids))
+    if(keyExists) {
 
+      const ids = this.notifications.map(notification => notification.item.id)
+
+      localStorage.setItem('notifications', JSON.stringify(ids))
+
+    }
   }
 
   load(itemModel) {
@@ -27,23 +46,76 @@ class Pool {
 
     if(storedPool) {
 
+      this.notifications = []
+
       const itemsId = JSON.parse(storedPool)
 
-      itemsId.forEach(id => this.notifications.push(new Notification(itemModel.getItemById(id))))
+      itemsId.forEach(id => {
 
-    }
+        const notification = new Notification(itemModel.getItemById(id), itemModel)
+
+        this.listenTo(notification)
+
+        this.notifications.push(notification)
+      })
+
+      if(this.notifications.length > 0) this.emit('changed', 'collection')
+
+    } else localStorage.setItem('notifications', '[]')
+  }
+
+  listenTo(notification) {
+
+    this.emit('newCard', notification.node.querySelector('.item-card'))
+
+    notification.on('keep', () => this.changeIndex(1))
+
   }
 
   add(itemModel) {
 
-    const tasks = itemModel.getItemsByType('task').filter(item => !item.notified).filter(item => new Date(item.date).getTime() < Date.now() + 8.64e+7).map(item => new Notification(item))
+    const tasks = itemModel.getItemsByType('task')
+      .filter(item => !item.notified)
+      .filter(item => new Date(item.date).getTime() < Date.now() + 8.64e+7)
+      .map(item => {
 
-    const events = itemModel.getItemsByType('event').filter(item => !item.notified).filter(item => this.inReminderZone(item)).map(item => new Notification(item))
+        const notification = new Notification(item, itemModel)
 
-    const meetings = itemModel.getItemsByType('meeting').filter(item => !item.notified).filter(item => item.status !== 'accepted' || this.inReminderZone(item)).map(item => new Notification(item))
+        this.listenTo(notification)
 
-    this.notifications.push(...tasks, ...events, ...meetings)
+        return notification
+      })
 
+    const events = itemModel.getItemsByType('event')
+      .filter(item => !item.notified)
+      .filter(item => this.inReminderZone(item))
+      .map(item => {
+
+        const notification = new Notification(item, itemModel)
+
+        this.listenTo(notification)
+
+        return notification
+      })
+
+    const meetings = itemModel.getItemsByType('meeting')
+      .filter(item => !item.notified)
+      .filter(item => item.status !== 'accepted' || this.inReminderZone(item)).map(item => {
+
+        const notification = new Notification(item, itemModel)
+
+        this.listenTo(notification)
+
+        return notification
+      })
+
+    if(this.notifications.length < this.notifications.push(...tasks, ...events, ...meetings)) this.emit('changed', 'collection')
+
+  }
+
+  remove() {
+
+    // edit index if leaked
   }
 
   inReminderZone(item) {

@@ -5,6 +5,7 @@
   list-style-type: none;
   height: 100%;
   overflow-y: auto;
+  transition: opacity .3s ease-out;
 
   @mixin atMedium {
     max-width: 520px;
@@ -13,6 +14,10 @@
 
   @mixin atLarge {
     padding: 0;
+  }
+
+  &--faded {
+    opacity: 0;
   }
 
   &__item {

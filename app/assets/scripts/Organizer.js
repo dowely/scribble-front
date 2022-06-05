@@ -59,6 +59,8 @@ itemCard.events()
 
 addEventListener('beforeunload', () => localItemModel.writeToStorage())
 
+notifications.on('newCard', cardNode => itemCard.events([cardNode]))
+
 search.on('newResults', cards => itemCard.events(cards))
 
 form.on('newItem', async item => {

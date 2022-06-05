@@ -88,6 +88,10 @@
   }
 
   &__msg span {
+    display: inline-block;
+    width: 1ex;
+    text-align: center;
+    transition: opacity .3s ease-out;
     
     &:first-child {
       margin-left: 12px;
@@ -100,6 +104,10 @@
     .notifications[data-count="0"] & {
       display: none;
     }
+  }
+
+  &__msg-span--faded {
+    opacity: 0;
   }
 
   &__arrow {
