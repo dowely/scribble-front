@@ -190,6 +190,42 @@ itemCard.on('done', itemDone)
 
 schedule.on('done', itemDone)
 
+notifications.on('done', itemDone)
+
+notifications.on('mtgResponse', (id, response) => {
+
+  if(response === 'accept' || response === 'tentative') {
+
+    const item = localItemModel.getItemById(id)
+
+    item.status = response === 'accept' ? 'accepted' : 'tentative'
+
+    localItemModel.emit('itemEdit', item)
+
+    const itemsCards = items.update()
+  
+    itemCard.events(itemsCards)
+  
+    const calendarCards = calendarDisplay.edit(item)
+  
+    itemCard.events(calendarCards)
+  
+    if(itemRead.currentId == item) itemRead.update(item)
+
+  } else {
+
+    localItemModel.pop(id)
+
+    items.pop(id)
+
+    calendarDisplay.pop(id)
+
+    if(itemRead.currentId == id) itemRead.emit('close')
+
+  }
+
+})
+
 function itemDone(itemId) {
 
   const item = localItemModel.getItemById(itemId)

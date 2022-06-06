@@ -13,6 +13,8 @@ class Notifications {
 
   bellNotifiers = document.querySelectorAll('.bell-notifier')
 
+  flashMsg = false
+
   constructor(views, localItemModel) {
 
     this.views = views
@@ -25,6 +27,8 @@ class Notifications {
 
     pool.add(localItemModel)
 
+    setInterval(() => pool.add(localItemModel), 5000)
+
   }
 
   events() {
@@ -35,7 +39,7 @@ class Notifications {
 
         e.stopPropagation()
 
-        this.toggle()
+        if(!this.flashMsg) this.toggle()
         
       })
     })
@@ -60,10 +64,29 @@ class Notifications {
       }
     })
 
+    pool.on('empty', () => {
+
+      this.flashMsg = true
+
+      setTimeout(() => {
+
+        this.flashMsg = false
+
+        this.toggle()
+
+      }, 3000)
+
+    })
+
     pool.on('newCard', cardNode => {
       
       setTimeout(() => this.emit('newCard', cardNode), 1)
-    }) 
+    })
+
+    pool.on('done', id => setTimeout(this.emit('done', id), 1))
+
+    pool.on('mtgResponse', (id, response) => setTimeout(this.emit('mtgResponse', id, response), 1))
+
   }
 
   async toggle() {
@@ -74,17 +97,35 @@ class Notifications {
 
       case 'open':
 
-        navigator.init()
+        if(pool.notifications.length) {
 
-        display.init()
+          navigator.init()
 
-        this.views.notifications()
+          display.init()
 
-        await this.views.fadeOut('left', 'viewer')
+          this.views.notifications()
 
-        this.views.columns.left.dataset.index = '4'
+          await this.views.fadeOut('left', 'viewer')
 
-        this.views.fadeIn('left', 'viewer')
+          this.views.columns.left.dataset.index = '4'
+
+          this.views.fadeIn('left', 'viewer')
+
+        } else {
+
+          this.flashMsg = true
+
+          this.views.notifications()
+
+          setTimeout(() => {
+
+            this.views.notifications()
+
+            this.flashMsg = false
+
+          }, 3000)
+
+        }      
 
         break
 
@@ -111,53 +152,4 @@ class Notifications {
 }
 
 export default Notifications
-
-/**
-
-async toggle() {
-
-    this.views.notifications()
-
-      if(this.views.viewState.twoCols) {
-
-      } else {
-
-        if(this.views.viewState.colOnTop === 'left') {
-
-          if(this.views.viewState.subMenu === 'notifications') {
-
-            await this.views.fadeOut('left', 'viewer')
-
-            this.views.columns.left.dataset.index = '4'
-
-            this.views.fadeIn('left', 'viewer')
-
-          } else {
-
-            await this.views.fadeOut('left', 'viewer')
-
-            this.views.columns.left.dataset.index = this.views.viewState.leftColIndex
-
-            this.views.fadeIn('left', 'viewer')
-
-          }
-
-        } else {
-
-          await this.views.fadeOut('right')
-
-          this.views.viewers.right.innerHTML = ''
-
-          // this.emit('rightEmpty')
-
-          this.views.columns.left.dataset.index = '4'
-
-          this.views.fadeIn('left')
-
-          this.views.viewState.colOnTop = 'left'
-
-        }
-      }
-  }
-
- */
+    

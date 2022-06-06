@@ -70,12 +70,33 @@ class Pool {
 
     notification.on('keep', () => this.changeIndex(1))
 
+    notification.on('remove', notification.onRemove = () => this.remove(notification))
+
+    notification.on('done', id => setTimeout(this.emit('done', id), 1))
+
+    notification.on('edit', notification.onEdit = item => {
+
+      if(item.status === 'done' || item.status === 'accepted' || item.status === 'tentative' || !this.inReminderZone(item) && item.event) {
+
+        this.remove(notification)
+
+      } else {
+
+        this.emit('newCard', notification.node.querySelector('.item-card'))
+
+      }
+
+    })
+
+    notification.on('mtgResponse', (id, response) => setTimeout(this.emit('mtgResponse', id, response), 1))
+
   }
 
   add(itemModel) {
 
     const tasks = itemModel.getItemsByType('task')
       .filter(item => !item.notified)
+      .filter(item => !this.notifications.find(noti => noti.item.id == item.id))
       .filter(item => new Date(item.date).getTime() < Date.now() + 8.64e+7)
       .map(item => {
 
@@ -88,6 +109,7 @@ class Pool {
 
     const events = itemModel.getItemsByType('event')
       .filter(item => !item.notified)
+      .filter(item => !this.notifications.find(noti => noti.item.id == item.id))
       .filter(item => this.inReminderZone(item))
       .map(item => {
 
@@ -100,7 +122,8 @@ class Pool {
 
     const meetings = itemModel.getItemsByType('meeting')
       .filter(item => !item.notified)
-      .filter(item => item.status !== 'accepted' || this.inReminderZone(item)).map(item => {
+      .filter(item => !this.notifications.find(noti => noti.item.id == item.id))
+      .filter(item => item.status === 'pending' || this.inReminderZone(item)).map(item => {
 
         const notification = new Notification(item, itemModel)
 
@@ -113,12 +136,31 @@ class Pool {
 
   }
 
-  remove() {
+  remove(notification) {
 
-    // edit index if leaked
+    notification.off('remove', notification.onRemove)
+
+    notification.off('edit', notification.onEdit)
+
+    const atIndex = this.notifications.indexOf(notification)
+
+    this.notifications.splice(atIndex, 1)
+
+    if(this.index === this.notifications.length && this.index > 0) {
+
+      this.index--
+
+      this.emit('changed', 'index')
+    }
+
+    this.emit('changed', 'collection')
+
+    if(this.notifications.length === 0) this.emit('empty')
   }
 
   inReminderZone(item) {
+
+    if(item.task) return true
 
     const itemTime = new Date(item.date)
 

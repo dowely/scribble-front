@@ -3,6 +3,8 @@ import pool from './pool'
 
 class Navigator {
 
+  bar = document.querySelector('.notifications')
+
   index = document.querySelector('span.notifications__msg-index')
 
   count = document.querySelector('span.notifications__msg-count')
@@ -25,8 +27,37 @@ class Navigator {
 
       if(change === 'index') this.transition(this.index, pool.index + 1)
 
-    })
+      if(change === 'collection') {
 
+        if(pool.notifications.length === 0) {
+
+          this.showEndMsg()
+
+        } else {
+
+          if(this.bar.dataset.count !== '0') this.transition(this.count, pool.notifications.length)
+
+          this.bar.dataset.count = pool.notifications.length
+
+        }
+      } 
+    })
+  }
+
+  showEndMsg() {
+
+    new Promise(res => {
+
+      this.bar.ontransitionend = this.bar.ontranistioncancel = res
+
+      this.bar.classList.add('notifications--faded')
+
+    }).then(() => {
+
+      this.bar.dataset.count = '0'
+
+      this.bar.classList.remove('notifications--faded')
+    })
   }
 
   transition(span, newText) {

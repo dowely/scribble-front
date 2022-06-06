@@ -39,23 +39,33 @@ class Notification {
 
     this.form = this.node.querySelector('form')
 
+    this.listenTo(this.form)
+
     this.events()
 
   }
 
-  events() {
+  listenTo(form) {
 
-    this.form.addEventListener('submit', e => {
+    form.addEventListener('submit', e => {
 
       e.preventDefault()
 
       const action = e.submitter.value
 
-      if(['inProgress', 'tentative'].includes(action)) this.emit('keep')
+      if(['inProgress', 'snooze'].includes(action)) this.emit('keep')
 
-      if(action === 'done') this.emit('done')
+      if(action === 'done') this.emit('done', this.item.id)
+
+      if(['accept', 'tentative', 'deny'].includes(action)) this.emit('mtgResponse', this.item.id, action)
+
+      if(action === 'dismiss') this.emit('remove')
 
     })
+
+  }
+
+  events() {
 
     this.itemModel.on('itemEdit', item => {
 
@@ -63,7 +73,16 @@ class Notification {
 
         this.render(item)
 
-        setTimeout(() => this.emit('edit'), 1)
+        setTimeout(() => this.emit('edit', item), 1)
+      }
+
+    })
+
+    this.itemModel.on('itemRemoved', itemToRemove => {
+
+      if(itemToRemove.id == this.item.id) {
+
+        this.emit('remove')
       }
 
     })
@@ -82,13 +101,15 @@ class Notification {
 
     this.node = replacement
 
+    this.form = this.node.querySelector('form')
+
+    this.listenTo(this.form)
+
     this.item = item
 
     display.init()
 
   }
-
-  //emit keep, edit, remove 
 
 }
 

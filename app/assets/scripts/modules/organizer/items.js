@@ -127,7 +127,7 @@ class Items {
 
       const cardId = card.dataset.itemId
 
-      if(cardId === itemId) {
+      if(cardId == itemId) {
 
         const cardType = card.dataset.cardType
 

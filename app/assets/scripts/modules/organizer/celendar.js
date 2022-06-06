@@ -377,13 +377,13 @@ class Calendar {
 
       this.updateTimeDistance(this.selectedDate.dataset.id)
 
+      this.selectedItemGroups.index = undefined
+
       this.updateIterator(this.selectedDate.dataset.id)
 
       this.showItems(this.selectedDate.dataset.id)
 
       if(this.views.viewState.colOnTop === 'right' && !this.views.viewers.right.querySelector('.item-search')) this.views.render('left')
-
-      this.selectedItemGroups.index = undefined
 
     }
   }
