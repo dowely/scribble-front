@@ -138,6 +138,10 @@
     }
   }
 
+  &__content-container--search {
+    padding: 0;
+  }
+
   &__circle {
     display: none;
     position: absolute;
@@ -200,6 +204,20 @@
 
       @mixin atXLarge {
         display: block;
+      }
+    }
+
+    .layout--search & {
+      width: 70px;
+      height: 70px;
+      top: 130px;
+      right: 220px;
+
+      @mixin atXLarge {
+        width: 200px;
+        height: 200px;
+        top: 260px;
+        right: 30px;
       }
     }
   }

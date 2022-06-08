@@ -67,6 +67,7 @@
     line-height: 2;
     position: relative;
     flex: 1;
+    user-select: none;
 
     @mixin atMedium {
       font-size: 1.15rem;

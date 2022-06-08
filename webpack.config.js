@@ -17,7 +17,8 @@ module.exports = {
     organizer: './app/assets/scripts/Organizer.js',
     mail: './app/assets/scripts/Mail.js',
     team: './app/assets/scripts/Team.js',
-    chat: './app/assets/scripts/Chat.js'
+    chat: './app/assets/scripts/Chat.js',
+    search: './app/assets/scripts/Search.js'
   },
   mode: 'development',
   module: {
@@ -47,7 +48,7 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/organizer.html'
+    open: 'http://localhost:3000/search.html'
   },
   output: {
     filename: '[name].bundle.js',

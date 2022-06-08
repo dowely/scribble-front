@@ -10,6 +10,7 @@
 @import 'modules/layout.css';
 @import 'modules/menu.css';
 @import 'modules/content.css';
+@import 'modules/search.css';
 
 @import 'modules/sub-menu/sub-menu-organizer.css';
 @import 'modules/sub-menu/sub-menu-mail.css';
@@ -19,6 +20,7 @@
 @import 'modules/top-bar/top-bar-mail.css';
 @import 'modules/top-bar/top-bar-team.css';
 @import 'modules/top-bar/top-bar-chat.css';
+@import 'modules/top-bar/top-bar-search.css';
 
 @import 'components/_btn.css';
 

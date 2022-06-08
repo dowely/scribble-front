@@ -54,5 +54,14 @@ module.exports = [
       route: 'chat',
       users
     }
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'search.html',
+    template: './app/pages/app.ejs',
+    title: 'Scribble App | Not Found',
+    chunks: ['app', 'search'],
+    templateParameters: {
+      route: 'search'
+    }
   })
 ]

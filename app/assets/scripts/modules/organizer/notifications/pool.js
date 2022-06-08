@@ -97,7 +97,7 @@ class Pool {
     const tasks = itemModel.getItemsByType('task')
       .filter(item => !item.notified)
       .filter(item => !this.notifications.find(noti => noti.item.id == item.id))
-      .filter(item => new Date(item.date).getTime() < Date.now() + 8.64e+7)
+      .filter(item => new Date(item.date).getTime() + 8.64e+7 < Date.now())
       .map(item => {
 
         const notification = new Notification(item, itemModel)

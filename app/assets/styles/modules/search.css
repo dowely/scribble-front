@@ -1,0 +1,124 @@
+.search {
+  height: 100%;
+  position: relative;
+  background-color: white;
+  text-align: center;
+
+  @mixin atLarge {
+    text-align: left;
+  }
+
+  &__cloud-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 50px;
+
+    @mixin atMedium {
+      margin-top: 100px;
+    }
+
+    @mixin atLarge {
+      margin: 0 60px 0 80px;
+      vertical-align: 7px;
+    }
+  }
+
+  &__cloud-numbers {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 32px;
+    text-align: center;
+    fill: $mainBlack;
+
+    @mixin atMedium {
+      top: 46px;
+    }
+  }
+
+  &__cloud-number {
+    height: 24px;
+    width: 21px;
+
+    @mixin atMedium {
+      height: 32px;
+      width: 28px;
+    }
+  }
+
+  &__cloud-icon {
+    width: 120px;
+    height: 120px;
+    fill: #a4bef3;
+
+    @mixin atMedium {
+      width: 164px;
+      height: 164px;
+    }
+  }
+
+  &__text-container {
+    @mixin atLarge {
+      display: inline-block;
+      margin-top: 70px;
+    }
+  }
+
+  &__oops {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 400;
+
+    @mixin atMedium {
+      font-size: 3.325rem;
+      margin-top: 80px;
+      margin-bottom: 40px;
+    }
+
+    @mixin atLarge {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__text {
+    color: $gray50;
+    line-height: 1.5;
+
+    @mixin atMedium {
+      font-size: 1.5rem;
+      line-height: 1.65;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a, a:visited {
+      color: #6490eb;
+    }
+
+    a:hover, a:active {
+      color: #a4bef3;
+    }
+  }
+
+  &__large-wave-icon {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 151px;
+    width: 100%;
+    fill: #ebc3c9;
+  }
+
+  &__small-wave-icon {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 108px;
+    width: 100%;
+    fill: #d9a3b3;
+  }
+}
