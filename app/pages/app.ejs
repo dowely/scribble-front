@@ -33,6 +33,10 @@
 
           <%- include partials/sub-menu/search.ejs %>
 
+        <% } else if(route == 'profile') { %>
+
+          <%- include partials/sub-menu/profile.ejs %>
+
         <% } %>
 
       </div>
@@ -58,6 +62,10 @@
         <% } else if (route == 'search') { %>
 
           <%- include partials/content/search.ejs %>
+
+        <% } else if (route == 'profile') { %>
+
+          <%- include partials/content/profile/profile.ejs %>
 
         <% } %>
         

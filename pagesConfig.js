@@ -2,6 +2,7 @@ const mails = require('./app/db/mails.json')
 const users = require('./app/db/users.json')
 const items = require('./app/db/items.json')
 const ItemServer = require('./app/db/itemServer.js')
+const userModel = require('./app/assets/scripts/modules/profile/userModel/model').static
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -62,6 +63,22 @@ module.exports = [
     chunks: ['app', 'search'],
     templateParameters: {
       route: 'search'
+    }
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'profile.html',
+    template: './app/pages/app.ejs',
+    title: 'Scribble App | Profile',
+    chunks: ['app', 'profile'],
+    templateParameters: {
+      route: 'profile',
+      userName: userModel.name,
+      userInitials: userModel.initials,
+      jobPosition: userModel.jobPosition,
+      phoneNumber: userModel.phoneNumber,
+      email: userModel.email,
+      joinedDate: userModel.joinedDate,
+      bio: userModel.bio
     }
   })
 ]

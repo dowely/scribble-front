@@ -1,0 +1,17 @@
+.prompt {
+  height: 100%;
+  border-radius: $pill;
+  background-color: rgba(0, 0, 0, .3);
+  display: flex;
+
+  p {
+    margin: auto;
+    user-select: none;
+
+    @mixin atXLarge {
+      background-color: transparent;
+      border: 1px solid white;
+      font-weight: 300;
+    }
+  }
+}

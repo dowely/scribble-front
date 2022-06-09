@@ -18,7 +18,8 @@ module.exports = {
     mail: './app/assets/scripts/Mail.js',
     team: './app/assets/scripts/Team.js',
     chat: './app/assets/scripts/Chat.js',
-    search: './app/assets/scripts/Search.js'
+    search: './app/assets/scripts/Search.js',
+    profile: './app/assets/scripts/Profile.js'
   },
   mode: 'development',
   module: {
@@ -34,6 +35,10 @@ module.exports = {
       {
         test: /\.ejs$/i,
         use: 'ejs-compiled-loader'
+      },
+      {
+        test: /\.png$/i,
+        type: 'asset/resource'
       }
     ]
   },
@@ -48,11 +53,12 @@ module.exports = {
     port: 3000,
     hot: true,
     host: '0.0.0.0',
-    open: 'http://localhost:3000/search.html'
+    open: 'http://localhost:3000/profile.html'
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'docs')
+    path: path.resolve(__dirname, 'docs'),
+    assetModuleFilename: '[name][ext]'
   },
   optimization: {
     runtimeChunk: 'single'

@@ -1,0 +1,45 @@
+<div class="profile-card" data-hook="<%= hook %>">
+  <div class="profile-card__wrapper">
+
+    <div class="profile-card__top">
+
+      <div class="profile-card__edit-icon-container">
+        <svg class="profile-card__edit-icon">
+          <use href="#pen-to-square-regular"></use>
+        </svg>
+      </div>
+
+      <div class="profile-card__photo-container">
+
+        <h2 class="profile-card__initials"><%= userInitials ? userInitials : '' %></h2>
+
+        <div class="profile-card__upload-icon-container">
+          <svg class="profile-card__upload-icon">
+            <use href="#file-arrow-up-solid"></use>
+          </svg>
+        </div>
+
+      </div>
+
+      <h1 class="profile-card__user-name"><%= userName ? userName : 'Anonymus' %></h1>
+
+      <h3 class="profile-card__job-position"><%= jobPosition ? jobPosition : 'No job position' %></h3>
+
+      <h4 class="profile-card__phone-number"><%= phoneNumber ? phoneNumber : 'No phone number' %></h4>
+
+      <h2 class="profile-card__email"><%= email ? email : 'No email address' %></h2>
+
+    </div>
+
+    <hr>
+
+    <div class="profile-card__bottom">
+
+      <h5 class="profile-card__joined-text">You joined on <%= joinedDate %></h5>
+
+      <p class="profile-card__bio"><%= bio ? bio : 'Write something about yourself...' %></p>
+
+    </div>
+
+  </div>
+</div>

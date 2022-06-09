@@ -1,0 +1,126 @@
+.profile-card {
+  color: $mainBlack;
+  background-color: white;
+
+  &__wrapper {
+    padding: 0 20px;
+  }
+
+  &__top {
+    position: relative;
+    overflow: auto;
+
+    .profile-card[data-hook="right"] & {
+      @mixin atLarge {
+        display: none;
+      }
+    }
+  }
+
+  &__edit-icon-container {
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
+
+  &__edit-icon {
+    width: 24px;
+    height: 24px;
+    color: $gray50;
+  }
+
+  &__photo-container {
+    width: 106px;
+    height: 106px;
+    border-radius: $pill;
+    padding: 2px;
+    border: 2px solid $gray50;
+    background-color: $gray10;
+    background-clip: content-box;
+    position: relative;
+    margin: 32px auto;
+  }
+
+  &__initials {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0;
+    color: $gray50;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__upload-icon-container {
+    border-radius: 5px;
+    background-color: white;
+    width: max-content;
+    position: absolute;
+    left: 4px;
+    bottom: -6px;
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+  }
+
+  &__upload-icon {
+    width: 24px;
+    height: 32px;
+    fill: $mainLavender;
+    display: block;
+    transform: scaleX(-1);
+  }
+
+  &__user-name {
+    font-size: 1.825rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+  }
+
+  &__job-position {
+    font-size: 1rem;
+    font-weight: 400;
+    color: $gray30;
+    margin: 10px 0 25px;
+    text-align: center;
+  }
+
+  &__phone-number {
+    margin: 0;
+    color: $gray60;
+    text-align: center;
+    font-size: .85rem;
+    font-weight: 400;
+  }
+
+  &__email {
+    font-size: .85rem;
+    font-weight: 400;
+    color: $gray60;
+    text-align: center;
+    margin: 6px 0 18px;
+  }
+
+  hr {
+    height: 2px;
+    background-color: $gray50;
+    border: none;
+  }
+
+  &__bottom {
+    overflow: auto;
+  }
+
+  &__joined-text {
+    margin: 16px 0 14px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &__bio {
+    font-size: .85rem;
+    line-height: 1.5;
+    color: $gray60;
+    margin: 0 0 35px;
+  }
+}

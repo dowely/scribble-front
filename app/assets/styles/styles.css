@@ -16,11 +16,13 @@
 @import 'modules/sub-menu/sub-menu-mail.css';
 @import 'modules/sub-menu/sub-menu-team.css';
 @import 'modules/sub-menu/sub-menu-chat.css';
+@import 'modules/sub-menu/sub-menu-profile.css';
 @import 'modules/top-bar/top-bar-organizer.css';
 @import 'modules/top-bar/top-bar-mail.css';
 @import 'modules/top-bar/top-bar-team.css';
 @import 'modules/top-bar/top-bar-chat.css';
 @import 'modules/top-bar/top-bar-search.css';
+@import 'modules/top-bar/top-bar-profile.css';
 
 @import 'components/_btn.css';
 
@@ -31,6 +33,7 @@
 @import 'components/sub-menu/_chat-notifier.css';
 @import 'components/sub-menu/_bell-notifier.css';
 @import 'components/sub-menu/_notifications.css';
+@import 'components/sub-menu/_prompt.css';
 
 @import 'components/organizer/_bottom-navigation.css';
 @import 'components/organizer/_items.css';
@@ -60,3 +63,5 @@
 @import 'components/chat/_chat-users.css';
 @import 'components/chat/_chat-forum.css';
 @import 'components/chat/_chat-message.css';
+
+@import 'components/profile/_profile-card.css';

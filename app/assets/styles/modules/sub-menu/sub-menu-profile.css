@@ -1,0 +1,118 @@
+.sub-menu-profile {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 200px));
+  grid-template-rows: repeat(2, minmax(0, auto));
+  justify-content: center;
+  color: white;
+
+  @mixin atMedium {
+    grid-template-columns: repeat(2, minmax(auto, 220px));
+    justify-content: start;
+  }
+
+  @mixin atLarge {
+    grid-template-columns: repeat(2, minmax(auto, 440px));
+    grid-column-gap: calc(1.5 * $controlPxLarge);
+  }
+
+  @mixin atXLarge {
+    grid-column-gap: calc(1.3 * $controlPxXLarge);
+  }
+
+  &__top-bar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  &__progress {
+    grid-column: 2 / -1;
+    grid-row: 1 / 2;
+
+    @mixin atLarge {
+      grid-row: 1 / -1;
+    }
+  }
+
+  &__prompt {
+    grid-column: 1 / -1;
+    grid-row: 2 / -1;
+
+    @mixin atLarge {
+      grid-column: 1 / 2;
+    }
+  }
+
+  &__control {
+    height: $controlHeightBaseline;
+    margin-bottom: $controlMbBaseline;
+
+    .sub-menu-profile__prompt & {
+      margin-bottom: 0;
+    }
+
+    @mixin atMedium {
+      height: $controlHeightMedium;
+      margin-bottom: calc($controlMbMedium + 5px);
+    }
+
+    @mixin atLarge {
+      height: $controlHeightLarge;
+      margin-bottom: $controlMbMedium;
+
+      .sub-menu-profile__progress & {
+        height: 100%;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__progress-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+
+    @mixin atMedium {
+      align-items: flex-start;
+    }
+
+    @mixin atLarge {
+      align-items: center;
+    }
+  }
+
+  &__progress-numbers {
+    border-radius: 50%;
+    margin-right: 20px;
+    font-size: .5rem; /* for reduced spacing */
+    margin-top: -8px;
+
+    span {
+      font-size: 1.15rem;
+    }
+
+    @mixin atMedium {
+      margin-right: 30px;
+    }
+
+    @mixin atLarge {
+      margin-right: 45px;
+    }
+  }
+
+  &__progress-icon {
+    display: block;
+    width: 23px;
+    height: 30px;
+
+    @mixin atMedium {
+      width: 30px;
+      height: 40px;
+    }
+
+    @mixin atLarge {
+      width: 38px;
+      height: 50px;
+    }
+  }
+}

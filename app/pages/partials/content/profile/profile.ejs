@@ -1,0 +1,21 @@
+<div class="content">
+
+  <div class="content__left-col">
+    <div class="content__viewer">
+      <% let hook = 'left' %>
+      <%- include _profile-card.ejs %>
+    </div>
+  </div>
+
+  <div class="content__right-col">
+    <div class="content__viewer">
+      <% hook = 'right' %>
+      <%- include _profile-card.ejs %>
+    </div>
+  </div>
+
+  <div class="content__central-col">
+    <div class="content__viewer content__viewer--central"></div>
+  </div>
+
+</div>
