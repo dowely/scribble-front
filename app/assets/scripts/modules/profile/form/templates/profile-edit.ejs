@@ -1,0 +1,73 @@
+<div class="profile-edit">
+  <div class="profile-edit__wrapper">
+
+    <div class="profile-edit__close">
+
+      <div class="profile-edit__close__tap-area"></div>
+
+      <svg class="profile-edit__close__icon">
+        <use href="#circle-xmark-regular"></use>
+      </svg>
+
+    </div>
+
+    <form>
+
+      <div class="profile-edit__large-6">
+
+        <label for="userName">Name</label>
+
+        <div class="profile-edit__name">
+
+          <input type="text" name="userName" id="userName" maxlength="30" autocomplete="off">
+
+          <span>0/30</span>
+
+        </div>
+
+        <label for="jobPosition">Job position</label>
+
+        <div class="profile-edit__job-position">
+
+          <input type="text" name="jobPosition" id="jobPosition" maxlength="30" autocomplete="off">
+
+          <span>0/30</span>
+
+        </div>
+
+        <label for="phoneNumber">Phone number</label>
+
+        <div class="profile-edit__phone-number">
+
+          <input type="text" name="phoneNumber" id="phoneNumber" maxlength="12" autocomplete="off">
+
+          <span>0/12</span>
+
+        </div>
+
+      </div>
+  
+      <div class="profile-edit__large-6">
+
+        <div class="profile-edit__bio">
+
+          <label for="bio">Bio</label>
+
+          <textarea name="bio" id="bio"></textarea>
+
+        </div>
+
+        <div class="profile-edit__buttons">
+
+          <input class="btn btn--form-discard" type="button" value="Discard">
+          
+          <input class="btn btn--form-save" type="submit" value="Save">
+
+        </div>
+        
+      </div>
+
+    </form>
+
+  </div>
+</div>

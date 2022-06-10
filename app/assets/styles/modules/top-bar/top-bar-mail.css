@@ -5,6 +5,7 @@
 
   &__back {
     position: relative;
+    cursor: pointer;
 
     @mixin atMedium {
       display: none;

@@ -4,14 +4,18 @@
   background-color: rgba(0, 0, 0, .3);
   display: flex;
 
+  @mixin atXLarge {
+    background-color: transparent;
+    border: 1px solid white;
+    font-weight: 300;
+  }
+
   p {
     margin: auto;
     user-select: none;
 
-    @mixin atXLarge {
-      background-color: transparent;
-      border: 1px solid white;
-      font-weight: 300;
+    @mixin atMedium {
+      font-size: 1.15rem;
     }
   }
 }

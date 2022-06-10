@@ -1,3 +1,5 @@
+import './modules/profile/card/card'
+
 function importSprites(r) {
   r.keys().forEach(r)
 }

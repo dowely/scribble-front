@@ -1,0 +1,73 @@
+.profile-edit {
+  background-color: white;
+  position: relative;
+
+  &__wrapper {
+    padding: 40px 10px 30px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  &__close__icon {
+    width: 24px;
+    height: 24px;
+    color: $gray50;
+  }
+
+  &__name,
+  &__job-position,
+  &__phone-number {
+    position: relative;
+    margin-bottom: 20px;
+
+    span {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-45%);
+      font-size: .85rem;
+      color: $gray30;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 1rem;
+    color: $gray50;
+    margin-bottom: 6px;
+    margin-left: 15px;
+  }
+
+  input[type="text"] {
+    height: 40px;
+    border: 1px solid $gray30;
+    border-radius: $pill;
+    padding-left: 15px;
+    padding-right:0px;
+    width: 100%;
+  }
+
+  textarea {
+    resize: none;
+    height: 150px;
+    width: 100%;
+    border: 1px solid $gray30;
+    border-radius: 20px;
+    padding: 15px;
+    scrollbar-width: none; /* moz */
+    margin-bottom: 30px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,13 +1,21 @@
 .profile-card {
   color: $mainBlack;
   background-color: white;
+  position: relative;
 
   &__wrapper {
     padding: 0 20px;
+
+    @mixin atMedium {
+      padding: 0 50px;
+    }
+
+    @mixin atLarge {
+      padding: 0 40px;
+    }
   }
 
   &__top {
-    position: relative;
     overflow: auto;
 
     .profile-card[data-hook="right"] & {
@@ -15,18 +23,52 @@
         display: none;
       }
     }
+
+    .profile-card[data-hook="left"] & {
+      @mixin atLarge {
+        height: 425px;
+      }
+    }
   }
 
   &__edit-icon-container {
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 20px;
+
+    @mixin atMedium {
+      top: 35px;
+    }
+
+    @mixin atLarge {
+      top: 30px;
+    }
+  }
+
+  &__edit-tap-area {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
   }
 
   &__edit-icon {
     width: 24px;
     height: 24px;
     color: $gray50;
+
+    @mixin atMedium {
+      width: 50px;
+      height: 50px;
+    }
+
+    @mixin atLarge {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &__photo-container {
@@ -39,6 +81,19 @@
     background-clip: content-box;
     position: relative;
     margin: 32px auto;
+
+    @mixin atMedium {
+      width: 140px;
+      height: 140px;
+      margin: 88px auto 44px;
+      padding: 3px;
+    }
+
+    @mixin atLarge {
+      width: 130px;
+      height: 130px;
+      margin: 70px auto 30px;
+    }
   }
 
   &__initials {
@@ -50,6 +105,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @mixin atMedium {
+      font-size: 4rem;
+    }
+
+    @mixin atLarge {
+      font-size: 3.5rem;
+    }
   }
 
   &__upload-icon-container {
@@ -60,6 +123,16 @@
     left: 4px;
     bottom: -6px;
     clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+    cursor: pointer;
+
+    @mixin atMedium {
+      left: 8px;
+      bottom: -10px;
+    }
+
+    @mixin atLarge {
+      left: 6px;
+    }
   }
 
   &__upload-icon {
@@ -68,6 +141,11 @@
     fill: $mainLavender;
     display: block;
     transform: scaleX(-1);
+
+    @mixin atMedium {
+      width: 32px;
+      height: 42px;
+    }
   }
 
   &__user-name {
@@ -75,6 +153,15 @@
     font-weight: 500;
     text-align: center;
     margin: 0;
+
+    @mixin atMedium {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
+
+    @mixin atLarge {
+      font-size: 2.2rem;
+    }
   }
 
   &__job-position {
@@ -83,6 +170,16 @@
     color: $gray30;
     margin: 10px 0 25px;
     text-align: center;
+
+    @mixin atMedium {
+      font-size: 1.35rem;
+      margin: 12px 0 36px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.25rem;
+      margin: 10px 0 30px;
+    }
   }
 
   &__phone-number {
@@ -91,6 +188,14 @@
     text-align: center;
     font-size: .85rem;
     font-weight: 400;
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+    }
   }
 
   &__email {
@@ -99,22 +204,58 @@
     color: $gray60;
     text-align: center;
     margin: 6px 0 18px;
+
+    @mixin atMedium {
+      font-size: 1.1rem;
+      margin: 10px 0 20px;
+    }
+
+    @mixin atLarge {
+      font-size: 1rem;
+      margin: 10px 0 45px;
+    }
   }
 
   hr {
     height: 2px;
     background-color: $gray50;
     border: none;
+
+    @mixin atLarge {
+      display: none;
+    }
   }
 
   &__bottom {
     overflow: auto;
+
+    .profile-card[data-hook="left"] & {
+      @mixin atLarge {
+        display: none;
+      }
+    }
+
+    .profile-card[data-hook="right"] & {
+      @mixin atLarge {
+        min-height: 425px;
+      }
+    }
   }
 
   &__joined-text {
-    margin: 16px 0 14px;
+    margin: 14px 0;
     font-size: 1rem;
     font-weight: 500;
+
+    @mixin atMedium {
+      font-size: 1.35rem;
+      margin: 20px 0 16px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.5rem;
+      margin: 30px 0;
+    }
   }
 
   &__bio {
@@ -122,5 +263,16 @@
     line-height: 1.5;
     color: $gray60;
     margin: 0 0 35px;
+
+    @mixin atMedium {
+      font-size: 1.15rem;
+      margin-bottom: 40px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.1rem;
+      line-height: 1.65;
+      margin-bottom: 50px;
+    }
   }
 }

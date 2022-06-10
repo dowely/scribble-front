@@ -191,7 +191,8 @@
       right: 30px;
     }
 
-    .layout--team & {
+    .layout--team &,
+    .layout--profile & {
       display: none;
 
       @mixin atXLarge {

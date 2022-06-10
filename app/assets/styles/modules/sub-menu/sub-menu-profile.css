@@ -75,10 +75,6 @@
     @mixin atMedium {
       align-items: flex-start;
     }
-
-    @mixin atLarge {
-      align-items: center;
-    }
   }
 
   &__progress-numbers {
@@ -89,10 +85,19 @@
 
     span {
       font-size: 1.15rem;
+
+      @mixin atMedium {
+        font-size: 1.25rem;
+      }
+
+      @mixin atLarge {
+        font-size: 1.65rem;
+      }
     }
 
     @mixin atMedium {
       margin-right: 30px;
+      margin-top: 0;
     }
 
     @mixin atLarge {
