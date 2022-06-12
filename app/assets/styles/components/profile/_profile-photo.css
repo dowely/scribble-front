@@ -1,0 +1,11 @@
+.profile-photo {
+
+  &__canvas {
+    display: block;
+    background-color: $gray50;
+  }
+
+  &__buttons {
+    padding: 30px 10px;
+  }
+}

@@ -115,15 +115,10 @@
     }
   }
 
-  &__upload-icon-container {
-    border-radius: 5px;
-    background-color: white;
-    width: max-content;
+  &__upload {
     position: absolute;
     left: 4px;
     bottom: -6px;
-    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
-    cursor: pointer;
 
     @mixin atMedium {
       left: 8px;
@@ -133,6 +128,22 @@
     @mixin atLarge {
       left: 6px;
     }
+  }
+
+  &__upload-icon-container {
+    border-radius: 5px;
+    background-color: white;
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+  }
+
+  &__upload-tap-area {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transform: scale(2, 1.5);
   }
 
   &__upload-icon {

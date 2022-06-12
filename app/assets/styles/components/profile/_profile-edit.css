@@ -1,21 +1,71 @@
 .profile-edit {
   background-color: white;
   position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 0 5px 2px $gray30;
+
+  @mixin atMedium {
+    max-width: 500px;
+  }
+
+  @mixin atLarge {
+    box-shadow: none;
+    max-width: none;
+    height: 100%;
+  }
 
   &__wrapper {
     padding: 40px 10px 30px;
+
+    @mixin atMedium {
+      padding: 105px 35px 45px;
+    }
+
+    @mixin atLarge {
+      padding: 70px 60px 60px;
+    }
   }
 
   &__close {
     position: absolute;
     top: 20px;
     right: 20px;
+    cursor: pointer;
+
+    @mixin atMedium {
+      top: 35px;
+      right: 35px;
+    }
   }
 
   &__close__icon {
     width: 24px;
     height: 24px;
     color: $gray50;
+
+    @mixin atMedium {
+      width: 45px;
+      height: 45px;
+    }
+
+    @mixin atLarge {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  form {
+    @mixin atLarge {
+      display: flex;
+      gap: 60px;
+    }
+  }
+
+  &__large-6 {
+    @mixin atLarge {
+      flex: 1;
+    }
   }
 
   &__name,
@@ -31,6 +81,28 @@
       transform: translateY(-45%);
       font-size: .85rem;
       color: $gray30;
+
+      @mixin atMedium {
+        font-size: 1rem;
+      }
+
+      @mixin atLarge {
+        font-size: .95rem;
+      }
+    }
+
+    @mixin atMedium {
+      margin-bottom: 35px;
+    }
+
+    @mixin atLarge {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__phone-number {
+    @mixin atLarge {
+      margin-bottom: 0;
     }
   }
 
@@ -40,6 +112,15 @@
     color: $gray50;
     margin-bottom: 6px;
     margin-left: 15px;
+
+    @mixin atMedium {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    @mixin atLarge {
+      font-size: 1.15rem;
+    }
   }
 
   input[type="text"] {
@@ -49,6 +130,14 @@
     padding-left: 15px;
     padding-right:0px;
     width: 100%;
+
+    @mixin atMedium {
+      height: 50px;
+    }
+
+    @mixin atLarge {
+      height: 45px;
+    }
   }
 
   textarea {
@@ -63,6 +152,14 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    @mixin atMedium {
+      height: 200px;
+    }
+
+    @mixin atLarge {
+      height: 171px;
     }
   }
 

@@ -2,6 +2,7 @@ import profileCardTemplate from './templates/profile-card.ejs'
 import {local as user} from '../userModel/model'
 import glass from '../glass/glass'
 import Form from '../form/form'
+import Photo from '../photo/photo'
 
 init()
 
@@ -38,9 +39,17 @@ function events(node) {
 
   const editBtn = node.querySelector('.profile-card__edit-tap-area')
 
+  const photoBtn = node.querySelector('.profile-card__upload-tap-area')
+
   editBtn.addEventListener('pointerdown', () => {
 
     glass.render('central', Form.create())
+
+  })
+
+  photoBtn.addEventListener('pointerdown', () => {
+
+    glass.render('left', new Photo())
 
   })
 }
