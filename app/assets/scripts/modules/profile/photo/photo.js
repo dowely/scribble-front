@@ -1,10 +1,13 @@
 import profilePhotoTemplate from './profile-photo.ejs'
-import defaultImage from '/app/assets/images/profile-default-450-300.png'
+import defaultImage from '/app/assets/images/profile-default.png'
 import debounce from 'lodash/debounce'
+import Cropper from './cropper'
 
 export default class Photo {
 
   node
+
+  cropper
 
   canvas
 
@@ -19,6 +22,8 @@ export default class Photo {
     div.innerHTML = profilePhotoTemplate()
 
     this.node = div.querySelector('.profile-photo')
+
+    this.cropper = new Cropper(div.querySelector('.profile-photo__canvas-container'))
 
     this.canvas = div.querySelector('#profile__photo__source')
 
@@ -46,7 +51,7 @@ export default class Photo {
 
       const transformedParams = this.transform(baselineParams, transformations)
 
-      //clearRect
+      this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height)
 
       this.ctx.drawImage(img, ...transformedParams)
 
@@ -98,7 +103,15 @@ export default class Photo {
 
       this.canvas.setAttribute('height', this.calculateWidth())
 
+      this.loadImage()
+
     }, 500).bind(this))
+
+    this.cropper.on('transform', transformations => {
+
+      this.loadImage(transformations)
+
+    })
   }
 
   calculateWidth() {

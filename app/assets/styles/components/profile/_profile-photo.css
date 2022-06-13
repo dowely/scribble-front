@@ -1,5 +1,9 @@
 .profile-photo {
 
+  &__canvas-container--pan {
+    cursor: grab;
+  }
+
   &__canvas {
     display: block;
     background-color: $gray50;
