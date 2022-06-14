@@ -99,7 +99,7 @@ class Glass {
       }, 20)
 
       if(col === 'left') {
-        this.columns[col].classList.add('content__left-col--hidden')
+        this.viewers[col].classList.add('content__viewer--hidden')
       }
 
       if(col === 'central') {
@@ -112,7 +112,7 @@ class Glass {
   fadeIn(col) {
 
     if(col === 'left') {
-      this.columns[col].classList.remove('content__left-col--hidden')
+      this.viewers[col].classList.remove('content__viewer--hidden')
     }
 
     if(col === 'central') {

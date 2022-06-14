@@ -23,21 +23,19 @@ export default class Photo {
 
     this.node = div.querySelector('.profile-photo')
 
-    this.cropper = new Cropper(div.querySelector('.profile-photo__canvas-container'))
-
     this.canvas = div.querySelector('#profile__photo__source')
 
     this.canvas.setAttribute('width', this.calculateWidth())
 
-    this.canvas.setAttribute('height', this.calculateWidth())
+    this.canvas.setAttribute('height', this.calculateHeight())
 
     this.ctx = this.canvas.getContext('2d')
+    
+    this.cropper = new Cropper(div.querySelector('.profile-photo__canvas-container'))
 
     this.loadImage()
 
     this.events()
-
-    return this.node
 
   }
 
@@ -101,9 +99,11 @@ export default class Photo {
 
       this.canvas.setAttribute('width', this.calculateWidth())
 
-      this.canvas.setAttribute('height', this.calculateWidth())
+      this.canvas.setAttribute('height', this.calculateHeight())
 
       this.loadImage()
+
+      this.cropper.reset()
 
     }, 500).bind(this))
 
@@ -126,6 +126,21 @@ export default class Photo {
     else width = bodyWidth - 20
 
     return width
+  }
+
+  calculateHeight() {
+
+    let height
+
+    const bodyWidth = parseInt(getComputedStyle(document.body).getPropertyValue('width').slice(0, -2))
+
+    if(bodyWidth >= 1495) height = 440
+    else if(bodyWidth >= 1255) height = 345
+    else if(bodyWidth >= 768) height = 500
+    else if(bodyWidth >= 420) height = 400
+    else height = bodyWidth - 20
+
+    return height
   }
 
 }

@@ -16,11 +16,17 @@ class Cropper {
 
     this.transformations = new Map()
 
+    this.reset()
+
+    this.events()
+
+  }
+
+  reset() {
+
     this.transformations.set('zoom', 1)
     this.transformations.set('offsetX', 0)
     this.transformations.set('offsetY', 0)
-
-    this.events()
 
   }
 
@@ -51,9 +57,9 @@ class Cropper {
 
     }, {passive: true})
 
-    this.container.addEventListener('pointerdown', () => {
+    this.container.addEventListener('pointerdown', (e) => {
 
-      this.onPointerDown()
+      this.onPointerDown(e)
 
     })
 
@@ -72,10 +78,6 @@ class Cropper {
     const that = this
 
     let distance
-
-    const foo = document.createElement('p')
-
-    this.container.appendChild(foo)
 
     const onTouchMove = touchEvent => {
 
@@ -112,7 +114,11 @@ class Cropper {
 
     const onTouchEnd = touchEvent => {
 
-      if(touchEvent.touches.length < 2) this.container.removeEventListener('touchmove', onTouchMove)
+      if(touchEvent.touches.length === 1) {
+
+        this.container.removeEventListener('touchmove', onTouchMove)
+
+      }
 
     }
 
@@ -130,11 +136,26 @@ class Cropper {
 
   }
 
-  onPointerDown() {
+  onPointerDown(e) {
 
     const that = this
 
+    const canvas = this.container.querySelector('canvas#profile__photo__source')
+
     const onPointerMove = moveEvent => {
+
+      if(
+        moveEvent.pointerType === 'touch' && (
+        moveEvent.offsetX < 0 + moveEvent.width / 2 ||
+        moveEvent.offsetX > canvas.width - moveEvent.width / 2 ||
+        moveEvent.offsetY < 0 + moveEvent.height / 2 ||
+        moveEvent.offsetY > canvas.height - moveEvent.height / 2
+        )
+      ) {
+
+        that.container.dispatchEvent(new Event('pointerleave'))
+
+      }
 
       let offsetX = that.transformations.get('offsetX')
       let offsetY = that.transformations.get('offsetY')
@@ -156,9 +177,21 @@ class Cropper {
 
     }
 
-    const onPointerUp = (e) => {
+    const onPointerUp = () => {
 
       that.container.removeEventListener('pointermove', onPointerMove)
+
+      that.container.removeEventListener('pointerleave', onPointerLeave)  
+
+      that.container.classList.remove('profile-photo__canvas-container--pan')
+
+    }
+
+    const onPointerLeave = () => {
+
+      that.container.removeEventListener('pointermove', onPointerMove)
+
+      that.container.removeEventListener('pointerup', onPointerUp) 
 
       that.container.classList.remove('profile-photo__canvas-container--pan')
 
@@ -168,7 +201,7 @@ class Cropper {
 
     this.container.addEventListener('pointerup', onPointerUp, {once: true})
 
-    this.container.addEventListener('pointerleave', onPointerUp, {once: true})
+    this.container.addEventListener('pointerleave', onPointerLeave, {once: true})
 
     this.container.classList.add('profile-photo__canvas-container--pan')
 

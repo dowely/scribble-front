@@ -1,7 +1,64 @@
 .profile-photo {
+  background-color: white;
+
+  @mixin atMedium {
+    padding-top: 90px;
+  }
+
+  @mixin atLarge {
+    padding-top: 0;
+  }
+
+  &__canvas-container {
+    position: relative;
+    overflow: hidden;
+  }
 
   &__canvas-container--pan {
     cursor: grab;
+  }
+
+  &__overlay {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 12%;
+    bottom: 12%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 999px rgba(0, 0, 0, .5);
+
+    span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border-radius: $pill;
+      position: absolute;
+
+      &:nth-child(1) {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+      }
+
+      &:nth-child(2) {
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+      }
+
+      &:nth-child(3) {
+        bottom: 0;
+        right: 0;
+        transform: translate(50%, 50%);
+      }
+
+      &:nth-child(4) {
+        bottom: 0;
+        left: 0;
+        transform: translate(-50%, 50%);
+      }
+    }
   }
 
   &__canvas {
@@ -11,5 +68,15 @@
 
   &__buttons {
     padding: 30px 10px;
+    display: flex;
+    justify-content: space-between;
+
+    @mixin atMedium {
+      padding: 50px 30px;
+    }
+
+    @mixin atLarge {
+      padding: 20px;
+    }
   }
 }

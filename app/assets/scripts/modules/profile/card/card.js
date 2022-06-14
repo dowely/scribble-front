@@ -49,7 +49,13 @@ function events(node) {
 
   photoBtn.addEventListener('pointerdown', () => {
 
-    glass.render('left', new Photo())
+    const photo = new Photo()
+
+    setTimeout(() => {
+
+      glass.render('left', photo.node)
+
+    }, 20)
 
   })
 }

@@ -209,6 +209,20 @@
     }
   }
 
+  &--form-upload {
+    background-color: $primaryBlue;
+    width: 100px;
+    height: 34px;
+    border: 1px solid $primaryBlueDarker;
+
+    @mixin atMedium {
+      height: 40px;
+      width: 120px;
+      font-size: 1.15rem;
+    }
+
+  }
+
   &--form-save {
     background-color: $primaryGreen;
     width: 100px;
