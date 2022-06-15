@@ -31,7 +31,7 @@ export default class Photo {
 
     this.ctx = this.canvas.getContext('2d')
     
-    this.cropper = new Cropper(div.querySelector('.profile-photo__canvas-container'))
+    this.cropper = new Cropper(div.querySelector('.profile-photo__input-surface'))
 
     this.loadImage()
 

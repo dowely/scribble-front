@@ -10,9 +10,13 @@ class Cropper {
 
   pointerMoveHandler
 
+  canvas
+
   constructor(container) {
 
     this.container = container
+
+    this.canvas = this.container.parentElement.querySelector('canvas#profile__photo__source') 
 
     this.transformations = new Map()
 
@@ -57,7 +61,9 @@ class Cropper {
 
     }, {passive: true})
 
-    this.container.addEventListener('pointerdown', (e) => {
+    this.container.addEventListener('pointerdown', e => {
+
+      e.preventDefault()
 
       this.onPointerDown(e)
 
@@ -70,7 +76,6 @@ class Cropper {
       this.onTouchStart(e)
 
     })
-
   }
 
   onTouchStart(e) {
@@ -140,16 +145,17 @@ class Cropper {
 
     const that = this
 
-    const canvas = this.container.querySelector('canvas#profile__photo__source')
+    let prevX = e.offsetX
+    let prevY = e.offsetY
 
     const onPointerMove = moveEvent => {
 
       if(
         moveEvent.pointerType === 'touch' && (
         moveEvent.offsetX < 0 + moveEvent.width / 2 ||
-        moveEvent.offsetX > canvas.width - moveEvent.width / 2 ||
+        moveEvent.offsetX > that.canvas.width - moveEvent.width / 2 ||
         moveEvent.offsetY < 0 + moveEvent.height / 2 ||
-        moveEvent.offsetY > canvas.height - moveEvent.height / 2
+        moveEvent.offsetY > that.canvas.height - moveEvent.height / 2
         )
       ) {
 
@@ -160,12 +166,18 @@ class Cropper {
       let offsetX = that.transformations.get('offsetX')
       let offsetY = that.transformations.get('offsetY')
 
-      offsetX += moveEvent.movementX
-      offsetY += moveEvent.movementY
+      //offsetX += moveEvent.movementX
+      //offsetY += moveEvent.movementY
+
+      offsetX += moveEvent.offsetX - prevX
+      offsetY += moveEvent.offsetY - prevY
+
+      prevX = moveEvent.offsetX
+      prevY = moveEvent.offsetY
 
       that.transformations.set('offsetX', offsetX)
       that.transformations.set('offsetY', offsetY)
-
+      
       const transformations = {}
 
       for(const [key, value] of that.transformations) {
