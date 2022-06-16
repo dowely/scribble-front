@@ -47,6 +47,8 @@ const saveUserData = (user) => {
 
     }
 
+    obj.image = user.image
+
     localStorage.setItem('profile', JSON.stringify(obj))
   }
 }

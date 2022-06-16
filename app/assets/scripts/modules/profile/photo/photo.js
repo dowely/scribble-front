@@ -2,6 +2,9 @@ import profilePhotoTemplate from './profile-photo.ejs'
 import defaultImage from '/app/assets/images/profile-default.png'
 import debounce from 'lodash/debounce'
 import Cropper from './cropper'
+import glass from '../glass/glass'
+import {create as cardNode} from '../card/card'
+import {local as user} from '../userModel/model'
 
 export default class Photo {
 
@@ -13,7 +16,7 @@ export default class Photo {
 
   ctx
 
-  blob
+  blob = user.image
 
   constructor() {
 
@@ -22,6 +25,8 @@ export default class Photo {
     div.innerHTML = profilePhotoTemplate()
 
     this.node = div.querySelector('.profile-photo')
+
+    this.btns = this.node.getElementsByTagName('input')
 
     this.canvas = div.querySelector('#profile__photo__source')
 
@@ -55,14 +60,7 @@ export default class Photo {
 
     })
 
-    if(this.blob) {
-
-
-    } else {
-
-      img.src = defaultImage
-
-    }
+    img.src = this.blob ? this.blob : defaultImage
 
   }
 
@@ -112,6 +110,39 @@ export default class Photo {
       this.loadImage(transformations)
 
     })
+
+    this.btns["discard"].addEventListener('click', () => {
+
+      glass.render('left', cardNode())
+
+    })
+
+    this.btns["save"].addEventListener('click', () => {
+
+      user.image = this.captureImgage()
+
+      glass.render('left', cardNode())
+
+    })
+  }
+
+  captureImgage() {
+
+    const sourceOffsetX = Math.round(this.canvas.width * 0.12)
+    const sourceOffsetY = Math.round(this.canvas.height * 0.12)
+
+    const sourceWidth = Math.round(this.canvas.width * 0.76)
+    const sourceHeight = Math.round(this.canvas.height * 0.76)
+
+    const target = document.createElement('CANVAS')
+
+    target.width = sourceWidth
+    target.height = sourceHeight
+
+    target.getContext('2d').drawImage(this.canvas, sourceOffsetX, sourceOffsetY, sourceWidth, sourceHeight, 0, 0, target.width, target.height)
+
+    return target.toDataURL()
+
   }
 
   calculateWidth() {

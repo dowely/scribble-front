@@ -1,5 +1,7 @@
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
+let image
+
 const User = function(data) {
 
   this.name = data.name
@@ -14,9 +16,19 @@ const User = function(data) {
 
   this.bio = data.bio
 
-  this.image = data.image
+  image = data.image
 
 }
+
+
+
+Object.defineProperty(User.prototype, 'image', {
+
+  get: function() {return image},
+
+  set: function(blob) {image = blob}
+  
+})
 
 Object.defineProperty(User.prototype, 'initials', {
   
