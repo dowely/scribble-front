@@ -37,7 +37,7 @@ module.exports = {
         use: 'ejs-compiled-loader'
       },
       {
-        test: /\.png$/i,
+        test: /\.(png|jpeg|jpg|gif)$/i,
         type: 'asset/resource'
       }
     ]

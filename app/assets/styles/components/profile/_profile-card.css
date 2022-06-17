@@ -115,6 +115,28 @@
     }
   }
 
+  &__initials--hidden {
+    opacity: 0;
+  }
+
+  &__photo {
+    display: none;
+    width: calc(100% - 4px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: $pill;
+    transform: translate(-50%, -50%);
+
+    @mixin atMedium {
+      width: calc(100% - 6px);
+    }
+  }
+
+  &__photo[src] {
+    display: block;
+  }
+
   &__upload {
     position: absolute;
     left: 4px;

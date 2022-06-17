@@ -1,5 +1,6 @@
 import profilePhotoTemplate from './profile-photo.ejs'
 import defaultImage from '/app/assets/images/profile-default.png'
+import cloud from '/app/assets/images/cloud.png'
 import debounce from 'lodash/debounce'
 import Cropper from './cropper'
 import glass from '../glass/glass'
@@ -17,6 +18,8 @@ export default class Photo {
   ctx
 
   blob = user.image
+
+  uploadImg
 
   constructor() {
 
@@ -46,6 +49,12 @@ export default class Photo {
 
   loadImage(transformations = {zoom: 1, offsetX: 0, offsetY: 0}) {
 
+    if(!this.uploadImg && this.blob) transformations = {
+      zoom: 0.5,
+      offsetX: 0,
+      offsetY: 0
+    }
+
     const img = new Image()
 
     img.addEventListener('load', (e) => {
@@ -60,7 +69,7 @@ export default class Photo {
 
     })
 
-    img.src = this.blob ? this.blob : defaultImage
+    img.src = this.uploadImg ? this.uploadImg : this.blob ? cloud : defaultImage
 
   }
 
@@ -119,11 +128,47 @@ export default class Photo {
 
     this.btns["save"].addEventListener('click', () => {
 
-      user.image = this.captureImgage()
+      user.image = this.uploadImg || !this.blob ? this.captureImgage() : ''
 
       glass.render('left', cardNode())
 
     })
+
+    this.btns["upload"].addEventListener('click', () => {
+
+      this.btns["filePicker"].click()
+
+    })
+
+    this.btns["filePicker"].addEventListener('change', () => {
+
+      const files = this.btns["filePicker"].files
+
+      if(files.length && this.validateFileType(files[0])) {
+
+        this.uploadImg = URL.createObjectURL(files[0])
+
+        this.loadImage()
+
+      }
+
+    })
+
+  }
+
+  validateFileType(file) {
+
+    const fileTypes = [
+      "image/bmp",
+      "image/gif",
+      "image/jpeg",
+      "image/pjpeg",
+      "image/png",
+      "image/svg+xml",
+      "image/tiff",
+    ]
+
+    return fileTypes.includes(file.type)
   }
 
   captureImgage() {

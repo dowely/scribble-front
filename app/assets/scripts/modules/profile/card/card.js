@@ -19,9 +19,18 @@ function init() {
     phoneNumber: user.phoneNumber,
     email: user.email,
     joinedDate: user.joinedDate,
-    bio: user.bio
-
+    bio: user.bio,
   })
+
+  const initials = div.querySelector('.profile-card__initials')
+
+  if(user.image) {
+
+    div.querySelector('.profile-card__photo').src = user.image
+
+    initials.classList.add('profile-card__initials--hidden')
+
+  } else initials.classList.remove('profile-card__initials--hidden')
 
   const node = div.querySelector('.profile-card')
 
@@ -48,9 +57,18 @@ export const create = () => {
     phoneNumber: user.phoneNumber,
     email: user.email,
     joinedDate: user.joinedDate,
-    bio: user.bio
-
+    bio: user.bio,
   })
+
+  const initials = div.querySelector('.profile-card__initials')
+
+  if(user.image) {
+
+    div.querySelector('.profile-card__photo').src = user.image
+
+    initials.classList.add('profile-card__initials--hidden')
+
+  } else initials.classList.remove('profile-card__initials--hidden')
 
   const node = div.querySelector('.profile-card')
 
