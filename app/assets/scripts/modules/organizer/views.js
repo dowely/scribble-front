@@ -147,7 +147,7 @@ class Views {
     }
   }
 
-  search() {
+  async search() {
 
     if(this.viewState.subMenu === 'notifications') {
 
@@ -160,6 +160,16 @@ class Views {
       this.subMenu.classList.remove('sub-menu-organizer--search')
 
       this.viewState.subMenu = 'default'
+
+      if(this.columns.left.dataset.index === '4') {
+
+        await this.fadeOut('left', 'viewer')
+
+        this.columns.left.dataset.index = this.viewState.leftColIndex
+
+        this.fadeIn('left', 'viewer')
+
+      }
 
     } else {
 

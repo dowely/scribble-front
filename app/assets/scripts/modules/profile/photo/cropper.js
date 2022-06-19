@@ -38,6 +38,8 @@ class Cropper {
 
     this.container.addEventListener('wheel', e => {
 
+      e.preventDefault()
+
       let zoom = this.transformations.get('zoom')
 
       zoom *= 1 + Math.sign(e.deltaY) * this.zoomUnit
@@ -59,7 +61,7 @@ class Cropper {
 
       }
 
-    }, {passive: true})
+    }, {passive: false})
 
     this.container.addEventListener('pointerdown', e => {
 

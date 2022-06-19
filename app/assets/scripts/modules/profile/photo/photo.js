@@ -173,10 +173,14 @@ export default class Photo {
 
   captureImgage() {
 
-    const sourceOffsetX = Math.round(this.canvas.width * 0.12)
+    const adjustedMargin = this.calculateHeight() === 345 ? 0.202 : 0.12
+
+    const adjustedWidth = 1 - 2 * adjustedMargin
+
+    const sourceOffsetX = Math.round(this.canvas.width * adjustedMargin)
     const sourceOffsetY = Math.round(this.canvas.height * 0.12)
 
-    const sourceWidth = Math.round(this.canvas.width * 0.76)
+    const sourceWidth = Math.round(this.canvas.width * adjustedWidth)
     const sourceHeight = Math.round(this.canvas.height * 0.76)
 
     const target = document.createElement('CANVAS')

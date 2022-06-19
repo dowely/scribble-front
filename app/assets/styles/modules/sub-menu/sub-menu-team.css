@@ -81,6 +81,21 @@
     }
   }
 
+  &__my-profile__edit {
+    position: relative;
+  }
+
+  &__my-profile__edit-tap-area {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+
   &__my-profile__edit-icon {
     display: block;
     width: 24px;

@@ -1,3 +1,5 @@
+const ee = require('event-emitter')
+
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 let image
@@ -26,7 +28,12 @@ Object.defineProperty(User.prototype, 'image', {
 
   get: function() {return image},
 
-  set: function(blob) {image = blob}
+  set: function(blob) {
+    
+    image = blob
+  
+    this.emit('photoUpdate')
+  }
   
 })
 
@@ -56,5 +63,7 @@ Object.defineProperty(User.prototype, 'joinedDate', {
     return `${months[joined.getMonth()]} ${joined.getDate()}, ${joined.getFullYear()}`
   }
 })
+
+ee(User.prototype)
 
 module.exports = User

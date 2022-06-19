@@ -69,7 +69,7 @@ class Glass {
       sequence.push(fadeOut)
     } 
 
-    sequence.push(content)
+    if(node) sequence.push(content)
 
     sequence.push(fadeIn)
 

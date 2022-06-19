@@ -1,3 +1,6 @@
+import {local as user} from './profile/userModel/model'
+import johnShaffer from '/app/assets/images/john-schaffer.png'
+
 class MobileMenu {
   constructor() {
     this.arrowToggle = document.querySelector('#back-tap-area')
@@ -7,10 +10,23 @@ class MobileMenu {
     this.menuItems = document.querySelectorAll('.menu__item')
     this.menuLinks = document.querySelectorAll('.menu__link, .menu__icon-link')
     this.notifiers = document.querySelectorAll('.menu__notifier--active')
+    this.photo = document.querySelector('.menu__user-photo')
+    this.name = document.querySelector('.menu__user-name')
+
+    this.avatar()
 
     this.isAnimating = false
 
     this.events()
+
+  }
+
+  avatar() {
+    
+    this.photo.src = user.image ? user.image : johnShaffer
+
+    this.photo.alt = `A photo of ${user.name}`
+
   }
 
   events() {
@@ -51,6 +67,10 @@ class MobileMenu {
         }
       })
     })
+
+    user.on('photoUpdate', () => this.avatar())
+
+    user.on('textUpdate', () => this.name.textContent = user.name)
   }
 
   async openMenu() {

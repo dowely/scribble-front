@@ -27,6 +27,16 @@
     border: 2px solid white;
     box-shadow: 0 0 0 999px rgba(0, 0, 0, .5);
 
+    @mixin atLarge {
+      left: 20.2%;
+      right: 20.2%;
+    }
+
+    @mixin atXLarge {
+      left: 12%;
+      right: 12%;
+    }
+
     span {
       display: block;
       width: 10px;

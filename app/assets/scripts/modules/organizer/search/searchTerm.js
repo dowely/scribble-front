@@ -30,6 +30,8 @@ class SearchTerm {
   clear() {
 
     this.inputField.value = ''
+
+    this.term = ''
   }
 
 }

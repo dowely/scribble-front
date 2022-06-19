@@ -13,9 +13,16 @@
   p {
     margin: auto;
     user-select: none;
+    transition: opacity .2s ease-out;
 
     @mixin atMedium {
       font-size: 1.15rem;
+    }
+  }
+
+  &--faded {
+    p {
+      opacity: 0;
     }
   }
 }

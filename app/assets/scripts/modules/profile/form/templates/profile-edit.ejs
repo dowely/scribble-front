@@ -19,7 +19,7 @@
 
         <div class="profile-edit__name">
 
-          <input type="text" name="userName" id="userName" maxlength="30" autocomplete="off">
+          <input type="text" name="userName" id="userName" maxlength="30" autocomplete="off" value="<%= name %>">
 
           <span>0/30</span>
 
@@ -29,7 +29,7 @@
 
         <div class="profile-edit__job-position">
 
-          <input type="text" name="jobPosition" id="jobPosition" maxlength="30" autocomplete="off">
+          <input type="text" name="jobPosition" id="jobPosition" maxlength="30" autocomplete="off" value="<%= jobPosition %>">
 
           <span>0/30</span>
 
@@ -39,9 +39,9 @@
 
         <div class="profile-edit__phone-number">
 
-          <input type="text" name="phoneNumber" id="phoneNumber" maxlength="12" autocomplete="off">
+          <input type="text" name="phoneNumber" id="phoneNumber" maxlength="20" autocomplete="off" value="<%= phoneNumber %>">
 
-          <span>0/12</span>
+          <span>0/20</span>
 
         </div>
 
@@ -53,7 +53,7 @@
 
           <label for="bio">Bio</label>
 
-          <textarea name="bio" id="bio"></textarea>
+          <textarea name="bio" id="bio"><%= bio %></textarea>
 
         </div>
 

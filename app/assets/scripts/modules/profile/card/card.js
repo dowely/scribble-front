@@ -3,6 +3,7 @@ import {local as user} from '../userModel/model'
 import glass from '../glass/glass'
 import Form from '../form/form'
 import Photo from '../photo/photo'
+import {prompt, hint} from '../prompt/prompt'
 
 init()
 
@@ -70,6 +71,8 @@ export const create = () => {
 
   } else initials.classList.remove('profile-card__initials--hidden')
 
+  prompt()
+
   const node = div.querySelector('.profile-card')
 
   events(node)
@@ -97,6 +100,8 @@ function events(node) {
     setTimeout(() => {
 
       glass.render('left', photo.node)
+
+      hint()
 
     }, 20)
 

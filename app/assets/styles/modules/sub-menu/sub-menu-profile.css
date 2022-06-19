@@ -85,6 +85,7 @@
 
     span {
       font-size: 1.15rem;
+      transition: opacity .2s ease-out;
 
       @mixin atMedium {
         font-size: 1.25rem;
@@ -93,6 +94,10 @@
       @mixin atLarge {
         font-size: 1.65rem;
       }
+    }
+
+    span.sub-menu-profile__progress-numbers__span--faded {
+      opacity: 0;
     }
 
     @mixin atMedium {
