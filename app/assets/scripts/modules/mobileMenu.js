@@ -68,9 +68,19 @@ class MobileMenu {
       })
     })
 
-    user.on('photoUpdate', () => this.avatar())
+    user.on('photoUpdate', () => {
 
-    user.on('textUpdate', () => this.name.textContent = user.name ? user.name : 'John Schaffer')
+      this.avatar()
+
+      console.log('photoUpdate ran...')
+    })
+
+    user.on('textUpdate', () => {
+
+      this.name.textContent = user.name ? user.name : 'John Schaffer'
+
+      console.log('textUpdate ran')
+    })
   }
 
   async openMenu() {
