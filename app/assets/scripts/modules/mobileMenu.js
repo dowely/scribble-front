@@ -70,18 +70,12 @@ class MobileMenu {
       })
     })
 
-    user.on('photoUpdate', () => {
-
-      this.avatar()
-
-      console.log('photoUpdate ran...')
-    })
+    user.on('photoUpdate', () => this.avatar())
 
     user.on('textUpdate', () => {
 
       this.name.textContent = user.name ? user.name : 'John Schaffer'
 
-      console.log('textUpdate ran')
     })
   }
 
