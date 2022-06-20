@@ -135,7 +135,7 @@ if(currentTask === 'build') {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'docs'),
-    assetModuleFilename: 'assets/images/[name].[hash][ext]',
+    assetModuleFilename: 'assets/images/[name][ext]',
     clean: true
   }
 

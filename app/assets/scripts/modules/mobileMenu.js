@@ -63,7 +63,7 @@ class MobileMenu {
   
           let page = e.target.closest('.menu__item').dataset.route
   
-          location.href = page === 'organizer' ? `/` : page === 'search' ? `404.html` : `${page}.html`
+          location.href = page === 'organizer' ? `index.html` : page === 'search' ? `404.html` : `${page}.html`
         }
       })
     })
