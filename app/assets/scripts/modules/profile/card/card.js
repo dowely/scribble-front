@@ -5,15 +5,16 @@ import Form from '../form/form'
 import Photo from '../photo/photo'
 import {prompt, hint} from '../prompt/prompt'
 
-init()
+init('left')
+init('right')
 
-function init() {
+function init(target) {
 
   const div = document.createElement('DIV')
 
   div.innerHTML = profileCardTemplate({
 
-    hook: 'left',
+    hook: target,
     userInitials: user.initials,
     userName: user.name,
     jobPosition: user.jobPosition,
@@ -37,7 +38,7 @@ function init() {
 
   events(node)
 
-  const hook = document.querySelector('.content__left-col .content__viewer')
+  const hook = document.querySelector(`.content__${target}-col .content__viewer`)
 
   hook.innerHTML = ''
 
@@ -45,13 +46,13 @@ function init() {
 
 }
 
-export const create = () => {
+export const create = (target) => {
 
   const div = document.createElement('DIV')
 
   div.innerHTML = profileCardTemplate({
 
-    hook: 'left',
+    hook: target,
     userInitials: user.initials,
     userName: user.name,
     jobPosition: user.jobPosition,

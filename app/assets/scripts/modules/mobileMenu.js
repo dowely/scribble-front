@@ -63,14 +63,14 @@ class MobileMenu {
   
           let page = e.target.closest('.menu__item').dataset.route
   
-          location.href = `${page}.html`
+          location.href = page === 'organizer' ? `/` : page === 'search' ? `404.html` : `${page}.html`
         }
       })
     })
 
     user.on('photoUpdate', () => this.avatar())
 
-    user.on('textUpdate', () => this.name.textContent = user.name)
+    user.on('textUpdate', () => this.name.textContent = user.name ? user.name : 'John Schaffer')
   }
 
   async openMenu() {

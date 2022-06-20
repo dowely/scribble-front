@@ -62,7 +62,7 @@ export const prompt = () => {
 
       if(field.empty) {p.textContent = value; break}
   
-      p.textContent = 'You completed your profile!'
+      p.textContent = `You've completed your profile!`
   
     }
 

@@ -49,7 +49,13 @@ class Form {
       user.phoneNumber = fields['phoneNumber'].value
       user.bio = fields['bio'].value
 
-      glass.render('left', cardNode())
+      glass.viewers['left'].innerHTML = ''
+      glass.viewers['right'].innerHTML = ''
+      
+      glass.viewers['left'].appendChild(cardNode('left'))
+      glass.viewers['right'].appendChild(cardNode('right'))
+
+      glass.render('left')
 
       user.emit('textUpdate')
 

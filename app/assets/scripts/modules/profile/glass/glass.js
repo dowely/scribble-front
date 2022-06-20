@@ -67,6 +67,7 @@ class Glass {
     if(!this.state.twoCols || target !== 'central') {
 
       sequence.push(fadeOut)
+      
     } 
 
     if(node) sequence.push(content)

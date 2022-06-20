@@ -14,7 +14,7 @@ module.exports = [
     chunks: ['login']
   }),
   new HtmlWebpackPlugin({
-    filename: 'organizer.html',
+    filename: 'index.html',
     template: './app/pages/app.ejs',
     title: 'Scribble App | Organizer',
     chunks: ['app', 'organizer'],
@@ -57,7 +57,7 @@ module.exports = [
     }
   }),
   new HtmlWebpackPlugin({
-    filename: 'search.html',
+    filename: '404.html',
     template: './app/pages/app.ejs',
     title: 'Scribble App | Not Found',
     chunks: ['app', 'search'],

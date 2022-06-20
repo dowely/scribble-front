@@ -122,7 +122,7 @@ export default class Photo {
 
     this.btns["discard"].addEventListener('click', () => {
 
-      glass.render('left', cardNode())
+      glass.render('left', cardNode('left'))
 
     })
 
@@ -130,7 +130,11 @@ export default class Photo {
 
       user.image = this.uploadImg || !this.blob ? this.captureImgage() : ''
 
-      glass.render('left', cardNode())
+      glass.render('left', cardNode('left'))
+
+      glass.viewers['right'].innerHTML = ''
+      
+      glass.viewers['right'].appendChild(cardNode('right'))
 
     })
 

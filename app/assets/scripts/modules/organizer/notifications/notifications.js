@@ -2,7 +2,6 @@ import display from './display'
 import pool from './pool'
 import navigator from './navigator'
 
-
 class Notifications {
 
   bells = [
@@ -152,4 +151,5 @@ class Notifications {
 }
 
 export default Notifications
-    
+
+document.querySelector('.notifications').dataset.count = pool.notifications.length

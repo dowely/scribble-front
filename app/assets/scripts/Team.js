@@ -1,6 +1,7 @@
 import TeamList from './modules/team/teamList'
 import UserRead from './modules/team/userRead'
 import ViewController from './base/viewController'
+import {local as user} from './modules/profile/userModel/model'
 
 function importSprites(r) {
   r.keys().forEach(r)
@@ -29,3 +30,8 @@ async function onTeamList(userName) {
     viewController.render('left')
   })
 }
+
+const avatar = document.querySelector('.sub-menu-team__my-profile__avatar img')
+
+if(user.image) avatar.src = user.image
+
