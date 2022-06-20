@@ -15,6 +15,8 @@ class MobileMenu {
 
     this.avatar()
 
+    this.name.textContent = user.name ? user.name : 'John Schaffer'
+
     this.isAnimating = false
 
     this.events()
